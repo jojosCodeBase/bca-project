@@ -19,4 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/upload', [ExcelController::class, 'fileUpload'])->name('file-upload');
+// Route::post('/upload', function(){
+//     return "HEllo";
+// })->name('file-upload');
+
+// Route::get('/upload', function(){
+//     return "HEllo";
+// })->name('get.file-upload');
 Route::get('/excel', [ExcelController::class, 'importExcel'])->name('excel.import');
