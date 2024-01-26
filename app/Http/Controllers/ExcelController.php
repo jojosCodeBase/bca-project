@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Imports\ExcelImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
@@ -27,8 +28,9 @@ class ExcelController extends Controller
     public function importExcel()
     {
         // Use the Excel facade to import data using the modified ExcelImport class
-        $filePath = public_path('assets/excel/test.xlsx');
-
+        // $filePath = str_replace('\\', '/', "storage\\uploads\\excel\\test-data.xlsx");
+        $filePath = Storage::disk('uploads')->path("excel\\test-data.xlsx");
+        // dd($filePath);
         $spreadsheet = IOFactory::load($filePath);
 
         // Get the active sheet
@@ -59,9 +61,9 @@ class ExcelController extends Controller
             }
         }
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save(public_path('assets/excel/modified_test.xlsx'));
+        $writer->save($filePath);
 
-        $rows = Excel::toCollection(new ExcelImport, public_path('assets/excel/modified_test.xlsx'));
+        $rows = Excel::toCollection(new ExcelImport, $filePath);
         return view('excel.index', ['rows' => $rows[0]]);
     }
 }
