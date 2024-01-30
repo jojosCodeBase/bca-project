@@ -28,3 +28,4 @@ Route::post('/upload', [ExcelController::class, 'fileUpload'])->name('file-uploa
 //     return "HEllo";
 // })->name('get.file-upload');
 Route::get('/excel', [ExcelController::class, 'importExcel'])->name('excel.import');
+Route::get('/test', [ExcelController::class, 'test'])->name('test');
