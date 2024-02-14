@@ -18,6 +18,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/test', function () {
+    return view('test');
+});
+Route::get('/upload', function () {
+    return view('upload');
+});
+Route::get('/fetch', function () {
+    return view('fetch');
+});
+Route::get('/semester', function () {
+    return view('semester');
+});
+Route::get('/year', function () {
+    return view('year');
+});
 
 Route::post('/upload', [ExcelController::class, 'fileUpload'])->name('file-upload');
 // Route::post('/upload', function(){
@@ -28,4 +50,3 @@ Route::post('/upload', [ExcelController::class, 'fileUpload'])->name('file-uploa
 //     return "HEllo";
 // })->name('get.file-upload');
 Route::get('/excel', [ExcelController::class, 'importExcel'])->name('excel.import');
-Route::get('/test', [ExcelController::class, 'test'])->name('test');
