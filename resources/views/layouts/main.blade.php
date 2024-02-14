@@ -19,9 +19,9 @@
                     <a href="#">Result Analysis</a>
                 </div>
                 <ul class="sidear-nav">
-                    <li class="sidebar-item active">
-                        <a href="dashboard.html" class="sidebar-link">
-                            <i class="bi bi-sliders"></i> Dashboard
+                    <li class="sidebar-item active p-3">
+                        <a href="dashboard.html" class="sidebar-link fs-5">
+                            <i class="bi bi-sliders me-2"></i> Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
