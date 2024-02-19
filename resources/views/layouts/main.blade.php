@@ -11,8 +11,6 @@
 </head>
 
 <body>
-
-
     <div class="wrapper">
         <aside id="sidebar">
             <!-- Content for sidebar -->
@@ -26,7 +24,7 @@
                             <i class="bi bi-sliders"></i> Dashboard
                         </a>
                     </li>
-                    
+
                     <li class="sidebar-item">
                         <span class="sidebar-link">
                             <i class="bi bi-three-dots-vertical"></i> Menu
@@ -77,15 +75,15 @@
                             <a href="" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
                                 <img src="{{ asset('assets/images/admin.png') }}" class="avatar img-fluid"
                                     alt="profile-ph">
-                                <span class="text-dark">Bikram Das</span>
+                                <span class="text-dark">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="profile.html" class="dropdown-item">Profile</a>
+                                <a href="{{ route('profile.edit') }}" class="dropdown-item"><i class="bi bi-person-fill fs-5 pe-1"></i> Profile</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">Settings & Privacy</a>
-                                <a href="#" class="dropdown-item">Help Center</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">Log-Out</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right fs-5 pe-1"></i> Log-Out</button>
+                                </form>
                             </div>
 
                         </li>
@@ -100,7 +98,7 @@
         </div>
     </div>
 
-    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="button.js"></script>
     <script src="date.js"></script>
     @yield('scripts')
