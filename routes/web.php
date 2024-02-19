@@ -22,6 +22,22 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('upload', function () {
+    return view('upload');
+})->name('upload');
+
+Route::get('fetch', function () {
+    return view('fetch');
+})->name('fetch');
+
+Route::get('semester', function () {
+    return view('semester');
+})->name('semester');
+
+Route::get('year', function () {
+    return view('year');
+})->name('year');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
