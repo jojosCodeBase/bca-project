@@ -1,4 +1,5 @@
 @extends('layouts/main')
+@section('title', 'Dashboard')
 @section('content')
     <main class="content p-lx-4 p-lg-4 p-md-4">
         <div class="mb-3 p-1">

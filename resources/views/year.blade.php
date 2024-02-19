@@ -1,4 +1,5 @@
-@extends('layouts\main')
+@extends('layouts.main')
+@section('title', 'Yearly')
 @section('content')
     <div class="container-fluid">
         <div class="row bg-light">

@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,33 +20,35 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('upload', function () {
-    return view('upload');
-})->name('upload');
-
-Route::get('fetch', function () {
-    return view('fetch');
-})->name('fetch');
-
-Route::get('semester', function () {
-    return view('semester');
-})->name('semester');
-
-Route::get('year', function () {
-    return view('year');
-})->name('year');
-Route::get('validation', function () {
-    return view('validation');
-})->name('validation');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/upload', [ExcelController::class, 'fileUpload'])->name('file-upload');
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('upload', function () {
+        return view('upload');
+    })->name('upload');
+
+    Route::get('fetch', [DashboardController::class, 'fetchView'])->name('fetch');
+    Route::post('fetch', [DashboardController::class, 'fetchData'])->name('fetch-data');
+
+    Route::get('semester', function () {
+        return view('semester');
+    })->name('semester');
+
+    Route::get('year', function () {
+        return view('year');
+    })->name('year');
+
+    Route::get('validation', function () {
+        return view('validation');
+    })->name('validation');
 });
 
 require __DIR__.'/auth.php';

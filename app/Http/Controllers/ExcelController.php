@@ -1,7 +1,5 @@
 <?php
 
-// App\Http\Controllers\ExcelController.php
-
 namespace App\Http\Controllers;
 
 use App\Models\ExcelUpload;
@@ -67,9 +65,8 @@ class ExcelController extends Controller
             if ($this->verify($i, $excelData[0][$i])) {
                 continue;
             } else {
-                $error = "Excel sheet not in correct format";
-                $errorAt = $excelData[0][$i];
-                return back()->with('error', ['error' => $error, 'errorAt' => $errorAt]);
+                $error = "Excel sheet not in correct format, at " . $excelData[0][$i];
+                return back()->with('error', $error);
             }
         }
 

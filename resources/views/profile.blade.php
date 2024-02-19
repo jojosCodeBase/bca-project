@@ -1,19 +1,22 @@
-
 @extends('layouts/admin')
 @section('title', 'Profile Edit')
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
-        @if (session('status'))
-        <div class="alert alert-success">
-            <span>{{ session('status') }}</span>
-        </div>
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @elseif(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
         @endif
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Profile</h1>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-4">
                 <div class="card">
                     <div class="card-body">
                         <h4>Profile Information</h4>
