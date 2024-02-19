@@ -65,15 +65,15 @@
             return years;
         }
 
-        // Generate labels for 24 years
-        const labels = generateYears(5);
+        // Generate labels for 11 years
+        const labels = generateYears(11);
 
         // Data configuration
         const data = {
             labels: labels,
             datasets: [{
-                label: 'My First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40, /* Add your data for 24 years here */ ],
+                label: 'Yearly CO/PO Attainment',
+                data: [65, 59, 80, 81, 56, 55, 40, 57, 45, 75, 68, /* Add your data for 11 years here */ ],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1

@@ -7,10 +7,12 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body>
+
+
     <div class="wrapper">
         <aside id="sidebar">
             <!-- Content for sidebar -->
@@ -19,9 +21,9 @@
                     <a href="#">Result Analysis</a>
                 </div>
                 <ul class="sidear-nav">
-                    <li class="sidebar-item active p-3">
-                        <a href="{{ url('/dashboard')}}" class="sidebar-link fs-5">
-                            <i class="bi bi-sliders me-2"></i> Dashboard
+                    <li class="sidebar-item active">
+                        <a href="{{ url('/dashboard') }}" class="sidebar-link">
+                            <i class="bi bi-sliders"></i> Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -30,12 +32,12 @@
                         </span>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{ url('/upload')}}" class="sidebar-nested-link">
+                        <a href="{{ url('/upload') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-arrow-up-fill"></i> Upload Data
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{url('/fetch')}}" class="sidebar-nested-link">
+                        <a href="{{ url('/fetch') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
                         </a>
                     </li>
@@ -45,12 +47,12 @@
                         </span>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{url('/semester')}}" class="sidebar-nested-link">
+                        <a href="{{ url('/semester') }}" class="sidebar-nested-link">
                             <i class="bi bi-calendar-fill"></i> Semester Wise
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{url('/year')}}" class="sidebar-nested-link">
+                        <a href="{{ url('/year') }}" class="sidebar-nested-link">
                             <i class="bi bi-calendar3"></i> Year Wise
                         </a>
                     </li>
@@ -72,7 +74,8 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="{{asset('assets/images/admin.png')}}" class="avatar img-fluid" alt="profile-ph">
+                                <img src="{{ asset('assets/images/admin.png') }}" class="avatar img-fluid"
+                                    alt="profile-ph">
                                 <span class="text-dark">Bikram Das</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -91,7 +94,7 @@
             </nav>
 
             <main class="content p-lx-4 p-lg-4 p-md-4">
-                @yield("content")
+                @yield('content')
             </main>
         </div>
     </div>
