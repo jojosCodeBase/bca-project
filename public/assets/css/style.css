@@ -14,13 +14,13 @@ body {
   margin: 0;
 }
 
-a{
+a {
   cursor: pointer;
   text-decoration: none;
   font-family: 'Trebuchet MS', sans-serif;
 }
 
-list{
+list {
   list-style: none;
 }
 
@@ -49,13 +49,18 @@ list{
   transition: all 0.35s ease-in-out;
   width: 100%;
   /* main background color */
-  background: #f1f1f1;
+  background: var(--bs-dark-bg-subtle);
 }
 
 /*Sidebar Element Style */
 
+
+.sidebar-item {
+  padding-left: 1.5rem;
+}
+
 /* Padding for Student Analysis  */
-.sidebar-logo{
+.sidebar-logo {
   /* padding: 1.5rem; */
   padding-left: 1.5rem;
   margin-top: 1.5rem;
@@ -63,72 +68,74 @@ list{
 }
 
 /* Color And Size,Weight for Student Analysis */
-.sidebar-logo a{
+.sidebar-logo a {
   color: black;
   font-size: 1.50rem;
   font-weight: 500;
 }
 
 /* list styling */
-.sidear-nav{
+.sidear-nav {
   flex-grow: 1s;
   list-style: none;
   margin-bottom: 0;
-  
-  padding-left: 0rem;  
+
+  padding-left: 0rem;
   margin-left: 0;
 }
 
-.sidebar-header{
+.sidebar-header {
 
-  color:white;
-  /* admin element size */ 
+  color: white;
+  /* admin element size */
   font-size: 1.1rem;
   /* padding: 1.5rem 1.5rem 0.375rem; */
-  padding-left:1.5rem ;
+  padding-left: 1.5rem;
 }
 
 /* main list contant style */
-.sidebar-link{
-  padding: 0.625rem 2.2rem;
+.sidebar-link {
+  /* background-color: red;  */
   color: black;
   position: relative;
-  display: black;
+  /* display: black; */
   font-size: 1rem;
 }
 
 /* nested list content style */
-a.sidebar-nested-link{
-  padding: 0.300rem 4rem;
+.sidebar-nested-link {
+  padding-left: 1.5rem;
   color: black;
   position: relative;
   display: block;
   font-size: 1rem;
-} 
+}
 
 /* Photo Size */
-.avatar{
-  height: 40px;
-  width: 40px;
+.avatar {
+  height: 30px;
+  width: 30px;
+  margin-right: 5px;
 }
 
 /* Photo align right side */
-.navbar-expant,.navbar-nav{
+.navbar-expant,
+.navbar-nav {
   margin-left: auto;
 }
 
 /* sidebar toggle */
-#sidebar.collapsed{
-margin-left: -260px;
+#sidebar.collapsed {
+  margin-left: -260px;
 }
 
 /* dashboard photo sizing */
-img{
-height: 200px;
-height: 200px;
+img {
+  height: 200px;
+  height: 200px;
 }
 
-/* fotter and nav*/ 
+/* fotter and nav*/
 /* @media(max-width:767.98){
 .navbar,
 footer{
@@ -138,27 +145,33 @@ footer{
 */
 
 /* Dashbard Card Size */
-.dashboard .card{
-height: 10rem;
+.dashboard .card {
+  height: 10rem;
 }
+
 /* Remove box-shadow from select & form */
 .form-select:focus,
-.form-control:focus{
-box-shadow: none;
+.form-control:focus {
+  box-shadow: none;
 }
 
 /* Remove radius from select & form */
 .form-select,
-.form-control{
-border-radius: 0px;
+.form-control {
+  border-radius: 0px;
 }
 
-.active{
-border-left: 4px solid rgb(32, 3, 255);
-background-color: rgb(215, 227, 248);
+.active {
+  border-left: 4px solid rgb(32, 3, 255);
+  background-color: rgb(215, 227, 248);
+  padding: 0.9rem 1rem;
+  padding-left: 1.5rem;
 }
 
-.active a{
-color:rgb(32, 92, 246);
+.active .a{
+  color: rgb(32, 92, 246);
 }
 
+.sidear-nav li{
+  padding: 0.6rem 1rem;
+}

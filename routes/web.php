@@ -18,6 +18,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('upload', function () {
+    return view('upload');
+})->name('upload');
+
+Route::get('fetch', function () {
+    return view('fetch');
+})->name('fetch');
+
+Route::get('semester', function () {
+    return view('semester');
+})->name('semester');
+
+Route::get('year', function () {
+    return view('year');
+})->name('year');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
