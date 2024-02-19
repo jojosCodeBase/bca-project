@@ -49,7 +49,7 @@ a {
   transition: all 0.35s ease-in-out;
   width: 100%;
   /* main background color */
-  background: var(--bs-dark-bg-subtle);
+  background: #CED4DA;
 }
 
 /*Sidebar Element Style */

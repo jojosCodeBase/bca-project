@@ -37,6 +37,9 @@ Route::get('semester', function () {
 Route::get('year', function () {
     return view('year');
 })->name('year');
+Route::get('validation', function () {
+    return view('validation');
+})->name('validation');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
