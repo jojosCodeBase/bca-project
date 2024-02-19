@@ -9,7 +9,6 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  /* font-size: 0.875rem; */
   opacity: 1;
   overflow-y: scroll;
   margin: 0;
@@ -21,7 +20,7 @@ a {
   font-family: 'Montserrat', sans-serif;
 }
 
-list {
+.list {
   list-style: none;
 }
 
