@@ -21,22 +21,23 @@
                     <a href="#">Result Analysis</a>
                 </div>
                 <ul class="sidear-nav">
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
                         <a href="{{ url('/dashboard') }}" class="sidebar-link">
                             <i class="bi bi-sliders"></i> Dashboard
                         </a>
                     </li>
+                    
                     <li class="sidebar-item">
                         <span class="sidebar-link">
                             <i class="bi bi-three-dots-vertical"></i> Menu
                         </span>
                     </li>
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ request()->is('upload') ? 'active' : '' }}">
                         <a href="{{ url('/upload') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-arrow-up-fill"></i> Upload Data
                         </a>
                     </li>
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ request()->is('fetch') ? 'active' : '' }}">
                         <a href="{{ url('/fetch') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
                         </a>
@@ -46,12 +47,12 @@
                             <i class="bi bi-clipboard2-data-fill"></i> Analysis
                         </span>
                     </li>
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ request()->is('semester') ? 'active' : '' }}">
                         <a href="{{ url('/semester') }}" class="sidebar-nested-link">
                             <i class="bi bi-calendar-fill"></i> Semester Wise
                         </a>
                     </li>
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ request()->is('year') ? 'active' : '' }}">
                         <a href="{{ url('/year') }}" class="sidebar-nested-link">
                             <i class="bi bi-calendar3"></i> Year Wise
                         </a>
