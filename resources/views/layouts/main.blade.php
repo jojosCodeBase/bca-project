@@ -20,7 +20,7 @@
                 </div>
                 <ul class="sidear-nav">
                     <li class="sidebar-item active p-3">
-                        <a href="dashboard.html" class="sidebar-link fs-5">
+                        <a href="{{ url('/dashboard')}}" class="sidebar-link fs-5">
                             <i class="bi bi-sliders me-2"></i> Dashboard
                         </a>
                     </li>
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{url('/year.blade.php')}}" class="sidebar-nested-link">
+                        <a href="{{url('/year')}}" class="sidebar-nested-link">
                             <i class="bi bi-calendar3"></i> Year Wise
                         </a>
                     </li>
