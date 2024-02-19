@@ -77,13 +77,10 @@
                             <a href="" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
                                 <img src="{{ asset('assets/images/admin.png') }}" class="avatar img-fluid"
                                     alt="profile-ph">
-                                <span class="text-dark">Bikram Das</span>
+                                <span class="text-dark">Admin</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="profile.html" class="dropdown-item">Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">Settings & Privacy</a>
-                                <a href="#" class="dropdown-item">Help Center</a>
+                                <a href="{{url('profile')}}" class="dropdown-item">Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="#" class="dropdown-item">Log-Out</a>
                             </div>
@@ -103,6 +100,8 @@
     <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="button.js"></script>
     <script src="date.js"></script>
+    <script src="{{ asset('assets/js/script.js')}}"></script>
+
     @yield('scripts')
 </body>
 

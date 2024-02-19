@@ -33,6 +33,9 @@ Route::get('semester', function () {
 Route::get('year', function () {
     return view('year');
 })->name('year');
+Route::get('validation', function () {
+    return view('validation');
+})->name('validation');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
