@@ -4,67 +4,94 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\ExcelImport;
+use App\Models\ExcelUpload;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\QueryException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Cell\DataType;
-use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 
 class ExcelController extends Controller
 {
 
-    public function fileUpload(Request $request){
-        // dd("hello");
+    public function view($id){
+        $data = ExcelUpload::where('cid', $id)->get();
+        return view('excel.view', ['data' => $data]);
+    }
+    private $labels = ['REGNO', 'NAME', 'Q1', 'S1-50', 'S1-15', 'Q2', 'S2-50', 'S2-15', 'ASSIGNMENT', 'ATTENDANCE', 'TOTAL'];
+
+    public function verify($i, $string)
+    {
+        if (strcasecmp($this->labels[$i], $string) == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function fileUpload(Request $request)
+    {
         $request->validate([
             'file' => 'required',
         ]);
 
-        $path = $request->file('file')->storeAs('excel', $request->file('file')->getClientOriginalName(), 'uploads');
-        return "File uploaded successfully!";
-    }
-
-    public function importExcel()
-    {
-        // Use the Excel facade to import data using the modified ExcelImport class
-        // $filePath = str_replace('\\', '/', "storage\\uploads\\excel\\test-data.xlsx");
-        $filePath = Storage::disk('uploads')->path("excel\\test-data.xlsx");
-        // dd($filePath);
+        $filePath = $request->file('file')->path();
+        $courseId = $request->file('file')->getClientOriginalName();
+        $courseId = strtoupper(str_replace(' ', '_', pathinfo($courseId, PATHINFO_FILENAME)));
         $spreadsheet = IOFactory::load($filePath);
-
-        // Get the active sheet
         $worksheet = $spreadsheet->getActiveSheet();
 
-        // Get the highest column and row indices
-        $highestColumnIndex = Coordinate::columnIndexFromString($worksheet->getHighestColumn());
-        $highestRow = $worksheet->getHighestRow();
+        $highestRow = $worksheet->getHighestDataRow();
+        $highestColumn = $worksheet->getHighestDataColumn();
 
-        // Loop through each cell
-        for ($row = 1; $row <= $highestRow; ++$row) {
-            for ($colIndex = 1; $colIndex <= $highestColumnIndex; ++$colIndex) {
-                // Get the cell coordinate (e.g., "A1")
-                $col = Coordinate::stringFromColumnIndex($colIndex);
-                $cellCoordinate = $col . $row;
+        // Loop through each row and store the data
+        $excelData = [];
+        for ($row = 1; $row <= $highestRow; $row++) {
+            $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
+            $excelData[] = $rowData[0];
+        }
 
-                // Get the cell
-                $cell = $worksheet->getCell($cellCoordinate);
+        $dataArray = [
+            'regno' => 0,
+            'name' => 1,
+            'q1' => 2,
+            's1_50' => 3,
+            's1_15' => 4,
+            'q2' => 5,
+            's2_50' => 6,
+            's2_15' => 7,
+            'assignment' => 9,
+            'attendance' => 8,
+            'total' => 10,
+            'cid' => $courseId,
+        ];
 
-                // Check if the cell contains a formula
-                if ($cell->getDataType() === DataType::TYPE_FORMULA) {
-                    // Manually calculate the formula
-                    $calculatedValue = $spreadsheet->getActiveSheet()->getCell($cellCoordinate)->getCalculatedValue();
-
-                    // Set the calculated value back to the cell
-                    $worksheet->getCell($cellCoordinate)->setValue($calculatedValue);
-                }
+        for ($i = 0; $i < count($excelData[0]); $i++) {
+            if ($this->verify($i, $excelData[0][$i])) {
+                continue;
+            } else {
+                $error = "Excel sheet not in correct format";
+                $errorAt = $excelData[0][$i];
+                return back()->with('error', ['error' => $error, 'errorAt' => $errorAt]);
             }
         }
-        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save($filePath);
 
-        $rows = Excel::toCollection(new ExcelImport, $filePath);
-        return view('excel.index', ['rows' => $rows[0]]);
+        // for outer array of headings
+        for ($i = 1; $i < count($excelData); $i++) {
+            // for inner array of values
+            for ($j = 0; $j < count($excelData[0]); $j++) {
+                $key = array_keys($dataArray)[$j];
+                $dataArray[$key] = $excelData[$i][$j];
+            }
+
+            try {
+                // Attempt to create a new record using create() method
+                ExcelUpload::create($dataArray);
+                // If successful, continue to next iteration
+            } catch (QueryException $exception) {
+                // If an exception occurs during database insertion, handle it here
+                return back()->with('error', 'Failed to upload file to database: ' . $exception->getMessage());
+            }
+        }
+
+        return back()->with('success', 'File uploaded to database successfully!');
     }
 }
 
