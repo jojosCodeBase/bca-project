@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row bg-light">
-            <div class="col-12  text-center fs-4">Analysis Data</div>
+            <div class="col-12  text-center fs-4 my-4 fw-bold">Analysis Data</div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-6 mt-1 mb-3">
                 <select name="Year" id="years" class="form-select">
                     <option value="#">Select Year</option>
@@ -37,12 +37,12 @@
                     <option value="CA1637">CA1637</option>
                 </select>
             </div>
-
-        </div>
-        <div class="row mt-2 mb-2">
-            <div class="col-12 d-flex justify-content-center">
-                <input type="submit" name="#" id="#" class="btn btn-primary ">
+            <div class="row mt-2 mb-3 mb-2">
+                <div class="col-12 d-flex justify-content-center">
+                    <input type="submit" name="#" id="#" class="btn btn-primary ">
+                </div>
             </div>
+
         </div>
         <div class="row mt-2">
             <div class="col d-flex justify-content-center">
@@ -63,15 +63,12 @@
 
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Hours per Day'],
-                ['Work', 11],
-                ['Eat', 2],
-                ['Commute', 2],
-                ['Watch TV', 2],
-                ['Sleep', 7]
+                ['CO', 60],
+                ['PO', 40]
             ]);
 
             var options = {
-                title: 'My Daily Activities'
+                title: 'CO/PO Attainment'
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));

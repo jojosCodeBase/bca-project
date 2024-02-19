@@ -75,6 +75,10 @@
                             <a href="" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
                                 <img src="{{ asset('assets/images/admin.png') }}" class="avatar img-fluid"
                                     alt="profile-ph">
+                                <span class="text-dark">Admin</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="{{url('profile')}}" class="dropdown-item">Profile</a>
                                 <span class="text-dark">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -101,6 +105,8 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="button.js"></script>
     <script src="date.js"></script>
+    <script src="{{ asset('assets/js/script.js')}}"></script>
+
     @yield('scripts')
 </body>
 
