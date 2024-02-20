@@ -58,7 +58,6 @@ class ExcelController extends Controller
             'assignment' => 9,
             'attendance' => 8,
             'total' => 10,
-            'cid' => $courseId,
         ];
 
         for ($i = 0; $i < count($excelData[0]); $i++) {

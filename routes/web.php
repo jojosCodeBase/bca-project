@@ -25,11 +25,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::post('/upload', [ExcelController::class, 'fileUpload'])->name('file-upload');
+    Route::post('upload', [ExcelController::class, 'fileUpload'])->name('file-upload');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('tables', [DashboardController::class, 'tables'])->name('tables');
+
+    Route::get('subjects', [DashboardController::class, 'subjects'])->name('subjects');
+
+    Route::get('add-subject', [DashboardController::class, 'addSubjectView'])->name('add-subject-view');
+    Route::post('add-subject', [DashboardController::class, 'addSubject'])->name('add-subject');
 
     Route::get('upload', function () {
         return view('upload');

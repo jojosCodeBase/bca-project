@@ -55,6 +55,26 @@
                             <i class="bi bi-calendar3"></i> Year Wise
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <span class="sidebar-link">
+                            <i class="bi bi-clipboard2-data-fill"></i> Courses
+                        </span>
+                    </li>
+                    <li class="sidebar-item {{ request()->is('subjects') ? 'active' : '' }}">
+                        <a href="{{ route('subjects') }}" class="sidebar-nested-link">
+                            <i class="bi bi-calendar-fill"></i> List All Subjects
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->is('add-subject') ? 'active' : '' }}">
+                        <a href="{{ route('add-subject-view') }}" class="sidebar-nested-link">
+                            <i class="bi bi-file-earmark-plus-fill"></i> Add Subject
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->is('tables') ? 'active' : '' }}">
+                        <a href="{{ route('tables') }}" class="sidebar-nested-link">
+                            <i class="bi bi-database-gear"></i> Database Tables
+                        </a>
+                    </li>
                 </ul>
             </div>
         </aside>

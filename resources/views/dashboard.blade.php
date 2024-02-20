@@ -66,14 +66,15 @@
                                 <th>View</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">1</td>
-                                    <td>CA1601</td>
-                                    <td>Software Engineering</td>
-                                    <td>
-                                        16-02-24
-                                    </td>
-                                    <td><a href="#">View</a></td>
+                                @for($i=0; $i<count($courses); $i++)
+                                    <tr>
+                                        <td>{{ $i+1 }}</td>
+                                        <td>{{ $courses[$i]['cid'] }}</td>
+                                        <td>{{ $courses[$i]['cname'] }}</td>
+                                        <td>{{ $courses[$i]['created_at'] }}</td>
+                                        <td><a href="#">View</a></td>
+                                    </tr>
+                                @endfor
                             </tbody>
                         </table>
                     </div>

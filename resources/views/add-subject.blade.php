@@ -1,41 +1,44 @@
 @extends('layouts/main')
-@section('title', 'Fetch')
+@section('title', 'Add Subject')
 @section('content')
     <div class="container">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @elseif(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('fetch-data') }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('add-subject') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row pb-4 px-3">
-                        <h4 class="py-3 text-muted">Fetch Data</h4>
+                        <h4 class="py-3 text-muted">Add Subject</h4>
                         <div class="col-xl-4 col-lg-5 col-md-5 col-6 mt-1 mb-1">
-                            <select name="year" id="years" class="form-select" required>
-                                <option selected disabled value="">Select Year</option>
-                                <option value="2024">2024</option>
-                            </select>
+                            <label class="form-label">Subject Code</label>
+                            <input type="text" class="form-control" name="cid" placeholder="E.g. CA1603" required>
                             <div class="invalid-feedback">
                                 Please select year
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-5 col-md-5 col-6 mt-1 mb-1">
-                            <select name="cid" id="courseid" class="form-select" required>
-                                <option disabled selected value="">Select a Course</option>
-                                @foreach ($courses as $c)
-                                    <option value="{{ $c['cid'] }}">{{ $c['cname'] }} ({{ $c['cid'] }})</option>
-                                @endforeach
-                            </select>
+                            <label class="form-label">Subject Name</label>
+                            <input type="text" class="form-control" name="cname" placeholder="E.g. Software Engineering" required>
                             <div class="invalid-feedback">
                                 Please select course
                             </div>
                         </div>
-                        <div class="col-2 my-1">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                        <div class="col my-1 d-flex align-items-end">
+                            <input type="submit" class="btn btn-primary w-50" value="Create">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        @if (session('data'))
+        {{-- @if (session('data'))
             <div class="mt-2 table-responsive" id="table">
                 <table class="table table-bordered text-center table-light">
                     <thead>
@@ -53,7 +56,7 @@
                         <th>Total</th>
                     </thead>
                     <tbody>
-                        @foreach ((session('data')) as $row)
+                        @foreach (session('data') as $row)
                             <tr>
                                 <td>{{ $row['regno'] }}</td>
                                 <td>{{ $row['cid'] }}</td>
@@ -72,6 +75,6 @@
                     </tbody>
                 </table>
             </div>
-        @endif
+        @endif --}}
     </div>
 @endsection
