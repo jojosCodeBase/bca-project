@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CA1603;
 use App\Models\ExcelUpload;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -10,11 +11,12 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 class ExcelController extends Controller
 {
 
-    public function view($id){
+    public function view($id)
+    {
         $data = ExcelUpload::where('cid', $id)->get();
         return view('excel.view', ['data' => $data]);
     }
-    private $labels = ['REGNO', 'NAME', 'Q1', 'S1-50', 'S1-15', 'Q2', 'S2-50', 'S2-15', 'ASSIGNMENT', 'ATTENDANCE', 'TOTAL'];
+    private $labels = ['REGNO', 'Q1', 'S1', 'Q2', 'S2', 'ASSIGNMENT', 'ATTENDANCE', 'TOTAL'];
 
     public function verify($i, $string)
     {
@@ -46,18 +48,99 @@ class ExcelController extends Controller
             $excelData[] = $rowData[0];
         }
 
+        // echo "<pre>";
+        // print_r($excelData);
+        // echo "</pre>";
+
+        $data = $excelData;
+
+        // Create an associative array to map the column indices to their respective headings
+
+        $headings = $data[0];
+
+        echo count($data);
+        // echo count($data[0]);
+
+        echo "<pre>";
+        print_r($headings);
+        echo "</pre>";
+
+        // Initialize an empty associative array
+        $associativeArray = [];
+
+
+
+        // Iterate over the original array
+        for ($i = 0; $i < count($headings); $i++) {
+            // Check if the value is not empty
+            if ($headings[$i]) {
+                // Add the key-value pair to the associative array
+                $associativeArray[$headings[$i]] = $i; // Set an empty string as the value
+            }
+        }
+        echo "<pre>";
+        print_r($associativeArray);
+        echo "</pre>";
+
+        // Print the resulting associative array
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+
+        $headers = ['Q1', 'S1'];
+
+        // echo 'count(data[0]) ' . count($data[0]) . "<br>";
+        // echo 'count(data) ' . count($data) . "<br>";
+        $flag = False;
+        for ($i = 0; $i < count($data); $i++) {
+            // echo "i loop " . $i . '<br>';
+
+            if($i == count($associativeArray)-1){
+                $start = $associativeArray[$headers[$i]];
+                $end = count($data[1]);
+                $flag = True;
+            }else{
+                $start = $associativeArray[$headers[$i]];
+                $end = $associativeArray[$headers[$i + 1]];
+            }
+
+            // echo $start;
+            // echo $end;
+
+            for ($j = $start; $j < $end; $j++) {
+                echo $data[$i][$j] . 'j = ' . $j;
+                // echo $data[1][0];
+            }
+            // counting columns
+            // for($x = $i; $x < count($); $x++){
+            //     echo $headers[$x];
+            //     echo $headers[$x+1];
+
+            //     // break;
+            //     echo "<br>";
+            // }
+
+            // break;
+
+            // foreach($associativeArray as $x){
+            // }
+            if($flag)
+                break;
+
+            echo '<br>';
+        }
+
+
+        die();
         $dataArray = [
             'regno' => 0,
-            'name' => 1,
-            'q1' => 2,
-            's1_50' => 3,
-            's1_15' => 4,
-            'q2' => 5,
-            's2_50' => 6,
-            's2_15' => 7,
-            'assignment' => 9,
+            'q1' => 1,
+            's1' => 2,
+            'q2' => 4,
+            's2' => 5,
+            'assignment' => 7,
             'attendance' => 8,
-            'total' => 10,
+            'total' => 9,
         ];
 
         for ($i = 0; $i < count($excelData[0]); $i++) {
@@ -79,7 +162,7 @@ class ExcelController extends Controller
 
             try {
                 // Attempt to create a new record using create() method
-                ExcelUpload::create($dataArray);
+                CA1603::create($dataArray);
                 // If successful, continue to next iteration
             } catch (QueryException $exception) {
                 // If an exception occurs during database insertion, handle it here
@@ -90,4 +173,3 @@ class ExcelController extends Controller
         return back()->with('success', 'File uploaded to database successfully!');
     }
 }
-

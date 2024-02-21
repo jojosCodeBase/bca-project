@@ -5,22 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CA1601 extends Model
+class CA1603 extends Model
 {
     use HasFactory;
 
-    protected $table = 'CA1601';
+    protected $table = 'CA1603';
 
-    protected $filable = [
+    protected $fillable = [
         'regno',
-        'cid',
-        'name',
         'q1',
-        's1_50',
-        's1_15',
+        's1',
         'q2',
-        's2_50',
-        's2_15',
+        's2',
         'assignment',
         'attendance',
         'total',
