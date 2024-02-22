@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('validation', function () {
         return view('validation');
     })->name('validation');
+
+    Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
 });
 
 require __DIR__.'/auth.php';

@@ -26,6 +26,25 @@ class ExcelController extends Controller
             return false;
         }
     }
+
+    public function readDbData()
+    {
+        $data = CA1603::where('regno', 202116033)->first(); // Retrieve a single model instance
+
+        if ($data) {
+            // If data is found
+            $Q1 = json_decode($data->q1, true); // Access q1 property of the model instance
+            $Q2 = json_decode($data->q2, true);
+
+            foreach($Q1 as $x){
+                if(!is_null($x))
+                    echo $x . "<br>";
+            }
+        } else {
+            // If data is not found
+            echo "Data not found.";
+        }
+    }
     public function fileUpload(Request $request)
     {
         $request->validate([
@@ -56,14 +75,14 @@ class ExcelController extends Controller
 
         // Create an associative array to map the column indices to their respective headings
 
-        $headings = $data[0];
+        $array = $data;
 
-        echo count($data);
+        // echo count($data);
         // echo count($data[0]);
 
-        echo "<pre>";
-        print_r($headings);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($array);
+        // echo "</pre>";
 
         // Initialize an empty associative array
         $associativeArray = [];
@@ -71,77 +90,95 @@ class ExcelController extends Controller
 
 
         // Iterate over the original array
-        for ($i = 0; $i < count($headings); $i++) {
+        for ($i = 1; $i < count($array[0]); $i++) {
             // Check if the value is not empty
-            if ($headings[$i]) {
+            if ($array[0][$i]) {
                 // Add the key-value pair to the associative array
-                $associativeArray[$headings[$i]] = $i; // Set an empty string as the value
+                $associativeArray[$array[0][$i]] = $i; // Set an empty string as the value
             }
         }
-        echo "<pre>";
-        print_r($associativeArray);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($associativeArray);
+        // echo "</pre>";
+
 
         // Print the resulting associative array
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
 
-        $headers = ['Q1', 'S1'];
+        $header = ['Q1', 'S1'];
 
         // echo 'count(data[0]) ' . count($data[0]) . "<br>";
         // echo 'count(data) ' . count($data) . "<br>";
-        $flag = False;
-        for ($i = 0; $i < count($data); $i++) {
-            // echo "i loop " . $i . '<br>';
-
-            if($i == count($associativeArray)-1){
-                $start = $associativeArray[$headers[$i]];
-                $end = count($data[1]);
-                $flag = True;
-            }else{
-                $start = $associativeArray[$headers[$i]];
-                $end = $associativeArray[$headers[$i + 1]];
-            }
-
-            // echo $start;
-            // echo $end;
-
-            for ($j = $start; $j < $end; $j++) {
-                echo $data[$i][$j] . 'j = ' . $j;
-                // echo $data[1][0];
-            }
-            // counting columns
-            // for($x = $i; $x < count($); $x++){
-            //     echo $headers[$x];
-            //     echo $headers[$x+1];
-
-            //     // break;
-            //     echo "<br>";
-            // }
-
-            // break;
-
-            // foreach($associativeArray as $x){
-            // }
-            if($flag)
-                break;
-
-            echo '<br>';
-        }
 
 
-        die();
+        // dd(count($associativeArray));
+
+        $co_po = [
+            'CO1' => null,
+            'CO2' => null,
+            'CO3' => null,
+            'CO4' => null,
+            'CO5' => null,
+            'CO6' => null,
+            'Total' => null,
+        ];
+
+        // var_dump($co_po);
+
+        // $dataArray = [
+        //     'regno' => 0,
+        //     'Q1' => 1,
+        //     'S1' => 2,
+        //     'Q2' => 4,
+        //     'S2' => 5,
+        //     'assignment' => 7,
+        //     'attendance' => 8,
+        //     'total' => 9,
+        // ];
         $dataArray = [
             'regno' => 0,
-            'q1' => 1,
-            's1' => 2,
-            'q2' => 4,
-            's2' => 5,
-            'assignment' => 7,
-            'attendance' => 8,
-            'total' => 9,
+            'Q1' => 1,
+            'S1' => 2,
         ];
+
+        for ($x = 0; $x < count($associativeArray); $x++) {
+            echo $header[$x] . "<br>";
+            for ($i = 1; $i < count($array) - 1; $i++) {
+
+                $start = $associativeArray[$header[$x]];
+
+                if ($x == count($associativeArray) - 1) {
+                    $end = count($array[1]);
+                } else {
+                    $end = $associativeArray[$header[$x + 1]];
+                }
+
+                for ($j = $start; $j < $end; $j++) {
+
+                    if (array_key_exists($array[$i][$j], $co_po))
+                        $co_po[$array[$i][$j]] = $array[$i + 1][$j];
+                    // echo $array[$i][$j] . " ";
+                    // echo $array[$i+1][$j] . " ";
+                }
+
+                if (array_key_exists($header[$x], $dataArray)) {
+                    $dataArray[$header[$x]] = $co_po;
+                }
+
+                echo "<pre>";
+                print_r($co_po);
+                echo "</pre>";
+                echo "<br>";
+            }
+        }
+        $dataArray['regno'] = 202116033;
+        echo "<pre>";
+        print_r($dataArray);
+        echo "</pre>";
+
+        die();
 
         for ($i = 0; $i < count($excelData[0]); $i++) {
             if ($this->verify($i, $excelData[0][$i])) {
