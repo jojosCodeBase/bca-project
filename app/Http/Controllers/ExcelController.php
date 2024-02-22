@@ -29,21 +29,35 @@ class ExcelController extends Controller
 
     public function readDbData()
     {
-        $data = CA1603::where('regno', 202116033)->first(); // Retrieve a single model instance
+        // $data = CA1603::where('regno', 202116033)->first();
+        $data = CA1603::all();
 
-        if ($data) {
-            // If data is found
-            $Q1 = json_decode($data->q1, true); // Access q1 property of the model instance
-            $Q2 = json_decode($data->q2, true);
+        $data = $data->toArray();
+        // dd($data);
 
-            foreach($Q1 as $x){
-                if(!is_null($x))
-                    echo $x . "<br>";
-            }
-        } else {
-            // If data is not found
-            echo "Data not found.";
-        }
+        return view('show-data', ['data' => $data]);
+        // var_dump($data);
+        // echo "<br><br>";
+        // var_dump($data['q1']);
+
+
+
+
+        // if ($data) {
+        //     // If data is found
+        //     $Q1 = json_decode($data->q1, true); // Access q1 property of the model instance
+        //     // $Q2 = json_decode($data->q2, true);
+
+        //     dd($Q1);
+
+        //     foreach ($Q1 as $x) {
+        //         if (!is_null($x))
+        //             echo $x . "<br>";
+        //     }
+        // } else {
+        //     // If data is not found
+        //     echo "Data not found.";
+        // }
     }
     public function fileUpload(Request $request)
     {
@@ -67,53 +81,20 @@ class ExcelController extends Controller
             $excelData[] = $rowData[0];
         }
 
-        // echo "<pre>";
-        // print_r($excelData);
-        // echo "</pre>";
-
-        $data = $excelData;
-
-        // Create an associative array to map the column indices to their respective headings
-
-        $array = $data;
-
-        // echo count($data);
-        // echo count($data[0]);
-
-        // echo "<pre>";
-        // print_r($array);
-        // echo "</pre>";
 
         // Initialize an empty associative array
         $associativeArray = [];
 
-
-
         // Iterate over the original array
-        for ($i = 1; $i < count($array[0]); $i++) {
+        for ($i = 0; $i < count($excelData[0]); $i++) {
             // Check if the value is not empty
-            if ($array[0][$i]) {
+            if ($excelData[0][$i]) {
                 // Add the key-value pair to the associative array
-                $associativeArray[$array[0][$i]] = $i; // Set an empty string as the value
+                $associativeArray[$excelData[0][$i]] = $i; // Set an empty string as the value
             }
         }
-        // echo "<pre>";
-        // print_r($associativeArray);
-        // echo "</pre>";
 
-
-        // Print the resulting associative array
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
-
-        $header = ['Q1', 'S1'];
-
-        // echo 'count(data[0]) ' . count($data[0]) . "<br>";
-        // echo 'count(data) ' . count($data) . "<br>";
-
-
-        // dd(count($associativeArray));
+        $header = ['Regno', 'Q1', 'S1'];
 
         $co_po = [
             'CO1' => null,
@@ -125,88 +106,77 @@ class ExcelController extends Controller
             'Total' => null,
         ];
 
-        // var_dump($co_po);
 
-        // $dataArray = [
-        //     'regno' => 0,
-        //     'Q1' => 1,
-        //     'S1' => 2,
-        //     'Q2' => 4,
-        //     'S2' => 5,
-        //     'assignment' => 7,
-        //     'attendance' => 8,
-        //     'total' => 9,
-        // ];
         $dataArray = [
             'regno' => 0,
             'Q1' => 1,
             'S1' => 2,
         ];
 
-        for ($x = 0; $x < count($associativeArray); $x++) {
-            echo $header[$x] . "<br>";
-            for ($i = 1; $i < count($array) - 1; $i++) {
-
+        for ($row = 2; $row < count($excelData); $row++) {
+            $regno = $excelData[$row][0];
+            for ($x = 1; $x < count($associativeArray); $x++) {
                 $start = $associativeArray[$header[$x]];
 
                 if ($x == count($associativeArray) - 1) {
-                    $end = count($array[1]);
+                    $end = count($excelData[1]);
                 } else {
                     $end = $associativeArray[$header[$x + 1]];
                 }
 
                 for ($j = $start; $j < $end; $j++) {
-
-                    if (array_key_exists($array[$i][$j], $co_po))
-                        $co_po[$array[$i][$j]] = $array[$i + 1][$j];
-                    // echo $array[$i][$j] . " ";
-                    // echo $array[$i+1][$j] . " ";
+                    if (array_key_exists($excelData[1][$j], $co_po)) {
+                        $co_po[$excelData[1][$j]] = $excelData[$row][$j];
+                    }
                 }
 
                 if (array_key_exists($header[$x], $dataArray)) {
                     $dataArray[$header[$x]] = $co_po;
                 }
 
-                echo "<pre>";
-                print_r($co_po);
-                echo "</pre>";
-                echo "<br>";
+                // reset co_po after storing
+                $co_po = [
+                    'CO1' => null,
+                    'CO2' => null,
+                    'CO3' => null,
+                    'CO4' => null,
+                    'CO5' => null,
+                    'CO6' => null,
+                    'Total' => null,
+                ];
+                $dataArray['regno'] = $regno;
             }
-        }
-        $dataArray['regno'] = 202116033;
-        echo "<pre>";
-        print_r($dataArray);
-        echo "</pre>";
 
-        die();
+            // Convert Q1 and S1 arrays to JSON
 
-        for ($i = 0; $i < count($excelData[0]); $i++) {
-            if ($this->verify($i, $excelData[0][$i])) {
-                continue;
+            $jsonQ1 = json_encode($dataArray['Q1']);
+            $jsonS1 = json_encode($dataArray['S1']);
+
+            // echo $regno;
+            // echo "Q1 JSON: $jsonQ1<br>";
+            // echo "S1 JSON: $jsonS1<br>";
+
+
+            $model = new CA1603();
+
+            // Assign values to model properties
+            $model->regno = $regno;
+            $model->Q1 = $jsonQ1;
+            $model->S1 = $jsonS1;
+            $model->Q2 = 0;
+            $model->S2 = 0;
+            $model->assignment = 0;
+            $model->attendance = 0;
+            $model->total = 0;
+
+            // Save the model instance
+            if ($model->save()) {
+                // If the save operation is successful
+                echo "Data inserted successfully!";
             } else {
-                $error = "Excel sheet not in correct format, at " . $excelData[0][$i];
-                return back()->with('error', $error);
+                // If there's an error during the save operation
+                echo "Error inserting data.";
             }
         }
-
-        // for outer array of headings
-        for ($i = 1; $i < count($excelData); $i++) {
-            // for inner array of values
-            for ($j = 0; $j < count($excelData[0]); $j++) {
-                $key = array_keys($dataArray)[$j];
-                $dataArray[$key] = $excelData[$i][$j];
-            }
-
-            try {
-                // Attempt to create a new record using create() method
-                CA1603::create($dataArray);
-                // If successful, continue to next iteration
-            } catch (QueryException $exception) {
-                // If an exception occurs during database insertion, handle it here
-                return back()->with('error', 'Failed to upload file to database: ' . $exception->getMessage());
-            }
-        }
-
-        return back()->with('success', 'File uploaded to database successfully!');
     }
 }
