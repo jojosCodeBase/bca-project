@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CA1603;
 use App\Models\ExcelUpload;
+use App\Models\MaxMarksCO;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -29,35 +30,146 @@ class ExcelController extends Controller
 
     public function readDbData()
     {
-        // $data = CA1603::where('regno', 202116033)->first();
+        // $data = CA1603::where('regno', 202122001)->first();
         $data = CA1603::all();
 
+        $max_marks = MaxMarksCO::where('cid', 'CA1603')->get();
+
+        return view('show-data', ['data' => $data, 'max_marks' => $max_marks]);
+    }
+
+    public function saveData($dataArray, $regno)
+    {
+        // Convert Q1 and S1 arrays to JSON
+
+        $jsonQ1 = json_encode($dataArray['Q1']);
+        $jsonS1 = json_encode($dataArray['S1']);
+        $jsonQ2 = json_encode($dataArray['Q2']);
+        $jsonS2 = json_encode($dataArray['S2']);
+        $jsonAssignment = json_encode($dataArray['Assignment']);
+
+        if ($regno == "Max Marks/CO") {
+            $model = new MaxMarksCO();
+
+            $model->cid = 'CA1603';
+            $model->Q1 = $jsonQ1;
+            $model->S1 = $jsonS1;
+            $model->Q2 = $jsonQ2;
+            $model->S2 = $jsonS2;
+            $model->assignment = $jsonAssignment;
+            $model->total = 0;
+
+            if ($model->save()) {
+                // If the save operation is successful
+                return True;
+            } else {
+                // If there's an error during the save operation
+                return False;
+            }
+            // echo "<pre>";
+            // print_r($dataArray);
+            // echo "</pre>";
+        } else {
+            $model = new CA1603();
+
+            // Assign values to model properties
+            $model->regno = $regno;
+            $model->Q1 = $jsonQ1;
+            $model->S1 = $jsonS1;
+            $model->Q2 = $jsonQ2;
+            $model->S2 = $jsonS2;
+            $model->assignment = $jsonAssignment;
+            $model->attendance = 0;
+            $model->total = 0;
+
+            // Save the model instance
+            if ($model->save()) {
+                // If the save operation is successful
+                return True;
+            } else {
+                // If there's an error during the save operation
+                return False;
+            }
+        }
+    }
+
+    public function calculate()
+    {
+        $q1_max_marks = MaxMarksCO::where('cid', 'CA1603')->get();
+
+        $q1_max_marks = $q1_max_marks->toArray();
+
+        $data = CA1603::all();
         $data = $data->toArray();
-        // dd($data);
 
-        return view('show-data', ['data' => $data]);
-        // var_dump($data);
-        // echo "<br><br>";
-        // var_dump($data['q1']);
+        $q1 = [
+            'CO1' => 0,
+            'CO2' => 0,
+            'CO3' => 0,
+            'CO4' => 0,
+            'CO5' => 0,
+            'CO6' => 0,
+            'Total' => 0,
+        ];
 
+        $values = [];
+        $count = 0;
+        foreach ($data as $d) {
+            // echo "<br>regno : " . $d['regno'] . "<br>";
+            foreach ($d as $key => $x) {
+                if ($key == 'id' || $key == 'regno' || $key == 'updated_at' || $key == 'created_at' || $key == 'attendance' || $key == 'total') {
+                    continue;
+                } else {
+                    // echo $key . " => <br>";
+                    if ($key == 'q1') {
+                        // echo $key . " => ";
+                        $jsonData = json_decode($x, true);
 
+                        foreach ($jsonData as $key => $value) {
+                            // echo "Value: $value<br>";
 
+                            if ($key == 'CO1') {
+                                if (!is_null($value)) {
+                                    // echo $key . " => ";
+                                    if (is_numeric($value)) {
+                                        $values[$count++] = $value;
+                                    } else {
+                                        $values[$count++] = 0;
+                                    }
+                                } else {
+                                    echo "NULL" . "<br>";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-        // if ($data) {
-        //     // If data is found
-        //     $Q1 = json_decode($data->q1, true); // Access q1 property of the model instance
-        //     // $Q2 = json_decode($data->q2, true);
+        // print_r($q1_max_marks[0]['q1']);
 
-        //     dd($Q1);
+        $q1 = json_decode($q1_max_marks[0]['q1'], true);
 
-        //     foreach ($Q1 as $x) {
-        //         if (!is_null($x))
-        //             echo $x . "<br>";
-        //     }
-        // } else {
-        //     // If data is not found
-        //     echo "Data not found.";
-        // }
+        $target_marks = $q1['CO1'] * 60 / 100;
+        $count = 0;
+
+        echo "Target marks: " . $target_marks . "<br>";
+
+        // echo "<br>";
+
+        // print_r($values);
+
+        foreach ($values as $v) {
+            if ($v >= $target_marks) {
+                $count++;
+            }
+        }
+
+        echo "Student >= 60% => " . $count;
+        // echo "<pre>";
+        // print_r($data[0]);
+        // echo "</pre>";
+        die();
     }
     public function fileUpload(Request $request)
     {
@@ -81,6 +193,12 @@ class ExcelController extends Controller
             $excelData[] = $rowData[0];
         }
 
+        // echo "excel data";
+        // echo "<pre>";
+        // print_r($excelData);
+        // echo "</pre>";
+
+
 
         // Initialize an empty associative array
         $associativeArray = [];
@@ -94,7 +212,13 @@ class ExcelController extends Controller
             }
         }
 
-        $header = ['Regno', 'Q1', 'S1'];
+        // echo "excel data";
+        // echo "<pre>";
+        // print_r($associativeArray);
+        // echo "</pre>";
+
+
+        $header = ['Regno', 'Q1', 'S1', 'Q2', 'S2', 'Assignment'];
 
         $co_po = [
             'CO1' => null,
@@ -111,10 +235,15 @@ class ExcelController extends Controller
             'regno' => 0,
             'Q1' => 1,
             'S1' => 2,
+            'Q2' => 3,
+            'S2' => 4,
+            'Assignment' => 5,
         ];
 
+        $flag = True;
         for ($row = 2; $row < count($excelData); $row++) {
             $regno = $excelData[$row][0];
+            echo $regno . ' row = ' . $row . "<br>";
             for ($x = 1; $x < count($associativeArray); $x++) {
                 $start = $associativeArray[$header[$x]];
 
@@ -129,6 +258,10 @@ class ExcelController extends Controller
                         $co_po[$excelData[1][$j]] = $excelData[$row][$j];
                     }
                 }
+
+                // echo "<pre>";
+                // print_r($co_po);
+                // echo "</pre>";
 
                 if (array_key_exists($header[$x], $dataArray)) {
                     $dataArray[$header[$x]] = $co_po;
@@ -147,36 +280,18 @@ class ExcelController extends Controller
                 $dataArray['regno'] = $regno;
             }
 
-            // Convert Q1 and S1 arrays to JSON
-
-            $jsonQ1 = json_encode($dataArray['Q1']);
-            $jsonS1 = json_encode($dataArray['S1']);
-
-            // echo $regno;
-            // echo "Q1 JSON: $jsonQ1<br>";
-            // echo "S1 JSON: $jsonS1<br>";
 
 
-            $model = new CA1603();
-
-            // Assign values to model properties
-            $model->regno = $regno;
-            $model->Q1 = $jsonQ1;
-            $model->S1 = $jsonS1;
-            $model->Q2 = 0;
-            $model->S2 = 0;
-            $model->assignment = 0;
-            $model->attendance = 0;
-            $model->total = 0;
-
-            // Save the model instance
-            if ($model->save()) {
-                // If the save operation is successful
-                echo "Data inserted successfully!";
-            } else {
-                // If there's an error during the save operation
-                echo "Error inserting data.";
+            if ($this->saveData($dataArray, $regno) == False) {
+                $flag = False;
+                break;
             }
+
         }
+        if ($flag == False)
+            return back()->with('error', 'some error occured in uploading file');
+        else
+            return back()->with('success', 'file uploaded successfully');
+        // $this->calculate();
     }
 }
