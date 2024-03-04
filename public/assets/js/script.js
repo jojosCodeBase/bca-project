@@ -1,5 +1,6 @@
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
+//This code is for invalidation warning
 (() => {
     'use strict'
 
