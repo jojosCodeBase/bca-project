@@ -52,7 +52,7 @@
                                 <div class="mb-4">
                                     <label for="checkbox" class="form-check user-select-none">Show Password
                                         <input type="checkbox" class="form-check-input" value="remember_me"
-                                            name="remember-me" checked id="checkbox">
+                                            name="remember-me" id="checkbox">
                                         <span class="form-check-label" id="#"></span>
                                     </label>
                                 </div>
@@ -71,4 +71,6 @@
     </main>
 </body>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/showPassword.js') }}"></script>
+
 </html>
