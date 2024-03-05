@@ -13,18 +13,18 @@
 <body>
     <main class="d-flex w-100">
         <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="text-center my-4">
+            <div class="row d-flex justify-content-center align-content-center">
+                <div class="text-center my-5">
                     <h1 class="h2">Result Analysis Portal</h1>
                     {{-- <p class="fs-5 fw-bold">
                         LogIn to Continue
                     </p> --}}
                 </div>
 
-                <div class="col-6">
+                <div class="col-7">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row p-4">
+                            <div class="row py-4">
                                 <div class="col-6">
                                     {{-- <img src="{{ asset('assets/images/smitlogo.pnp') }}" alt=""> --}}
                                     <div class="m-sm-4 text-center mt-2 mb-2">
