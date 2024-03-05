@@ -14,6 +14,76 @@
     <main class="d-flex w-100">
         <div class="container">
             <div class="row d-flex justify-content-center">
+                <div class="text-center my-4">
+                    <h1 class="h2">Result Analysis Portal</h1>
+                    {{-- <p class="fs-5 fw-bold">
+                        LogIn to Continue
+                    </p> --}}
+                </div>
+
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row p-4">
+                                <div class="col-6">
+                                    {{-- <img src="{{ asset('assets/images/smitlogo.pnp') }}" alt=""> --}}
+                                    <div class="m-sm-4 text-center mt-2 mb-2">
+                                        <img src="{{ asset('assets/images/smitlogo2.jpg') }}" alt=""
+                                            class="img-fluid rounded-circle" width="300" height="300">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <p class="fs-5 fw-bold text-center">
+                                        LogIn
+                                    </p>
+
+                                    <form method="POST" action="{{ route('login') }}" class="mx-4">
+                                        @csrf
+                                        <div class="mb-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Username" name="email"
+                                                    aria-label="Username" aria-describedby="basic-addon1" required>
+                                                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                            </div>
+                                            @error('email')
+                                                <span class="text-danger fs-6">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4">
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" name="password" id="password"
+                                                    placeholder="Password" required>
+                                                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                                            </div>
+                                            @error('password')
+                                                <span class="text-danger fs-6">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="checkbox" class="form-check user-select-none">Show Password
+                                                <input type="checkbox" class="form-check-input" value="remember_me"
+                                                    name="remember-me" id="checkbox">
+                                                <span class="form-check-label" id="#"></span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <input type="submit" class="btn btn-primary w-100 fw-bold" value="Login">
+                                        </div>
+                                        <div class="form-group text-center forgot-password">
+                                            <a href="{{ route('password.request') }}">Forgot password?</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{-- <main class="d-flex w-100">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
                 <div class="text-center mt-4">
                     <h1 class="h2">Result Analysis Portal</h1>
                     <p class="fs-5 fw-bold">
@@ -68,7 +138,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </main> --}}
 </body>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/showPassword.js') }}"></script>

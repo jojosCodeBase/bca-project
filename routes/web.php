@@ -50,6 +50,10 @@ Route::middleware('auth')->group(function () {
         return view('year');
     })->name('year');
 
+    // Route::get('login2', function () {
+    //     return view('login2');
+    // })->name('login2');
+
     Route::get('validation', function () {
         return view('validation');
     })->name('validation');
