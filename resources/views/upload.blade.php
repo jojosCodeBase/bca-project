@@ -17,9 +17,25 @@
                 <div class="card-body">
                     <form action="#"  class="needs-validation" novalidate>
                         <div class="row">
+                            <h4 class="py-3 text-muted">Upload Data</h4>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
+                                <select name="batch" id="batch" class="form-select" required>
+                                    <option selected disabled value="">Select batch</option>
+                                    <option value="">2019</option>
+                                    <option value="">2020</option>
+                                    <option value="">2021</option>
+                                    <option value="">2022</option>
+                                    <option value="">2023</option>
+                                    <option value="">2024</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select Course
+                                </div>
+                            </div>
+
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                                 <select name="year" id="course" class="form-select" required>
-                                    <option selected disabled value="">Select Course</option>
+                                    <option selected disabled value="">Select course</option>
                                     <option value="bca">BCA</option>
                                     <option value="mca">MCA</option>
                                 </select>
@@ -30,7 +46,7 @@
 
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                                 <select name="year" id="years" class="form-select" required>
-                                    <option selected disabled value="">Select Year</option>
+                                    <option selected disabled value="">Select year</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select Year
@@ -39,8 +55,7 @@
 
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                                 <select name="year" id="semester" class="form-select" required>
-                                    <option selected disabled value="" disabled>Select Semester</option>
-
+                                    <option selected disabled value="" disabled>Select semester</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select Semester
@@ -49,15 +64,14 @@
 
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                                 <select name="year" id="subjectId" class="form-select" required>
-                                    <option selected disabled value=""disabled>Select Subject-ID</option>
-
+                                    <option selected disabled value=""disabled>Select subject code</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select year
                                 </div>
                             </div>
 
-                            <div class="col-lg-7 col-xl-7 col-md-10 col-12 my-4 ">
+                            <div class="col-lg-7 col-xl-7 col-md-10 col-12 my-3">
                                 <form action="{{ route('file-upload') }}" method="POST" enctype="multipart/form-data"
                                     class="mx-3 was-validated" >
                                     @csrf

@@ -4,13 +4,13 @@
     <div class="container table-responsive">
         <table class="table table-bordered table-striped">
             <thead>
-                <tr>
-                    <th rowspan="2" class="bg-light">Regno</th>
-                    <th colspan="4" class="bg-info">Quiz 1</th>
-                    <th colspan="4" class="bg-light">Sessional 1</th>
-                    <th colspan="4" class="bg-info">Quiz 2</th>
-                    <th colspan="4" class="bg-info">Sessional 2</th>
-                    <th colspan="6" class="bg-info">Assignment</th>
+                <tr class="bg-light text-center">
+                    <th rowspan="2">Regno</th>
+                    <th colspan="4">Quiz 1</th>
+                    <th colspan="4">Sessional 1</th>
+                    <th colspan="4">Quiz 2</th>
+                    <th colspan="4">Sessional 2</th>
+                    <th colspan="6">Assignment</th>
                     <th rowspan="2">Total</th>
                 </tr>
                 <tr>
@@ -50,6 +50,12 @@
                 </tr>
             </thead>
             <tbody>
+                {{-- @dump(count($data)) --}}
+                @php
+                    $ddArrayIndex = 0;
+                    $marks_track_array = [];
+                    $marks_array = [];
+                @endphp
                 @foreach ($data as $x)
                     <tr>
                         <td>{{ $x['regno'] }}</td>
@@ -59,6 +65,9 @@
                         @foreach ($q1 as $marks)
                             @if (!is_null($marks))
                                 <td>{{ $marks }}</td>
+                                @php
+                                    $marks_array[] = $marks;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -68,6 +77,9 @@
                         @foreach ($s1 as $marks)
                             @if (!is_null($marks))
                                 <td>{{ $marks }}</td>
+                                @php
+                                    $marks_array[] = $marks;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -77,6 +89,9 @@
                         @foreach ($q2 as $marks)
                             @if (!is_null($marks))
                                 <td>{{ $marks }}</td>
+                                @php
+                                    $marks_array[] = $marks;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -86,6 +101,9 @@
                         @foreach ($s2 as $marks)
                             @if (!is_null($marks))
                                 <td>{{ $marks }}</td>
+                                @php
+                                    $marks_array[] = $marks;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -93,24 +111,38 @@
                             $assignment = json_decode($x['assignment'], true);
                         @endphp
 
-                        @foreach ($assignment as $value)
-                            @if (!is_null($value))
-                                <td>{{ $value }}</td>
+                        @foreach ($assignment as $marks)
+                            @if (!is_null($marks))
+                                <td>{{ $marks }}</td>
+                                @php
+                                    $marks_array[] = $marks;
+                                @endphp
                             @endif
                         @endforeach
 
                         <td>{{ $x['total'] }}</td>
+
+                        @php
+                            $marks_array[] = $x['total'];
+                            $marks_track_array[] = $marks_array;
+                            $marks_array = [];
+                        @endphp
                     </tr>
                 @endforeach
                 @foreach ($max_marks as $x)
                     <tr>
                         <td>Max Marks/CO</td>
                         @php
+                            $count = 0;
+                            $target_marks_array = [];
                             $q1 = json_decode($x['q1'], true);
                         @endphp
                         @foreach ($q1 as $marks)
                             @if (!is_null($marks))
                                 <td>{{ $marks }}</td>
+                                @php
+                                    $target_marks_array[$count++] = (60 / 100) * $marks;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -120,6 +152,9 @@
                         @foreach ($s1 as $marks)
                             @if (!is_null($marks))
                                 <td>{{ $marks }}</td>
+                                @php
+                                    $target_marks_array[$count++] = (60 / 100) * $marks;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -129,6 +164,9 @@
                         @foreach ($q2 as $marks)
                             @if (!is_null($marks))
                                 <td>{{ $marks }}</td>
+                                @php
+                                    $target_marks_array[$count++] = (60 / 100) * $marks;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -138,6 +176,9 @@
                         @foreach ($s2 as $marks)
                             @if (!is_null($marks))
                                 <td>{{ $marks }}</td>
+                                @php
+                                    $target_marks_array[$count++] = (60 / 100) * $marks;
+                                @endphp
                             @endif
                         @endforeach
 
@@ -145,15 +186,89 @@
                             $assignment = json_decode($x['assignment'], true);
                         @endphp
 
-                        @foreach ($assignment as $value)
-                            @if (!is_null($value))
-                                <td>{{ $value }}</td>
+                        @foreach ($assignment as $marks)
+                            @if (!is_null($marks))
+                                <td>{{ $marks }}</td>
+                                @php
+                                    $target_marks_array[$count++] = (60 / 100) * $marks;
+                                @endphp
                             @endif
                         @endforeach
 
                         <td>{{ $x['total'] }}</td>
+                        @php
+                            $target_marks_array[$count++] = (60 / 100) * $x['total'];
+                        @endphp
                     </tr>
                 @endforeach
+                <tr>
+                    <td>Target Marks/CO</td>
+                    @foreach ($target_marks_array as $tm)
+                        <td>{{ $tm }}</td>
+                    @endforeach
+                </tr>
+                @php
+                    $index = 0;
+                    $target_marks_count = 0;
+                    $marks_more_than_sixty_percent_array = [];
+                @endphp
+                @for ($i = 0; $i < count($target_marks_array); $i++)
+                    @foreach ($marks_track_array as $ms)
+                        @php
+                            if ($ms[$index] >= $target_marks_array[$i] && $ms[$index] != 'AB') {
+                                $target_marks_count++;
+                            }
+                        @endphp
+                    @endforeach
+                    @php
+                        $marks_more_than_sixty_percent_array[] = $target_marks_count;
+                        $target_marks_count = 0;
+                    @endphp
+                    @php
+                        $index++;
+                    @endphp
+                @endfor
+                <tr>
+                    <td>Students>=60%</td>
+                    @foreach ($marks_more_than_sixty_percent_array as $marks)
+                        <td>{{ $marks }}</td>
+                    @endforeach
+                </tr>
+                <tr>
+                    <td>Attainment %</td>
+                    @php
+                        $attainment_array = [];
+                        $student_count = count($data);
+                    @endphp
+                    @for ($i = 0; $i < count($marks_more_than_sixty_percent_array); $i++)
+                    @php
+                        $attainment_array[] = intval(($marks_more_than_sixty_percent_array[$i] / $student_count) * 100);
+                    @endphp
+                        <td>{{ $attainment_array[$i] }}%</td>
+                    @endfor
+                </tr>
+                <tr>
+                    <td>CO Attainment Level</td>
+                    @php
+                        $co_attainment_array = [];
+                        function getCOLevel($marks){
+                                if($marks < 38)
+                                    return 0;
+                                elseif ($marks >=38 && $marks <=51)
+                                    return 1;
+                                elseif($marks >= 52 && $marks <= 72)
+                                    return 2;
+                                elseif($marks >=73)
+                                    return 3;
+                            }
+                    @endphp
+                    @for ($i = 0; $i < count($attainment_array); $i++)
+                        @php
+                            $co_attainment_array[] = getCOLevel($attainment_array[$i]);
+                        @endphp
+                        <td>{{ $co_attainment_array[$i] }}</td>
+                    @endfor
+                </tr>
             </tbody>
         </table>
     </div>
