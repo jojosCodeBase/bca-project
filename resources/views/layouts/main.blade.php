@@ -41,6 +41,17 @@
                             <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
                         </a>
                     </li>
+                    <li class="sidebar-item {{ request()->is('CoPoRelation') ? 'active' : '' }}">
+                        <a href="{{ url('/CoPoRelation') }}" class="sidebar-nested-link">
+                            <i class="bi bi-cloud-arrow-up-fill"></i> PO Level Upload 
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ request()->is('update_po') ? 'active' : '' }}">
+                        <a href="{{ url('/update_po') }}" class="sidebar-nested-link">
+                            <i class="bi bi-arrow-repeat"></i></i> PO Level Update   
+                        </a>
+                    </li>
                     <li class="sidebar-item">
                         <span class="sidebar-link">
                             <i class="bi bi-clipboard2-data-fill"></i> Analysis
