@@ -67,7 +67,7 @@
                                     <option selected disabled value=""disabled>Select subject code</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Please select year
+                                    Please select Subject-Id
                                 </div>
                             </div>
 
