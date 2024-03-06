@@ -41,8 +41,8 @@
                             <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->is('po_level_update') ? 'active' : '' }}">
-                        <a href="{{ url('/po_level_update') }}" class="sidebar-nested-link">
+                    <li class="sidebar-item {{ request()->is('po_upload') ? 'active' : '' }}">
+                        <a href="{{ url('/po_upload') }}" class="sidebar-nested-link">
                             <i class="bi bi-cloud-arrow-up-fill"></i> PO Level Upload 
                         </a>
                     </li>

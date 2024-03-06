@@ -1,5 +1,5 @@
 @extends('layouts/main')
-@section('title', 'CoPoRelation')
+@section('title', 'po_upload')
 @section('content')
     <style>
         input {

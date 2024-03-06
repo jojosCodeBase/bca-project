@@ -50,10 +50,12 @@ Route::middleware('auth')->group(function () {
         return view('year');
     })->name('year');
 
-    Route::get('po_level_upload', function () {
-        return view('po_level_upload');
-    })->name('po_level_upload');
+    //Upload PO Attainment level
+    Route::get('po_upload', function () {
+        return view('po_upload');
+    })->name('po_upload');
 
+    //Update PO Attainment Level
     Route::get('update_po', function () {
         return view('update_po');
     })->name('update_po');
