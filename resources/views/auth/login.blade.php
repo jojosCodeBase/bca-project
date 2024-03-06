@@ -16,25 +16,21 @@
             <div class="row d-flex justify-content-center align-content-center">
                 <div class="text-center my-5">
                     <h1 class="h2">Result Analysis Portal</h1>
-                    {{-- <p class="fs-5 fw-bold">
-                        LogIn to Continue
-                    </p> --}}
                 </div>
 
                 <div class="col-7">
                     <div class="card">
                         <div class="card-body">
                             <div class="row py-4">
-                                <div class="col-6">
-                                    {{-- <img src="{{ asset('assets/images/smitlogo.pnp') }}" alt=""> --}}
+                                <div class="col-5">
                                     <div class="m-sm-4 text-center mt-2 mb-2">
                                         <img src="{{ asset('assets/images/smitlogo2.jpg') }}" alt=""
-                                            class="img-fluid rounded-circle" width="300" height="300">
+                                            class="img-fluid rounded-circle" width="200" height="200">
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-7">
                                     <p class="fs-5 fw-bold text-center">
-                                        LogIn
+                                        Log In
                                     </p>
 
                                     <form method="POST" action="{{ route('login') }}" class="mx-4" id="enterFunc">
