@@ -50,9 +50,9 @@ Route::middleware('auth')->group(function () {
         return view('year');
     })->name('year');
 
-    Route::get('CoPoRelation', function () {
-        return view('CoPoRelation');
-    })->name('CoPoRelation');
+    Route::get('po_level_upload', function () {
+        return view('po_level_upload');
+    })->name('po_level_upload');
 
     Route::get('update_po', function () {
         return view('update_po');
