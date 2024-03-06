@@ -50,10 +50,12 @@ Route::middleware('auth')->group(function () {
         return view('year');
     })->name('year');
 
-    Route::get('CoPoRelation', function () {
-        return view('CoPoRelation');
-    })->name('CoPoRelation');
+    //Upload PO Attainment level
+    Route::get('po_upload', function () {
+        return view('po_upload');
+    })->name('po_upload');
 
+    //Update PO Attainment Level
     Route::get('update_po', function () {
         return view('update_po');
     })->name('update_po');

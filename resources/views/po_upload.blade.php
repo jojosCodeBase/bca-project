@@ -1,5 +1,5 @@
 @extends('layouts/main')
-@section('title', 'CoPoRelation')
+@section('title', 'po_upload')
 @section('content')
     <style>
         input {
@@ -160,11 +160,11 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="row d-flex justify-content-center bg-warning">
-                        <div class="col-4 bg-info d-flex justify-content-center">
-                            <div class="form-group mb-3 ">
-                                <input type="submit" class="btn btn-primary w-100 fw-bold" value="Login"
-                                    id="">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-4 d-flex justify-content-center">
+                            <div class=" col-xl col-lg col-md col-5 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
+                                <button type="submit" class="btn btn-primary w-100"
+                                    id="myButton">Upload</button>
                             </div>
                         </div>
                     </div>
