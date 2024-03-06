@@ -53,7 +53,7 @@
 
                                 </select>
                                 <div class="invalid-feedback">
-                                    Please select year
+                                    Please select Subject-Id
                                 </div>
                             </div>
 

@@ -37,7 +37,7 @@
                                         LogIn
                                     </p>
 
-                                    <form method="POST" action="{{ route('login') }}" class="mx-4">
+                                    <form method="POST" action="{{ route('login') }}" class="mx-4" id="enterFunc">
                                         @csrf
                                         <div class="mb-4">
                                             <div class="input-group">
@@ -67,7 +67,7 @@
                                             </label>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <input type="submit" class="btn btn-primary w-100 fw-bold" value="Login">
+                                            <input type="submit" class="btn btn-primary w-100 fw-bold" value="Login" id="">
                                         </div>
                                         <div class="form-group text-center forgot-password">
                                             <a href="{{ route('password.request') }}">Forgot password?</a>
@@ -142,5 +142,4 @@
 </body>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/showPassword.js') }}"></script>
-
 </html>
