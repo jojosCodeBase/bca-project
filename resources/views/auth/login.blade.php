@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result Analysis System | Login</title>
+    <link rel="icon" href="{{asset('assets/images/smitlogo2.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -33,7 +34,7 @@
                                         Log In
                                     </p>
 
-                                    <form method="POST" action="{{ route('login') }}" class="mx-4">
+                                    <form method="POST" action="{{ route('login') }}" class="mx-4" id="enterFunc">
                                         @csrf
                                         <div class="mb-4">
                                             <div class="input-group">
@@ -63,7 +64,7 @@
                                             </label>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <input type="submit" class="btn btn-primary w-100 fw-bold" value="Login">
+                                            <input type="submit" class="btn btn-primary w-100 fw-bold" value="Login" id="">
                                         </div>
                                         <div class="form-group text-center forgot-password">
                                             <a href="{{ route('password.request') }}">Forgot password?</a>
@@ -138,5 +139,4 @@
 </body>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/showPassword.js') }}"></script>
-
 </html>
