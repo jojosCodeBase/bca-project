@@ -50,9 +50,13 @@ Route::middleware('auth')->group(function () {
         return view('year');
     })->name('year');
 
-    // Route::get('login2', function () {
-    //     return view('login2');
-    // })->name('login2');
+    Route::get('CoPoRelation', function () {
+        return view('CoPoRelation');
+    })->name('CoPoRelation');
+
+    Route::get('update_po', function () {
+        return view('update_po');
+    })->name('update_po');
 
     Route::get('validation', function () {
         return view('validation');
