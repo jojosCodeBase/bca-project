@@ -163,7 +163,7 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-4 d-flex justify-content-center">
                             <div class=" col-xl col-lg col-md col-5 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
-                                <button type="submit" class="btn btn-primary w-100 h-100"
+                                <button type="submit" class="btn btn-primary w-100"
                                     id="myButton">Upload</button>
                             </div>
                         </div>
