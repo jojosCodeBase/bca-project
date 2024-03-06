@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     })->name('upload');
 
     Route::get('fetch', [DashboardController::class, 'fetchView'])->name('fetch');
-    Route::post('fetch', [DashboardController::class, 'fetchData'])->name('fetch-data');
+    Route::post('fetch', [ExcelController::class, 'readDbData'])->name('fetch-data');
 
     Route::get('semester', function () {
         return view('semester');

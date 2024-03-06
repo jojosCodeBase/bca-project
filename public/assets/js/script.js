@@ -55,10 +55,10 @@ document.getElementById("course").addEventListener("change", function() {
     var course = document.getElementById("course");
     var years = document.getElementById("years");
     var selectedValue = course.value;
-    
-    years.innerHTML = '<option value="" selected disabled>Select Year</option>';
-    semester.innerHTML = '<option value="">Select Semester</option>';
-    subjectId.innerHTML = '<option value="">Select Subject-Id</option>';
+
+    years.innerHTML = '<option value="" selected disabled>Select year</option>';
+    semester.innerHTML = '<option value="">Select semester</option>';
+    subjectId.innerHTML = '<option value="">Select subject</option>';
 
     for (var key in optionValues[selectedValue]) {
       var optionElement = document.createElement("option");
@@ -75,8 +75,8 @@ document.getElementById("course").addEventListener("change", function() {
     var course = document.getElementById("course");
     var selectedFirstValue = course.value;
 
-    semester.innerHTML = '<option value="">Select Semester</option>';
-    subjectId.innerHTML = '<option value="">Select Subject-Id</option>';
+    semester.innerHTML = '<option value="">Select semester</option>';
+    subjectId.innerHTML = '<option value="">Select subject</option>';
 
     for (var key in optionValues[selectedFirstValue][selectedValue]) {
       var optionElement = document.createElement("option");
@@ -95,7 +95,7 @@ document.getElementById("course").addEventListener("change", function() {
     var selectedFirstValue = course.value;
     var selectedSecondValue = years.value;
 
-    subjectId.innerHTML = '<option value="">Select Subject-Id</option>';
+    subjectId.innerHTML = '<option value="">Select subject</option>';
 
     optionValues[selectedFirstValue][selectedSecondValue][selectedValue].forEach(function(option) {
       var optionElement = document.createElement("option");

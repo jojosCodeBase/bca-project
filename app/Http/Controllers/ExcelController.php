@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CA1603;
-use App\Models\ExcelUpload;
+// use App\Models\CA1603;
+use Exception;
 use App\Models\MaxMarksCO;
+use App\Models\ExcelUpload;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -28,14 +29,28 @@ class ExcelController extends Controller
         }
     }
 
-    public function readDbData()
+    public function readDbData(Request $r)
     {
-        // $data = CA1603::where('regno', 202122001)->first();
-        $data = CA1603::all();
+        try {
+            $subjectCode = $r->subject;
+            $subject = "App\\Models\\" . $subjectCode;
 
-        $max_marks = MaxMarksCO::where('cid', 'CA1603')->get();
+            // Attempt to retrieve data from the specified model
+            $data = app($subject)->where('regno', 'like', '%' . $r->batch . '%')->get();
 
-        return view('show-data', ['data' => $data, 'max_marks' => $max_marks]);
+            // dd($data);
+            if($data->isEmpty())
+                return back()->with('error', 'No details found for the specified details');
+
+            // Retrieve max marks
+            $max_marks = MaxMarksCO::where('cid', $subjectCode)->get();
+
+            return view('show-data', ['data' => $data, 'max_marks' => $max_marks]);
+        } catch (Exception $e) {
+            // Handle the case where the model is not found
+            $errorMessage = "Table $subjectCode not found.";
+            return back()->with('error', $errorMessage);
+        }
     }
 
     public function saveData($dataArray, $regno)

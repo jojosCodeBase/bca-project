@@ -8,20 +8,21 @@
                 <div class="mt-2 table-responsive" id="table">
                     <table class="table table-hover">
                         <thead>
-                            <th>Sl.no</th>
+                            {{-- <th>Sl.no</th> --}}
                             <th>Subject Code</th>
                             <th>Subject Name</th>
                         </thead>
                         <tbody>
                             @for ($i = 0; $i < count($courses); $i++)
                                 <tr>
-                                    <td>{{ $i + 1 }}</td>
+                                    {{-- <td>{{ $i + 1 }}</td> --}}
                                     <td>{{ $courses[$i]['cid'] }}</td>
                                     <td>{{ $courses[$i]['cname'] }}</td>
                                 </tr>
                             @endfor
                         </tbody>
                     </table>
+                    {{ $courses->links() }}
                 </div>
             </div>
         </div>

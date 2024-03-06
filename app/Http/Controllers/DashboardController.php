@@ -19,8 +19,9 @@ class DashboardController extends Controller
         return view('fetch', ['courses' => $courses]);
     }
     public function fetchData(Request $r){
-        $data = ExcelUpload::where('cid', $r->cid)->get();
-        return back()->with('data', $data);
+        dd($r->all());
+
+
     }
 
     public function addSubjectView(){
@@ -44,6 +45,6 @@ class DashboardController extends Controller
     }
 
     public function subjects(){
-        return view('subjects', ['courses' => Courses::orderBy('cname', 'asc')->get()]);
+        return view('subjects', ['courses' => Courses::orderBy('cname', 'asc')->paginate(10)]);
     }
 }
