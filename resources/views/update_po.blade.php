@@ -6,7 +6,7 @@
             max-width: 50px;
             /* padding-left: 0px; */
             /* display: flex;
-                                justify-content:space-around; */
+                                        justify-content:space-around; */
         }
 
         th {
@@ -17,7 +17,7 @@
             background-color: #c5c7c9;
         }
 
-        .hidden {
+        #show {
             display: none;
         }
     </style>
@@ -27,7 +27,7 @@
             <div class="card-body">
                 <form action="#" class="needs-validation" novalidate>
                     <div class="row">
-                        <h4 class="py-3 text-muted">Upload Data</h4>
+                        <h4 class="py-3 text-muted">Find Uploaded PO Level Data</h4>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>
@@ -87,7 +87,7 @@
                                 @csrf
                                 <div class=" col-xl-5 col-lg-5 col-md-5 col-5 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
                                     <button type="submit" class="btn btn-primary w-100" id="myButton"
-                                        onclick="toggleCard()">Find</button>
+                                        onclick="toggleContent()">Find</button>
                                 </div>
                             </form>
                         </div>
@@ -254,9 +254,12 @@
     </div>
 @endsection
 <script>
-    // JavaScript function to show the card
-    function showCard() {
-      var show = document.getElementById("show1");
-      show.classList.remove("hidden");
+    function toggleContent() {
+        var show = document.getElementById("show");
+        if (show.style.display === "none") {
+            show.style.display = "block";
+        } else {
+            show.style.display = "none";
+        }
     }
-  </script>
+</script>
