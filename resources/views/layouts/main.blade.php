@@ -134,6 +134,7 @@
     <script src="{{ asset('assets/js/toggleButton.js') }}"></script>
     <script src="date.js"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/hidepoupdatetable.js') }}"></script>
 
     @yield('scripts')
 </body>
