@@ -256,7 +256,7 @@
 <script>
     function toggleContent() {
         var show = document.getElementById("show");
-        if (show.style.display === "none") {
+        if (content.style.display === "none") {
             show.style.display = "block";
         } else {
             show.style.display = "none";

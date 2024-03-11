@@ -51,14 +51,11 @@ Route::middleware('auth')->group(function () {
     })->name('year');
 
     //Upload PO Attainment level
-    Route::get('po_upload', function () {
-        return view('po_upload');
-    })->name('po_upload');
+    Route::get('co_po_relation', function () {
+        return view('co_po_relation');
+    })->name('co_po_relation');
 
     //Update PO Attainment Level
-    Route::get('update_po', function () {
-        return view('update_po');
-    })->name('update_po');
 
     Route::get('validation', function () {
         return view('validation');
