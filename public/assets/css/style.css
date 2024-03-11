@@ -164,7 +164,7 @@ footer{
     border-left: 4px solid rgb(32, 3, 255);
     background-color: rgb(215, 227, 248);
     padding: 0.9rem 1rem;
-    padding-left: 1.5rem;
+    padding-left: 1rem;
 }
 
 .sidear-nav .active .a {
@@ -184,3 +184,9 @@ footer{
     background-position: 0;
     background-size: 0;
 } */
+.custom-width tr td input{
+max-width: 80px;
+}
+.custom-width tr td:hover{
+    background-color: #c5c7c9;
+}
