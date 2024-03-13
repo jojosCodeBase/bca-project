@@ -1,5 +1,5 @@
 @extends('layouts/main')
-@section('title', 'co_po_relation')
+@section('title', 'CO-PO Relation')
 @section('content')
     <div class="container">
         <div class="row d-flex justify-content-center">
@@ -36,8 +36,10 @@
                                     <td>Python</td>
                                     <td>CA1603</td>
                                     <td>
-                                        <button class="btn btn-primary"><i class="bi bi-eye-fill"></i></button>
-                                        <button class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
+                                        <button class="btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -45,17 +47,19 @@
                                     <td>CA1601</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal"><i class="bi bi-eye-fill"></i></button>
+                                            data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
                                         <button class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal"><i class="bi bi-pencil-fill"></i></button>
+                                            data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Data Analytics Using Python</td>
                                     <td>CA1636</td>
                                     <td>
-                                        <button class="btn btn-primary"><i class="bi bi-eye-fill"></i></button>
-                                        <button class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
+                                        <button class="btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -73,7 +77,165 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    {{-- View CO/PO Modal Start --}}
+    <div class="modal fade" id="viewCOPOModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">View CO/PO Relation Level</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
+                        <thead>
+                            <tr>
+                                <th class="" style="width: 5px;">CA1601</th>
+                                <th class="text-center">PO1</th>
+                                <th class="text-center">PO2</th>
+                                <th class="text-center">PO3</th>
+                                <th class="text-center">PO4</th>
+                                <th class="text-center">PO5</th>
+                                <th class="text-center">PO6</th>
+                                <th class="text-center">PO7</th>
+                                <th class="text-center">PO8</th>
+                                <th class="text-center">PO9</th>
+                                <th class="text-center">PO10</th>
+                                <th class="text-center">PO11</th>
+                                <th class="text-center">PO12</th>
+                            </tr>
+                        </thead>
+                        <tbody class="custom-width">
+                            <tr>
+                                <th class="">CO1</th>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                            </tr>
+
+                            <tr>
+                                <th class="">CO2</th>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                            </tr>
+
+                            <tr>
+                                <th class="">CO3</th>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                            </tr>
+
+                            <tr>
+                                <th class="">CO3</th>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                            </tr>
+
+                            <tr>
+                                <th class="">CO5</th>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" class="#"></td>
+                            </tr>
+
+                            <tr>
+                                <th class="">Average CO</th>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                            </tr>
+
+                            <tr>
+                                <th class="">CO Attainment</th>
+                                <td class="text-center" colspan="12">1</td>
+                            </tr>
+
+                            <tr>
+                                <th class="">PO Attainment</th>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- View CO/PO Modal Start --}}
+
+    {{-- Update CO/PO Modal Start --}}
+    <div class="modal fade" id="updateCOPOModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
@@ -226,159 +388,5 @@
             </div>
         </div>
     </div>
-
-    {{-- his for update CO/PO relation level table --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Upload CO/PO Relation Level</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
-                        <thead>
-                            <tr>
-                                <th class="" style="width: 5px;">CA1601</th>
-                                <th class="text-center">PO1</th>
-                                <th class="text-center">PO2</th>
-                                <th class="text-center">PO3</th>
-                                <th class="text-center">PO4</th>
-                                <th class="text-center">PO5</th>
-                                <th class="text-center">PO6</th>
-                                <th class="text-center">PO7</th>
-                                <th class="text-center">PO8</th>
-                                <th class="text-center">PO9</th>
-                                <th class="text-center">PO10</th>
-                                <th class="text-center">PO11</th>
-                                <th class="text-center">PO12</th>
-                            </tr>
-                        </thead>
-                        <tbody class="custom-width">
-                            <tr>
-                                <th class="">CO1</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO2</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO5</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                            </tr>
-
-                            <tr>
-                                <th class="">Average CO</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO Attainment</th>
-                                <td class="text-center" colspan="12">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">PO Attainment</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Upload</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{-- Update CO/PO Modal End --}}
 @endsection
