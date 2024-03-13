@@ -186,7 +186,12 @@ footer{
 } */
 .custom-width tr td input{
 max-width: 80px;
+    /* Centering the text cursor pointer */
 }
 .custom-width tr td:hover{
     background-color: #c5c7c9;
+}
+
+.custom-width tr td input[type="text"] {
+    text-align: center; /* Align text in the center */
 }
