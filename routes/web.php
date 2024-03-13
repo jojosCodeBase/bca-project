@@ -110,6 +110,10 @@ Route::middleware('auth')->group(function(){
         return view('validation');
     })->name('validation');
 
+    Route::get('manage-faculty', function () {
+        return view('manage-faculty');
+    })->name('manage-faculty');
+
         Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
     });
 });
