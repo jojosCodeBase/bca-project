@@ -21,7 +21,7 @@
                 </div>
                 <ul class="sidear-nav">
                     <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
-                        <a href="{{ url('/dashboard') }}" class="sidebar-link">
+                        <a href="{{ route('admin-dashboard')}}" class="sidebar-link">
                             <i class="bi bi-sliders"></i> Dashboard
                         </a>
                     </li>
@@ -32,18 +32,18 @@
                         </span>
                     </li>
                     <li class="sidebar-item {{ request()->is('upload') ? 'active' : '' }}">
-                        <a href="{{ url('/upload') }}" class="sidebar-nested-link">
+                        <a href="{{ route('admin-upload') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-arrow-up-fill"></i> Upload Data
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->is('fetch') ? 'active' : '' }}">
-                        <a href="{{ url('/fetch') }}" class="sidebar-nested-link">
+                        <a href="{{ route('admin-fetch') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->is('co_po_relation') ? 'active' : '' }}">
-                        <a href="{{ url('/co_po_relation') }}" class="sidebar-nested-link">
-                            <i class="bi bi-cloud-arrow-up-fill"></i> CO/PO Relation 
+                        <a href="{{ route('admin-co_po_relation') }}" class="sidebar-nested-link">
+                            <i class="bi bi-cloud-arrow-up-fill"></i> CO/PO Relation
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -52,12 +52,12 @@
                         </span>
                     </li>
                     <li class="sidebar-item {{ request()->is('semester') ? 'active' : '' }}">
-                        <a href="{{ url('/semester') }}" class="sidebar-nested-link">
+                        <a href="{{ route('admin-semester') }}" class="sidebar-nested-link">
                             <i class="bi bi-calendar-fill"></i> Semester Wise
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->is('year') ? 'active' : '' }}">
-                        <a href="{{ url('/year') }}" class="sidebar-nested-link">
+                        <a href="{{ route('admin-semester') }}" class="sidebar-nested-link">
                             <i class="bi bi-calendar3"></i> Year Wise
                         </a>
                     </li>
@@ -67,17 +67,17 @@
                         </span>
                     </li>
                     <li class="sidebar-item {{ request()->is('subjects') ? 'active' : '' }}">
-                        <a href="{{ route('subjects') }}" class="sidebar-nested-link">
+                        <a href="{{ route('admin-subjects') }}" class="sidebar-nested-link">
                             <i class="bi bi-calendar-fill"></i> List All Subjects
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->is('add-subject') ? 'active' : '' }}">
-                        <a href="{{ route('add-subject-view') }}" class="sidebar-nested-link">
+                        <a href="{{ route('admin-add-subject-view') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-plus-fill"></i> Add Subject
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->is('tables') ? 'active' : '' }}">
-                        <a href="{{ route('tables') }}" class="sidebar-nested-link">
+                        <a href="{{ route('admin-tables') }}" class="sidebar-nested-link">
                             <i class="bi bi-database-gear"></i> Database Tables
                         </a>
                     </li>
@@ -104,7 +104,7 @@
                                 <span class="text-dark">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="{{ route('profile.edit') }}" class="dropdown-item"><i
+                                <a href="{{ route('admin-profile.edit') }}" class="dropdown-item"><i
                                     class="bi bi-person-fill fs-5 pe-1"></i> Profile</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     <button type="submit" class="dropdown-item"><i

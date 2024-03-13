@@ -6,18 +6,19 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Faculty
+class Admin
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if($request->user() && $request->user()->is_faculty == 1){
+        if($request->user() && $request->user()->is_faculty == 0){
             return $next($request);
-        }else{
+        }
+        else{
             return redirect('/');
         }
     }

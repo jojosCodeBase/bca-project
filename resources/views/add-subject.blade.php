@@ -13,7 +13,7 @@
         @endif
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('add-subject') }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('admin-add-subject') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row pb-4 px-3">
                         <h4 class="py-3 text-muted">Add Subject</h4>

@@ -28,8 +28,6 @@ class DashboardController extends Controller
     }
     public function fetchData(Request $r){
         dd($r->all());
-
-
     }
 
     public function addSubjectView(){
