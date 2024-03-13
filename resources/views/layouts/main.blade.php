@@ -81,6 +81,16 @@
                             <i class="bi bi-database-gear"></i> Database Tables
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <span class="sidebar-link">
+                            <i class="bi bi-three-dots-vertical"></i> Faculty
+                        </span>
+                    </li>
+                    <li class="sidebar-item {{ request()->is('manage-faculty') ? 'active' : '' }}">
+                        <a href="{{ url('/manage-faculty') }}" class="sidebar-nested-link">
+                            <i class="bi bi-file-earmark-arrow-up-fill"></i> Manage Faculty
+                        </a>
+                    </li>
                 </ul>
             </div>
         </aside>

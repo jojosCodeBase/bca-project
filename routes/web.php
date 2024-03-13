@@ -106,9 +106,9 @@ Route::middleware('auth')->group(function(){
 
         //Update PO Attainment Level
 
-        Route::get('validation', function () {
-            return view('validation');
-        })->name('validation');
+    Route::get('validation', function () {
+        return view('validation');
+    })->name('validation');
 
         Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
     });
