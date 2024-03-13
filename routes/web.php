@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         // dd(auth()->user()->is_faculty);
         if (auth()->user()->is_faculty == 0) {
@@ -70,6 +70,10 @@ Route::middleware('auth')->group(function(){
         })->name('admin-validation');
 
         Route::get('admin/read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
+
+        Route::get('manage-faculty', function () {
+            return view('manage-faculty');
+        })->name('manage-faculty');
     });
 
     Route::middleware('faculty')->group(function () {
@@ -106,13 +110,9 @@ Route::middleware('auth')->group(function(){
 
         //Update PO Attainment Level
 
-    Route::get('validation', function () {
-        return view('validation');
-    })->name('validation');
-
-    Route::get('manage-faculty', function () {
-        return view('manage-faculty');
-    })->name('manage-faculty');
+        Route::get('validation', function () {
+            return view('validation');
+        })->name('validation');
 
         Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
     });
