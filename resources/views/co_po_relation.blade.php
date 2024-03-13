@@ -108,82 +108,82 @@
                         <tbody class="custom-width">
                             <tr>
                                 <th class="">CO1</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
                             </tr>
 
                             <tr>
                                 <th class="">CO2</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
                             </tr>
 
                             <tr>
                                 <th class="">CO3</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
                             </tr>
 
                             <tr>
                                 <th class="">CO3</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
                             </tr>
 
                             <tr>
                                 <th class="">CO5</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
                             </tr>
 
                             <tr>
@@ -227,7 +227,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Upload</button>
                 </div>
             </div>
         </div>
@@ -383,7 +382,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Upload</button>
+                    <button type="button" class="btn btn-primary">Update</button>
                 </div>
             </div>
         </div>
