@@ -27,7 +27,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('upload', [ExcelController::class, 'fileUpload'])->name('file-upload');
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('admin-dashboard', [DashboardController::class, 'index'])->name('admin-dashboard');
+    Route::get('dashboard', [DashboardController::class, 'userDashboard'])->name('dashboard');
     Route::get('tables', [DashboardController::class, 'tables'])->name('tables');
 
     Route::get('subjects', [DashboardController::class, 'subjects'])->name('subjects');
