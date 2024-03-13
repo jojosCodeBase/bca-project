@@ -65,7 +65,8 @@
                     </ul>
                 @else
                     <ul class="sidear-nav">
-                        <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
+                        {{-- <li class="sidebar-item {{ Route::is('admin-dashboard') ? 'active' : '' }}"> --}}
+                        <li class="sidebar-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                             <a href="{{ route('admin-dashboard') }}" class="sidebar-link">
                                 <i class="bi bi-sliders"></i> Dashboard
                             </a>
@@ -76,17 +77,17 @@
                                 <i class="bi bi-three-dots-vertical"></i> Menu
                             </span>
                         </li>
-                        <li class="sidebar-item {{ request()->is('upload') ? 'active' : '' }}">
+                        <li class="sidebar-item {{ request()->is('admin/upload') ? 'active' : '' }}">
                             <a href="{{ route('admin-upload') }}" class="sidebar-nested-link">
                                 <i class="bi bi-file-earmark-arrow-up-fill"></i> Upload Data
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->is('fetch') ? 'active' : '' }}">
+                        <li class="sidebar-item {{ request()->is('admin/fetch') ? 'active' : '' }}">
                             <a href="{{ route('admin-fetch') }}" class="sidebar-nested-link">
                                 <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->is('co_po_relation') ? 'active' : '' }}">
+                        <li class="sidebar-item {{ request()->is('admin/co_po_relation') ? 'active' : '' }}">
                             <a href="{{ route('admin-co_po_relation') }}" class="sidebar-nested-link">
                                 <i class="bi bi-cloud-arrow-up-fill"></i> CO/PO Relation
                             </a>
@@ -96,13 +97,13 @@
                                 <i class="bi bi-clipboard2-data-fill"></i> Analysis
                             </span>
                         </li>
-                        <li class="sidebar-item {{ request()->is('semester') ? 'active' : '' }}">
+                        <li class="sidebar-item {{ request()->is('admin/semester') ? 'active' : '' }}">
                             <a href="{{ route('admin-semester') }}" class="sidebar-nested-link">
                                 <i class="bi bi-calendar-fill"></i> Semester Wise
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->is('year') ? 'active' : '' }}">
-                            <a href="{{ route('admin-semester') }}" class="sidebar-nested-link">
+                        <li class="sidebar-item {{ request()->is('admin/year') ? 'active' : '' }}">
+                            <a href="{{ route('admin-year') }}" class="sidebar-nested-link">
                                 <i class="bi bi-calendar3"></i> Year Wise
                             </a>
                         </li>
@@ -111,18 +112,18 @@
                                 <i class="bi bi-clipboard2-data-fill"></i> Courses
                             </span>
                         </li>
-                        <li class="sidebar-item {{ request()->is('subjects') ? 'active' : '' }}">
-                            <a href="{{ route('admin-subjects') }}" class="sidebar-nested-link">
+                        <li class="sidebar-item {{ request()->is('admin/subjects') ? 'active' : '' }}">
+                            <a href="{{ route('subjects') }}" class="sidebar-nested-link">
                                 <i class="bi bi-calendar-fill"></i> List All Subjects
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->is('add-subject') ? 'active' : '' }}">
-                            <a href="{{ route('admin-add-subject-view') }}" class="sidebar-nested-link">
+                        <li class="sidebar-item {{ request()->is('admin/add-subject') ? 'active' : '' }}">
+                            <a href="{{ route('add-subject-view') }}" class="sidebar-nested-link">
                                 <i class="bi bi-file-earmark-plus-fill"></i> Add Subject
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->is('tables') ? 'active' : '' }}">
-                            <a href="{{ route('admin-tables') }}" class="sidebar-nested-link">
+                        <li class="sidebar-item {{ request()->is('admin/tables') ? 'active' : '' }}">
+                            <a href="{{ route('tables') }}" class="sidebar-nested-link">
                                 <i class="bi bi-database-gear"></i> Database Tables
                             </a>
                         </li>
@@ -131,8 +132,8 @@
                                 <i class="bi bi-three-dots-vertical"></i> Faculty
                             </span>
                         </li>
-                        <li class="sidebar-item {{ request()->is('manage-faculty') ? 'active' : '' }}">
-                            <a href="{{ url('/manage-faculty') }}" class="sidebar-nested-link">
+                        <li class="sidebar-item {{ request()->is('admin/manage-faculty') ? 'active' : '' }}">
+                            <a href="{{ route('manage-faculty') }}" class="sidebar-nested-link">
                                 <i class="bi bi-file-earmark-arrow-up-fill"></i> Manage Faculty
                             </a>
                         </li>
