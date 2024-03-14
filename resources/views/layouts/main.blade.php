@@ -109,12 +109,12 @@
                         </li>
                         <li class="sidebar-item">
                             <span class="sidebar-link">
-                                <i class="bi bi-clipboard2-data-fill"></i> Courses
+                                <i class="bi bi-journal-text"></i> Courses
                             </span>
                         </li>
                         <li class="sidebar-item {{ request()->is('admin/subjects') ? 'active' : '' }}">
                             <a href="{{ route('subjects') }}" class="sidebar-nested-link">
-                                <i class="bi bi-calendar-fill"></i> List All Subjects
+                                <i class="bi bi-card-checklist"></i> List All Subjects
                             </a>
                         </li>
                         <li class="sidebar-item {{ request()->is('admin/add-subject') ? 'active' : '' }}">
@@ -134,7 +134,7 @@
                         </li>
                         <li class="sidebar-item {{ request()->is('admin/manage-faculty') ? 'active' : '' }}">
                             <a href="{{ route('manage-faculty') }}" class="sidebar-nested-link">
-                                <i class="bi bi-file-earmark-arrow-up-fill"></i> Manage Faculty
+                                <i class="bi bi-people-fill"></i> Manage Faculty
                             </a>
                         </li>
                     </ul>

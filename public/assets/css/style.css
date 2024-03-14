@@ -195,3 +195,15 @@ max-width: 80px;
 .custom-width tr td input[type="text"] {
     text-align: center; /* Align text in the center */
 }
+
+.more-btn .dropdown-menu {
+    background-color: #fff;
+    /* Background color for the dropdown menu */
+    border-color: #fff;
+}
+
+.more-btn .dropdown {
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}

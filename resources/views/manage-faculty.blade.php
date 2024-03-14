@@ -2,25 +2,18 @@
 @section('title', 'CO-PO Relation')
 @section('breadcrumb', 'Faculty / Manage Faculty')
 @section('content')
-
-    <style>
-        .dropdown-menu {
-            background-color: #fff;
-            /* Background color for the dropdown menu */
-            border-color: #fff;
-        }
-
-        .more-btn .dropdown {
-            box-shadow: none;
-            border: none;
-            background: transparent;
-        }
-    </style>
-
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h3>List of Faculty</h3>
+                <div class="row">
+                    <div class="col-6 ps-3">
+                         <h3>List of Faculty</h3>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end pe-5">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Faculty + </button>
+                    </div>
+                </div>
+
                 <table class="table table-hover my-4">
                     <thead>
                         <tr>
@@ -132,35 +125,43 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <div class="row">
-                            <div class="col-6">
+                    <div class="row">
+                        <form action="">
+                            <div class="col">
                                 <span class="title fw-bold">
                                     Name
                                 </span>
-                                <div><input type="text" class="form-control"></div>
+                                <div class="mt-1">
+                                    <input type="text" class="form-control">
+                                </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col">
                                 <span class="title fw-bold">
                                     Reg.No
                                 </span>
-                                <div><input type="text" class="form-control"></div>
+                                <div class="mt-1">
+                                    <input type="text" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Update</button>
                 </div>
             </div>
         </div>
     </div>
     {{-- faculty-Edit modal end --}}
+
     {{-- faculty-Delete modal start --}}
     <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                {{-- <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Faculty Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                </div> --}}
                 <div class="modal-body">
                     <div class="row d-flex justify-content-center">
                         <div class="col-6 d-flex justify-content-center">
@@ -170,13 +171,14 @@
 
                     <div class="row d-flex justify-content-center">
                         <div class="col-8 d-flex justify-content-center">
-                            <h4>Delete Faculty Details</h4>
+                            <h3>Delete Faculty</h3>
                         </div>
                     </div>
 
                     <div class="row d-flex justify-content-center">
-                        <div class="col-10">
-                            <p class="text-danger fs-6 text-center">Are you sure you want to delete this faculty member's Id ? This action can not be undo.</p>
+                        <div class="col-10 mb-3">
+                            <p class="text-danger fs-6 text-center">Are you sure you want to delete this faculty member's
+                                Id ? This action can not be undo.</p>
                         </div>
                     </div>
 
@@ -191,5 +193,60 @@
         </div>
     </div>
     {{-- faculty-Delete modal end --}}
+
+    {{-- Add-faculty modal start --}}
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Faculty</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="">
+                            <div class="col">
+                                <span class="title fw-bold">
+                                    Name
+                                </span>
+                                <div class="mt-1">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span class="title fw-bold">
+                                    Email Id
+                                </span>
+                                <div class="mt-1">
+                                    <input type="email" name="" id="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span class="title fw-bold">
+                                    User Id
+                                </span>
+                                <div class="mt-1">
+                                    <input type="email" name="" id="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span class="title fw-bold">
+                                    Password
+                                </span>
+                                <div class="mt-1">
+                                    <input type="email" name="" id="" class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Create</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+    {{-- Add-faculty modal end --}}
 
 @endsection
