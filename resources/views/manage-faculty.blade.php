@@ -43,10 +43,16 @@
                                     <ul class="dropdown-menu">
                                         <li>
                                             <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
+                                                data-bs-toggle="modal" data-bs-target="#modalView">View</button>
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
+                                        </li>
                                     </ul>
                                 </div>
                             </td>
@@ -65,10 +71,16 @@
                                     <ul class="dropdown-menu">
                                         <li>
                                             <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
+                                                data-bs-toggle="modal" data-bs-target="#modalView">View</button>
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
+                                        </li>
                                     </ul>
                                 </div>
 
@@ -82,7 +94,7 @@
     </div>
 
     {{-- faculty-view modal start --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -109,4 +121,74 @@
         </div>
     </div>
     {{-- faculty-view modal end --}}
+
+    {{-- faculty-Edit modal start --}}
+    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Faculty Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="title fw-bold">
+                                    Name
+                                </span>
+                                <div><input type="text" class="form-control"></div>
+                            </div>
+                            <div class="col-6">
+                                <span class="title fw-bold">
+                                    Reg.No
+                                </span>
+                                <div><input type="text" class="form-control"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- faculty-Edit modal end --}}
+    {{-- faculty-Delete modal start --}}
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Faculty Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-6 d-flex justify-content-center">
+                            <i class="rounded-circle bi bi-exclamation-triangle-fill text-warning fs-1"></i>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-8 d-flex justify-content-center">
+                            <h3>Delete Faculty Details</h3>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-10">
+                            <p class="text-danger fs-6 text-center">Are you sure you want to delete this faculty member's Id ? This action can not be undo.</p>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-8   d-flex justify-content-center">
+                            <button class="btn btn-secondary me-5">Cancel</button>    
+                            <button class="btn btn-danger">Yes, Delete !</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- faculty-Delete modal end --}}
+
 @endsection

@@ -87,7 +87,7 @@
                         </span>
                     </li>
                     <li class="sidebar-item {{ request()->is('manage-faculty') ? 'active' : '' }}">
-                        <a href="{{ url('/manage-faculty') }}" class="sidebar-nested-link">
+                        <a href="{{ route('manage-faculty') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-arrow-up-fill"></i> Manage Faculty
                         </a>
                     </li>

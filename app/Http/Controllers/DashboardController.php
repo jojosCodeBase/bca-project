@@ -13,7 +13,7 @@ class DashboardController extends Controller
         $x = 'Courses';
         $modelClass = 'App\\Models\\' . $x;
         // return view('dashboard', ['courses' => $modelClass::orderBy('updated_at', 'desc')->get()]);
-        return view('admin-dashboard', ['courses' => $modelClass::orderBy('updated_at', 'desc')->get()]);
+        return view('admin-dashboard', ['courses' => $modelClass::orderBy('updated_at', 'desc')->paginate(10)]);
     }
 
     public function userDashboard(){
