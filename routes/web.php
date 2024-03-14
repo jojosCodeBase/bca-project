@@ -72,10 +72,6 @@ Route::middleware('auth')->group(function () {
             return view('validation');
         })->name('admin-validation');
 
-        Route::get('admin/manage-faculty', function () {
-        return view('manage-faculty');
-    })->name('manage-faculty');
-
 
         Route::get('manage-faculty', function () {
             return view('manage-faculty');
@@ -119,15 +115,10 @@ Route::middleware('auth')->group(function () {
 
         //Update PO Attainment Level
 
-    Route::get('validation', function () {
-        return view('validation');
-    })->name('validation');
+        Route::get('validation', function () {
+            return view('validation');
+        })->name('validation');
 
-    Route::get('manage-faculty', function () {
-        return view('manage-faculty');
-    })->name('manage-faculty');
-
-        Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
     });
 });
 
