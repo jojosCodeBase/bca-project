@@ -65,7 +65,6 @@ Route::middleware('auth')->group(function () {
             return view('co_po_relation');
         })->name('admin-co_po_relation');
 
-        Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
 
         //Update PO Attainment Level
         Route::get('validation', function () {
@@ -76,6 +75,8 @@ Route::middleware('auth')->group(function () {
         Route::get('manage-faculty', function () {
             return view('manage-faculty');
         })->name('manage-faculty');
+
+        Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
     });
 
 
@@ -111,7 +112,7 @@ Route::middleware('auth')->group(function () {
             return view('co_po_relation');
         })->name('co_po_relation');
 
-        Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
+        // Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
 
         //Update PO Attainment Level
 

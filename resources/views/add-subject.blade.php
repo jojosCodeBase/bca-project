@@ -1,5 +1,6 @@
 @extends('layouts/main')
 @section('title', 'Add Subject')
+@section('breadcrumb', 'Courses / Add Subject')
 @section('content')
     <div class="container">
         @if (session('error'))

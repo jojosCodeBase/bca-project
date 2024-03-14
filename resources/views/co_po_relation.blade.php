@@ -1,5 +1,6 @@
 @extends('layouts/main')
 @section('title', 'CO-PO Relation')
+@section('breadcrumb', 'CO-PO Relation')
 @section('content')
     <div class="container">
         <div class="row d-flex justify-content-center">

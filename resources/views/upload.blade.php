@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('title', 'Upload')
+@section('breadcrumb', 'Menu / Upload Data')
 @section('content')
     <div class="container flex-grow-1">
         @if (session('error'))

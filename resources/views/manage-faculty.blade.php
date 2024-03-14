@@ -1,5 +1,6 @@
 @extends('layouts/main')
 @section('title', 'CO-PO Relation')
+@section('breadcrumb', 'Faculty / Manage Faculty')
 @section('content')
 
     <style>
@@ -169,7 +170,7 @@
 
                     <div class="row d-flex justify-content-center">
                         <div class="col-8 d-flex justify-content-center">
-                            <h3>Delete Faculty Details</h3>
+                            <h4>Delete Faculty Details</h4>
                         </div>
                     </div>
 
@@ -181,7 +182,7 @@
 
                     <div class="row d-flex justify-content-center">
                         <div class="col-8   d-flex justify-content-center">
-                            <button class="btn btn-secondary me-5">Cancel</button>    
+                            <button class="btn btn-secondary me-5">Cancel</button>
                             <button class="btn btn-danger">Yes, Delete !</button>
                         </div>
                     </div>

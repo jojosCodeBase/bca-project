@@ -149,7 +149,7 @@
                 </button>
                 <div class="breadcrumb-bar text-primary px-3">
                     <span class="breadcrumb-item fs-6">
-                        Dashboard
+                        @yield('breadcrumb')
                     </span>
                 </div>
                 <div class="navbar-collapse navbar">

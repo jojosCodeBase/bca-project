@@ -31,7 +31,7 @@ class ExcelController extends Controller
 
     public function readDbData(Request $r)
     {
-        dd($r->all());
+        // dd($r->all());
         try {
             $subjectCode = $r->subject;
             $subject = "App\\Models\\" . $subjectCode;
@@ -46,7 +46,7 @@ class ExcelController extends Controller
             // Retrieve max marks
             $max_marks = MaxMarksCO::where('cid', $subjectCode)->get();
 
-            return view('show-data', ['data' => $data, 'max_marks' => $max_marks]);
+            return view('show-data', ['data' => $data, 'max_marks' => $max_marks, 'subjectCode' => $subjectCode]);
         } catch (Exception $e) {
             // Handle the case where the model is not found
             $errorMessage = "Table $subjectCode not found.";

@@ -2,9 +2,9 @@
 @section('title', 'Semester')
 @section('content')
     <div class="container">
-        <h4>CO Attainment</h4>
+        <h5>{{ $subjectCode }} - CO Attainment</h5>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-light">
                 <thead>
                     <tr class="bg-light text-center">
                         <th rowspan="2">Regno</th>

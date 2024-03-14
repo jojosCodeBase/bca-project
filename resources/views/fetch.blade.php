@@ -1,5 +1,6 @@
 @extends('layouts/main')
 @section('title', 'Fetch')
+@section('breadcrumb', 'Menu / Fetch')
 @section('content')
     {{-- <div class="container">
         <div class="card">
@@ -86,7 +87,7 @@
         @endif
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('fetch-data') }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('admin-fetch-data') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row">
                         <h4 class="py-3 text-muted">Fetch Data</h4>

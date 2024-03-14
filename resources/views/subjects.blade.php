@@ -1,5 +1,6 @@
 @extends('layouts/main')
 @section('title', 'Tables')
+@section('breadcrumb', 'Courses / List of All Subjects')
 @section('content')
     <div class="container">
         <div class="card">
@@ -8,14 +9,12 @@
                 <div class="mt-2 table-responsive" id="table">
                     <table class="table table-hover">
                         <thead>
-                            {{-- <th>Sl.no</th> --}}
                             <th>Subject Code</th>
                             <th>Subject Name</th>
                         </thead>
                         <tbody>
                             @for ($i = 0; $i < count($courses); $i++)
                                 <tr>
-                                    {{-- <td>{{ $i + 1 }}</td> --}}
                                     <td>{{ $courses[$i]['cid'] }}</td>
                                     <td>{{ $courses[$i]['cname'] }}</td>
                                 </tr>

@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('title', 'Semester')
+@section('breadcrumb', 'Analaysis / Semester Wise')
 @section('content')
     <div class="container-fluid">
         <div class="row bg-light">
