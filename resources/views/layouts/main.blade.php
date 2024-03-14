@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') | Result Analysis System</title>
-    <link rel="icon" href="{{asset('assets/images/smitlogo2.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/smitlogo2.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -19,12 +19,13 @@
                 <div class="sidebar-logo">
                     <a href="#">Result Analysis</a>
                 </div>
-                <ul class="sidear-nav">
-                    <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
-                        <a href="{{ route('admin-dashboard')}}" class="sidebar-link">
-                            <i class="bi bi-sliders"></i> Dashboard
-                        </a>
-                    </li>
+                @if (Auth::user()->is_faculty)
+                    <ul class="sidear-nav">
+                        <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
+                            <a href="{{ url('/dashboard') }}" class="sidebar-link">
+                                <i class="bi bi-sliders"></i> Dashboard
+                            </a>
+                        </li>
 
                     <li class="sidebar-item">
                         <span class="sidebar-link">
@@ -87,7 +88,7 @@
                         </span>
                     </li>
                     <li class="sidebar-item {{ request()->is('manage-faculty') ? 'active' : '' }}">
-                        <a href="{{ route('manage-faculty') }}" class="sidebar-nested-link">
+                        <a href="{{ url('/manage-faculty') }}" class="sidebar-nested-link">
                             <i class="bi bi-file-earmark-arrow-up-fill"></i> Manage Faculty
                         </a>
                     </li>
@@ -109,13 +110,13 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="{{ asset('assets/images/admin.png') }}" class="rounded-circle avatar img-fluid"
-                                    alt="profile-ph">
+                                <img src="{{ asset('assets/images/admin.png') }}"
+                                    class="rounded-circle avatar img-fluid" alt="profile-ph">
                                 <span class="text-dark">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="{{ route('admin-profile.edit') }}" class="dropdown-item"><i
-                                    class="bi bi-person-fill fs-5 pe-1"></i> Profile</a>
+                                        class="bi bi-person-fill fs-5 pe-1"></i> Profile</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     <button type="submit" class="dropdown-item"><i
                                             class="bi bi-box-arrow-right fs-5 pe-1"></i> Log-Out</button>

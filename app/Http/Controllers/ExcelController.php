@@ -31,6 +31,7 @@ class ExcelController extends Controller
 
     public function readDbData(Request $r)
     {
+        dd($r->all());
         try {
             $subjectCode = $r->subject;
             $subject = "App\\Models\\" . $subjectCode;

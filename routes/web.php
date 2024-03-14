@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         // dd(auth()->user()->is_faculty);
         if (auth()->user()->is_faculty == 0) {
@@ -29,43 +29,46 @@ Route::middleware('auth')->group(function(){
             return redirect()->route('dashboard');
         }
     });
-    Route::middleware('admin')->group(function () {
-        Route::get('admin-dashboard', [DashboardController::class, 'index'])->name('admin-dashboard');
-        Route::get('admin/profile', [ProfileController::class, 'edit'])->name('admin-profile.edit');
-        Route::patch('admin/profile', [ProfileController::class, 'update'])->name('admin-profile.update');
-        Route::delete('admin/profile', [ProfileController::class, 'destroy'])->name('admin-profile.destroy');
+    Route::middleware('admin')->prefix('admin')->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('admin-dashboard');
 
-        Route::post('admin/upload', [ExcelController::class, 'fileUpload'])->name('admin-file-upload');
+        Route::get('profile', [ProfileController::class, 'edit'])->name('admin-profile.edit');
+        Route::patch('profile', [ProfileController::class, 'update'])->name('admin-profile.update');
+        Route::delete('profile', [ProfileController::class, 'destroy'])->name('admin-profile.destroy');
 
-        Route::get('admin/tables', [DashboardController::class, 'tables'])->name('admin-tables');
+        Route::get('tables', [DashboardController::class, 'tables'])->name('tables');
 
-        Route::get('admin/subjects', [DashboardController::class, 'subjects'])->name('admin-subjects');
+        Route::get('subjects', [DashboardController::class, 'subjects'])->name('subjects');
 
-        Route::get('admin/add-subject', [DashboardController::class, 'addSubjectView'])->name('admin-add-subject-view');
-        Route::post('admin/add-subject', [DashboardController::class, 'addSubject'])->name('admin-add-subject');
+        Route::get('add-subject', [DashboardController::class, 'addSubjectView'])->name('add-subject-view');
+        Route::post('add-subject', [DashboardController::class, 'addSubject'])->name('add-subject');
 
-        Route::get('admin/upload', function () {
+        Route::post('upload', [ExcelController::class, 'fileUpload'])->name('admin-file-upload');
+
+        Route::get('upload', function () {
             return view('upload');
         })->name('admin-upload');
 
-        Route::get('admin/fetch', [DashboardController::class, 'fetchView'])->name('admin-fetch');
-        Route::post('admin/fetch', [ExcelController::class, 'readDbData'])->name('admin-fetch-data');
+        Route::get('fetch', [DashboardController::class, 'fetchView'])->name('admin-fetch');
+        Route::post('fetch', [ExcelController::class, 'readDbData'])->name('admin-fetch-data');
 
-        Route::get('admin/semester', function () {
+        Route::get('semester', function () {
             return view('semester');
         })->name('admin-semester');
 
-        Route::get('admin/year', function () {
+        Route::get('year', function () {
             return view('year');
         })->name('admin-year');
 
         //Upload PO Attainment level
-        Route::get('admin/co_po_relation', function () {
+        Route::get('co_po_relation', function () {
             return view('co_po_relation');
         })->name('admin-co_po_relation');
 
+        Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
+
         //Update PO Attainment Level
-        Route::get('admin/validation', function () {
+        Route::get('validation', function () {
             return view('validation');
         })->name('admin-validation');
 
@@ -73,8 +76,12 @@ Route::middleware('auth')->group(function(){
         return view('manage-faculty');
     })->name('manage-faculty');
 
-        Route::get('admin/read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
+
+        Route::get('manage-faculty', function () {
+            return view('manage-faculty');
+        })->name('manage-faculty');
     });
+
 
     Route::middleware('faculty')->group(function () {
         Route::get('faculty', function () {
@@ -108,11 +115,18 @@ Route::middleware('auth')->group(function(){
             return view('co_po_relation');
         })->name('co_po_relation');
 
+        Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
+
         //Update PO Attainment Level
 
     Route::get('validation', function () {
         return view('validation');
     })->name('validation');
+
+    Route::get('manage-faculty', function () {
+        return view('manage-faculty');
+    })->name('manage-faculty');
+
         Route::get('read', [ExcelController::class, 'readDbData'])->name('readDbData');
     });
 });

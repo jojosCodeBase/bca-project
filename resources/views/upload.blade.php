@@ -1,4 +1,4 @@
-@extends('layouts/main')
+@extends('layouts.main')
 @section('title', 'Upload')
 @section('content')
     <div class="container flex-grow-1">
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <form action="#"  class="needs-validation" novalidate>
+                    <form action="#" class="needs-validation" novalidate>
                         <div class="row">
                             <h4 class="py-3 text-muted">Upload Data</h4>
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
@@ -73,11 +73,12 @@
 
                             <div class="col-lg-7 col-xl-7 col-md-10 col-12 my-3">
                                 <form action="{{ route('file-upload') }}" method="POST" enctype="multipart/form-data"
-                                    class="mx-3 was-validated" >
+                                    class="mx-3 was-validated">
                                     @csrf
                                     <div class="row">
                                         <div class=" col-xl-9 col-lg-9 col-md-9 col-12">
-                                            <input type="file" name="file" id="file" class="form-control" aria-label="file example" required>
+                                            <input type="file" name="file" id="file" class="form-control"
+                                                aria-label="file example" required>
                                             <span class="text-danger" id="file-error"></span>
                                             <div class="invalid-feedback">
                                                 Please Choose a file
