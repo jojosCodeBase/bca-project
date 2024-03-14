@@ -29,9 +29,6 @@ class DashboardController extends Controller
         dd($r->all());
     }
 
-    public function addSubjectView(){
-        return view('add-subject');
-    }
     public function addSubject(Request $request){
         $courses = Courses::create([
             'cid' => $request->cid,
@@ -49,7 +46,20 @@ class DashboardController extends Controller
         return view('tables', ['tables' => $tables]);
     }
 
-    public function subjects(){
-        return view('subjects', ['courses' => Courses::orderBy('cname', 'asc')->paginate(10)]);
+    public function manageSubjects(){
+        return view('manage-subjects', ['courses' => Courses::orderBy('cname', 'asc')->paginate(10)]);
+    }
+
+    // ajax requests
+
+    public function getCourseInfo($cid){
+        try {
+            $courseInfo = Courses::where('cid', $cid)->get();
+            return response()->json($courseInfo);
+        } catch (\Exception $e) {
+            return response()->json('Some error occured in fetching course details');
+        }
+
+
     }
 }

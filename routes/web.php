@@ -38,10 +38,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('tables', [DashboardController::class, 'tables'])->name('tables');
 
-        Route::get('subjects', [DashboardController::class, 'subjects'])->name('subjects');
-
-        Route::get('add-subject', [DashboardController::class, 'addSubjectView'])->name('add-subject-view');
-        Route::post('add-subject', [DashboardController::class, 'addSubject'])->name('add-subject');
+        Route::get('manage-subjects', [DashboardController::class, 'manageSubjects'])->name('manage-subjects');
+        Route::post('manage-subjects/add', [DashboardController::class, 'addSubject'])->name('add-subject');
 
         Route::post('upload', [ExcelController::class, 'fileUpload'])->name('admin-file-upload');
 
@@ -77,6 +75,9 @@ Route::middleware('auth')->group(function () {
         })->name('manage-faculty');
 
         Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
+
+        // ajax requests
+        Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);
     });
 
 

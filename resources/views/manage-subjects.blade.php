@@ -1,6 +1,6 @@
 @extends('layouts/main')
-@section('title', 'Manage-Subjects')
-@section('breadcrumb', 'Courses / List of All Subjects')
+@section('title', 'Manage Subjects')
+@section('breadcrumb', 'Subjects / Manage Subjects')
 @section('content')
     <style>
         .modal-footer {
@@ -12,6 +12,22 @@
         }
     </style>
     <div class="container mb-4">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @elseif(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div id="alertMessage" class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
         <div class="row d-flex justify-content-center">
             <div class="col-6">
                 <div class="card">
@@ -56,7 +72,7 @@
                         <tbody>
                             @for ($i = 0; $i < count($courses); $i++)
                                 <tr>
-                                    <td>{{ $courses[$i]['cid'] }}</td>
+                                    <td class="courseId">{{ $courses[$i]['cid'] }}</td>
                                     <td>{{ $courses[$i]['cname'] }}</td>
                                     <td>
                                         <div class="more-btn">
@@ -66,7 +82,7 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                    <button class="dropdown-item editButton" type="button" class="btn btn-primary"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#editSubjectModal">Edit</button>
                                                 </li>
@@ -89,7 +105,6 @@
     </div>
 
     {{-- Add-Subject modal start --}}
-
     <div class="modal fade" id="addSubjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -98,9 +113,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @csrf
                     <div class="row px-3">
                         <form action="{{ route('add-subject') }}" method="POST" class="needs-validation" novalidate>
+                            @csrf
                             <div class="col-xl-12 col-lg-5 col-md-5 col-6 mt-1 mb-1">
                                 <label class="form-label">Subject Code</label>
                                 <input type="text" class="form-control" name="cid" placeholder="E.g. CA1603"
@@ -130,7 +145,6 @@
     {{-- Add-Subject modal end --}}
 
     {{-- Edit-Subject modal start --}}
-
     <div class="modal fade" id="editSubjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -146,7 +160,7 @@
                                     Subject Code
                                 </span>
                                 <div class="mt-2">
-                                    <input type="text" class="form-control" class=" text-uppercase"
+                                    <input type="text" id="edit-modal-subject-code" class="form-control text-uppercase"
                                         placeholder="E.g. CA1603">
                                 </div>
                             </div>
@@ -155,7 +169,7 @@
                                     Subject Name
                                 </span>
                                 <div class="mt-1">
-                                    <input type="text" class="form-control" placeholder="E.g. Python">
+                                    <input type="text" id="edit-modal-subject-name" class="form-control" placeholder="E.g. Python">
                                 </div>
                             </div>
                         </form>
@@ -170,15 +184,10 @@
     {{-- Edit-Subject modal end --}}
 
     {{-- Delete-Subject modal start --}}
-
     <div class="modal fade" id="deleteSubjectModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Subject</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
                 <div class="modal-body">
                     <div class="row d-flex justify-content-center">
                         <div class="col-6 d-flex justify-content-center">
@@ -186,18 +195,10 @@
                         </div>
                     </div>
 
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-8 d-flex justify-content-center">
-                            <h3>Delete Subject</h3>
-                        </div>
-                    </div>
+                    <h4 class="text-center text-muted">Delete Subject</h4>
 
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-10 mb-3">
-                            <p class="text-danger fs-6 text-center">Are you sure you want to delete this Subject? This
-                                action can not be undo.</p>
-                        </div>
-                    </div>
+                    <p class="text-danger fs-6 text-center">Are you sure you want to delete this Subject? <br>This
+                        action cannot be undone</p>
 
                     <div class="row d-flex justify-content-center">
                         <div class="col-8 d-flex justify-content-center mb-3">
@@ -210,4 +211,27 @@
         </div>
     </div>
     {{-- Delete-Subject modal end --}}
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.editButton').click(function() {
+            var cid = $(this).closest('tr').find('.courseId').text();
+            $.ajax({
+                url: '/admin/getCourseInfo/' + cid,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response[0]);
+                    $('#edit-modal-subject-code').val(response[0].cid);
+                    $('#edit-modal-subject-name').val(response[0].cname);
+                    $('#editSubjectModal').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 @endsection

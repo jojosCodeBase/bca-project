@@ -85,6 +85,13 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if ($errors->any())
+            <div id="alertMessage" class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('admin-fetch-data') }}" method="POST" class="needs-validation" novalidate>

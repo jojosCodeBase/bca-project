@@ -7,10 +7,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-6 ps-3">
-                         <h3>List of Faculty</h3>
+                        <h3>List of Faculty</h3>
                     </div>
                     <div class="col-6 d-flex justify-content-end pe-5">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Faculty + </button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Faculty +
+                        </button>
                     </div>
                 </div>
 
@@ -169,22 +170,13 @@
                         </div>
                     </div>
 
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-8 d-flex justify-content-center">
-                            <h3>Delete Faculty</h3>
-                        </div>
-                    </div>
-
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-10 mb-3">
-                            <p class="text-danger fs-6 text-center">Are you sure you want to delete this faculty member's
-                                Id ? This action can not be undo.</p>
-                        </div>
-                    </div>
+                    <h4 class="text-center text-muted">Delete Faculty</h4>
+                    <p class="text-danger text-center">Are you sure you want to delete this faculty? <br>This action cannot be undone !
+                    </p>
 
                     <div class="row d-flex justify-content-center">
                         <div class="col-8   d-flex justify-content-center">
-                            <button class="btn btn-secondary me-5">Cancel</button>
+                            <button class="btn btn-secondary me-5" data-bs-dismiss="modal">Cancel</button>
                             <button class="btn btn-danger">Yes, Delete !</button>
                         </div>
                     </div>
@@ -243,7 +235,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Create</button>
-                  </div>
+                </div>
             </div>
         </div>
     </div>

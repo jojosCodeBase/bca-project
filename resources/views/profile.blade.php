@@ -12,6 +12,13 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if ($errors->any())
+            <div id="alertMessage" class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Profile</h1>
         </div>
@@ -54,7 +61,7 @@
                                 <label class="form-label">Current Password</label>
                                 <input type="password" class="form-control" name="current_password">
                                 <div class="mt-2 text-danger">
-                                    @if($errors->updatePassword->has('current_password'))
+                                    @if ($errors->updatePassword->has('current_password'))
                                         <span>{{ $errors->updatePassword->first('current_password') }}</span>
                                     @endif
                                 </div>
@@ -63,7 +70,7 @@
                                 <label class="form-label">New Password</label>
                                 <input type="password" class="form-control" name="password">
                                 <div class="mt-2 text-danger">
-                                    @if($errors->updatePassword->has('password'))
+                                    @if ($errors->updatePassword->has('password'))
                                         <span>{{ $errors->updatePassword->first('password') }}</span>
                                     @endif
                                 </div>

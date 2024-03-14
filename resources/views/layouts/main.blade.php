@@ -109,24 +109,19 @@
                         </li>
                         <li class="sidebar-item">
                             <span class="sidebar-link">
-                                <i class="bi bi-journal-text"></i> Courses
+                                <i class="bi bi-journal-text"></i> Subjects
                             </span>
                         </li>
-                        <li class="sidebar-item {{ request()->is('admin/subjects') ? 'active' : '' }}">
-                            <a href="{{ route('subjects') }}" class="sidebar-nested-link">
-                                <i class="bi bi-card-checklist"></i> List All Subjects
+                        <li class="sidebar-item {{ request()->is('admin/manage-subjects') ? 'active' : '' }}">
+                            <a href="{{ route('manage-subjects') }}" class="sidebar-nested-link">
+                                <i class="bi bi-card-checklist"></i> Manage
                             </a>
                         </li>
-                        <li class="sidebar-item {{ request()->is('admin/add-subject') ? 'active' : '' }}">
-                            <a href="{{ route('add-subject-view') }}" class="sidebar-nested-link">
-                                <i class="bi bi-file-earmark-plus-fill"></i> Add Subject
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/tables') ? 'active' : '' }}">
+                        {{-- <li class="sidebar-item {{ request()->is('admin/tables') ? 'active' : '' }}">
                             <a href="{{ route('tables') }}" class="sidebar-nested-link">
                                 <i class="bi bi-database-gear"></i> Database Tables
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="sidebar-item">
                             <span class="sidebar-link">
                                 <i class="bi bi-three-dots-vertical"></i> Faculty
@@ -186,6 +181,7 @@
     <script src="date.js"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/hidepoupdatetable.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 
     @yield('scripts')
 </body>
