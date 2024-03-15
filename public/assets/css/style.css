@@ -207,3 +207,10 @@ max-width: 80px;
     border: none;
     background: transparent;
 }
+
+.login
+.form-control{
+    border-radius: 8px;
+}
+
+
