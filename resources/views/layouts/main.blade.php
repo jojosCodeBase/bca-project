@@ -156,8 +156,17 @@
                                 <span class="text-dark">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="{{ route('admin-profile.edit') }}" class="dropdown-item"><i
-                                        class="bi bi-person-fill fs-5 pe-1"></i> Profile</a>
+                                @if (Auth::user()->is_faculty)
+                                    <a href="{{ route('profile.edit') }}" class="dropdown-item"><i
+                                            class="bi bi-person-fill fs-5 pe-1"></i>
+                                        Profile
+                                    </a>
+                                @else
+                                    <a href="{{ route('admin-profile.edit') }}" class="dropdown-item"><i
+                                            class="bi bi-person-fill fs-5 pe-1"></i>
+                                        Profile
+                                    </a>
+                                @endif
                                 <form method="POST" action="{{ route('logout') }}">
                                     <button type="submit" class="dropdown-item"><i
                                             class="bi bi-box-arrow-right fs-5 pe-1"></i> Log-Out</button>

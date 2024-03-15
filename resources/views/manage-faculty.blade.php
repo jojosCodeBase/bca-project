@@ -3,6 +3,22 @@
 @section('breadcrumb', 'Faculty / Manage Faculty')
 @section('content')
     <div class="container">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @elseif(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div id="alertMessage" class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
         <div class="card mt-3 mt-xl-0">
             <div class="card-body">
                 <div class="row">
@@ -30,7 +46,7 @@
                         @foreach ($faculty as $f)
                             <tr>
                                 <td>1</td>
-                                <td>001</td>
+                                <td>{{ $f['regno'] }}</td>
                                 <td>{{ $f['name'] }}</td>
                                 <td>{{ $f['email'] }}</td>
                                 <td>
@@ -168,7 +184,7 @@
                             @csrf
                             <div class="col mb-2">
                                 <label for="" class="form-label">Faculty ID</label>
-                                <input type="email" name="" id="" class="form-control">
+                                <input type="text" name="id" class="form-control" request>
                             </div>
                             <div class="col mb-2">
                                 <label class="form-label">Name</label>
@@ -176,14 +192,14 @@
                             </div>
                             <div class="col mb-2">
                                 <label for="" class="form-label">Email</label>
-                                <input type="email" name="" id="" class="form-control">
+                                <input type="email" name="email" class="form-control" request>
                             </div>
                             <div class="col mb-3">
                                 <label for="" class="form-label">Password</label>
-                                <input type="text" name="passsword" value="cadept@1234" class="form-control" disabled>
+                                <input type="text" name="password" value="cadept@1234" class="form-control text-muted" readonly>
                             </div>
                             <p class="text-danger">Note: The above given is the default password for the newly created faculty which can be changed by the faculty from their profile section.</p>
-                            <button type="button" class="btn btn-primary w-100">Add</button>
+                            <button type="submit" class="btn btn-primary w-100">Add</button>
                             {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
                         </form>
                     </div>

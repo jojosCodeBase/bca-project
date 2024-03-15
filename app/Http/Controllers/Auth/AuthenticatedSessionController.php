@@ -30,12 +30,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return redirect(RouteServiceProvider::HOME);
-
-        // if (Auth::user()->is_faculty) {
-        //     return redirect(RouteServiceProvider::HOME); // Redirect faculty to their home
-        // } else {
-        //     return redirect(RouteServiceProvider::ADMIN_HOME); // Redirect others to admin home
-        // }
     }
 
     /**

@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Models\Courses;
 use App\Models\ExcelUpload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules;
 
 class DashboardController extends Controller
 {
@@ -64,7 +66,25 @@ class DashboardController extends Controller
     }
 
     public function addFaculty(Request $r){
-        dd($r->all());
+        // dd($r->all());
+        $r->validate([
+            'id' => 'required|numeric|max:9999999999',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:users,email',
+            'password' => ['required', 'string', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'id' => $r->id,
+            'name' => $r->name,
+            'email' => $r->email,
+            'password' => Hash::make($r->password),
+        ]);
+
+        if($user)
+            return back()->with('success', 'Faculty added Successfully !');
+        else
+            return back()->with('error', 'Some error occured in adding faculty!');
     }
 
     // ajax requests
