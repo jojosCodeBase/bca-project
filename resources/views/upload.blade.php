@@ -21,7 +21,6 @@
                         enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="row">
-                            <h4 class="py-3 text-muted">Upload Data</h4>
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                                 <select name="batch" id="batch" class="form-select" required>
                                     <option selected disabled value="">Select batch</option>
