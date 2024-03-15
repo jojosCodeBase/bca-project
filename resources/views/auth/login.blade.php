@@ -78,18 +78,18 @@
                     <h1 class="h2">Result Analysis Portal</h1>
                 </div>
 
-                <div class="col-7">
+                <div class="col-xl-7 col-12">
                     <div class="login">
-                        <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                        <div class="card shadow-lg p-xl-3 mb-xl-5">
                             <div class="card-body">
-                                <div class="row py-4">
-                                    <div class="col-5">
+                                <div class="row py-xl-4">
+                                    <div class="col-xl-5 col-12">
                                         <div class="m-sm-4 text-center mt-2 mb-2">
                                             <img src="{{ asset('assets/images/smitlogo2.jpg') }}" alt=""
-                                                class="img-fluid" width="200" height="200">
+                                                class="login-img">
                                         </div>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-xl-7 col-12">
                                         <p class="fs-5 fw-bold text-center">
                                             Log In
                                         </p>
