@@ -73,6 +73,63 @@
                                 </td>
                             </tr>
                         @endforeach
+
+                        {{-- <tr>
+                            <td>1</td>
+                            <td>123456</td>
+                            <td>Teacher 1</td>
+                            <td>teacher1@smit.smu.edu.in</td>
+                            <td>
+                                <div class="more-btn">
+                                    <button class="dropdown" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="bi bi-three-dots fs-4"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalView">View</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>987654</td>
+                            <td>Teacher 2</td>
+                            <td>teacher2@smit.smu.edu.in</td>
+                            <td>
+                                <div class="more-btn">
+                                    <button class="dropdown" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="bi bi-three-dots fs-4"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalView">View</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
+                                        </li>
+                                        <li>
+                                            <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr> --}}
                     </tbody>
                 </table>
             </div>
