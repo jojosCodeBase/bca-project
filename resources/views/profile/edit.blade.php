@@ -11,12 +11,12 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Profile</h1>
         </div>
-        <div class="grid">
-            <div class="g-col-6">
+        <div class="row">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-body">
                         <h4>Profile Information</h4>
-                        <p>Update your account's profile information and email address.</p>
+                        {{-- <p>Update your account's profile information and email address.</p> --}}
                         @if(Auth::user()->is_faculty)
                             <form method="post" action="{{ route('profile.update') }}">
                         @else
@@ -44,11 +44,11 @@
                     </div>
                 </div>
             </div>
-            <div class="g-col-6">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-body">
                         <h4>Update Password</h4>
-                        <p>Ensure your account is using a long, random password to stay secure.</p>
+                        {{-- <p>Ensure your account is using a long, random password to stay secure.</p> --}}
                         <form method="post" action="{{ route('password.update') }}">
                             @csrf
                             @method('put')
