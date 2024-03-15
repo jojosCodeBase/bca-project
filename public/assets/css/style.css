@@ -124,7 +124,7 @@ a {
 }
 
 /* sidebar toggle */
-#sidebar.collapsed {
+.collapsed {
     margin-left: -260px;
 }
 
@@ -217,5 +217,12 @@ max-width: 80px;
     .login-img{
         height: 100px;
         width: 100px;
+    }
+    .sidebarMobile{
+        margin-left: -260px;
+    }
+
+    .collapsed{
+        margin-left: 0px;
     }
   }

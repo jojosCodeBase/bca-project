@@ -14,13 +14,14 @@
         @endif
 
         <div class="container">
-            <div class="card">
+            <div class="card mt-xl-0 mt-3">
                 <div class="card-body">
                     <h4 class="py-3 text-muted">Upload Data</h4>
                     <form action="{{ route('admin-file-upload') }}" method="POST" class="needs-validation"
                         enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="row">
+                            <h4 class="py-3 text-muted">Upload Data</h4>
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                                 <select name="batch" id="batch" class="form-select" required>
                                     <option selected disabled value="">Select batch</option>
@@ -36,7 +37,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="course" id="course" class="form-select" required>
                                     <option selected disabled value="">Select course</option>
                                     <option value="bca">BCA</option>
@@ -47,7 +48,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="year" id="years" class="form-select" required>
                                     <option selected disabled value="">Select year</option>
                                 </select>
@@ -56,7 +57,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="year" id="semester" class="form-select" required>
                                     <option selected disabled value="" disabled>Select semester</option>
                                 </select>
@@ -65,7 +66,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="year" id="subjectId" class="form-select" required>
                                     <option value="" selected disabled>Select subject code</option>
                                 </select>

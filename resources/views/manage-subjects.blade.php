@@ -54,16 +54,16 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-xl-3 col-6 ">
                         <h4 class="text-muted">All Subjects</h4>
                     </div>
-                    <div class="col-7">
-                        <div class="row d-flex justify-content-end">
-                            <div class="col-4 pe-0">
+                    <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
+                        <div class="row d-flex justify-content-xl-end">
+                            <div class="col-xl-4 col-10 pe-0">
                                 <input type="search" name="" id="" placeholder="E.g. CA1603"
                                     class="form-control">
                             </div>
-                            <div class="col-1">
+                            <div class="col-xl-1 col-2">
                                     <div class="btn-color">
                                     <button class="btn btn-primary"><i class="bi bi-search"></i></button>
                                 </div>
@@ -71,7 +71,7 @@
 
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-6 d-flex justify-content-end justify-content-xl-start">
                         <button class="btn btn-success"data-bs-toggle="modal" data-bs-target="#addSubjectModal"></i>Add Subject
                         </button>
                     </div>

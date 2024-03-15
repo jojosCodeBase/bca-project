@@ -13,7 +13,7 @@
 
 <body>
     <div class="wrapper">
-        <aside id="sidebar">
+        <aside id="sidebar" class="sidebarMobile">
             <!-- Content for sidebar -->
             <div class="h-100">
                 <div class="sidebar-logo">
