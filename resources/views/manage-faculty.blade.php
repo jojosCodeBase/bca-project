@@ -19,69 +19,44 @@
                     <thead>
                         <tr>
                             <th>Sl.No.</th>
+                            <th>Faculty ID</th>
                             <th>Name</th>
-                            <th>Reg.No.</th>
+                            <th>Email</th>
                             <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Bikram Das</td>
-                            <td>202116057</td>
-                            <td>
-                                <div class="more-btn">
-                                    <button class="dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-three-dots fs-4"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalView">View</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td>Kunsang Moktang</td>
-                            <td>202116032</td>
-                            <td>
-
-                                <div class="more-btn">
-                                    <button class="dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-three-dots fs-4"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalView">View</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </td>
-                        </tr>
-
+                        @foreach ($faculty as $f)
+                            <tr>
+                                <td>1</td>
+                                <td>001</td>
+                                <td>{{ $f['name'] }}</td>
+                                <td>{{ $f['email'] }}</td>
+                                <td>
+                                    <div class="more-btn">
+                                        <button class="dropdown" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="bi bi-three-dots fs-4"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#modalView">View</button>
+                                            </li>
+                                            <li>
+                                                <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
+                                            </li>
+                                            <li>
+                                                <button class="dropdown-item" type="button" class="btn btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -99,15 +74,13 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-6">
-                            <span class="title fw-bold">
+                            <label for="" class="form-label"></label>
                                 Name
-                            </span>
                             <div>Bikram Das</div>
                         </div>
                         <div class="col-6">
-                            <span class="title fw-bold">
+                            <label for="" class="form-label"></label>
                                 Reg.No
-                            </span>
                             <div>202116057</div>
                         </div>
                     </div>
@@ -129,17 +102,15 @@
                     <div class="row">
                         <form action="">
                             <div class="col">
-                                <span class="title fw-bold">
+                                <label for="" class="form-label"></label>
                                     Name
-                                </span>
                                 <div class="mt-1">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col">
-                                <span class="title fw-bold">
+                                <label for="" class="form-label"></label>
                                     Reg.No
-                                </span>
                                 <div class="mt-1">
                                     <input type="text" class="form-control">
                                 </div>
@@ -167,7 +138,8 @@
                     </div>
 
                     <h4 class="text-center text-muted">Delete Faculty</h4>
-                    <p class="text-danger text-center">Are you sure you want to delete this faculty? <br>This action cannot be undone !
+                    <p class="text-danger text-center">Are you sure you want to delete this faculty? <br>This action cannot
+                        be undone !
                     </p>
 
                     <div class="row d-flex justify-content-center">
@@ -192,45 +164,29 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form action="">
-                            <div class="col">
-                                <span class="title fw-bold">
-                                    Name
-                                </span>
-                                <div class="mt-1">
-                                    <input type="text" class="form-control">
-                                </div>
+                        <form action="{{ route('add-faculty') }}" method="POST">
+                            @csrf
+                            <div class="col mb-2">
+                                <label for="" class="form-label">Faculty ID</label>
+                                <input type="email" name="" id="" class="form-control">
                             </div>
-                            <div class="col">
-                                <span class="title fw-bold">
-                                    Email Id
-                                </span>
-                                <div class="mt-1">
-                                    <input type="email" name="" id="" class="form-control">
-                                </div>
+                            <div class="col mb-2">
+                                <label class="form-label">Name</label>
+                                <input type="text" name="name" class="form-control" required>
                             </div>
-                            <div class="col">
-                                <span class="title fw-bold">
-                                    User Id
-                                </span>
-                                <div class="mt-1">
-                                    <input type="email" name="" id="" class="form-control">
-                                </div>
+                            <div class="col mb-2">
+                                <label for="" class="form-label">Email</label>
+                                <input type="email" name="" id="" class="form-control">
                             </div>
-                            <div class="col">
-                                <span class="title fw-bold">
-                                    Password
-                                </span>
-                                <div class="mt-1">
-                                    <input type="email" name="" id="" class="form-control">
-                                </div>
+                            <div class="col mb-3">
+                                <label for="" class="form-label">Password</label>
+                                <input type="text" name="passsword" value="cadept@1234" class="form-control" disabled>
                             </div>
+                            <p class="text-danger">Note: The above given is the default password for the newly created faculty which can be changed by the faculty from their profile section.</p>
+                            <button type="button" class="btn btn-primary w-100">Add</button>
+                            {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
                         </form>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Create</button>
                 </div>
             </div>
         </div>

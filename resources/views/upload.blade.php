@@ -16,10 +16,13 @@
         <div class="container">
             <div class="card mt-xl-0 mt-3">
                 <div class="card-body">
-                    {{-- <form action="#" class="needs-validation" novalidate> --}}
+                    <h4 class="py-3 text-muted">Upload Data</h4>
+                    <form action="{{ route('admin-file-upload') }}" method="POST" class="needs-validation"
+                        enctype="multipart/form-data" novalidate>
+                        @csrf
                         <div class="row">
                             <h4 class="py-3 text-muted">Upload Data</h4>
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                                 <select name="batch" id="batch" class="form-select" required>
                                     <option selected disabled value="">Select batch</option>
                                     <option value="">2019</option>
@@ -65,7 +68,7 @@
 
                             <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="year" id="subjectId" class="form-select" required>
-                                    <option selected disabled>Select subject code</option>
+                                    <option value="" selected disabled>Select subject code</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select Subject-Id
@@ -73,28 +76,22 @@
                             </div>
 
                             <div class="col-lg-7 col-xl-7 col-md-10 col-12 my-3">
-                                <form action="{{ route('admin-file-upload') }}" method="POST" enctype="multipart/form-data"
-                                    class="mx-3 was-validated">
-                                    @csrf
-                                    <div class="row">
-                                        <div class=" col-xl-9 col-lg-9 col-md-9 col-12">
-                                            <input type="file" name="file" id="file" class="form-control"
-                                                aria-label="file example" required>
-                                            <span class="text-danger" id="file-error"></span>
-                                            <div class="invalid-feedback">
-                                                Please Choose a file
-                                            </div>
-                                        </div>
-                                        <div class=" col-xl-3 col-lg-3 col-md-3 col-5 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
-                                            <button type="submit" class="btn btn-primary w-100"
-                                                id="myButton">Upload</button>
+                                <div class="row">
+                                    <div class=" col-xl-9 col-lg-9 col-md-9 col-12">
+                                        <input type="file" name="file" id="file" class="form-control"
+                                            aria-label="file example" required>
+                                        <span class="text-danger" id="file-error"></span>
+                                        <div class="invalid-feedback">
+                                            Please Choose a file
                                         </div>
                                     </div>
-                                </form>
+                                    <div class=" col-xl-3 col-lg-3 col-md-3 col-5 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
+                                        <button type="submit" class="btn btn-primary w-100" id="myButton">Upload</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    {{-- </form> --}}
-
+                    </form>
                 </div>
             </div>
         </div>

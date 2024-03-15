@@ -70,9 +70,8 @@ Route::middleware('auth')->group(function () {
         })->name('admin-validation');
 
 
-        Route::get('manage-faculty', function () {
-            return view('manage-faculty');
-        })->name('manage-faculty');
+        Route::get('manage-faculty', [DashboardController::class, 'manageFaculty'])->name('manage-faculty');
+        Route::post('manage-faculty/add', [DashboardController::class, 'addFaculty'])->name('add-faculty');
 
         Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
 

@@ -59,6 +59,14 @@ class DashboardController extends Controller
         return view('manage-subjects', ['courses' => Courses::orderBy('cname', 'asc')->paginate(10)]);
     }
 
+    public function manageFaculty(){
+        return view('manage-faculty', ['faculty' => User::where('is_faculty', 1)->get()]);
+    }
+
+    public function addFaculty(Request $r){
+        dd($r->all());
+    }
+
     // ajax requests
 
     public function getCourseInfo($cid)
