@@ -1,19 +1,18 @@
-
 @extends('layouts.main')
 @section('title', 'Profile Edit')
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
         @if (session('status'))
-        <div class="alert alert-success">
-            <span>{{ session('status') }}</span>
-        </div>
+            <div class="alert alert-success">
+                <span>{{ session('status') }}</span>
+            </div>
         @endif
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Profile</h1>
         </div>
-        <div class="row">
-            <div class="col">
+        <div class="grid">
+            <div class="g-col-6">
                 <div class="card">
                     <div class="card-body">
                         <h4>Profile Information</h4>
@@ -22,24 +21,26 @@
                             @csrf
                             @method('patch')
 
-                            <div class="form-group">
+                            <div class="form-group mt-2">
+                                <label class="form-label">Faculty Id.</label>
+                                <input type="text" class="form-control" name="text" value="202116057" readonly>
+                            </div>
+                            <div class="form-group mt-2">
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" name="name" value="{{ $user->name }}">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" value="{{ $user->email }}">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <input type="submit" class="btn btn-primary w-25" value="Save">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col">
+            <div class="g-col-6">
                 <div class="card">
                     <div class="card-body">
                         <h4>Update Password</h4>
@@ -51,16 +52,16 @@
                                 <label class="form-label">Current Password</label>
                                 <input type="password" class="form-control" name="current_password">
                                 <div class="mt-2 text-danger">
-                                    @if($errors->updatePassword->has('current_password'))
+                                    @if ($errors->updatePassword->has('current_password'))
                                         <span>{{ $errors->updatePassword->first('current_password') }}</span>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <label class="form-label">New Password</label>
                                 <input type="password" class="form-control" name="password">
                                 <div class="mt-2 text-danger">
-                                    @if($errors->updatePassword->has('password'))
+                                    @if ($errors->updatePassword->has('password'))
                                         <span>{{ $errors->updatePassword->first('password') }}</span>
                                     @endif
                                 </div>
@@ -69,13 +70,16 @@
                                 <label class="form-label">Confirm Password</label>
                                 <input type="password" class="form-control" name="password_confirmation">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <input type="submit" class="btn btn-primary w-25" value="Save">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row mt-4">
+
         </div>
     </div>
 @endsection
