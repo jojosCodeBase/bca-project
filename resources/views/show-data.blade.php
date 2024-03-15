@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Semester')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <h5>{{ $subjectCode }} - CO Attainment</h5>
         <div class="table-responsive">
             <table class="table table-bordered table-light">
