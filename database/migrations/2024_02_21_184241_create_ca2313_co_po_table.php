@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ca1603_co_po', function (Blueprint $table) {
+        Schema::create('ca2313_co_po', function (Blueprint $table) {
             $table->id();
             $table->integer('co1')->nullable();
             $table->integer('co2')->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ca1603_co_po');
+        Schema::dropIfExists('ca2313_co_po');
     }
 };

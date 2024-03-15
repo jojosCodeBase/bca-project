@@ -16,7 +16,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <form action="#" class="needs-validation" novalidate>
+                    {{-- <form action="#" class="needs-validation" novalidate> --}}
                         <div class="row">
                             <h4 class="py-3 text-muted">Upload Data</h4>
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
@@ -30,12 +30,12 @@
                                     <option value="">2024</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Please select Course
+                                    Please select Batch
                                 </div>
                             </div>
 
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
-                                <select name="year" id="course" class="form-select" required>
+                                <select name="course" id="course" class="form-select" required>
                                     <option selected disabled value="">Select course</option>
                                     <option value="bca">BCA</option>
                                     <option value="mca">MCA</option>
@@ -65,7 +65,7 @@
 
                             <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
                                 <select name="year" id="subjectId" class="form-select" required>
-                                    <option selected disabled value=""disabled>Select subject code</option>
+                                    <option selected disabled>Select subject code</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select Subject-Id
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="col-lg-7 col-xl-7 col-md-10 col-12 my-3">
-                                <form action="{{ route('file-upload') }}" method="POST" enctype="multipart/form-data"
+                                <form action="{{ route('admin-file-upload') }}" method="POST" enctype="multipart/form-data"
                                     class="mx-3 was-validated">
                                     @csrf
                                     <div class="row">
@@ -93,7 +93,7 @@
                                 </form>
                             </div>
                         </div>
-                    </form>
+                    {{-- </form> --}}
 
                 </div>
             </div>

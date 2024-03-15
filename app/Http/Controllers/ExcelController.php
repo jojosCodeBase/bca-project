@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\CA1603;
+use App\Models\CA2313;
 use Exception;
 use App\Models\MaxMarksCO;
 use App\Models\ExcelUpload;
@@ -67,7 +67,7 @@ class ExcelController extends Controller
         if ($regno == "Max Marks/CO") {
             $model = new MaxMarksCO();
 
-            $model->cid = 'CA1603';
+            $model->cid = 'CA2313';
             $model->Q1 = $jsonQ1;
             $model->S1 = $jsonS1;
             $model->Q2 = $jsonQ2;
@@ -86,8 +86,7 @@ class ExcelController extends Controller
             // print_r($dataArray);
             // echo "</pre>";
         } else {
-            $model = new CA1603();
-
+            $model = new CA2313();
             // Assign values to model properties
             $model->regno = $regno;
             $model->Q1 = $jsonQ1;
@@ -95,7 +94,6 @@ class ExcelController extends Controller
             $model->Q2 = $jsonQ2;
             $model->S2 = $jsonS2;
             $model->assignment = $jsonAssignment;
-            $model->attendance = 0;
             $model->total = 0;
 
             // Save the model instance
@@ -111,11 +109,11 @@ class ExcelController extends Controller
 
     public function calculate()
     {
-        $q1_max_marks = MaxMarksCO::where('cid', 'CA1603')->get();
+        $q1_max_marks = MaxMarksCO::where('cid', 'CA2313')->get();
 
         $q1_max_marks = $q1_max_marks->toArray();
 
-        $data = CA1603::all();
+        $data = CA2313::all();
         $data = $data->toArray();
 
         $q1 = [
@@ -189,6 +187,7 @@ class ExcelController extends Controller
     }
     public function fileUpload(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'file' => 'required',
         ]);
@@ -256,6 +255,8 @@ class ExcelController extends Controller
             'Assignment' => 5,
         ];
 
+        // dd($associativeArray);
+
         $flag = True;
         for ($row = 2; $row < count($excelData); $row++) {
             $regno = $excelData[$row][0];
@@ -306,8 +307,9 @@ class ExcelController extends Controller
         }
         if ($flag == False)
             return back()->with('error', 'some error occured in uploading file');
-        else
+        else{
+            // $this->calculate();
             return back()->with('success', 'file uploaded successfully');
-        // $this->calculate();
+        }
     }
 }

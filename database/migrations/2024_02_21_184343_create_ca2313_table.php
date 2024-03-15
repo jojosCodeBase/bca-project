@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ca1603', function (Blueprint $table) {
+        Schema::create('ca2313', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('regno')->unsigned()->unique()->length(9);
             $table->json('q1'); // Total length 5 with 2 json places
@@ -19,7 +19,6 @@ return new class extends Migration
             $table->json('q2'); // Total length 5 with 2 json places
             $table->json('s2');
             $table->json('assignment');
-            $table->decimal('attendance', 5, 1);
             $table->decimal('total', 5, 1);
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ca1603');
+        Schema::dropIfExists('ca2313');
     }
 };
