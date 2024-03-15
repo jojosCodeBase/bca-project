@@ -3,7 +3,7 @@
 @section('breadcrumb', 'Faculty / Manage Faculty')
 @section('content')
     <div class="container">
-        <div class="card">
+        <div class="card mt-3 mt-xl-0">
             <div class="card-body">
                 <div class="row">
                     <div class="col-6 ps-3">

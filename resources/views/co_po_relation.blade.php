@@ -3,8 +3,8 @@
 @section('breadcrumb', 'Menu/CO-PO Relation')
 @section('content')
     <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-6">
+        <div class="row d-flex justify-content-center mt-xl-0 mt-3">
+            <div class="col-xl-6 col-12">
                 <div class="card">
                     <div class="card-body">
                         <form action="">
@@ -37,9 +37,9 @@
                                     <td>Python</td>
                                     <td>CA1603</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
                                             data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
-                                        <button class="btn btn-warning" data-bs-toggle="modal"
+                                        <button class="btn btn-warning " data-bs-toggle="modal"
                                             data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
                                     </td>
                                 </tr>
@@ -47,7 +47,7 @@
                                     <td>Software Engineering</td>
                                     <td>CA1601</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
                                             data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
                                         <button class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
@@ -57,7 +57,7 @@
                                     <td>Data Analytics Using Python</td>
                                     <td>CA1636</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
                                             data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
                                         <button class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
