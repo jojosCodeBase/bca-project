@@ -28,17 +28,17 @@
                 @endforeach
             </div>
         @endif
-        <div class="row d-flex justify-content-center">
-            <div class="col-6">
+        {{-- <div class="row">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <form action="">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-4">
                                     <input type="search" name="" id="" placeholder="E.g. CA1603"
                                         class="form-control">
                                 </div>
-                                <div class="col-4 d-flex justify-content-center">
+                                <div class="col-2 d-flex justify-content-center">
                                     <button class="btn btn-primary">Search</button>
                                 </div>
                             </div>
@@ -46,23 +46,37 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <div class="container">
+        {{-- <h3 class="text-muted mb-4 mt-1">All Subjects</h3> --}}
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-3">
                         <h4 class="text-muted">All Subjects</h4>
                     </div>
-                    <div class="col-6  d-flex justify-content-end pe-5">
-                        <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addSubjectModal">Add Subject
-                            +
+                    <div class="col-7">
+                        <div class="row d-flex justify-content-end">
+                            <div class="col-4 pe-0">
+                                <input type="search" name="" id="" placeholder="E.g. CA1603"
+                                    class="form-control">
+                            </div>
+                            <div class="col-1">
+                                    <div class="btn-color">
+                                    <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-success"data-bs-toggle="modal" data-bs-target="#addSubjectModal"></i>Add Subject
                         </button>
                     </div>
                 </div>
-                <div class="mt-2 table-responsive" id="table">
+                <div class="mt-4 table-responsive" id="table">
                     <table class="table table-hover">
                         <thead>
                             <th>Subject Code</th>
@@ -82,8 +96,8 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <button class="dropdown-item editButton" type="button" class="btn btn-primary"
-                                                        data-bs-toggle="modal"
+                                                    <button class="dropdown-item editButton" type="button"
+                                                        class="btn btn-primary" data-bs-toggle="modal"
                                                         data-bs-target="#editSubjectModal">Edit</button>
                                                 </li>
                                                 <li>
@@ -160,8 +174,8 @@
                                     Subject Code
                                 </span>
                                 <div class="mt-2">
-                                    <input type="text" id="edit-modal-subject-code" class="form-control text-uppercase"
-                                        placeholder="E.g. CA1603">
+                                    <input type="text" id="edit-modal-subject-code"
+                                        class="form-control text-uppercase" placeholder="E.g. CA1603">
                                 </div>
                             </div>
                             <div class="col pt-3">
@@ -169,7 +183,8 @@
                                     Subject Name
                                 </span>
                                 <div class="mt-1">
-                                    <input type="text" id="edit-modal-subject-name" class="form-control" placeholder="E.g. Python">
+                                    <input type="text" id="edit-modal-subject-name" class="form-control"
+                                        placeholder="E.g. Python">
                                 </div>
                             </div>
                         </form>
@@ -213,25 +228,25 @@
     {{-- Delete-Subject modal end --}}
 @endsection
 @section('scripts')
-<script>
-    $(document).ready(function() {
-        $('.editButton').click(function() {
-            var cid = $(this).closest('tr').find('.courseId').text();
-            $.ajax({
-                url: '/admin/getCourseInfo/' + cid,
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    console.log(response[0]);
-                    $('#edit-modal-subject-code').val(response[0].cid);
-                    $('#edit-modal-subject-name').val(response[0].cname);
-                    $('#editSubjectModal').modal('show');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
+    <script>
+        $(document).ready(function() {
+            $('.editButton').click(function() {
+                var cid = $(this).closest('tr').find('.courseId').text();
+                $.ajax({
+                    url: '/admin/getCourseInfo/' + cid,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response[0]);
+                        $('#edit-modal-subject-code').val(response[0].cid);
+                        $('#edit-modal-subject-name').val(response[0].cname);
+                        $('#editSubjectModal').modal('show');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 @endsection

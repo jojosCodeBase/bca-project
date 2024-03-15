@@ -213,4 +213,9 @@ max-width: 80px;
     border-radius: 8px;
 }
 
-
+@media screen and (max-width: 576px) {
+    .login-img{
+        height: 100px;
+        width: 100px;
+    }
+  }
