@@ -18,7 +18,11 @@
                     <div class="card-body">
                         <h4>Profile Information</h4>
                         <p>Update your account's profile information and email address.</p>
-                        <form method="post" action="{{ route('profile.update') }}">
+                        @if(Auth::user()->is_faculty)
+                            <form method="post" action="{{ route('profile.update') }}">
+                        @else
+                            <form method="post" action="{{ route('admin-profile.update') }}">
+                        @endif
                             @csrf
                             @method('patch')
 

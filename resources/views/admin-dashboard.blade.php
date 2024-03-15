@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <h6>Total Faculty</h6>
-                                <h2>25</h2>
+                                <h2>{{ $totalFaculty }}</h2>
                             </div>
                             <div class="col-4">
                                 <i class="bi bi-person-video3 fs-3 text-success"></i>
@@ -44,6 +44,21 @@
                             </div>
                             <div class="col-4">
                                 <i class="bi bi-chat-left-text-fill fs-3 text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h6>Total Subjects</h6>
+                                <h2>{{ $courseCount }}</h2>
+                            </div>
+                            <div class="col-4">
+                                <i class="bi bi-journal-text fs-3 text-warning"></i>
                             </div>
                         </div>
                     </div>
