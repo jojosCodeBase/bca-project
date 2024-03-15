@@ -75,7 +75,7 @@
                                 <input type="password" class="form-control" name="password_confirmation">
                             </div>
                             <div class="form-group mt-3">
-                                <input type="submit" class="btn btn-primary w-25" value="Save">
+                                <input type="submit" class="btn btn-primary" value="Change Password">
                             </div>
                         </form>
                     </div>
