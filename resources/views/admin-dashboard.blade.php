@@ -3,7 +3,7 @@
 @section('breadcrumb', 'Dashboard')
 @section('content')
     <div class="container">
-        <main class="content p-lx-4 p-lg-4 p-md-4">
+        <main class="content">
             <div class="mb-3 p-1">
                 <h5>Admin Dashboard</h5>
             </div>

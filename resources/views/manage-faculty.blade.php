@@ -22,11 +22,25 @@
         <div class="card mt-3 mt-xl-0">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6 ps-3">
-                        <h3>List of Faculty</h3>
+                    <div class="col-xl-3 col-6 ">
+                        <h4 class="text-muted">List of Faculty</h4>
                     </div>
-                    <div class="col-6 d-flex justify-content-end pe-5">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Faculty +
+                    <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
+                        <div class="row d-flex justify-content-xl-end">
+                            <div class="col-xl-4 col-10 pe-0">
+                                <input type="search" name="" id="" placeholder="Search By Faculty-Id"
+                                    class="form-control">
+                            </div>
+                            <div class="col-xl-1 col-2">
+                                    <div class="btn-color">
+                                    <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6 d-flex justify-content-end justify-content-xl-start">
+                        <button class="btn btn-success"data-bs-toggle="modal" data-bs-target="#addModal"></i>Add Faculty +
                         </button>
                     </div>
                 </div>
