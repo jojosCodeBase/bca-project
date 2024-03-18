@@ -1,6 +1,5 @@
+//thid is for select option
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-//This code is for invalidation warning
 (() => {
     'use strict'
 
@@ -20,8 +19,59 @@
     })
 })()
 
+function getFacultyInfo(fid, callback) {
+    $.ajax({
+        url: '/admin/getFacultyInfo/' + fid,
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            callback(response[0]);
+            // console.log(response);
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
 
-//thid is for select option
+$(document).ready(function () {
+    $('.facultyViewButton').on('click', function () {
+        var fid = $(this).closest('tr').find('.facultyId').text();
+        getFacultyInfo(fid, function(response){
+            // console.log(response);
+            $('#faculty-view-id').text(response.regno);
+            $('#faculty-view-email').text(response.email);
+            $('#faculty-view-name').text(response.name);
+            $('#facultyViewModal').modal('show');
+        });
+
+    });
+    $('#editFacultyBtn').on('click', function () {
+        alert('edit');
+    });
+    $('#deleteFacultyBtn').on('click', () => {
+        alert('delete');
+    });
+
+    // edit subject modal ajax
+    $('.editButton').click(function () {
+        var cid = $(this).closest('tr').find('.courseId').text();
+        $.ajax({
+            url: '/admin/getCourseInfo/' + cid,
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                console.log(response[0]);
+                $('#edit-modal-subject-code').val(response[0].cid);
+                $('#edit-modal-subject-name').val(response[0].cname);
+                $('#editSubjectModal').modal('show');
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
 
 var optionValues = {
     "bca": {

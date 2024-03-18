@@ -66,7 +66,6 @@ class DashboardController extends Controller
     }
 
     public function addFaculty(Request $r){
-        // dd($r->all());
         $r->validate([
             'id' => 'required|numeric|max:9999999999',
             'name' => 'required|string|max:255',
@@ -75,7 +74,7 @@ class DashboardController extends Controller
         ]);
 
         $user = User::create([
-            'id' => $r->id,
+            'regno' => $r->id,
             'name' => $r->name,
             'email' => $r->email,
             'password' => Hash::make($r->password),
@@ -97,7 +96,14 @@ class DashboardController extends Controller
         } catch (\Exception $e) {
             return response()->json('Some error occured in fetching course details');
         }
-
-
+    }
+    public function getFacultyInfo($fid)
+    {
+        try {
+            $facultyInfo = User::where('is_faculty', 1)->where('regno', $fid)->get();
+            return response()->json($facultyInfo);
+        } catch (\Exception $e) {
+            return response()->json('Some error occured in fetching faculty details');
+        }
     }
 }

@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function () {
 
         // ajax requests
         Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);
+        Route::get('getFacultyInfo/{id}', [DashboardController::class, 'getFacultyInfo']);
     });
 
 

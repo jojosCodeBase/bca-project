@@ -46,7 +46,7 @@
                         @foreach ($faculty as $f)
                             <tr>
                                 <td>1</td>
-                                <td>{{ $f['regno'] }}</td>
+                                <td class="facultyId">{{ $f['regno'] }}</td>
                                 <td>{{ $f['name'] }}</td>
                                 <td>{{ $f['email'] }}</td>
                                 <td>
@@ -57,79 +57,25 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                    data-bs-toggle="modal" data-bs-target="#modalView">View</button>
+                                                <button class="dropdown-item facultyViewButton" id="viewFacultyBtn" type="button"
+                                                    class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#facultyViewModal">View</button>
                                             </li>
                                             <li>
-                                                <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
+                                                <button class="dropdown-item facultyEditButton" type="button" id="editFacultyBtn"
+                                                    class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#facultyEditModal">Edit</button>
                                             </li>
                                             <li>
-                                                <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                    data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
+                                                <button class="dropdown-item facultyDeleteButton" id="deleteFacultyBtn" type="button"
+                                                    class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#facultyDeleteModal">Delete</button>
                                             </li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
-
-                        {{-- <tr>
-                            <td>1</td>
-                            <td>123456</td>
-                            <td>Teacher 1</td>
-                            <td>teacher1@smit.smu.edu.in</td>
-                            <td>
-                                <div class="more-btn">
-                                    <button class="dropdown" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="bi bi-three-dots fs-4"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalView">View</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>987654</td>
-                            <td>Teacher 2</td>
-                            <td>teacher2@smit.smu.edu.in</td>
-                            <td>
-                                <div class="more-btn">
-                                    <button class="dropdown" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="bi bi-three-dots fs-4"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalView">View</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#modalDelete">Delete</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr> --}}
                     </tbody>
                 </table>
             </div>
@@ -137,7 +83,7 @@
     </div>
 
     {{-- faculty-view modal start --}}
-    <div class="modal fade" id="modalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="facultyViewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -146,15 +92,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
-                            <label for="" class="form-label"></label>
-                                Name
-                            <div>Bikram Das</div>
+                        <div class="col-4">
+                            <div class="mb-2 fw-bold">Faculty ID</div>
+                            <div class="mb-2 fw-bold">Email</div>
+                            <div class="mb-2 fw-bold">Name</div>
                         </div>
                         <div class="col-6">
-                            <label for="" class="form-label"></label>
-                                Reg.No
-                            <div>202116057</div>
+                            <div class="mb-2" id="faculty-view-id"></div>
+                            <div class="mb-2" id="faculty-view-email"></div>
+                            <div class="mb-2" id="faculty-view-name"></div>
                         </div>
                     </div>
                 </div>
@@ -164,7 +110,7 @@
     {{-- faculty-view modal end --}}
 
     {{-- faculty-Edit modal start --}}
-    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="facultyEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -176,14 +122,14 @@
                         <form action="">
                             <div class="col">
                                 <label for="" class="form-label"></label>
-                                    Name
+                                Name
                                 <div class="mt-1">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col">
                                 <label for="" class="form-label"></label>
-                                    Reg.No
+                                Reg.No
                                 <div class="mt-1">
                                     <input type="text" class="form-control">
                                 </div>
@@ -200,7 +146,7 @@
     {{-- faculty-Edit modal end --}}
 
     {{-- faculty-Delete modal start --}}
-    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="facultyDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -253,9 +199,11 @@
                             </div>
                             <div class="col mb-3">
                                 <label for="" class="form-label">Password</label>
-                                <input type="text" name="password" value="cadept@1234" class="form-control text-muted" readonly>
+                                <input type="text" name="password" value="cadept@1234"
+                                    class="form-control text-muted" readonly>
                             </div>
-                            <p class="text-danger">Note: The above given is the default password for the newly created faculty which can be changed by the faculty from their profile section.</p>
+                            <p class="text-danger">Note: The above given is the default password for the newly created
+                                faculty which can be changed by the faculty from their profile section.</p>
                             <button type="submit" class="btn btn-primary w-100">Add</button>
                             {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
                         </form>
@@ -265,5 +213,4 @@
         </div>
     </div>
     {{-- Add-faculty modal end --}}
-
 @endsection

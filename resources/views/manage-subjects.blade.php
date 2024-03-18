@@ -227,26 +227,3 @@
     </div>
     {{-- Delete-Subject modal end --}}
 @endsection
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.editButton').click(function() {
-                var cid = $(this).closest('tr').find('.courseId').text();
-                $.ajax({
-                    url: '/admin/getCourseInfo/' + cid,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log(response[0]);
-                        $('#edit-modal-subject-code').val(response[0].cid);
-                        $('#edit-modal-subject-name').val(response[0].cname);
-                        $('#editSubjectModal').modal('show');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-    </script>
-@endsection
