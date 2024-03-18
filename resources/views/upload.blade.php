@@ -21,7 +21,7 @@
                         enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="row">
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 my-3">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="batch" id="batch" class="form-select" required>
                                     <option selected disabled value="">Select batch</option>
                                     <option value="">2019</option>
@@ -84,7 +84,7 @@
                                             Please Choose a file
                                         </div>
                                     </div>
-                                    <div class=" col-xl-3 col-lg-3 col-md-3 col-5 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
+                                    <div class=" col-xl-3 col-lg-3 col-md-3 col-12 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
                                         <button type="submit" class="btn btn-primary w-100" id="myButton">Upload</button>
                                     </div>
                                 </div>
