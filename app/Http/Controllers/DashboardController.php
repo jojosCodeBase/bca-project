@@ -65,8 +65,29 @@ class DashboardController extends Controller
         return view('manage-faculty', ['faculty' => User::where('is_faculty', 1)->get()]);
     }
 
+    // public function addFaculty(Request $r){
+    //     // dd($r->all());
+    //     $r->validate([
+    //         'id' => 'required|numeric|max:9999999999',
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|string|lowercase|email|max:255|unique:users,email',
+    //         'password' => ['required', 'string', Rules\Password::defaults()],
+    //     ]);
+
+    //     $user = User::create([
+    //         'id' => $r->id,
+    //         'name' => $r->name,
+    //         'email' => $r->email,
+    //         'password' => Hash::make($r->password),
+    //     ]);
+
+    //     if($user)
+    //         return back()->with('success', 'Faculty added Successfully !');
+    //     else
+    //         return back()->with('error', 'Some error occured in adding faculty!');
+    // }
+
     public function addFaculty(Request $r){
-        // dd($r->all());
         $r->validate([
             'id' => 'required|numeric|max:9999999999',
             'name' => 'required|string|max:255',
@@ -75,7 +96,7 @@ class DashboardController extends Controller
         ]);
 
         $user = User::create([
-            'id' => $r->id,
+            'regno' => $r->id,
             'name' => $r->name,
             'email' => $r->email,
             'password' => Hash::make($r->password),
@@ -86,6 +107,8 @@ class DashboardController extends Controller
         else
             return back()->with('error', 'Some error occured in adding faculty!');
     }
+
+
 
     // ajax requests
 
