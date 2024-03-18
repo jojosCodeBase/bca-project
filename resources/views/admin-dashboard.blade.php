@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4>Welcome Admin</h4>
-                            <p class="card-text text-muted">Last updated: 16-02-24</p>
+                            <p class="card-text text-muted">Last updated: 15-03-24</p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-6">
+                {{-- <div class="col-xl-3 col-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="bg-light mt-2">
                 <div class="row p-3 mt-3">

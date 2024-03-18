@@ -33,6 +33,7 @@ class ExcelController extends Controller
     {
         // dd($r->all());
         try {
+            $r->subject = 'CA2313';
             $subjectCode = $r->subject;
             $subject = "App\\Models\\" . $subjectCode;
 
