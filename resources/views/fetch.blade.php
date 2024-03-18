@@ -25,7 +25,7 @@
                     @csrf
                     <div class="row">
                         <h4 class="py-3 text-muted">Fetch Data</h4>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xl-3 col-lg-3 col-sm-12 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>
                                 <option value="2019">2019</option>
@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xl-3 col-lg-3 col-12 my-3">
                             <select name="course" id="course" class="form-select" required>
                                 <option selected disabled value="">Select course</option>
                                 <option value="bca">BCA</option>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xl-3 col-lg-3 col-12 my-3">
                             <select name="year" id="years" class="form-select" required>
                                 <option selected disabled value="">Select year</option>
                             </select>
@@ -60,7 +60,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xl-3 col-lg-3 col-12 my-3">
                             <select name="semester" id="semester" class="form-select" required>
                                 <option selected disabled value="" disabled>Select semester</option>
                             </select>
@@ -69,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xl-6 col-lg-3 col-12 my-3">
                             <select name="subject" id="subjectId" class="form-select" required>
                                 <option selected disabled value=""disabled>Select subject</option>
                             </select>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
 
-                        <div class=" col-xl-2 col-lg-3 col-md-3 col-5 my-3">
+                        <div class=" col-xl-2 col-lg-3 col-12 my-3">
                             <button type="submit" class="btn btn-primary w-100" id="myButton">Fetch</button>
                         </div>
                     </div>
