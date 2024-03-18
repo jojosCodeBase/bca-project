@@ -21,7 +21,7 @@
                         enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="row">
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="batch" id="batch" class="form-select" required>
                                     <option selected disabled value="">Select batch</option>
                                     <option value="">2019</option>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                            <div class="col-xxl-3 col-xl-3 col-lg-12 col-md-3 col-12 my-3">
                                 <select name="course" id="course" class="form-select" required>
                                     <option selected disabled value="">Select course</option>
                                     <option value="bca">BCA</option>
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="year" id="years" class="form-select" required>
                                     <option selected disabled value="">Select year</option>
                                 </select>
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="year" id="semester" class="form-select" required>
                                     <option selected disabled value="" disabled>Select semester</option>
                                 </select>
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                                 <select name="year" id="subjectId" class="form-select" required>
                                     <option value="" selected disabled>Select subject code</option>
                                 </select>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-7 col-xl-7 col-md-10 col-12 my-3">
+                            <div class="col-xxl-7 col-xl-7 col-lg-7  col-md-10 col-12 my-3">
                                 <div class="row">
                                     <div class=" col-xl-9 col-lg-9 col-md-9 col-12">
                                         <input type="file" name="file" id="file" class="form-control"
@@ -84,7 +84,7 @@
                                             Please Choose a file
                                         </div>
                                     </div>
-                                    <div class=" col-xl-3 col-lg-3 col-md-3 col-12 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
+                                    <div class=" col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
                                         <button type="submit" class="btn btn-primary w-100" id="myButton">Upload</button>
                                     </div>
                                 </div>
