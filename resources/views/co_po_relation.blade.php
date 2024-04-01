@@ -9,11 +9,11 @@
                     <div class="card-body">
                         <form action="">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-10">
                                     <input type="search" name="" id="" placeholder="E.g. CA1603"
                                         class="form-control">
                                 </div>
-                                <div class="col-4 d-flex justify-content-center">
+                                <div class="col-2 d-flex justify-content-center">
                                     <button class="btn btn-primary">Search</button>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                                 <tr>
                                     <td>Python</td>
                                     <td>CA1603</td>
-                                    <td>
+                                    <td class="text-center">
                                         <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
                                             data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
                                         <button class="btn btn-warning " data-bs-toggle="modal"
@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>Software Engineering</td>
                                     <td>CA1601</td>
-                                    <td>
+                                    <td class="text-center">
                                         <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
                                             data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
                                         <button class="btn btn-warning" data-bs-toggle="modal"
@@ -56,7 +56,7 @@
                                 <tr>
                                     <td>Data Analytics Using Python</td>
                                     <td>CA1636</td>
-                                    <td>
+                                    <td class="text-center">
                                         <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
                                             data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
                                         <button class="btn btn-warning" data-bs-toggle="modal"

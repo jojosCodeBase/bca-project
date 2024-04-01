@@ -73,9 +73,9 @@
     </main> --}}
     <main class="d-flex w-100">
         <div class="container">
-            <div class="row d-flex justify-content-center">
+            <div class="row d-flex justify-content-center">~
                 <div class="text-center mt-5 mb-3">
-                    <h1 class="h2">Result Analysis Portal</h1>
+                    <h1 class="h2">Result Analysis System</h1>
                 </div>
 
                 <div class="col-xl-7 col-12">

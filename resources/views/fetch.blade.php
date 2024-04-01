@@ -19,7 +19,7 @@
                 @endforeach
             </div>
         @endif
-        <div class="card">
+        <div class="card mt-3 mt-xl-0 mt-md-0">
             <div class="card-body">
                 <form action="{{ route('admin-fetch-data') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
