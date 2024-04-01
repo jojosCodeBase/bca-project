@@ -182,6 +182,18 @@
             <main class="content p-lx-4 p-lg-4 p-md-4">
                 @yield('content')
             </main>
+
+            {{-- <div class="footer">
+                <div class="container-fluid">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-6">
+                            <p>
+                                <strong>Developed by Bikram Das & Kunsang Moktan</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
         </div>
     </div>
 

@@ -213,7 +213,7 @@ max-width: 80px;
     border-radius: 8px;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 576px){
     .login-img{
         height: 100px;
         width: 100px;
@@ -226,3 +226,12 @@ max-width: 80px;
         margin-left: 0px;
     }
   }
+
+
+  .footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Ensures it spans the entire width of the viewport */
+    background-color: #f8f9fa;
+}
+  

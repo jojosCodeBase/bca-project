@@ -27,8 +27,8 @@
                     </div>
                     <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
-                            <div class="col-xl-4 col-10 pe-0">
-                                <input type="search" name="" id="" placeholder="Search By Faculty-Id"
+                            <div class="col-xl-6 col-10 pe-0">
+                                <input type="search" name="" id="" placeholder="search by id or name"
                                     class="form-control">
                             </div>
                             <div class="col-xl-1 col-2">
@@ -135,17 +135,15 @@
                     <div class="row">
                         <form action="">
                             <div class="col">
-                                <label for="" class="form-label"></label>
-                                Name
+                                <label for="" class="form-label">Faculty Id</label>
+                                <input type="text" class="form-control">
                                 <div class="mt-1">
-                                    <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class="col">
-                                <label for="" class="form-label"></label>
-                                Reg.No
+                            <div class="col mt-2">
+                                <label for="" class="form-label">Name</label>                                
+                                <input type="text" class="form-control">
                                 <div class="mt-1">
-                                    <input type="text" class="form-control">
                                 </div>
                             </div>
                         </form>
