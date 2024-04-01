@@ -32,7 +32,7 @@
                                     class="form-control">
                             </div>
                             <div class="col-xl-1 col-2">
-                                    <div class="btn-color">
+                                <div class="btn-color">
                                     <button class="btn btn-primary"><i class="bi bi-search"></i></button>
                                 </div>
                             </div>
@@ -71,18 +71,18 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <button class="dropdown-item facultyViewButton" id="viewFacultyBtn" type="button"
-                                                    class="btn btn-primary" data-bs-toggle="modal"
+                                                <button class="dropdown-item facultyViewButton" id="viewFacultyBtn"
+                                                    type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                     data-bs-target="#facultyViewModal">View</button>
                                             </li>
                                             <li>
-                                                <button class="dropdown-item facultyEditButton" type="button" id="editFacultyBtn"
-                                                    class="btn btn-primary" data-bs-toggle="modal"
+                                                <button class="dropdown-item facultyEditButton" type="button"
+                                                    id="editFacultyBtn" class="btn btn-primary" data-bs-toggle="modal"
                                                     data-bs-target="#facultyEditModal">Edit</button>
                                             </li>
                                             <li>
-                                                <button class="dropdown-item facultyDeleteButton" id="deleteFacultyBtn" type="button"
-                                                    class="btn btn-primary" data-bs-toggle="modal"
+                                                <button class="dropdown-item facultyDeleteButton" id="deleteFacultyBtn"
+                                                    type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                     data-bs-target="#facultyDeleteModal">Delete</button>
                                             </li>
                                         </ul>
@@ -108,13 +108,15 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="mb-2 fw-bold">Faculty ID</div>
-                            <div class="mb-2 fw-bold">Email</div>
+                            <div class="mb-2 fw-bold">Reg No.</div>
                             <div class="mb-2 fw-bold">Name</div>
+                            <div class="mb-2 fw-bold">Email</div>
                         </div>
                         <div class="col-6">
                             <div class="mb-2" id="faculty-view-id"></div>
-                            <div class="mb-2" id="faculty-view-email"></div>
+                            <div class="mb-2" id="faculty-view-regno"></div>
                             <div class="mb-2" id="faculty-view-name"></div>
+                            <div class="mb-2" id="faculty-view-email"></div>
                         </div>
                     </div>
                 </div>
@@ -140,8 +142,20 @@
                                 <div class="mt-1">
                                 </div>
                             </div>
+                            <div class="col">
+                                <label for="" class="form-label">Reg No.</label>
+                                <input type="text" class="form-control">
+                                <div class="mt-1">
+                                </div>
+                            </div>
                             <div class="col mt-2">
-                                <label for="" class="form-label">Name</label>                                
+                                <label for="" class="form-label">Full Name</label>
+                                <input type="text" class="form-control">
+                                <div class="mt-1">
+                                </div>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="" class="form-label">Email</label>
                                 <input type="text" class="form-control">
                                 <div class="mt-1">
                                 </div>
@@ -158,7 +172,8 @@
     {{-- faculty-Edit modal end --}}
 
     {{-- faculty-Delete modal start --}}
-    <div class="modal fade" id="facultyDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="facultyDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -199,13 +214,13 @@
                             @csrf
                             <div class="col mb-2">
                                 <label for="" class="form-label">Faculty ID
-                                     <span class="text-danger">*</span>
+                                    <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" name="id" class="form-control" request>
                             </div>
                             <div class="col mb-2">
                                 <label for="" class="form-label">Reg No.
-                                     <span class="text-danger">*</span>
+                                    <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" name="id" class="form-control" request>
                             </div>
@@ -217,14 +232,14 @@
                             </div>
                             <div class="col mb-2">
                                 <label for="" class="form-label">Email
-                                     <span class="text-danger">*</span>
+                                    <span class="text-danger">*</span>
                                 </label>
                                 <input type="email" name="email" class="form-control" request>
                             </div>
                             <div class="col mb-3">
                                 <label for="" class="form-label">Password</label>
                                 <input type="text" name="password" value="cadept@1234"
-                                    class="form-control text-muted user-select-none" readonly>
+                                    class="form-control text-muted" readonly>
                             </div>
                             <p class="text-danger">Note: The above given is the default password for the newly created
                                 faculty which can be changed by the faculty from their profile section.</p>
