@@ -198,21 +198,33 @@
                         <form action="{{ route('add-faculty') }}" method="POST">
                             @csrf
                             <div class="col mb-2">
-                                <label for="" class="form-label">Faculty ID</label>
+                                <label for="" class="form-label">Faculty ID
+                                     <span class="text-danger">*</span>
+                                </label>
                                 <input type="text" name="id" class="form-control" request>
                             </div>
                             <div class="col mb-2">
-                                <label class="form-label">Name</label>
+                                <label for="" class="form-label">Reg No.
+                                     <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" name="id" class="form-control" request>
+                            </div>
+                            <div class="col mb-2">
+                                <label class="form-label">Full Name
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <input type="text" name="name" class="form-control" required>
                             </div>
                             <div class="col mb-2">
-                                <label for="" class="form-label">Email</label>
+                                <label for="" class="form-label">Email
+                                     <span class="text-danger">*</span>
+                                </label>
                                 <input type="email" name="email" class="form-control" request>
                             </div>
                             <div class="col mb-3">
                                 <label for="" class="form-label">Password</label>
                                 <input type="text" name="password" value="cadept@1234"
-                                    class="form-control text-muted" readonly>
+                                    class="form-control text-muted user-select-none" readonly>
                             </div>
                             <p class="text-danger">Note: The above given is the default password for the newly created
                                 faculty which can be changed by the faculty from their profile section.</p>
