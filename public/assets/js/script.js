@@ -154,3 +154,16 @@ document.getElementById("semester").addEventListener("change", function () {
         subjectId.appendChild(optionElement);
     });
 });
+
+// javaScript for number restiction start
+
+function restrictAlphabets(event) {
+    let x = event.which || event.keyCode;
+    if ((x >= 48 && x <= 57) || x === 8) {
+        return true;
+    } else {
+        event.preventDefault();
+        return false;
+    }
+}
+// javaScript for number restiction end
