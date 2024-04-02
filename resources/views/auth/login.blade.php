@@ -135,9 +135,9 @@
                                             <div class="form-group text-center forgot-password">
                                                 <a href="{{ route('password.request') }}">Forgot password?</a>
                                             </div>
+                                        </form>
                                     </div>
 
-                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -107,14 +107,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-4">
-                            <div class="mb-2 fw-bold">Faculty ID</div>
-                            <div class="mb-2 fw-bold">Reg No.</div>
-                            <div class="mb-2 fw-bold">Name</div>
+                            <div class="mb-2 fw-bold">Faculty Id</div>
+                            {{-- <div class="mb-2 fw-bold">Reg No.</div> --}}
+                            <div class="mb-2 fw-bold">First Name</div>
+                            <div class="mb-2 fw-bold">Last Name</div>
                             <div class="mb-2 fw-bold">Email</div>
                         </div>
                         <div class="col-6">
                             <div class="mb-2" id="faculty-view-id"></div>
-                            <div class="mb-2" id="faculty-view-regno"></div>
+                            {{-- <div class="mb-2" id="faculty-view-regno"></div> --}}
                             <div class="mb-2" id="faculty-view-name"></div>
                             <div class="mb-2" id="faculty-view-email"></div>
                         </div>
@@ -142,14 +143,20 @@
                                 <div class="mt-1">
                                 </div>
                             </div>
-                            <div class="col">
+                            {{-- <div class="col">
                                 <label for="" class="form-label">Reg No.</label>
+                                <input type="text" class="form-control">
+                                <div class="mt-1">
+                                </div>
+                            </div> --}}
+                            <div class="col mt-2">
+                                <label for="" class="form-label">First Name</label>
                                 <input type="text" class="form-control">
                                 <div class="mt-1">
                                 </div>
                             </div>
                             <div class="col mt-2">
-                                <label for="" class="form-label">Full Name</label>
+                                <label for="" class="form-label">Last Name</label>
                                 <input type="text" class="form-control">
                                 <div class="mt-1">
                                 </div>
@@ -213,19 +220,25 @@
                         <form action="{{ route('add-faculty') }}" method="POST">
                             @csrf
                             <div class="col mb-2">
-                                <label for="" class="form-label">Faculty ID
+                                <label for="" class="form-label">Faculty Id
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" name="id" class="form-control" request>
                             </div>
-                            <div class="col mb-2">
+                            {{-- <div class="col mb-2">
                                 <label for="" class="form-label">Reg No.
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" name="id" class="form-control" request>
+                            </div> --}}
+                            <div class="col mb-2">
+                                <label class="form-label">First Name
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" name="name" class="form-control" required>
                             </div>
                             <div class="col mb-2">
-                                <label class="form-label">Full Name
+                                <label class="form-label">Last Name
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" name="name" class="form-control" required>
