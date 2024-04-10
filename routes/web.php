@@ -78,6 +78,14 @@ Route::middleware('auth')->group(function () {
         // ajax requests
         Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);
         Route::get('getFacultyInfo/{id}', [DashboardController::class, 'getFacultyInfo']);
+
+
+
+        Route::get('co-attainment/{cid}/{batch}', [DashboardController::class, 'getCOAttainment'])->name('co.attainment');
+
+        Route::get('final-co-attainment/{cid}/{batch}', [DashboardController::class, 'getFinalCOAttainment'])->name('final.co.attainment');
+
+        Route::get('po-attainment/{cid}/{batch}', [DashboardController::class, 'getPOAttainment'])->name('po.attainment');
     });
 
 

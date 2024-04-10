@@ -31,28 +31,28 @@ class ExcelController extends Controller
 
     public function readDbData(Request $r)
     {
-        // dd($r->all());
-        try {
-            $r->subject = 'CA2313';
-            $subjectCode = $r->subject;
-            $subject = "App\\Models\\" . $subjectCode;
+        return view('show-data', ['subjectCode' => $r->subject, 'batch' => $r->batch]);
+        // try {
+        //     $r->subject = 'CA2313';
+        //     $subjectCode = $r->subject;
+        //     $subject = "App\\Models\\" . $subjectCode;
 
-            // Attempt to retrieve data from the specified model
-            $data = app($subject)->where('regno', 'like', '%' . $r->batch . '%')->get();
+        //     // Attempt to retrieve data from the specified model
+        //     $data = app($subject)->where('regno', 'like', '%' . $r->batch . '%')->get();
 
-            // dd($data);
-            if($data->isEmpty())
-                return back()->with('error', 'No details found for the specified details');
+        //     // dd($data);
+        //     if ($data->isEmpty())
+        //         return back()->with('error', 'No details found for the specified details');
 
-            // Retrieve max marks
-            $max_marks = MaxMarksCO::where('cid', $subjectCode)->get();
+        //     // Retrieve max marks
+        //     $max_marks = MaxMarksCO::where('cid', $subjectCode)->get();
 
-            return view('show-data', ['data' => $data, 'max_marks' => $max_marks, 'subjectCode' => $subjectCode]);
-        } catch (Exception $e) {
-            // Handle the case where the model is not found
-            $errorMessage = "Table $subjectCode not found.";
-            return back()->with('error', $errorMessage);
-        }
+        //     return view('show-data', ['data' => $data, 'max_marks' => $max_marks, 'subjectCode' => $subjectCode, 'batch' => $r->batch]);
+        // } catch (Exception $e) {
+        //     // Handle the case where the model is not found
+        //     $errorMessage = "Table $subjectCode not found.";
+        //     return back()->with('error', $errorMessage);
+        // }
     }
 
     public function saveData($dataArray, $regno)
@@ -308,7 +308,7 @@ class ExcelController extends Controller
         }
         if ($flag == False)
             return back()->with('error', 'some error occured in uploading file');
-        else{
+        else {
             // $this->calculate();
             return back()->with('success', 'file uploaded successfully');
         }
