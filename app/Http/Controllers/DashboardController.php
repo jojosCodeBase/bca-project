@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CO_PO_Relation;
 use Exception;
 use App\Models\User;
 use App\Models\Courses;
@@ -177,7 +178,7 @@ class DashboardController extends Controller
 
         // echo "<pre>";
 
-        $examArray = ['q1', 's1', 'q2', 's2', 'assignment'];
+        $examArray = ['q1', 's1', 'q2', 's2', 'assignment', 'end_sem'];
         $target_marks = [];
 
         for ($i = 0; $i < count($examArray); $i++) {
@@ -273,16 +274,17 @@ class DashboardController extends Controller
         // dd($target_marks);
 
         // adding co attainment to co attainment table
-        // $query = CoAttainment::create([
-        //     'cid' => $cid,
-        //     'batch' => $batch,
-        //     'q1' => json_encode($target_marks['q1'], true),
-        //     's1' => json_encode($target_marks['s1'], true),
-        //     'q2' => json_encode($target_marks['q2'], true),
-        //     's2' => json_encode($target_marks['s2'], true),
-        //     'assignment' => json_encode($target_marks['assignment'], true),
-        //     'total' => 0,
-        // ]);
+        $query = CoAttainment::create([
+            'cid' => $cid,
+            'batch' => $batch,
+            'q1' => json_encode($target_marks['q1'], true),
+            's1' => json_encode($target_marks['s1'], true),
+            'q2' => json_encode($target_marks['q2'], true),
+            's2' => json_encode($target_marks['s2'], true),
+            'assignment' => json_encode($target_marks['assignment'], true),
+            'end_sem' => json_encode($target_marks['end_sem'], true),
+            'total' => 0,
+        ]);
 
         // if($query){
         //     dd('success');
@@ -303,5 +305,16 @@ class DashboardController extends Controller
     public function getPOAttainment($cid, $batch)
     {
         dd($cid, $batch);
+    }
+
+    public function coPoRelation(){
+        $courses = Courses::all();
+        return view('co_po_relation', compact('courses'));
+    }
+    // ajax requests
+    public function getCoPoRelation($courseId){
+        // $relation = CO_PO_Relation::where('cid', $courseId)->first();
+        // return view('include.co_po_relation_table', compact('relation'));
+        return view('include.co_po_relation_table', compact('courseId'));
     }
 }

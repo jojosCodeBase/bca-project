@@ -17,6 +17,7 @@ class MaxMarksCO extends Model
         'q2',
         's2',
         'assignment',
+        'end_sem',
         'total',
     ];
 }

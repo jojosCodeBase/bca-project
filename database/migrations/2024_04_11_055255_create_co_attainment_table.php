@@ -20,6 +20,7 @@ return new class extends Migration
             $table->json('q2');
             $table->json('s2');
             $table->json('assignment');
+            $table->json('end_sem');
             $table->json('total');
             $table->timestamps();
         });

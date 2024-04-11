@@ -27,42 +27,25 @@
                         <table class="table table-hover table-bordered border-dark">
                             <thead class="bg-dark text-light">
                                 <tr>
-                                    <th>Subject-Name</th>
-                                    <th>Subject-Code</th>
+                                    <th>Subject Code</th>
+                                    <th>Subject Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Python</td>
-                                    <td>CA1603</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
-                                            data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
-                                        <button class="btn btn-warning " data-bs-toggle="modal"
-                                            data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Software Engineering</td>
-                                    <td>CA1601</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
-                                            data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
-                                        <button class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Data Analytics Using Python</td>
-                                    <td>CA1636</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0" data-bs-toggle="modal"
-                                            data-bs-target="#viewCOPOModal"><i class="bi bi-eye-fill"></i></button>
-                                        <button class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
-                                    </td>
-                                </tr>
+                                @foreach ($courses as $c)
+                                    <tr>
+                                        <td class="courseId" data-course-id="{{ $c['cid'] }}">{{ $c['cid'] }}</td>
+                                        <td>{{ $c['cname'] }}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0 modelViewBtn"
+                                                data-bs-toggle="modal" data-bs-target="#viewCOPOModal"><i
+                                                    class="bi bi-eye-fill"></i></button>
+                                            <button class="btn btn-warning " data-bs-toggle="modal"
+                                                data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -81,143 +64,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
-                        <thead>
-                            <tr>
-                                <th class="" style="width: 5px;">CA1601</th>
-                                <th class="text-center">PO1</th>
-                                <th class="text-center">PO2</th>
-                                <th class="text-center">PO3</th>
-                                <th class="text-center">PO4</th>
-                                <th class="text-center">PO5</th>
-                                <th class="text-center">PO6</th>
-                                <th class="text-center">PO7</th>
-                                <th class="text-center">PO8</th>
-                                <th class="text-center">PO9</th>
-                                <th class="text-center">PO10</th>
-                                <th class="text-center">PO11</th>
-                                <th class="text-center">PO12</th>
-                            </tr>
-                        </thead>
-                        <tbody class="custom-width">
-                            <tr>
-                                <th class="">CO1</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO2</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO5</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">Average CO</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO Attainment</th>
-                                <td class="text-center" colspan="12">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">PO Attainment</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    @include('include/co_po_relation_table')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -381,5 +228,24 @@
             </div>
         </div>
     </div>
+
     {{-- Update CO/PO Modal End --}}
+@endsection
+@section('scripts')
+    <script>
+        $('.modelViewBtn').click(function() {
+            var courseId = $(this).closest('tr').find('.courseId').data('course-id');
+            $.ajax({
+                url: "/get_CO_PO_Relation/" + courseId,
+                type: 'GET',
+                data: json,
+                success: function(response) {
+                    console.log(response());
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching details:', error);
+                }
+            });
+        });
+    </script>
 @endsection

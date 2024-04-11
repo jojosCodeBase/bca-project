@@ -59,9 +59,7 @@ Route::middleware('auth')->group(function () {
         })->name('admin-year');
 
         //Upload PO Attainment level
-        Route::get('co_po_relation', function () {
-            return view('co_po_relation');
-        })->name('admin-co_po_relation');
+        Route::get('co_po_relation', [DashboardController::class, 'coPoRelation'])->name('admin-co_po_relation');
 
 
         //Update PO Attainment Level
@@ -130,6 +128,9 @@ Route::middleware('auth')->group(function () {
         })->name('validation');
 
     });
+
+    // ajax requests
+    Route::get('get_CO_PO_Relation/{courseId}', [DashboardController::class, 'getCoPoRelation']);
 });
 
 require __DIR__ . '/auth.php';

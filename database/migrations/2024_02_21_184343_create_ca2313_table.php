@@ -19,6 +19,7 @@ return new class extends Migration
             $table->json('q2'); // Total length 5 with 2 json places
             $table->json('s2');
             $table->json('assignment');
+            $table->json('end_sem');
             $table->decimal('total', 5, 1);
             $table->timestamps();
         });

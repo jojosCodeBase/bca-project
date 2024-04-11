@@ -19,6 +19,7 @@ return new class extends Migration
             $table->json('q2')->nullable(); // Total length 5 with 2 json places
             $table->json('s2')->nullable();
             $table->json('assignment')->nullable();
+            $table->json('end_sem')->nullable();
             $table->decimal('total', 5, 1)->nullable();
             $table->timestamps();
         });

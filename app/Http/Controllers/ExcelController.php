@@ -64,6 +64,7 @@ class ExcelController extends Controller
         $jsonQ2 = json_encode($dataArray['Q2']);
         $jsonS2 = json_encode($dataArray['S2']);
         $jsonAssignment = json_encode($dataArray['Assignment']);
+        $jsonEndSem = json_encode($dataArray['End Sem']);
 
         if ($regno == "Max Marks/CO") {
             $model = new MaxMarksCO();
@@ -74,6 +75,7 @@ class ExcelController extends Controller
             $model->Q2 = $jsonQ2;
             $model->S2 = $jsonS2;
             $model->assignment = $jsonAssignment;
+            $model->end_sem = $jsonEndSem;
             $model->total = 0;
 
             if ($model->save()) {
@@ -95,6 +97,7 @@ class ExcelController extends Controller
             $model->Q2 = $jsonQ2;
             $model->S2 = $jsonS2;
             $model->assignment = $jsonAssignment;
+            $model->end_sem = $jsonEndSem;
             $model->total = 0;
 
             // Save the model instance
@@ -108,84 +111,84 @@ class ExcelController extends Controller
         }
     }
 
-    public function calculate()
-    {
-        $q1_max_marks = MaxMarksCO::where('cid', 'CA2313')->get();
+    // public function calculate()
+    // {
+    //     $q1_max_marks = MaxMarksCO::where('cid', 'CA2313')->get();
 
-        $q1_max_marks = $q1_max_marks->toArray();
+    //     $q1_max_marks = $q1_max_marks->toArray();
 
-        $data = CA2313::all();
-        $data = $data->toArray();
+    //     $data = CA2313::all();
+    //     $data = $data->toArray();
 
-        $q1 = [
-            'CO1' => 0,
-            'CO2' => 0,
-            'CO3' => 0,
-            'CO4' => 0,
-            'CO5' => 0,
-            'CO6' => 0,
-            'Total' => 0,
-        ];
+    //     $q1 = [
+    //         'CO1' => 0,
+    //         'CO2' => 0,
+    //         'CO3' => 0,
+    //         'CO4' => 0,
+    //         'CO5' => 0,
+    //         'CO6' => 0,
+    //         'Total' => 0,
+    //     ];
 
-        $values = [];
-        $count = 0;
-        foreach ($data as $d) {
-            // echo "<br>regno : " . $d['regno'] . "<br>";
-            foreach ($d as $key => $x) {
-                if ($key == 'id' || $key == 'regno' || $key == 'updated_at' || $key == 'created_at' || $key == 'attendance' || $key == 'total') {
-                    continue;
-                } else {
-                    // echo $key . " => <br>";
-                    if ($key == 'q1') {
-                        // echo $key . " => ";
-                        $jsonData = json_decode($x, true);
+    //     $values = [];
+    //     $count = 0;
+    //     foreach ($data as $d) {
+    //         // echo "<br>regno : " . $d['regno'] . "<br>";
+    //         foreach ($d as $key => $x) {
+    //             if ($key == 'id' || $key == 'regno' || $key == 'updated_at' || $key == 'created_at' || $key == 'attendance' || $key == 'total') {
+    //                 continue;
+    //             } else {
+    //                 // echo $key . " => <br>";
+    //                 if ($key == 'q1') {
+    //                     // echo $key . " => ";
+    //                     $jsonData = json_decode($x, true);
 
-                        foreach ($jsonData as $key => $value) {
-                            // echo "Value: $value<br>";
+    //                     foreach ($jsonData as $key => $value) {
+    //                         // echo "Value: $value<br>";
 
-                            if ($key == 'CO1') {
-                                if (!is_null($value)) {
-                                    // echo $key . " => ";
-                                    if (is_numeric($value)) {
-                                        $values[$count++] = $value;
-                                    } else {
-                                        $values[$count++] = 0;
-                                    }
-                                } else {
-                                    echo "NULL" . "<br>";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    //                         if ($key == 'CO1') {
+    //                             if (!is_null($value)) {
+    //                                 // echo $key . " => ";
+    //                                 if (is_numeric($value)) {
+    //                                     $values[$count++] = $value;
+    //                                 } else {
+    //                                     $values[$count++] = 0;
+    //                                 }
+    //                             } else {
+    //                                 echo "NULL" . "<br>";
+    //                             }
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        // print_r($q1_max_marks[0]['q1']);
+    //     // print_r($q1_max_marks[0]['q1']);
 
-        $q1 = json_decode($q1_max_marks[0]['q1'], true);
+    //     $q1 = json_decode($q1_max_marks[0]['q1'], true);
 
-        $target_marks = $q1['CO1'] * 60 / 100;
-        $count = 0;
+    //     $target_marks = $q1['CO1'] * 60 / 100;
+    //     $count = 0;
 
-        echo "Target marks: " . $target_marks . "<br>";
+    //     echo "Target marks: " . $target_marks . "<br>";
 
-        // echo "<br>";
+    //     // echo "<br>";
 
-        // print_r($values);
+    //     // print_r($values);
 
-        foreach ($values as $v) {
-            if ($v >= $target_marks) {
-                $count++;
-            }
-        }
+    //     foreach ($values as $v) {
+    //         if ($v >= $target_marks) {
+    //             $count++;
+    //         }
+    //     }
 
-        echo "Student >= 60% => " . $count;
-        // echo "<pre>";
-        // print_r($data[0]);
-        // echo "</pre>";
-        die();
-    }
+    //     echo "Student >= 60% => " . $count;
+    //     // echo "<pre>";
+    //     // print_r($data[0]);
+    //     // echo "</pre>";
+    //     die();
+    // }
     public function fileUpload(Request $request)
     {
         // dd($request->all());
@@ -216,6 +219,7 @@ class ExcelController extends Controller
 
 
 
+
         // Initialize an empty associative array
         $associativeArray = [];
 
@@ -232,9 +236,10 @@ class ExcelController extends Controller
         // echo "<pre>";
         // print_r($associativeArray);
         // echo "</pre>";
+        // die();
 
 
-        $header = ['Regno', 'Q1', 'S1', 'Q2', 'S2', 'Assignment'];
+        $header = ['Regno', 'Q1', 'S1', 'Q2', 'S2', 'Assignment', 'End Sem'];
 
         $co_po = [
             'CO1' => null,
@@ -254,6 +259,7 @@ class ExcelController extends Controller
             'Q2' => 3,
             'S2' => 4,
             'Assignment' => 5,
+            'End Sem' => 5,
         ];
 
         // dd($associativeArray);
@@ -261,7 +267,7 @@ class ExcelController extends Controller
         $flag = True;
         for ($row = 2; $row < count($excelData); $row++) {
             $regno = $excelData[$row][0];
-            echo $regno . ' row = ' . $row . "<br>";
+            // echo $regno . ' row = ' . $row . "<br>";
             for ($x = 1; $x < count($associativeArray); $x++) {
                 $start = $associativeArray[$header[$x]];
 
@@ -297,8 +303,6 @@ class ExcelController extends Controller
                 ];
                 $dataArray['regno'] = $regno;
             }
-
-
 
             if ($this->saveData($dataArray, $regno) == False) {
                 $flag = False;
