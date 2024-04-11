@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TargetMarks;
 use Exception;
 use App\Models\User;
 use App\Models\Courses;
 use App\Models\MaxMarksCO;
 use App\Models\ExcelUpload;
+use App\Models\CoAttainment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
@@ -266,14 +266,14 @@ class DashboardController extends Controller
             $index++;
             // break;
         }
-        echo "<pre>";
-        print_r($co_attainment);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($co_attainment);
+        // echo "</pre>";
 
         // dd($target_marks);
 
-        // adding target marks to target marks table
-        // $query = TargetMarks::create([
+        // adding co attainment to co attainment table
+        // $query = CoAttainment::create([
         //     'cid' => $cid,
         //     'batch' => $batch,
         //     'q1' => json_encode($target_marks['q1'], true),
@@ -284,9 +284,21 @@ class DashboardController extends Controller
         //     'total' => 0,
         // ]);
 
-        // $targetMarks = TargetMarks::where('cid', $cid)->where('batch', $batch)->first();
+        // if($query){
+        //     dd('success');
+        // }else{
+        //     dd('failed');
+        // }
 
-        // return view('final_co_attainment', ['data' => $data, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
+        $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
+        // dd($co_attainment);
+
+        // echo "<pre>";
+        // print_r($co_attainment);
+        // echo "</pre>";
+
+
+        return view('final_co_attainment', ['co_attainment' => $co_attainment, 'subjectCode' => $cid, 'batch' => $batch]);
     }
     public function getPOAttainment($cid, $batch)
     {

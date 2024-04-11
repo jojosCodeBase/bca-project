@@ -2,20 +2,26 @@
 @section('title', 'Final CO Attainment')
 @section('content')
     <div class="container-fluid">
-        <h5>{{ $subjectCode }} - CO Attainment</h5>
+        <h5>{{ $subjectCode }} - Final CO Attainment, Batch {{ $batch }}</h5>
         <div class="table-responsive">
             <table class="table table-bordered table-light">
-                <thead>
-                    <tr class="bg-light text-center">
-                        <th rowspan="2">Regno</th>
-                        <th colspan="4">Quiz 1</th>
-                        <th colspan="4">Sessional 1</th>
-                        <th colspan="4">Quiz 2</th>
-                        <th colspan="4">Sessional 2</th>
-                        <th colspan="6">Assignment</th>
-                        <th rowspan="2">Total</th>
+                <thead class="bg-light text-center">
+                    <th>CO's</th>
+                    <th>Quiz 1</th>
+                    <th>Sessional 1</th>
+                    <th>Quiz 2</th>
+                    <th>Sessional 2</th>
+                    <th>Assignment</th>
+                    <th>Total Avg Int</th>
+                    <th style="width: 300px;">Grand Total(50% int + 50% End term)</th>
+                </thead>
+
+                {{-- <tr class="bg-light text-center">
                     </tr>
-                    <tr>
+                    <tr> --}}
+
+                {{-- </tr> --}}
+                {{-- <tr>
                         @php
                             $q1 = json_decode($data[0]['q1'], true);
                             $s1 = json_decode($data[0]['s1'], true);
@@ -49,226 +55,143 @@
                                 <th>{{ $key }}</th>
                             @endif
                         @endforeach
-                    </tr>
-                </thead>
+                    </tr> --}}
+                {{-- @dump($co_attainment) --}}
+                @php
+                    $q1 = json_decode($co_attainment['q1'], true);
+                    $s1 = json_decode($co_attainment['s1'], true);
+                    $q2 = json_decode($co_attainment['q2'], true);
+                    $s2 = json_decode($co_attainment['s2'], true);
+                    $assignment = json_decode($co_attainment['assignment'], true);
+                    $examArray = [$q1, $s1, $q2, $s2, $assignment];
+
+                    // echo count($examArray);
+
+                    // foreach ($examArray as $value) {
+                    //     // echo $value;
+                    //     print_r($examArray[0]);
+                    // }
+
+                    $totalAvgInt = 0;
+                    $exams = 0;
+                    $totalAvg = 0;
+
+                @endphp
+                {{-- @dump() --}}
                 <tbody>
-                    @php
-                        $ddArrayIndex = 0;
-                        $marks_track_array = [];
-                        $marks_array = [];
-                    @endphp
-                    @foreach ($data as $x)
-                        <tr>
-                            <td>{{ $x['regno'] }}</td>
-                            @php
-                                $q1 = json_decode($x['q1'], true);
-                            @endphp
-                            @foreach ($q1 as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $marks_array[] = $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            @php
-                                $s1 = json_decode($x['s1'], true);
-                            @endphp
-                            @foreach ($s1 as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $marks_array[] = $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            @php
-                                $q2 = json_decode($x['q2'], true);
-                            @endphp
-                            @foreach ($q2 as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $marks_array[] = $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            @php
-                                $s2 = json_decode($x['s2'], true);
-                            @endphp
-                            @foreach ($s2 as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $marks_array[] = $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            @php
-                                $assignment = json_decode($x['assignment'], true);
-                            @endphp
-
-                            @foreach ($assignment as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $marks_array[] = $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            <td>{{ $x['total'] }}</td>
-
-                            @php
-                                $marks_array[] = $x['total'];
-                                $marks_track_array[] = $marks_array;
-                                $marks_array = [];
-                            @endphp
-                        </tr>
-                    @endforeach
-                    @foreach ($max_marks as $x)
-                        <tr>
-                            <td>Max Marks/CO</td>
-                            @php
-                                $count = 0;
-                                $target_marks_array = [];
-                                $q1 = json_decode($x['q1'], true);
-                            @endphp
-                            @foreach ($q1 as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $target_marks_array[$count++] = (60 / 100) * $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            @php
-                                $s1 = json_decode($x['s1'], true);
-                            @endphp
-                            @foreach ($s1 as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $target_marks_array[$count++] = (60 / 100) * $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            @php
-                                $q2 = json_decode($x['q2'], true);
-                            @endphp
-                            @foreach ($q2 as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $target_marks_array[$count++] = (60 / 100) * $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            @php
-                                $s2 = json_decode($x['s2'], true);
-                            @endphp
-                            @foreach ($s2 as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $target_marks_array[$count++] = (60 / 100) * $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            @php
-                                $assignment = json_decode($x['assignment'], true);
-                            @endphp
-
-                            @foreach ($assignment as $marks)
-                                @if (!is_null($marks))
-                                    <td>{{ $marks }}</td>
-                                    @php
-                                        $target_marks_array[$count++] = (60 / 100) * $marks;
-                                    @endphp
-                                @endif
-                            @endforeach
-
-                            <td>{{ $x['total'] }}</td>
-                            @php
-                                $target_marks_array[$count++] = (60 / 100) * $x['total'];
-                            @endphp
-                        </tr>
-                    @endforeach
                     <tr>
-                        <td>Target Marks/CO</td>
-                        @foreach ($target_marks_array as $tm)
-                            <td>{{ $tm }}</td>
-                        @endforeach
-                    </tr>
-                    @php
-                        $index = 0;
-                        $target_marks_count = 0;
-                        $marks_more_than_sixty_percent_array = [];
-                    @endphp
-                    @for ($i = 0; $i < count($target_marks_array); $i++)
-                        @foreach ($marks_track_array as $ms)
+                        <td>CO1</td>
+                        @foreach ($examArray as $exam)
+                            <td>{{ $exam['CO1'] }}</td>
                             @php
-                                if ($ms[$index] >= $target_marks_array[$i] && $ms[$index] != 'AB') {
-                                    $target_marks_count++;
+                                if (!is_null($exam['CO1'])) {
+                                    $totalAvg = $totalAvg + $exam['CO1'];
+                                    $exams++;
                                 }
                             @endphp
                         @endforeach
                         @php
-                            $marks_more_than_sixty_percent_array[] = $target_marks_count;
-                            $target_marks_count = 0;
+                            $totalAvgInt = $totalAvg / $exams;
                         @endphp
+                        <td>{{ $totalAvgInt }}</td>
+                        <td>{{ $exams }}</td>
                         @php
-                            $index++;
+                            $totalAvgInt = 0;
+                            $exams = 0;
+                            $totalAvg = 0;
                         @endphp
-                    @endfor
-                    <tr>
-                        <td>Students>=60%</td>
-                        @foreach ($marks_more_than_sixty_percent_array as $marks)
-                            <td>{{ $marks }}</td>
-                        @endforeach
                     </tr>
                     <tr>
-                        <td>Attainment %</td>
-                        @php
-                            $attainment_array = [];
-                            $student_count = count($data);
-                        @endphp
-                        @for ($i = 0; $i < count($marks_more_than_sixty_percent_array); $i++)
-                        @php
-                            $attainment_array[] = intval(($marks_more_than_sixty_percent_array[$i] / $student_count) * 100);
-                        @endphp
-                            <td>{{ $attainment_array[$i] }}%</td>
-                        @endfor
-                    </tr>
-                    <tr>
-                        <td>CO Attainment Level</td>
-                        @php
-                            $co_attainment_array = [];
-                            function getCOLevel($marks){
-                                    if($marks < 38)
-                                        return 0;
-                                    elseif ($marks >=38 && $marks <=51)
-                                        return 1;
-                                    elseif($marks >= 52 && $marks <= 72)
-                                        return 2;
-                                    elseif($marks >=73)
-                                        return 3;
-                                }
-                        @endphp
-                        @for ($i = 0; $i < count($attainment_array); $i++)
+                        <td>CO2</td>
+                        @foreach ($examArray as $exam)
+                            <td>{{ $exam['CO2'] }}</td>
                             @php
-                                $co_attainment_array[] = getCOLevel($attainment_array[$i]);
+                                if (!is_null($exam['CO2'])) {
+                                    $totalAvg = $totalAvg + $exam['CO2'];
+                                    $exams++;
+                                }
                             @endphp
-                            <td>{{ $co_attainment_array[$i] }}</td>
-                        @endfor
+                        @endforeach
+                        @php
+                            $totalAvgInt = $totalAvg / $exams;
+                        @endphp
+                        <td>{{ $totalAvgInt }}</td>
+                        <td>{{ $exams }}</td>
+                        @php
+                            $totalAvgInt = 0;
+                            $exams = 0;
+                            $totalAvg = 0;
+                        @endphp
+                    </tr>
+                    <tr>
+                        <td>CO3</td>
+                        @foreach ($examArray as $exam)
+                            <td>{{ $exam['CO3'] }}</td>
+                            @php
+                                if (!is_null($exam['CO3'])) {
+                                    $totalAvg = $totalAvg + $exam['CO3'];
+                                    $exams++;
+                                }
+                            @endphp
+                        @endforeach
+                        @php
+                            $totalAvgInt = $totalAvg / $exams;
+                        @endphp
+                        <td>{{ $totalAvgInt }}</td>
+                        <td>{{ $exams }}</td>
+                        @php
+                            $totalAvgInt = 0;
+                            $exams = 0;
+                            $totalAvg = 0;
+                        @endphp
+                    </tr>
+                    <tr>
+                        <td>CO4</td>
+                        @foreach ($examArray as $exam)
+                            <td>{{ $exam['CO4'] }}</td>
+                            @php
+                                if (!is_null($exam['CO4'])) {
+                                    $totalAvg = $totalAvg + $exam['CO4'];
+                                    $exams++;
+                                }
+                            @endphp
+                        @endforeach
+                        @php
+                            $totalAvgInt = $totalAvg / $exams;
+                        @endphp
+                        <td>{{ $totalAvgInt }}</td>
+                        <td>{{ $exams }}</td>
+                        @php
+                            $totalAvgInt = 0;
+                            $exams = 0;
+                            $totalAvg = 0;
+                        @endphp
+                    </tr>
+                    <tr>
+                        <td>CO5</td>
+                        @foreach ($examArray as $exam)
+                            <td>{{ $exam['CO5'] }}</td>
+                            @php
+                                if (!is_null($exam['CO5'])) {
+                                    $totalAvg = $totalAvg + $exam['CO5'];
+                                    $exams++;
+                                }
+                            @endphp
+                        @endforeach
+                        @php
+                            $totalAvgInt = $totalAvg / $exams;
+                        @endphp
+                        <td>{{ $totalAvgInt }}</td>
+                        <td>{{ $exams }}</td>
+                        @php
+                            $totalAvgInt = 0;
+                            $exams = 0;
+                            $totalAvg = 0;
+                        @endphp
+                    </tr>
+                    <tr>
+                        <td colspan="7">Final CO Attainment of {{ $subjectCode }}</td>
+                        <td class="text-center">DATA</td>
                     </tr>
                 </tbody>
             </table>

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('target_marks', function (Blueprint $table) {
+        Schema::create('co_attainment', function (Blueprint $table) {
             $table->id();
             $table->string('cid');
             $table->integer('batch');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('target_marks');
+        Schema::dropIfExists('co_attainment');
     }
 };

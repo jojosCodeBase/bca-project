@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TargetMarks extends Model
+class CoAttainment extends Model
 {
     use HasFactory;
-    protected $table = 'target_marks';
+    protected $table = 'co_attainment';
     protected $fillable = ['cid', 'batch', 'q1', 's1', 'q2', 's2', 'assignment', 'total'];
 }
