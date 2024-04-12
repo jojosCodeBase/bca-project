@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('batch');
             $table->string('co')->nullable();
             $table->string('po')->nullable();
+            $table->integer('relation')->nullable();
             $table->timestamps();
         });
     }
