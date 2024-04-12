@@ -127,6 +127,10 @@ Route::middleware('auth')->group(function () {
             return view('validation');
         })->name('validation');
 
+        Route::get('forgot-password', function () {
+            return view('forgot-password');
+        })->name('forgot-password');
+
     });
 
     // ajax requests
