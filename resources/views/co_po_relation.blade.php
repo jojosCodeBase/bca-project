@@ -32,7 +32,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-
+                            {{-- @dump($relation) --}}
                             <tbody>
                                 @foreach ($courses as $c)
                                     <tr>
@@ -84,85 +84,23 @@
                             </tr>
                         </thead>
                         <tbody class="custom-width">
-                            <tr>
-                                <th class="">{{ $relation['co'] }}</th>
-                                <td class="text-center">{{ $relation['relation'] }}</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO2</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-
-                            <tr>
-                                <th class="">CO5</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
+                            @foreach ($relation as $r)
+                                <tr>
+                                    <th class="">{{ $r['CO'] }}</th>
+                                    <td class="text-center">{{ $r['PO1'] }}</td>
+                                    <td class="text-center">{{ $r['PO2'] }}</td>
+                                    <td class="text-center">{{ $r['PO3'] }}</td>
+                                    <td class="text-center">{{ $r['PO4'] }}</td>
+                                    <td class="text-center">{{ $r['PO5'] }}</td>
+                                    <td class="text-center">{{ $r['PO6'] }}</td>
+                                    <td class="text-center">{{ $r['PO7'] }}</td>
+                                    <td class="text-center">{{ $r['PO8'] }}</td>
+                                    <td class="text-center">{{ $r['PO9'] }}</td>
+                                    <td class="text-center">{{ $r['PO10'] }}</td>
+                                    <td class="text-center">{{ $r['PO11'] }}</td>
+                                    <td class="text-center">{{ $r['PO12'] }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 

@@ -310,7 +310,7 @@ class DashboardController extends Controller
 
     public function coPoRelation(){
         $courses = Courses::all();
-        $relation = CoPoRelation::where('cid', 'CA2313')->where('batch', 2021)->first();
+        $relation = CoPoRelation::where('cid', 'CA2313')->where('batch', 2021)->get();
         return view('co_po_relation', compact('relation', 'courses'));
     }
     // ajax requests

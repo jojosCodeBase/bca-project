@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,9 +14,19 @@ return new class extends Migration
             $table->id('mapping_id');
             $table->string('cid');
             $table->integer('batch');
-            $table->string('co')->nullable();
-            $table->string('po')->nullable();
-            $table->integer('relation')->nullable();
+            $table->string('CO')->nullable();
+            $table->integer('PO1')->nullable();
+            $table->integer('PO2')->nullable();
+            $table->integer('PO3')->nullable();
+            $table->integer('PO4')->nullable();
+            $table->integer('PO5')->nullable();
+            $table->integer('PO6')->nullable();
+            $table->integer('PO7')->nullable();
+            $table->integer('PO8')->nullable();
+            $table->integer('PO9')->nullable();
+            $table->integer('PO10')->nullable();
+            $table->integer('PO11')->nullable();
+            $table->integer('PO12')->nullable();
             $table->timestamps();
         });
     }
