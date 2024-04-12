@@ -32,6 +32,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
+                            {{-- @dump($relation) --}}
                             <tbody>
                                 @foreach ($courses as $c)
                                     <tr>
@@ -60,14 +61,14 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">View CO/PO Relation</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">View CO/PO Relation Level</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
                         <thead>
                             <tr>
-                                <th class="" style="width: 5px;">CA1601</th>
+                                <th class="" style="width: 5px;">CA2313</th>
                                 <th class="text-center">PO1</th>
                                 <th class="text-center">PO2</th>
                                 <th class="text-center">PO3</th>
@@ -83,87 +84,26 @@
                             </tr>
                         </thead>
                         <tbody class="custom-width">
-                            <tr>
-                                <th class="">CO1</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-                    
-                            <tr>
-                                <th class="">CO2</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-                    
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-                    
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
-                    
-                            <tr>
-                                <th class="">CO5</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr>
+                            @foreach ($relation as $r)
+                                <tr>
+                                    <th class="">{{ $r['CO'] }}</th>
+                                    <td class="text-center">{{ $r['PO1'] }}</td>
+                                    <td class="text-center">{{ $r['PO2'] }}</td>
+                                    <td class="text-center">{{ $r['PO3'] }}</td>
+                                    <td class="text-center">{{ $r['PO4'] }}</td>
+                                    <td class="text-center">{{ $r['PO5'] }}</td>
+                                    <td class="text-center">{{ $r['PO6'] }}</td>
+                                    <td class="text-center">{{ $r['PO7'] }}</td>
+                                    <td class="text-center">{{ $r['PO8'] }}</td>
+                                    <td class="text-center">{{ $r['PO9'] }}</td>
+                                    <td class="text-center">{{ $r['PO10'] }}</td>
+                                    <td class="text-center">{{ $r['PO11'] }}</td>
+                                    <td class="text-center">{{ $r['PO12'] }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -178,153 +118,155 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Upload CO/PO Relation</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Upload CO/PO Relation Level</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
-                        <thead>
-                            <tr>
-                                <th class="" style="width: 5px;">CA1601</th>
-                                <th class="text-center">PO1</th>
-                                <th class="text-center">PO2</th>
-                                <th class="text-center">PO3</th>
-                                <th class="text-center">PO4</th>
-                                <th class="text-center">PO5</th>
-                                <th class="text-center">PO6</th>
-                                <th class="text-center">PO7</th>
-                                <th class="text-center">PO8</th>
-                                <th class="text-center">PO9</th>
-                                <th class="text-center">PO10</th>
-                                <th class="text-center">PO11</th>
-                                <th class="text-center">PO12</th>
-                            </tr>
-                        </thead>
-                        <tbody class="custom-width">
-                            <tr>
-                                <th class="">CO1</th>
-                                <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
-                            </tr>
+                <form action="{{ route('update-co-po-relation') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
+                            <thead>
+                                <tr>
+                                    <th class="" style="width: 5px;">CA2313</th>
+                                    <th class="text-center">PO1</th>
+                                    <th class="text-center">PO2</th>
+                                    <th class="text-center">PO3</th>
+                                    <th class="text-center">PO4</th>
+                                    <th class="text-center">PO5</th>
+                                    <th class="text-center">PO6</th>
+                                    <th class="text-center">PO7</th>
+                                    <th class="text-center">PO8</th>
+                                    <th class="text-center">PO9</th>
+                                    <th class="text-center">PO10</th>
+                                    <th class="text-center">PO11</th>
+                                    <th class="text-center">PO12</th>
+                                </tr>
+                            </thead>
+                            <tbody class="custom-width">
+                                <tr>
+                                    <th class="">CO1</th>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                </tr>
 
-                            <tr>
-                                <th class="">CO2</th>
-                                <td class="text-center"><input type="text" name="co2_po1" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po2" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po3" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po4" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po5" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po6" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po7" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po8" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po9" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po10" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po11" class="#"onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co2_po12" class="#"onkeypress="return restrictInput(event)"></td>
-                            </tr>
+                                <tr>
+                                    <th class="">CO2</th>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                </tr>
 
-                            <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center"><input type="text" name="co3_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co3_po12" class="#" onkeypress="return restrictInput(event)"></td>
-                            </tr>
+                                <tr>
+                                    <th class="">CO3</th>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                </tr>
 
-                            <tr>
-                                <th class="">CO4</th>
-                                <td class="text-center"><input type="text" name="co4_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co4_po12" class="#" onkeypress="return restrictInput(event)"></td>
-                            </tr>
+                                <tr>
+                                    <th class="">CO3</th>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                </tr>
 
-                            <tr>
-                                <th class="">CO5</th>
-                                <td class="text-center"><input type="text" name="co5_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                <td class="text-center"><input type="text" name="co5_po12" class="#" onkeypress="return restrictInput(event)"></td>
-                            </tr>
+                                <tr>
+                                    <th class="">CO5</th>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" class="#"></td>
+                                </tr>
 
-                            {{-- <tr>
-                                <th class="">Average CO</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr> --}}
+                                <tr>
+                                    <th class="">Average CO</th>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                </tr>
 
-                            {{-- <tr>
-                                <th class="">CO Attainment</th>
-                                <td class="text-center" colspan="12">1</td>
-                            </tr> --}}
+                                <tr>
+                                    <th class="">CO Attainment</th>
+                                    <td class="text-center" colspan="12">1</td>
+                                </tr>
 
-                            {{-- <tr>
-                                <th class="">PO Attainment</th>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">1</td>
-                            </tr> --}}
-                        </tbody>
-                    </table>
-                    <p class=text-danger>Note : If there is no relation between CO & PO then leave the box empty. </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Update</button>
-                </div>
+                                <tr>
+                                    <th class="">PO Attainment</th>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

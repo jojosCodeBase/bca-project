@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CO_PO_Relation;
+use App\Models\CoPoRelation;
 use Exception;
 use App\Models\User;
 use App\Models\Courses;
@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class DashboardController extends Controller
 {
@@ -309,12 +310,17 @@ class DashboardController extends Controller
 
     public function coPoRelation(){
         $courses = Courses::all();
-        return view('co_po_relation', compact('courses'));
+        $relation = CoPoRelation::where('cid', 'CA2313')->where('batch', 2021)->get();
+        return view('co_po_relation', compact('relation', 'courses'));
     }
     // ajax requests
     public function getCoPoRelation($courseId){
         // $relation = CO_PO_Relation::where('cid', $courseId)->first();
         // return view('include.co_po_relation_table', compact('relation'));
-        return view('include.co_po_relation_table', compact('courseId'));
+        // $relation = CoPoRelation::where('cid', 'CA2313')->where('batch', 2021)->first();
+        // return view('co_po_relation', compact('relation'));
+    }
+    public function updateCoPoRelation(Request $r){
+        dd($r->all());
     }
 }

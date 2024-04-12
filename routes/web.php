@@ -131,6 +131,7 @@ Route::middleware('auth')->group(function () {
 
     // ajax requests
     Route::get('get_CO_PO_Relation/{courseId}', [DashboardController::class, 'getCoPoRelation']);
+    Route::post('update-co-po-relation', [DashboardController::class, 'updateCoPoRelation'])->name('update-co-po-relation');
 });
 
 require __DIR__ . '/auth.php';
