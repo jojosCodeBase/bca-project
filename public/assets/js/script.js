@@ -167,3 +167,21 @@ function restrictAlphabets(event) {
     }
 }
 // javaScript for number restiction end
+
+// javaScript for Alphabet restiction start
+
+function restrictInput(event) {
+    // Get the key code of the pressed key
+    let keyCode = event.keyCode || event.which;
+    // Allow only alphanumeric characters
+    let allowedChars = /[0-9]/;
+    let keyChar = String.fromCharCode(keyCode);
+    if (!allowedChars.test(keyChar)) {
+        // If the pressed key is not alphanumeric, prevent the default action (typing)
+        event.preventDefault();
+        return false;
+    }
+}
+
+// javaScript for Alphabet restiction end
+
