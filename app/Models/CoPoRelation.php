@@ -10,7 +10,6 @@ class CoPoRelation extends Model
     use HasFactory;
     protected $table = "co_po_relation";
     protected $fillable = [
-        'mapping_id',
         'batch',
         'cid',
         'CO',

@@ -108,14 +108,11 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="mb-2 fw-bold">Faculty Id</div>
-                            {{-- <div class="mb-2 fw-bold">Reg No.</div> --}}
-                            <div class="mb-2 fw-bold">First Name</div>
-                            <div class="mb-2 fw-bold">Last Name</div>
+                            <div class="mb-2 fw-bold">Faculty Name</div>
                             <div class="mb-2 fw-bold">Email</div>
                         </div>
                         <div class="col-6">
                             <div class="mb-2" id="faculty-view-id"></div>
-                            {{-- <div class="mb-2" id="faculty-view-regno"></div> --}}
                             <div class="mb-2" id="faculty-view-name"></div>
                             <div class="mb-2" id="faculty-view-email"></div>
                         </div>
@@ -139,33 +136,15 @@
                         <form action="">
                             <div class="col">
                                 <label for="" class="form-label">Faculty Id</label>
-                                <input type="text" class="form-control">
-                                <div class="mt-1">
-                                </div>
-                            </div>
-                            {{-- <div class="col">
-                                <label for="" class="form-label">Reg No.</label>
-                                <input type="text" class="form-control">
-                                <div class="mt-1">
-                                </div>
-                            </div> --}}
-                            <div class="col mt-2">
-                                <label for="" class="form-label">First Name</label>
-                                <input type="text" class="form-control">
-                                <div class="mt-1">
-                                </div>
+                                <input type="text" id="faculty-edit-id" class="form-control">
                             </div>
                             <div class="col mt-2">
-                                <label for="" class="form-label">Last Name</label>
-                                <input type="text" class="form-control">
-                                <div class="mt-1">
-                                </div>
+                                <label for="" class="form-label">Name</label>
+                                <input type="text" id="faculty-edit-name" class="form-control">
                             </div>
                             <div class="col mt-2">
                                 <label for="" class="form-label">Email</label>
-                                <input type="text" class="form-control">
-                                <div class="mt-1">
-                                </div>
+                                <input type="text" id="faculty-edit-email" class="form-control">
                             </div>
                         </form>
                     </div>
@@ -225,20 +204,8 @@
                                 </label>
                                 <input type="text" name="id" class="form-control" request>
                             </div>
-                            {{-- <div class="col mb-2">
-                                <label for="" class="form-label">Reg No.
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" name="id" class="form-control" request>
-                            </div> --}}
                             <div class="col mb-2">
-                                <label class="form-label">First Name
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" name="name" class="form-control" required>
-                            </div>
-                            <div class="col mb-2">
-                                <label class="form-label">Last Name
+                                <label class="form-label">Name
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" name="name" class="form-control" required>

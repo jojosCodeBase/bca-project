@@ -227,6 +227,7 @@ class DashboardController extends Controller
         $attainmentPercentage_CO_PO = [];
         $co_attainment_CO_PO = [];
         $index = 0;
+
         for ($i = 0; $i < count($target_marks); $i++) {
             // here key is co1, co2, co3..
             foreach ($co_po as $key => $v) {
@@ -244,19 +245,26 @@ class DashboardController extends Controller
                     }
                 }
                 // echo $target_marks_count . "<br>";
-                // break;
+
                 // store target marks count
                 $copy_co_po[$key] = $target_marks_count;
 
                 // calculate attainment percentage
                 $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
+                // break;
 
                 // calculate co attainment level
                 $co_attainment_CO_PO[$key] = $this->getCOLevel($attainmentPercentage_CO_PO[$key]);
 
+
                 // reset target_marks_count to 0 for counting next CO
                 $target_marks_count = 0;
             }
+            // break;
+            // echo "<pre>";
+            // print_r($co_attainment_CO_PO);
+            // echo "</pre>";
+            // break;
 
             // store the copy array to q1, s1, q2, respectively
             $marks_more_than_sixty_percent_array[$examArray[$index]] = $copy_co_po;
@@ -267,27 +275,27 @@ class DashboardController extends Controller
             // store co attainment level
             $co_attainment[$examArray[$index]] = $co_attainment_CO_PO;
             $index++;
-            // break;
+
         }
-        // echo "<pre>";
-        // print_r($co_attainment);
-        // echo "</pre>";
 
         // dd($target_marks);
 
         // adding co attainment to co attainment table
-        $query = CoAttainment::create([
-            'cid' => $cid,
-            'batch' => $batch,
-            'q1' => json_encode($target_marks['q1'], true),
-            's1' => json_encode($target_marks['s1'], true),
-            'q2' => json_encode($target_marks['q2'], true),
-            's2' => json_encode($target_marks['s2'], true),
-            'assignment' => json_encode($target_marks['assignment'], true),
-            'end_sem' => json_encode($target_marks['end_sem'], true),
-            'total' => 0,
-        ]);
+        // $query = CoAttainment::create([
+        //     'cid' => $cid,
+        //     'batch' => $batch,
+        //     'q1' => json_encode($co_attainment['q1'], true),
+        //     's1' => json_encode($co_attainment['s1'], true),
+        //     'q2' => json_encode($co_attainment['q2'], true),
+        //     's2' => json_encode($co_attainment['s2'], true),
+        //     'assignment' => json_encode($co_attainment['assignment'], true),
+        //     'end_sem' => json_encode($co_attainment['end_sem'], true),
+        //     'total' => 0,
+        // ]);
 
+        // echo "<pre>";
+        //     echo $query;
+        // echo "</pre>";
         // if($query){
         //     dd('success');
         // }else{
@@ -351,8 +359,15 @@ class DashboardController extends Controller
                 $data["PO$i"] = $CO["PO$i"] ?? null;
             }
 
+            // $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', 2021)->first();
+
             try{
-                CoPoRelation::create($data);
+                $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', $r->batch)->where('CO', $key)->first();
+                if(is_null($relation)){
+                    CoPoRelation::create($data);
+                }else{
+                    $relation->update($data);
+                }
                 $data = [];
                 $flag = true;
             }
@@ -364,9 +379,9 @@ class DashboardController extends Controller
         }
 
         if($flag){
-            echo "Success";
+            return back()->with('success', 'CO-PO Relation Updated Suceessfully');
         }else{
-            echo "Some error occured";
+            return back()->with('error', 'Some error occured in updating CO-PO Relation');
         }
     }
 }

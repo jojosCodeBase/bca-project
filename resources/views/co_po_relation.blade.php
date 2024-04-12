@@ -3,6 +3,22 @@
 @section('breadcrumb', 'Menu/CO-PO Relation')
 @section('content')
     <div class="container">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @elseif(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div id="alertMessage" class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
         <div class="row d-flex justify-content-center mt-xl-0 mt-3">
             <div class="col-xl-6 col-12">
                 <div class="card">

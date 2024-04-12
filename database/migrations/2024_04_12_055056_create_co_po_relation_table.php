@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('co_po_relation', function (Blueprint $table) {
-            $table->id('mapping_id');
+            $table->id();
             $table->string('cid');
             $table->integer('batch');
             $table->string('CO')->nullable();
