@@ -174,7 +174,6 @@ footer{
 .sidear-nav li {
     padding: 0.6rem 1rem;
 }
-
 /* .was-validated .form-select:valid:not([multiple]):not([size]),
 .was-validated .form-select:valid:not([multiple])[size="1"],
 .form-select.is-valid:not([multiple]):not([size]),
@@ -190,6 +189,7 @@ max-width: 80px;
 }
 .custom-width tr td:hover{
     background-color: #c5c7c9;
+    /* background-color: #0b76e0; */
 }
 
 .custom-width tr td input[type="text"] {
