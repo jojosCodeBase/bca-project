@@ -317,4 +317,7 @@ class DashboardController extends Controller
         // return view('include.co_po_relation_table', compact('relation'));
         return view('include.co_po_relation_table', compact('courseId'));
     }
+    public function updateCoPoRelation(Request $r){
+        dd($r->all());
+    }
 }
