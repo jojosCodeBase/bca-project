@@ -126,101 +126,101 @@
                     <div class="modal-body">
                         <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th class="" style="width: 5px;">CA2313</th>
-                                    <th class="text-center">PO1</th>
-                                    <th class="text-center">PO2</th>
-                                    <th class="text-center">PO3</th>
-                                    <th class="text-center">PO4</th>
-                                    <th class="text-center">PO5</th>
-                                    <th class="text-center">PO6</th>
-                                    <th class="text-center">PO7</th>
-                                    <th class="text-center">PO8</th>
-                                    <th class="text-center">PO9</th>
-                                    <th class="text-center">PO10</th>
-                                    <th class="text-center">PO11</th>
-                                    <th class="text-center">PO12</th>
+                                    <th>PO1</th>
+                                    <th>PO2</th>
+                                    <th>PO3</th>
+                                    <th>PO4</th>
+                                    <th>PO5</th>
+                                    <th>PO6</th>
+                                    <th>PO7</th>
+                                    <th>PO8</th>
+                                    <th>PO9</th>
+                                    <th>PO10</th>
+                                    <th>PO11</th>
+                                    <th>PO12</th>
                                 </tr>
                             </thead>
                             <tbody class="custom-width">
-                                <tr>
+                                <tr class="text-center">
                                     <th class="">CO1</th>
-                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
                                 </tr>
 
-                                <tr>
+                                <tr class="text-center">
                                     <th class="">CO2</th>
-                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
                                 </tr>
 
-                                <tr>
+                                <tr class="text-center">
                                     <th class="">CO3</th>
-                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
                                 </tr>
 
-                                <tr>
+                                <tr class="text-center">
                                     <th class="">CO4</th>
-                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
                                 </tr>
 
-                                <tr>
+                                <tr class="text-center">
                                     <th class="">CO5</th>
-                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
                                 </tr>
 
                             </tbody>
