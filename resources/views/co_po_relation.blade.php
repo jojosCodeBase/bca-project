@@ -79,7 +79,7 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Upload CO/PO Relation Level</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Upload CO/PO Relation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -104,85 +104,85 @@
                         <tbody class="custom-width">
                             <tr>
                                 <th class="">CO1</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po1" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po2" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po3" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po4" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po5" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po6" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po7" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po8" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po9" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po10" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po11" class="#"></td>
+                                <td class="text-center"><input type="text" name="co1_po12" class="#"></td>
                             </tr>
 
                             <tr>
                                 <th class="">CO2</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po1" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po2" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po3" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po4" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po5" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po6" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po7" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po8" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po9" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po10" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po11" class="#"></td>
+                                <td class="text-center"><input type="text" name="co2_po12" class="#"></td>
                             </tr>
 
                             <tr>
                                 <th class="">CO3</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po1" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po2" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po3" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po4" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po5" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po6" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po7" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po8" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po9" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po10" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po11" class="#"></td>
+                                <td class="text-center"><input type="text" name="co3_po12" class="#"></td>
                             </tr>
 
                             <tr>
-                                <th class="">CO3</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <th class="">CO4</th>
+                                <td class="text-center"><input type="text" name="co4_po1" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po2" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po3" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po4" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po5" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po6" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po7" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po8" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po9" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po10" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po11" class="#"></td>
+                                <td class="text-center"><input type="text" name="co4_po12" class="#"></td>
                             </tr>
 
                             <tr>
                                 <th class="">CO5</th>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
-                                <td class="text-center"><input type="text" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po1" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po2" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po3" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po4" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po5" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po6" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po7" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po8" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po9" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po10" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po11" class="#"></td>
+                                <td class="text-center"><input type="text" name="co5_po12" class="#"></td>
                             </tr>
 
-                            <tr>
+                            {{-- <tr>
                                 <th class="">Average CO</th>
                                 <td class="text-center">1</td>
                                 <td class="text-center">1</td>
@@ -196,14 +196,14 @@
                                 <td class="text-center">1</td>
                                 <td class="text-center">1</td>
                                 <td class="text-center">1</td>
-                            </tr>
+                            </tr> --}}
 
-                            <tr>
+                            {{-- <tr>
                                 <th class="">CO Attainment</th>
                                 <td class="text-center" colspan="12">1</td>
-                            </tr>
+                            </tr> --}}
 
-                            <tr>
+                            {{-- <tr>
                                 <th class="">PO Attainment</th>
                                 <td class="text-center">1</td>
                                 <td class="text-center">1</td>
@@ -217,9 +217,10 @@
                                 <td class="text-center">1</td>
                                 <td class="text-center">1</td>
                                 <td class="text-center">1</td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
+                    <p class=text-danger>Note : If there is no relation between CO & PO then leave the box empty. </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
