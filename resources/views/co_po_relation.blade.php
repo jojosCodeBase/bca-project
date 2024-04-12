@@ -145,120 +145,20 @@
                             <tbody class="custom-width">
                                 <tr>
                                     <th class="">CO1</th>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
+                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
                                 </tr>
 
-                                <tr>
-                                    <th class="">CO2</th>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                </tr>
-
-                                <tr>
-                                    <th class="">CO3</th>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                </tr>
-
-                                <tr>
-                                    <th class="">CO3</th>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                </tr>
-
-                                <tr>
-                                    <th class="">CO5</th>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                    <td class="text-center"><input type="text" class="#"></td>
-                                </tr>
-
-                                <tr>
-                                    <th class="">Average CO</th>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                </tr>
-
-                                <tr>
-                                    <th class="">CO Attainment</th>
-                                    <td class="text-center" colspan="12">1</td>
-                                </tr>
-
-                                <tr>
-                                    <th class="">PO Attainment</th>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
