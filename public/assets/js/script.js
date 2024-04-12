@@ -185,3 +185,12 @@ function restrictInput(event) {
 
 // javaScript for Alphabet restiction end
 
+// javaScript for Sidebar Toggle start
+
+// const sidebarToggle = document.querySelector("#sidebar-toggle");
+// sidebarToggle.addEventListener("click",function(){
+//   document.querySelector("#sidebar").classList.toggle("collapsed");
+// })
+// javaScript for Sidebar Toggle start
+
+

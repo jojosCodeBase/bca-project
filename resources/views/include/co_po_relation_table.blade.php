@@ -1,7 +1,7 @@
 <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
     <thead>
         <tr>
-            <th class="" style="width: 5px;"></th>
+            <th class="" style="width: 5px;">CA1601</th>
             <th class="text-center">PO1</th>
             <th class="text-center">PO2</th>
             <th class="text-center">PO3</th>

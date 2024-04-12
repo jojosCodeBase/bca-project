@@ -60,11 +60,110 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">View CO/PO Relation Level</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">View CO/PO Relation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @include('include/co_po_relation_table')
+                    <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
+                        <thead>
+                            <tr>
+                                <th class="" style="width: 5px;">CA1601</th>
+                                <th class="text-center">PO1</th>
+                                <th class="text-center">PO2</th>
+                                <th class="text-center">PO3</th>
+                                <th class="text-center">PO4</th>
+                                <th class="text-center">PO5</th>
+                                <th class="text-center">PO6</th>
+                                <th class="text-center">PO7</th>
+                                <th class="text-center">PO8</th>
+                                <th class="text-center">PO9</th>
+                                <th class="text-center">PO10</th>
+                                <th class="text-center">PO11</th>
+                                <th class="text-center">PO12</th>
+                            </tr>
+                        </thead>
+                        <tbody class="custom-width">
+                            <tr>
+                                <th class="">CO1</th>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                            </tr>
+                    
+                            <tr>
+                                <th class="">CO2</th>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                            </tr>
+                    
+                            <tr>
+                                <th class="">CO3</th>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                            </tr>
+                    
+                            <tr>
+                                <th class="">CO3</th>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                            </tr>
+                    
+                            <tr>
+                                <th class="">CO5</th>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

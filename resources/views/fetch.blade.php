@@ -2,14 +2,14 @@
 @section('title', 'Fetch')
 @section('breadcrumb', 'Menu / Fetch')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         @if (session('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
             </div>
         @elseif(session('success'))
             <div class="alert alert-success">
-                {{ session('success') }}
+                {{ session(' success') }}
             </div>
         @endif
         @if ($errors->any())
