@@ -42,7 +42,7 @@
                                             <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0 modelViewBtn"
                                                 data-bs-toggle="modal" data-bs-target="#viewCOPOModal"><i
                                                     class="bi bi-eye-fill"></i></button>
-                                            <button class="btn btn-warning " data-bs-toggle="modal"
+                                            <button class="btn btn-warning coPoUpdateBtn" data-bs-toggle="modal"
                                                 data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
                                         </td>
                                     </tr>
@@ -61,7 +61,7 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">View CO/PO Relation Level</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">View CO/PO Relation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -83,26 +83,26 @@
                                 <th class="text-center">PO12</th>
                             </tr>
                         </thead>
-                        <tbody class="custom-width">
-                            @foreach ($relation as $r)
-                                <tr>
-                                    <th class="">{{ $r['CO'] }}</th>
-                                    <td class="text-center">{{ $r['PO1'] }}</td>
-                                    <td class="text-center">{{ $r['PO2'] }}</td>
-                                    <td class="text-center">{{ $r['PO3'] }}</td>
-                                    <td class="text-center">{{ $r['PO4'] }}</td>
-                                    <td class="text-center">{{ $r['PO5'] }}</td>
-                                    <td class="text-center">{{ $r['PO6'] }}</td>
-                                    <td class="text-center">{{ $r['PO7'] }}</td>
-                                    <td class="text-center">{{ $r['PO8'] }}</td>
-                                    <td class="text-center">{{ $r['PO9'] }}</td>
-                                    <td class="text-center">{{ $r['PO10'] }}</td>
-                                    <td class="text-center">{{ $r['PO11'] }}</td>
-                                    <td class="text-center">{{ $r['PO12'] }}</td>
-                                </tr>
-                            @endforeach
+                        <tbody class="custom-width coPoRelation">
                         </tbody>
                     </table>
+                    {{-- @foreach ($relation as $r)
+                        <tr>
+                            <th class="">{{ $r['CO'] }}</th>
+                            <td class="text-center">{{ $r['PO1'] }}</td>
+                            <td class="text-center">{{ $r['PO2'] }}</td>
+                            <td class="text-center">{{ $r['PO3'] }}</td>
+                            <td class="text-center">{{ $r['PO4'] }}</td>
+                            <td class="text-center">{{ $r['PO5'] }}</td>
+                            <td class="text-center">{{ $r['PO6'] }}</td>
+                            <td class="text-center">{{ $r['PO7'] }}</td>
+                            <td class="text-center">{{ $r['PO8'] }}</td>
+                            <td class="text-center">{{ $r['PO9'] }}</td>
+                            <td class="text-center">{{ $r['PO10'] }}</td>
+                            <td class="text-center">{{ $r['PO11'] }}</td>
+                            <td class="text-center">{{ $r['PO12'] }}</td>
+                        </tr>
+                    @endforeach --}}
 
                 </div>
                 <div class="modal-footer">
@@ -118,11 +118,13 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Upload CO/PO Relation Level</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Upload CO/PO Relation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('update-co-po-relation') }}" method="POST">
                     @csrf
+                    <input type="text" name="courseId" value="{{ $cid }}" hidden>
+                    <input type="text" name="batch" value="{{ $batch }}" hidden>
                     <div class="modal-body">
                         <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
                             <thead>
@@ -143,23 +145,36 @@
                                 </tr>
                             </thead>
                             <tbody class="custom-width">
-                                <tr>
-                                    <th class="">CO1</th>
-                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
-                                </tr>
-
                             </tbody>
+                            {{-- @foreach ($relation as $r)
+                                <tr>
+                                    <th class="">{{ $r['CO'] }}</th>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO1]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO2]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO3]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO4]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO5]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO6]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO7]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO8]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO9]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO10]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO11]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO12]"
+                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                </tr>
+                            @endforeach --}}
                         </table>
                     </div>
                     <div class="modal-footer">
@@ -177,12 +192,72 @@
     <script>
         $('.modelViewBtn').click(function() {
             var courseId = $(this).closest('tr').find('.courseId').data('course-id');
+            // console.log(courseId);
             $.ajax({
                 url: "/get_CO_PO_Relation/" + courseId,
                 type: 'GET',
-                data: json,
+                dataType: "json",
                 success: function(response) {
-                    console.log(response());
+                    // console.log(response);
+                    console.log(response[0]);
+                    $('.custom-width').empty();
+
+                    // Iterate through the response data and add rows to the table
+                    $.each(response, function(index, item) {
+                        var row = $('<tr>');
+                        row.append($('<th>').text(item['CO'])); // Add Course ID cell
+
+                        // Add PO cells
+                        for (var i = 1; i <= 12; i++) {
+                            var poValue = item['PO' + i] ||
+                                ''; // Get PO value or empty string if null
+                            row.append($('<td>').addClass('text-center').text(poValue));
+                        }
+
+                        // Append the row to the table body
+                        $('.custom-width').append(row);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching details:', error);
+                }
+            });
+        });
+
+        $('.coPoUpdateBtn').click(function() {
+            var courseId = $(this).closest('tr').find('.courseId').data('course-id');
+            console.log(courseId);
+            $.ajax({
+                url: "/get_CO_PO_Relation/" + courseId,
+                type: 'GET',
+                dataType: "json",
+                success: function(response) {
+                    $('.custom-width').empty();
+                    $.each(response, function(index, item) {
+                        // Create a new row for each CO-PO relation
+                        var row = $('<tr>');
+
+                        // Add CO cell
+                        row.append($('<th>').addClass('text-center').text(item.CO));
+
+                        // Add input fields for POs
+                        for (var i = 1; i <= 12; i++) {
+                            var inputField = $('<input>').attr({
+                                type: 'text',
+                                name: item.CO + '[PO' + i + ']',
+                                class: 'text-center',
+                                value: item['PO' +
+                                    i
+                                ], // Populate the 'value' attribute with the fetched data
+                                onkeypress: 'return restrictInput(event)'
+                            });
+                            var td = $('<td>').addClass('text-center').append(inputField);
+                            row.append(td);
+                        }
+
+                        // Append the row to the table body
+                        $('.custom-width').append(row);
+                    });
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching details:', error);

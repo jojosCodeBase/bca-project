@@ -154,14 +154,15 @@ class DashboardController extends Controller
         return view('co_attainment', ['data' => $data, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
     }
 
-    function getCOLevel($attainmentPercentage){
-        if($attainmentPercentage < 38)
+    function getCOLevel($attainmentPercentage)
+    {
+        if ($attainmentPercentage < 38)
             return 0;
-        elseif ($attainmentPercentage >=38 && $attainmentPercentage <=51)
+        elseif ($attainmentPercentage >= 38 && $attainmentPercentage <= 51)
             return 1;
-        elseif($attainmentPercentage >= 52 && $attainmentPercentage <= 72)
+        elseif ($attainmentPercentage >= 52 && $attainmentPercentage <= 72)
             return 2;
-        elseif($attainmentPercentage >=73)
+        elseif ($attainmentPercentage >= 73)
             return 3;
     }
     public function getFinalCOAttainment($cid, $batch)
@@ -305,22 +306,67 @@ class DashboardController extends Controller
     }
     public function getPOAttainment($cid, $batch)
     {
-        dd($cid, $batch);
+        // dd($cid, $batch);
+        $cid = 'CA2313';
+        $batch = 2021;
+        $courses = Courses::all();
+        $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
+        return view('po_attainment', compact('relation', 'courses', 'cid', 'batch'));
     }
 
-    public function coPoRelation(){
+    public function coPoRelation()
+    {
+        $cid = 'CA2313';
+        $batch = 2021;
         $courses = Courses::all();
-        $relation = CoPoRelation::where('cid', 'CA2313')->where('batch', 2021)->get();
-        return view('co_po_relation', compact('relation', 'courses'));
+        $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
+        return view('co_po_relation', compact('relation', 'courses', 'cid', 'batch'));
     }
     // ajax requests
-    public function getCoPoRelation($courseId){
-        // $relation = CO_PO_Relation::where('cid', $courseId)->first();
-        // return view('include.co_po_relation_table', compact('relation'));
-        // $relation = CoPoRelation::where('cid', 'CA2313')->where('batch', 2021)->first();
-        // return view('co_po_relation', compact('relation'));
+    public function getCoPoRelation($courseId)
+    {
+        return response()->json(CoPoRelation::where('cid', $courseId)->get());
     }
-    public function updateCoPoRelation(Request $r){
-        dd($r->all());
+    public function updateCoPoRelation(Request $r)
+    {
+        // add validation
+
+        $COArrays = [
+            'CO1' => $r->input('CO1'),
+            'CO2' => $r->input('CO2'),
+            'CO3' => $r->input('CO3'),
+            'CO4' => $r->input('CO4'),
+            'CO5' => $r->input('CO5'),
+        ];
+
+        $data = [];
+        $flag = true;
+        foreach ($COArrays as $key => $CO) {
+            $data = [
+                'cid' => $r->courseId,
+                'batch' => $r->batch,
+                'CO' => $key
+            ];
+            for ($i = 1; $i <= 12; $i++) {
+                $data["PO$i"] = $CO["PO$i"] ?? null;
+            }
+
+            try{
+                CoPoRelation::create($data);
+                $data = [];
+                $flag = true;
+            }
+            catch(\Exception $e){
+                dd($e);
+                $flag = false;
+                break;
+            }
+        }
+
+        if($flag){
+            echo "Success";
+        }else{
+            echo "Some error occured";
+        }
     }
 }

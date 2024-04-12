@@ -16,6 +16,7 @@
                     <th>Total Avg Int</th>
                     <th style="width: 300px;">Grand Total(50% int + 50% End term)</th>
                 </thead>
+                <tbody class="text-center">
                 @php
                     $q1 = json_decode($co_attainment['q1'], true);
                     $s1 = json_decode($co_attainment['s1'], true);
@@ -39,8 +40,6 @@
                     $totalAvg = 0;
 
                 @endphp
-                {{-- @dump() --}}
-                <tbody class="text-center">
                     <tr>
                         <td>CO1</td>
                         @foreach ($examArray as $exam)
