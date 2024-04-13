@@ -24,7 +24,7 @@
                 <form action="{{ route('admin-fetch-data') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row">
-                        <h4 class="py-3 text-muted">Fetch Data</h4>
+                        <h4 class="text-muted">Fetch Data</h4>
                         <div class="col-xl-3 col-lg-3 col-sm-12 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>

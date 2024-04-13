@@ -155,10 +155,10 @@ footer{
 }
 
 /* Remove radius from select & form */
-.form-select,
+/* .form-select,
 .form-control {
     border-radius: 0px;
-}
+} */
 
 .sidear-nav .active {
     border-left: 4px solid rgb(32, 3, 255);
