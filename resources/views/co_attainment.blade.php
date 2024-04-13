@@ -13,6 +13,7 @@
                         <th colspan="4">Quiz 2</th>
                         <th colspan="4">Sessional 2</th>
                         <th colspan="6">Assignment</th>
+                        <th colspan="6">Ens Semester</th>
                         <th rowspan="2">Total</th>
                     </tr>
                     <tr>
@@ -22,6 +23,7 @@
                             $q2 = json_decode($data[0]['q2'], true);
                             $s2 = json_decode($data[0]['s2'], true);
                             $assignment = json_decode($data[0]['assignment'], true);
+                            $end_sem = json_decode($data[0]['end_sem'], true);
                         @endphp
 
                         @foreach ($q1 as $key => $marks)
@@ -45,6 +47,11 @@
                             @endif
                         @endforeach
                         @foreach ($assignment as $key => $marks)
+                            @if (!is_null($marks))
+                                <th>{{ $key }}</th>
+                            @endif
+                        @endforeach
+                        @foreach ($end_sem as $key => $marks)
                             @if (!is_null($marks))
                                 <th>{{ $key }}</th>
                             @endif
@@ -121,6 +128,19 @@
                                 @endif
                             @endforeach
 
+                            @php
+                                $end_sem = json_decode($x['end_sem'], true);
+                            @endphp
+
+                            @foreach ($end_sem as $marks)
+                                @if (!is_null($marks))
+                                    <td>{{ $marks }}</td>
+                                    @php
+                                        $marks_array[] = $marks;
+                                    @endphp
+                                @endif
+                            @endforeach
+
                             <td>{{ $x['total'] }}</td>
 
                             @php
@@ -188,6 +208,19 @@
                             @endphp
 
                             @foreach ($assignment as $marks)
+                                @if (!is_null($marks))
+                                    <td>{{ $marks }}</td>
+                                    @php
+                                        $target_marks_array[$count++] = (60 / 100) * $marks;
+                                    @endphp
+                                @endif
+                            @endforeach
+
+                            @php
+                                $end_sem = json_decode($x['end_sem'], true);
+                            @endphp
+
+                            @foreach ($end_sem as $marks)
                                 @if (!is_null($marks))
                                     <td>{{ $marks }}</td>
                                     @php

@@ -16,6 +16,7 @@
                     <th>Total Avg Int</th>
                     <th style="width: 300px;">Grand Total(50% int + 50% End term)</th>
                 </thead>
+                <tbody class="text-center">
                 @php
                     $q1 = json_decode($co_attainment['q1'], true);
                     $s1 = json_decode($co_attainment['s1'], true);
@@ -39,12 +40,10 @@
                     $totalAvg = 0;
 
                 @endphp
-                {{-- @dump() --}}
-                <tbody class="text-center">
                     <tr>
                         <td>CO1</td>
                         @foreach ($examArray as $exam)
-                            <td>{{ $exam['CO1'] }}</td>
+                            <td>{{ $exam['CO1'] == NULL ? " " : $exam['CO1'] }}</td>
                             @php
                                 if (!is_null($exam['CO1']) && $exam != $end_sem) {
                                     $totalAvg = $totalAvg + $exam['CO1'];
@@ -68,7 +67,7 @@
                     <tr>
                         <td>CO2</td>
                         @foreach ($examArray as $exam)
-                            <td>{{ $exam['CO2'] }}</td>
+                            <td>{{ $exam['CO2'] == NULL ? " " : $exam['CO2'] }}</td>
                             @php
                                 if (!is_null($exam['CO2']) && $exam != $end_sem) {
                                     $totalAvg = $totalAvg + $exam['CO2'];
@@ -92,7 +91,7 @@
                     <tr>
                         <td>CO3</td>
                         @foreach ($examArray as $exam)
-                            <td>{{ $exam['CO3'] }}</td>
+                            <td>{{ $exam['CO3'] == NULL ? " " : $exam['CO3'] }}</td>
                             @php
                                 if (!is_null($exam['CO3']) && $exam != $end_sem) {
                                     $totalAvg = $totalAvg + $exam['CO3'];
@@ -116,7 +115,7 @@
                     <tr>
                         <td>CO4</td>
                         @foreach ($examArray as $exam)
-                            <td>{{ $exam['CO4'] }}</td>
+                            <td>{{ $exam['CO4'] == NULL ? " " : $exam['CO4'] }}</td>
                             @php
                                 if (!is_null($exam['CO4']) && $exam != $end_sem) {
                                     $totalAvg = $totalAvg + $exam['CO4'];
@@ -140,7 +139,7 @@
                     <tr>
                         <td>CO5</td>
                         @foreach ($examArray as $exam)
-                            <td>{{ $exam['CO5'] }}</td>
+                            <td>{{ $exam['CO5'] == NULL ? " " : $exam['CO5'] }}</td>
                             @php
                                 if (!is_null($exam['CO5']) && $exam != $end_sem) {
                                     $totalAvg = $totalAvg + $exam['CO5'];

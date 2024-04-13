@@ -38,7 +38,6 @@ $(document).ready(function () {
     $('.facultyViewButton').on('click', function () {
         var fid = $(this).closest('tr').find('.facultyId').text();
         getFacultyInfo(fid, function(response){
-            // console.log(response);
             $('#faculty-view-id').text(response.regno);
             $('#faculty-view-email').text(response.email);
             $('#faculty-view-name').text(response.name);
@@ -47,7 +46,14 @@ $(document).ready(function () {
 
     });
     $('#editFacultyBtn').on('click', function () {
-        alert('edit');
+        var fid = $(this).closest('tr').find('.facultyId').text();
+
+        getFacultyInfo(fid, function(response){
+            $('#faculty-edit-id').val(response.regno);
+            $('#faculty-edit-email').val(response.email);
+            $('#faculty-edit-name').val(response.name);
+            $('#facultyEditModal').modal('show');
+        });
     });
     $('#deleteFacultyBtn').on('click', () => {
         alert('delete');
@@ -174,7 +180,7 @@ function restrictInput(event) {
     // Get the key code of the pressed key
     let keyCode = event.keyCode || event.which;
     // Allow only alphanumeric characters
-    let allowedChars = /[0-9]/;
+    let allowedChars = /[1-3]/;
     let keyChar = String.fromCharCode(keyCode);
     if (!allowedChars.test(keyChar)) {
         // If the pressed key is not alphanumeric, prevent the default action (typing)
