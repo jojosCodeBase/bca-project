@@ -21,7 +21,7 @@
         @endif
         <div class="row d-flex justify-content-center mt-xl-0 mt-3">
             <div class="col-xl-6 col-12">
-                <div class="card">
+                <div class="card pe-3">
                     <div class="card-body">
                         <form action="">
                             <div class="row">
@@ -144,59 +144,46 @@
                     <div class="modal-body">
                         <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th class="" style="width: 5px;">CA2313</th>
-                                    <th class="text-center">PO1</th>
-                                    <th class="text-center">PO2</th>
-                                    <th class="text-center">PO3</th>
-                                    <th class="text-center">PO4</th>
-                                    <th class="text-center">PO5</th>
-                                    <th class="text-center">PO6</th>
-                                    <th class="text-center">PO7</th>
-                                    <th class="text-center">PO8</th>
-                                    <th class="text-center">PO9</th>
-                                    <th class="text-center">PO10</th>
-                                    <th class="text-center">PO11</th>
-                                    <th class="text-center">PO12</th>
+                                    <th>PO1</th>
+                                    <th>PO2</th>
+                                    <th>PO3</th>
+                                    <th>PO4</th>
+                                    <th>PO5</th>
+                                    <th>PO6</th>
+                                    <th>PO7</th>
+                                    <th>PO8</th>
+                                    <th>PO9</th>
+                                    <th>PO10</th>
+                                    <th>PO11</th>
+                                    <th>PO12</th>
                                 </tr>
                             </thead>
                             <tbody class="custom-width">
-                            </tbody>
-                            {{-- @foreach ($relation as $r)
                                 <tr>
-                                    <th class="">{{ $r['CO'] }}</th>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO1]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO2]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO3]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO4]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO5]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO6]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO7]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO8]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO9]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO10]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO11]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="{{ $r['CO'] }}[PO12]"
-                                            class="#" onkeypress="return restrictInput(event)"></td>
+                                    <th class="">CO1</th>
+                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
                                 </tr>
                             @endforeach --}}
                         </table>
+                        <p style="color:red;">Note : If there is no relation between CO & PO then leave the box empty.<br> Allowed inputs:  1, 2, 3 </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
+                    </div>  
                 </form>
             </div>
         </div>

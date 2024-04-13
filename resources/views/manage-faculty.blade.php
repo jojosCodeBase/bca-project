@@ -1,5 +1,5 @@
 @extends('layouts/main')
-@section('title', 'CO-PO Relation')
+@section('title', 'Manage-Faculty')
 @section('breadcrumb', 'Faculty / Manage Faculty')
 @section('content')
     <div class="container">
@@ -28,7 +28,7 @@
                     <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
                             <div class="col-xl-6 col-10 pe-0">
-                                <input type="search" name="" id="" placeholder="search by id or name"
+                                <input type="search" name="" id="" placeholder="Search by id or name"
                                     class="form-control">
                             </div>
                             <div class="col-xl-1 col-2">
@@ -44,54 +44,55 @@
                         </button>
                     </div>
                 </div>
-
-                <table class="table table-hover my-4">
-                    <thead>
-                        <tr>
-                            <th>Sl.No.</th>
-                            <th>Faculty ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach ($faculty as $f)
+                <div class="table-responsive">
+                    <table class="table table-hover my-4">
+                        <thead>
                             <tr>
-                                <td>1</td>
-                                <td class="facultyId">{{ $f['regno'] }}</td>
-                                <td>{{ $f['name'] }}</td>
-                                <td>{{ $f['email'] }}</td>
-                                <td>
-                                    <div class="more-btn">
-                                        <button class="dropdown" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="bi bi-three-dots fs-4"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <button class="dropdown-item facultyViewButton" id="viewFacultyBtn"
-                                                    type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#facultyViewModal">View</button>
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item facultyEditButton" type="button"
-                                                    id="editFacultyBtn" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#facultyEditModal">Edit</button>
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item facultyDeleteButton" id="deleteFacultyBtn"
-                                                    type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#facultyDeleteModal">Delete</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                <th>Sl.No.</th>
+                                <th>Faculty ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Action</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($faculty as $f)
+                                <tr>
+                                    <td>1</td>
+                                    <td class="facultyId">{{ $f['regno'] }}</td>
+                                    <td>{{ $f['name'] }}</td>
+                                    <td>{{ $f['email'] }}</td>
+                                    <td>
+                                        <div class="more-btn">
+                                            <button class="dropdown" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="bi bi-three-dots fs-4"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <button class="dropdown-item facultyViewButton" id="viewFacultyBtn"
+                                                        type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#facultyViewModal">View</button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item facultyEditButton" type="button"
+                                                        id="editFacultyBtn" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#facultyEditModal">Edit</button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item facultyDeleteButton" id="deleteFacultyBtn"
+                                                        type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#facultyDeleteModal">Delete</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

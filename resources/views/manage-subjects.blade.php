@@ -190,7 +190,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="modal-footer  my-1 d-flex justify-content-end pe-5">
+                <div class="modal-footer  my-1 d-flex justify-content-end">
                     <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Update</button>
                 </div>
