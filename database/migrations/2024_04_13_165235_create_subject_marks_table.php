@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ca2313', function (Blueprint $table) {
+        Schema::create('subject_marks', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('regno')->unsigned()->unique()->length(9);
+            $table->string('cid');
+            $table->bigInteger('batch');
+            $table->bigInteger('regno');
+
+            // Define unique key constraint
+            $table->unique(['cid', 'batch', 'regno']);
             $table->json('q1'); // Total length 5 with 2 json places
             $table->json('s1');
             $table->json('q2'); // Total length 5 with 2 json places
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ca2313');
+        Schema::dropIfExists('subject_marks');
     }
 };

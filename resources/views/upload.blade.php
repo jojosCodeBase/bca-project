@@ -23,12 +23,10 @@
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>
-                                <option value="">2019</option>
-                                <option value="">2020</option>
-                                <option value="">2021</option>
-                                <option value="">2022</option>
-                                <option value="">2023</option>
-                                <option value="">2024</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please select Batch
@@ -38,8 +36,8 @@
                         <div class="col-xxl-3 col-xl-3 col-lg-12 col-md-3 col-12 my-3">
                             <select name="course" id="course" class="form-select" required>
                                 <option selected disabled value="">Select course</option>
-                                <option value="bca">BCA</option>
-                                <option value="mca">MCA</option>
+                                <option value="BCA">BCA</option>
+                                <option value="MCA">MCA</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please select Course
@@ -47,17 +45,28 @@
                         </div>
 
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
-                            <select name="year" id="years" class="form-select" required>
+                            <select name="year" id="year" class="form-select" required>
                                 <option selected disabled value="">Select year</option>
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
                             </select>
+                            {{-- <select name="year" id="year" class="form-select" required>
+                                <option selected disabled value="">Select year</option>
+                            </select> --}}
                             <div class="invalid-feedback">
                                 Please select Year
                             </div>
                         </div>
 
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
-                            <select name="year" id="semester" class="form-select" required>
+                            {{-- <select name="semester" id="semester" class="form-select" required>
                                 <option selected disabled value="" disabled>Select semester</option>
+                            </select> --}}
+                            <select name="semester" id="semester" class="form-select" required>
+                                <option selected disabled value="" disabled>Select semester</option>
+                                <option value="odd">Odd</option>
+                                <option value="even">Even</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please select Semester
@@ -65,8 +74,14 @@
                         </div>
 
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
-                            <select name="year" id="subjectId" class="form-select" required>
+                            {{-- <select name="year" id="subjectId" class="form-select" required>
                                 <option value="" selected disabled>Select subject code</option>
+                            </select> --}}
+                            <select name="subjectId" id="subjectId" class="form-select" required>
+                                <option value="" selected disabled>Select subject code</option>
+                                @foreach ($courses as $c)
+                                    <option value="{{ $c['cid'] }}">{{ $c['cid'] }} - {{ $c['cname'] }}</option>
+                                @endforeach
                             </select>
                             <div class="invalid-feedback">
                                 Please select Subject-Id

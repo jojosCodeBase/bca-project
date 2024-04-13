@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CoPoRelation;
 use Exception;
 use App\Models\User;
 use App\Models\Courses;
 use App\Models\MaxMarksCO;
 use App\Models\ExcelUpload;
 use App\Models\CoAttainment;
+use App\Models\CoPoRelation;
+use App\Models\SubjectMarks;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
@@ -37,6 +38,11 @@ class DashboardController extends Controller
         $courses = Courses::orderBy('cname', 'asc')->get();
         return view('fetch', ['courses' => $courses]);
     }
+    public function uploadView()
+    {
+        $courses = Courses::orderBy('cname', 'asc')->get();
+        return view('upload', ['courses' => $courses]);
+    }
     public function fetchData(Request $r)
     {
         dd($r->all());
@@ -50,9 +56,9 @@ class DashboardController extends Controller
         ]);
 
         if ($courses)
-            return back()->with('success', 'Subject created successfully !');
+            return back()->with('success', 'Subject added successfully !');
         else
-            return back()->with('error', 'Some error occured in creating subject !');
+            return back()->with('error', 'Some error occured in adding subject !');
     }
 
     public function tables()
@@ -140,10 +146,8 @@ class DashboardController extends Controller
 
     public function getCOAttainment($cid, $batch)
     {
-        $subject = "App\\Models\\" . $cid;
-
         // Attempt to retrieve data from the specified model
-        $data = app($subject)->where('regno', 'like', '%' . $batch . '%')->get();
+        $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->get();
 
         if ($data->isEmpty())
             return back()->with('error', 'No details found for the specified details');
@@ -167,156 +171,11 @@ class DashboardController extends Controller
     }
     public function getFinalCOAttainment($cid, $batch)
     {
-        $subject = "App\\Models\\" . $cid;
-
-        // Attempt to retrieve data from the specified model
-        $data = app($subject)->where('regno', 'like', '%' . $batch . '%')->get();
-
-        if ($data->isEmpty())
-            return back()->with('error', 'No details found for the specified details');
-
-        // Retrieve max marks
-        $max_marks = MaxMarksCO::where('cid', $cid)->first();
-
-        // echo "<pre>";
-
-        $examArray = ['q1', 's1', 'q2', 's2', 'assignment', 'end_sem'];
-        $target_marks = [];
-
-        for ($i = 0; $i < count($examArray); $i++) {
-            $marks = json_decode($max_marks[$examArray[$i]], true);
-            $copy_marks = $marks;
-
-            foreach ($copy_marks as $key => $x) {
-                if (!is_null($x)) {
-                    $copy_marks[$key] = (60 / 100) * $x;
-                }
-            }
-            $target_marks[$examArray[$i]] = $copy_marks;
-        }
-
-        // dd($target_marks);
-
-        // dd($data);
-
-        // print_r($target_marks);
-
-        // finding students > 60%
-        // foreach ($data as $d) {
-        //     // print_r($d['q1']);
-        //     break;
-        // }
-        // echo count($data);
-
-        $co_po = [
-            'CO1' => null,
-            'CO2' => null,
-            'CO3' => null,
-            'CO4' => null,
-            'CO5' => null,
-            'CO6' => null,
-            'Total' => null,
-        ];
-        $copy_co_po = [];
-        $target_marks_count = 0;
-        $marks_more_than_sixty_percent_array = [];
-        $co_attainment = [];
-
-        // print_r($target_marks);
-        $attainmentPercentage = [];
-        $attainmentPercentage_CO_PO = [];
-        $co_attainment_CO_PO = [];
-        $index = 0;
-
-        for ($i = 0; $i < count($target_marks); $i++) {
-            // here key is co1, co2, co3..
-            foreach ($co_po as $key => $v) {
-                // echo $key . '=>' . $v;
-                foreach ($data as $d) {
-                    $marks = json_decode($d[$examArray[$index]], true);
-
-                    if (is_null($marks[$key]) || $marks[$key] == "AB")
-                        continue;
-                    else {
-                        if ($marks[$key] >= $target_marks[$examArray[$index]][$key]) {
-                            $target_marks_count++;
-                        } else
-                            continue;
-                    }
-                }
-                // echo $target_marks_count . "<br>";
-
-                // store target marks count
-                $copy_co_po[$key] = $target_marks_count;
-
-                // calculate attainment percentage
-                $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
-                // break;
-
-                // calculate co attainment level
-                $co_attainment_CO_PO[$key] = $this->getCOLevel($attainmentPercentage_CO_PO[$key]);
-
-
-                // reset target_marks_count to 0 for counting next CO
-                $target_marks_count = 0;
-            }
-            // break;
-            // echo "<pre>";
-            // print_r($co_attainment_CO_PO);
-            // echo "</pre>";
-            // break;
-
-            // store the copy array to q1, s1, q2, respectively
-            $marks_more_than_sixty_percent_array[$examArray[$index]] = $copy_co_po;
-
-            // store the attainment percentage
-            $attainmentPercentage[$examArray[$index]] = $attainmentPercentage_CO_PO;
-
-            // store co attainment level
-            $co_attainment[$examArray[$index]] = $co_attainment_CO_PO;
-            $index++;
-
-        }
-
-        // dd($target_marks);
-
-        // adding co attainment to co attainment table
-        // $query = CoAttainment::create([
-        //     'cid' => $cid,
-        //     'batch' => $batch,
-        //     'q1' => json_encode($co_attainment['q1'], true),
-        //     's1' => json_encode($co_attainment['s1'], true),
-        //     'q2' => json_encode($co_attainment['q2'], true),
-        //     's2' => json_encode($co_attainment['s2'], true),
-        //     'assignment' => json_encode($co_attainment['assignment'], true),
-        //     'end_sem' => json_encode($co_attainment['end_sem'], true),
-        //     'total' => 0,
-        // ]);
-
-        // echo "<pre>";
-        //     echo $query;
-        // echo "</pre>";
-        // if($query){
-        //     dd('success');
-        // }else{
-        //     dd('failed');
-        // }
-
         $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
-        // dd($co_attainment);
-
-        // echo "<pre>";
-        // print_r($co_attainment);
-        // echo "</pre>";
-
-
         return view('final_co_attainment', ['co_attainment' => $co_attainment, 'subjectCode' => $cid, 'batch' => $batch]);
     }
     public function getPOAttainment($cid, $batch)
     {
-        // dd($cid, $batch);
-        $cid = 'CA2313';
-        $batch = 2021;
         $courses = Courses::all();
         $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
         return view('po_attainment', compact('relation', 'courses', 'cid', 'batch'));
@@ -324,16 +183,21 @@ class DashboardController extends Controller
 
     public function coPoRelation()
     {
-        $cid = 'CA2313';
-        $batch = 2021;
         $courses = Courses::all();
-        $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
-        return view('co_po_relation', compact('relation', 'courses', 'cid', 'batch'));
+        $relation = CoPoRelation::all();
+        // $relation = CoPoRelation::where('cid', $courseId)->get();
+        // return view('co_po_relation', compact('relation', 'courses', 'cid', 'batch'));
+        return view('co_po_relation', compact('relation', 'courses'));
     }
     // ajax requests
     public function getCoPoRelation($courseId)
     {
-        return response()->json(CoPoRelation::where('cid', $courseId)->get());
+        $relation = CoPoRelation::where('cid', $courseId)->get();
+        if($relation->isEmpty()){
+            return response()->json('notfound');
+        }else{
+            return response()->json($relation);
+        }
     }
     public function updateCoPoRelation(Request $r)
     {
@@ -352,7 +216,7 @@ class DashboardController extends Controller
         foreach ($COArrays as $key => $CO) {
             $data = [
                 'cid' => $r->courseId,
-                'batch' => $r->batch,
+                // 'batch' => $r->batch,
                 'CO' => $key
             ];
             for ($i = 1; $i <= 12; $i++) {
@@ -362,7 +226,8 @@ class DashboardController extends Controller
             // $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', 2021)->first();
 
             try{
-                $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', $r->batch)->where('CO', $key)->first();
+                // $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', $r->batch)->where('CO', $key)->first();
+                $relation = CoPoRelation::where('cid', $r->courseId)->where('CO', $key)->first();
                 if(is_null($relation)){
                     CoPoRelation::create($data);
                 }else{

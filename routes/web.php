@@ -43,9 +43,7 @@ Route::middleware('auth')->group(function () {
 
         Route::post('upload', [ExcelController::class, 'fileUpload'])->name('admin-file-upload');
 
-        Route::get('upload', function () {
-            return view('upload');
-        })->name('admin-upload');
+        Route::get('upload', [DashboardController::class, 'uploadView'])->name('admin-upload');
 
         Route::get('fetch', [DashboardController::class, 'fetchView'])->name('admin-fetch');
         Route::post('fetch', [ExcelController::class, 'readDbData'])->name('admin-fetch-data');

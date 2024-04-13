@@ -139,8 +139,8 @@
                 </div>
                 <form action="{{ route('update-co-po-relation') }}" method="POST">
                     @csrf
-                    <input type="text" name="courseId" value="{{ $cid }}" hidden>
-                    <input type="text" name="batch" value="{{ $batch }}" hidden>
+                    <input type="text" name="courseId" id="updateCourseId" hidden>
+                    {{-- <input type="text" name="batch" id="updateBatch" hidden> --}}
                     <div class="modal-body">
                         <table class="table table-bordered border-dark bg-secondary bg-opacity-25">
                             <thead>
@@ -160,30 +160,14 @@
                                     <th>PO12</th>
                                 </tr>
                             </thead>
-                            <tbody class="custom-width">
-                                <tr>
-                                    <th class="">CO1</th>
-                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
-                                </tr>
-                            @endforeach --}}
+                            <tbody class="custom-width"></tbody>
                         </table>
                         <p style="color:red;">Note : If there is no relation between CO & PO then leave the box empty.<br> Allowed inputs:  1, 2, 3 </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Update</button>
-                    </div>  
+                    </div>
                 </form>
             </div>
         </div>
@@ -195,14 +179,11 @@
     <script>
         $('.modelViewBtn').click(function() {
             var courseId = $(this).closest('tr').find('.courseId').data('course-id');
-            // console.log(courseId);
             $.ajax({
                 url: "/get_CO_PO_Relation/" + courseId,
                 type: 'GET',
                 dataType: "json",
                 success: function(response) {
-                    // console.log(response);
-                    console.log(response[0]);
                     $('.custom-width').empty();
 
                     // Iterate through the response data and add rows to the table
@@ -229,38 +210,67 @@
 
         $('.coPoUpdateBtn').click(function() {
             var courseId = $(this).closest('tr').find('.courseId').data('course-id');
-            console.log(courseId);
             $.ajax({
                 url: "/get_CO_PO_Relation/" + courseId,
                 type: 'GET',
                 dataType: "json",
                 success: function(response) {
-                    $('.custom-width').empty();
-                    $.each(response, function(index, item) {
-                        // Create a new row for each CO-PO relation
-                        var row = $('<tr>');
+                    if(response === "notfound"){
+                        $('.custom-width').empty();
+                        var co_array = ['CO1', 'CO2', 'CO3', 'CO4', 'CO5'];
+                        $.each(co_array, function(index, item) {
+                            // Create a new row for each CO-PO relation
+                            var row = $('<tr>');
 
-                        // Add CO cell
-                        row.append($('<th>').addClass('text-center').text(item.CO));
+                            // Add CO cell
+                            row.append($('<th>').addClass('text-center').text(co_array[index]));
 
-                        // Add input fields for POs
-                        for (var i = 1; i <= 12; i++) {
-                            var inputField = $('<input>').attr({
-                                type: 'text',
-                                name: item.CO + '[PO' + i + ']',
-                                class: 'text-center',
-                                value: item['PO' +
-                                    i
-                                ], // Populate the 'value' attribute with the fetched data
-                                onkeypress: 'return restrictInput(event)'
-                            });
-                            var td = $('<td>').addClass('text-center').append(inputField);
-                            row.append(td);
-                        }
+                            // Add input fields for POs
+                            for (var i = 1; i <= 12; i++) {
+                                var inputField = $('<input>').attr({
+                                    type: 'text',
+                                    name: co_array[index] + '[PO' + i + ']',
+                                    class: 'text-center',
+                                    // value: item['PO' + i],
+                                    // Populate the 'value' attribute with the fetched data
+                                    onkeypress: 'return restrictInput(event)'
+                                });
+                                var td = $('<td>').addClass('text-center').append(inputField);
+                                row.append(td);
+                            }
 
-                        // Append the row to the table body
-                        $('.custom-width').append(row);
-                    });
+                            // Append the row to the table body
+                            $('.custom-width').append(row);
+                        });
+                    }else{
+                        $('.custom-width').empty();
+                        $('#updateCourseId').val(response[0]['cid'])
+                        $.each(response, function(index, item) {
+                            // Create a new row for each CO-PO relation
+                            var row = $('<tr>');
+
+                            // Add CO cell
+                            row.append($('<th>').addClass('text-center').text(item.CO));
+
+                            // Add input fields for POs
+                            for (var i = 1; i <= 12; i++) {
+                                var inputField = $('<input>').attr({
+                                    type: 'text',
+                                    name: item.CO + '[PO' + i + ']',
+                                    class: 'text-center',
+                                    value: item['PO' +
+                                        i
+                                    ], // Populate the 'value' attribute with the fetched data
+                                    onkeypress: 'return restrictInput(event)'
+                                });
+                                var td = $('<td>').addClass('text-center').append(inputField);
+                                row.append(td);
+                            }
+
+                            // Append the row to the table body
+                            $('.custom-width').append(row);
+                        });
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching details:', error);

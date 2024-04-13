@@ -107,59 +107,60 @@ var optionValues = {
 };
 
 
-document.getElementById("course").addEventListener("change", function () {
-    var course = document.getElementById("course");
-    var years = document.getElementById("years");
-    var selectedValue = course.value;
+// document.getElementById("course").addEventListener("change", function () {
+//     alert('x');
+//     var course = document.getElementById("course");
+//     var years = document.getElementById("year");
+//     var selectedValue = course.value;
 
-    years.innerHTML = '<option value="" selected disabled>Select year</option>';
-    semester.innerHTML = '<option value="">Select semester</option>';
-    subjectId.innerHTML = '<option value="">Select subject</option>';
+//     years.innerHTML = '<option value="" selected disabled>Select year</option>';
+//     semester.innerHTML = '<option value="">Select semester</option>';
+//     subjectId.innerHTML = '<option value="">Select subject</option>';
 
-    for (var key in optionValues[selectedValue]) {
-        var optionElement = document.createElement("option");
-        optionElement.textContent = key;
-        optionElement.value = key;
-        years.appendChild(optionElement);
-    }
-});
+//     for (var key in optionValues[selectedValue]) {
+//         var optionElement = document.createElement("option");
+//         optionElement.textContent = key;
+//         optionElement.value = key;
+//         years.appendChild(optionElement);
+//     }
+// });
 
-document.getElementById("years").addEventListener("change", function () {
-    var years = document.getElementById("years");
-    var semester = document.getElementById("semester");
-    var selectedValue = years.value;
-    var course = document.getElementById("course");
-    var selectedFirstValue = course.value;
+// document.getElementById("year").addEventListener("change", function () {
+//     var years = document.getElementById("year");
+//     var semester = document.getElementById("semester");
+//     var selectedValue = years.value;
+//     var course = document.getElementById("course");
+//     var selectedFirstValue = course.value;
 
-    semester.innerHTML = '<option value="">Select semester</option>';
-    subjectId.innerHTML = '<option value="">Select subject</option>';
+//     semester.innerHTML = '<option value="">Select semester</option>';
+//     subjectId.innerHTML = '<option value="">Select subject</option>';
 
-    for (var key in optionValues[selectedFirstValue][selectedValue]) {
-        var optionElement = document.createElement("option");
-        optionElement.textContent = key;
-        optionElement.value = key;
-        semester.appendChild(optionElement);
-    }
-});
+//     for (var key in optionValues[selectedFirstValue][selectedValue]) {
+//         var optionElement = document.createElement("option");
+//         optionElement.textContent = key;
+//         optionElement.value = key;
+//         semester.appendChild(optionElement);
+//     }
+// });
 
-document.getElementById("semester").addEventListener("change", function () {
-    var semester = document.getElementById("semester");
-    var subjectId = document.getElementById("subjectId");
-    var selectedValue = semester.value;
-    var course = document.getElementById("course");
-    var years = document.getElementById("years");
-    var selectedFirstValue = course.value;
-    var selectedSecondValue = years.value;
+// document.getElementById("semester").addEventListener("change", function () {
+//     var semester = document.getElementById("semester");
+//     var subjectId = document.getElementById("subjectId");
+//     var selectedValue = semester.value;
+//     var course = document.getElementById("course");
+//     var years = document.getElementById("year");
+//     var selectedFirstValue = course.value;
+//     var selectedSecondValue = years.value;
 
-    subjectId.innerHTML = '<option value="">Select subject</option>';
+//     subjectId.innerHTML = '<option value="">Select subject</option>';
 
-    optionValues[selectedFirstValue][selectedSecondValue][selectedValue].forEach(function (option) {
-        var optionElement = document.createElement("option");
-        optionElement.textContent = option;
-        optionElement.value = option;
-        subjectId.appendChild(optionElement);
-    });
-});
+//     optionValues[selectedFirstValue][selectedSecondValue][selectedValue].forEach(function (option) {
+//         var optionElement = document.createElement("option");
+//         optionElement.textContent = option;
+//         optionElement.value = option;
+//         subjectId.appendChild(optionElement);
+//     });
+// });
 
 // javaScript for number restiction start
 

@@ -36,7 +36,12 @@
                             if ($count == 0) {
                                 $avgCoArray[] = $total;
                             } else {
-                                $avgCoArray[] = number_format(($total / $count), 2);
+                                if(floor($total/$count) != ($total/$count)){
+                                    $formattedMarks = number_format($total/$count, 1);
+                                }else{
+                                    $formattedMarks = number_format($total/$count, 0);
+                                }
+                                $avgCoArray[] = $formattedMarks;
                             }
                             $total = 0;
                             $count = 0;
@@ -71,12 +76,17 @@
                     </tr>
                     @php
                         $co_attainment = 1.5;
-                        echo '<pre>';
+                        // echo '<pre>';
                         // print_r($avgCoArray);
                         foreach ($avgCoArray as $value) {
-                            $poAttainmentArray[] = number_format(($value / 3) * $co_attainment, 2);
+                            if(floor(($value/3) * $co_attainment) != (($value/3) * $co_attainment)){
+                                $formattedMarks = number_format(($value / 3) * $co_attainment, 1);
+                            }else{
+                                $formattedMarks = number_format(($value / 3) * $co_attainment, 0);
+                            }
+                            $poAttainmentArray[] = $formattedMarks;
                         }
-                        echo '</pre>';
+                        // echo '</pre>';
                         // print_r($poAttainmentArray);
                     @endphp
                     <tr>
