@@ -36,7 +36,7 @@
                             if ($count == 0) {
                                 $avgCoArray[] = $total;
                             } else {
-                                $avgCoArray[] = $total / $count;
+                                $avgCoArray[] = number_format(($total / $count), 2);
                             }
                             $total = 0;
                             $count = 0;
@@ -67,14 +67,14 @@
                     </tr>
                     <tr>
                         <th class="text-start">CO Attainment</th>
-                        <td colspan="13" class="text-center">4.908</td>
+                        <td colspan="13" class="text-center">1.5</td>
                     </tr>
                     @php
-                        $co_attainment = 4.908;
+                        $co_attainment = 1.5;
                         echo '<pre>';
                         // print_r($avgCoArray);
                         foreach ($avgCoArray as $value) {
-                            $poAttainmentArray[] = ($value / 3) * $co_attainment;
+                            $poAttainmentArray[] = number_format(($value / 3) * $co_attainment, 2);
                         }
                         echo '</pre>';
                         // print_r($poAttainmentArray);
