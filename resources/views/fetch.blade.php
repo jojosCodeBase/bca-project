@@ -1,6 +1,6 @@
 @extends('layouts/main')
-@section('title', 'Fetch')
-@section('breadcrumb', 'Menu / Fetch')
+@section('title', 'Fetch Data')
+@section('breadcrumb', 'Fetch Data')
 @section('content')
     <div class="container-fluid">
         @include('include/error-alert')
