@@ -37,7 +37,7 @@ function getFacultyInfo(fid, callback) {
 $(document).ready(function () {
     $('.facultyViewButton').on('click', function () {
         var fid = $(this).closest('tr').find('.facultyId').text();
-        getFacultyInfo(fid, function(response){
+        getFacultyInfo(fid, function (response) {
             $('#faculty-view-id').text(response.regno);
             $('#faculty-view-email').text(response.email);
             $('#faculty-view-name').text(response.name);
@@ -48,7 +48,7 @@ $(document).ready(function () {
     $('#editFacultyBtn').on('click', function () {
         var fid = $(this).closest('tr').find('.facultyId').text();
 
-        getFacultyInfo(fid, function(response){
+        getFacultyInfo(fid, function (response) {
             $('#faculty-edit-id').val(response.regno);
             $('#faculty-edit-email').val(response.email);
             $('#faculty-edit-name').val(response.name);
@@ -59,8 +59,68 @@ $(document).ready(function () {
         alert('delete');
     });
 
+    $('#searchInput').on('input', function () {
+        const searchQuery = this.value.trim();
+        // Send AJAX request to the server
+        fetch(`/course/search?query=${encodeURIComponent(searchQuery)}`)
+            .then(response => response.json())
+            .then(data => {
+                // Update table rows with filtered data
+                const tableBody = document.querySelector('#table tbody');
+                tableBody.innerHTML = '';
+
+
+                if (data.length === 0) {
+                    // If no results found, display a message
+                    tableBody.innerHTML = `
+                    <tr>
+                    <td colspan="3" class="text-center text-muted">No results found</td>
+                    </tr>
+                    `;
+                }
+                else {
+                    if($('#searchInput').val() == ''){
+                        $('#pagination').css('display', 'block');
+                    }else{
+                        $('#pagination').css('display', 'none');
+                    }
+                    data.forEach(course => {
+                        tableBody.innerHTML += `
+                    <tr>
+                        <td class="courseId">${course.cid}</td>
+                        <td>${course.cname}</td>
+                        <td>
+                            <div class="more-btn">
+                                <button class="dropdown" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="bi bi-three-dots fs-4"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <button class="dropdown-item btn btn-primary editButton" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#editSubjectModal">Edit</button>
+                                    </li >
+                                    <li>
+                                        <button class="dropdown-item btn btn-primary" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteSubjectModal">Delete</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
     // edit subject modal ajax
-    $('.editButton').click(function () {
+    // $('.editButton').click(function () {
+    $(document).on('click', '.editButton', function () {
         var cid = $(this).closest('tr').find('.courseId').text();
         $.ajax({
             url: '/admin/getCourseInfo/' + cid,

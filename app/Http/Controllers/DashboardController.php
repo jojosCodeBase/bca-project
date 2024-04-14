@@ -76,6 +76,16 @@ class DashboardController extends Controller
     {
         return view('manage-faculty', ['faculty' => User::where('is_faculty', 1)->get()]);
     }
+    public function updateSubject(Request $request){
+        // dd($request->all());
+        $query = Courses::where('cid', $request->subjectId)->update(['cname' => $request->subject_name]);
+
+        if($query){
+            return back()->with('success', 'Subject details updated successfully');
+        }else{
+            return back()->with('error', 'Some error occured in updating subject details');
+        }
+    }
 
     // public function addFaculty(Request $r){
     //     // dd($r->all());
@@ -147,13 +157,14 @@ class DashboardController extends Controller
     public function getCOAttainment($cid, $batch)
     {
         // Attempt to retrieve data from the specified model
+        // $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->get();
         $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->get();
 
         if ($data->isEmpty())
             return back()->with('error', 'No details found for the specified details');
 
         // Retrieve max marks
-        $max_marks = MaxMarksCO::where('cid', $cid)->get();
+        $max_marks = MaxMarksCO::where('cid', $cid)->where('batch', $batch)->get();
 
         return view('co_attainment', ['data' => $data, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
     }
@@ -171,13 +182,15 @@ class DashboardController extends Controller
     }
     public function getFinalCOAttainment($cid, $batch)
     {
-        $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
+        // $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
+        $co_attainment = CoAttainment::where('cid', $cid)->first();
         return view('final_co_attainment', ['co_attainment' => $co_attainment, 'subjectCode' => $cid, 'batch' => $batch]);
     }
     public function getPOAttainment($cid, $batch)
     {
         $courses = Courses::all();
-        $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
+        // $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
+        $relation = CoPoRelation::where('cid', $cid)->get();
         return view('po_attainment', compact('relation', 'courses', 'cid', 'batch'));
     }
 
@@ -248,5 +261,14 @@ class DashboardController extends Controller
         }else{
             return back()->with('error', 'Some error occured in updating CO-PO Relation');
         }
+    }
+
+    public function searchCourses(Request $request){
+        $query = $request->input('query');
+        $courses = Courses::where('cid', 'like', "%$query%")
+            ->orWhere('cname', 'like', "%$query%")
+            ->get();
+
+        return response()->json($courses);
     }
 }

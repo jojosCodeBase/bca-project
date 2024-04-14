@@ -3,22 +3,7 @@
 @section('breadcrumb', 'Menu / Fetch')
 @section('content')
     <div class="container-fluid">
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @elseif(session('success'))
-            <div class="alert alert-success">
-                {{ session(' success') }}
-            </div>
-        @endif
-        @if ($errors->any())
-            <div id="alertMessage" class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
+        @include('include/error-alert')
         <div class="card mt-3 mt-xl-0 mt-md-0">
             <div class="card-body">
                 <h4 class="text-muted">Upload Data</h4>

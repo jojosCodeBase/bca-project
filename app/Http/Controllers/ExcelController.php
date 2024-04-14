@@ -23,15 +23,6 @@ class ExcelController extends Controller
     }
     private $labels = ['REGNO', 'Q1', 'S1', 'Q2', 'S2', 'ASSIGNMENT', 'ATTENDANCE', 'TOTAL'];
 
-    public function verify($i, $string)
-    {
-        if (strcasecmp($this->labels[$i], $string) == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function readDbData(Request $r)
     {
         if (Courses::count() > 0) {
@@ -278,6 +269,10 @@ class ExcelController extends Controller
             return false;
         }
     }
+    public function rowDataValidation()
+    {
+
+    }
     public function fileUpload(Request $request)
     {
         // dd($request->all());
@@ -294,11 +289,42 @@ class ExcelController extends Controller
         $highestRow = $worksheet->getHighestDataRow();
         $highestColumn = $worksheet->getHighestDataColumn();
 
+        $expectedHeaders = ['Reg No', 'Q1', 'S1', 'Q2', 'S2', 'Assignment', 'End Sem'];
+
         // Loop through each row and store the data
         $excelData = [];
+        $errors = [];
         for ($row = 1; $row <= $highestRow; $row++) {
             $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
-            $excelData[] = $rowData[0];
+
+            $isValidRow = true;
+            $errorMessages = [];
+
+            // For the first row, validate column headers
+            if ($row === 1) {
+                foreach ($expectedHeaders as $index => $expectedHeader) {
+                    // Check if the header in the current column matches the expected header
+                    if ($rowData[0][$index] !== $expectedHeader) {
+                        $isValidRow = false;
+                        $errorMessages[] = "Row $row: Expected header '{$expectedHeader}' not found in column " . ($index + 1);
+                    }
+                }
+            }
+
+            // If the row is valid (either it's the header row or it contains data), add its data to $excelData
+            if ($isValidRow || $row > 1) {
+                $excelData[] = $rowData[0];
+            } else {
+                $errors = array_merge($errors, $errorMessages);
+            }
+
+            // If there are errors, handle them accordingly
+            if (!empty($errors)) {
+                // return ['errors' => $errors];
+                return back()->withErrors($errors);
+            } else {
+                continue;;
+            }
         }
 
         // Initialize an empty associative array

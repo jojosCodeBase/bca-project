@@ -3,16 +3,7 @@
 @section('breadcrumb', 'Menu / Upload Data')
 @section('content')
     <div class="container flex-grow-1">
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @elseif(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
+        @include('include/error-alert')
         <div class="card mt-xl-0 mt-3">
             <div class="card-body">
                 <h4 class="text-muted">Upload Data</h4>

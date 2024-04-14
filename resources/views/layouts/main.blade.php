@@ -201,9 +201,9 @@
     <script src="{{ asset('assets/js/toggleButton.js') }}"></script>
     <script src="{{ asset('assets/js/hidepoupdatetable.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
 
     @yield('scripts')
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 
 </html>

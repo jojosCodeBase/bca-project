@@ -3,22 +3,7 @@
 @section('breadcrumb', 'Menu/CO-PO Relation')
 @section('content')
     <div class="container">
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @elseif(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if ($errors->any())
-            <div id="alertMessage" class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
+        @include('include/error-alert')
         <div class="row d-flex justify-content-center mt-xl-0 mt-3">
             <div class="col-xl-6 col-12">
                 <div class="card pe-3">
@@ -217,6 +202,7 @@
                 success: function(response) {
                     if(response === "notfound"){
                         $('.custom-width').empty();
+                        $('#updateCourseId').val(courseId);
                         var co_array = ['CO1', 'CO2', 'CO3', 'CO4', 'CO5'];
                         $.each(co_array, function(index, item) {
                             // Create a new row for each CO-PO relation

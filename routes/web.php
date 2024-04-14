@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('manage-subjects', [DashboardController::class, 'manageSubjects'])->name('manage-subjects');
         Route::post('manage-subjects/add', [DashboardController::class, 'addSubject'])->name('add-subject');
+        Route::post('manage-subjects/update', [DashboardController::class, 'updateSubject'])->name('update.subject.info');
+
 
         Route::post('upload', [ExcelController::class, 'fileUpload'])->name('admin-file-upload');
 
@@ -71,10 +73,11 @@ Route::middleware('auth')->group(function () {
 
         Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
 
+
+
         // ajax requests
         Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);
         Route::get('getFacultyInfo/{id}', [DashboardController::class, 'getFacultyInfo']);
-
 
 
         Route::get('co-attainment/{cid}/{batch}', [DashboardController::class, 'getCOAttainment'])->name('co.attainment');
@@ -134,6 +137,9 @@ Route::middleware('auth')->group(function () {
     // ajax requests
     Route::get('get_CO_PO_Relation/{courseId}', [DashboardController::class, 'getCoPoRelation']);
     Route::post('update-co-po-relation', [DashboardController::class, 'updateCoPoRelation'])->name('update-co-po-relation');
+    Route::get('/course/search', [DashboardController::class, 'searchCourses']);
+
+    Route::get('/test', [DashboardController::class, 'liveSearch'])->name('liveSearch');
 });
 
 require __DIR__ . '/auth.php';
