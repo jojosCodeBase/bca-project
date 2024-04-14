@@ -62,7 +62,7 @@ $(document).ready(function () {
     $('#searchInput').on('input', function () {
         const searchQuery = this.value.trim();
         // Send AJAX request to the server
-        fetch(/course/search?query=${encodeURIComponent(searchQuery)})
+        fetch(`/course/search?query=${encodeURIComponent(searchQuery)}`)
             .then(response => response.json())
             .then(data => {
                 // Update table rows with filtered data

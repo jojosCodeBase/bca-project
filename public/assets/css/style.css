@@ -154,18 +154,16 @@ footer{
     box-shadow: none;
 }
 
-/* Remove radius from select & form */
-/* .form-select,
-.form-control {
-    border-radius: 0px;
-} */
-
 .sidear-nav .active {
     border-left: 4px solid rgb(32, 3, 255);
     background-color: rgb(215, 227, 248);
     padding: 0.9rem 1rem;
     padding-left: 1rem;
 }
+
+/* .sidear-nav .sidebar-item a{
+    color: red;
+} */
 
 .sidear-nav .active .a {
     color: rgb(32, 92, 246);
@@ -174,15 +172,7 @@ footer{
 .sidear-nav li {
     padding: 0.6rem 1rem;
 }
-/* .was-validated .form-select:valid:not([multiple]):not([size]),
-.was-validated .form-select:valid:not([multiple])[size="1"],
-.form-select.is-valid:not([multiple]):not([size]),
-.form-select.is-valid:not([multiple])[size="1"] {
-    padding-right: 4.125rem;
-    background-image: none;
-    background-position: 0;
-    background-size: 0;
-} */
+
 .custom-width tr td input{
 max-width: 80px;
     /* Centering the text cursor pointer */

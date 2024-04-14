@@ -1,6 +1,6 @@
 @extends('layouts/main')
 @section('title', 'Manage Subjects')
-@section('breadcrumb', 'Subjects / Manage Subjects')
+@section('breadcrumb', 'Manage Subjects')
 @section('content')
     <style>
         .modal-footer {
