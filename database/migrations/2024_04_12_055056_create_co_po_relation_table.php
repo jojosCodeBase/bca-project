@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('co_po_relation', function (Blueprint $table) {
             $table->id();
             $table->string('cid');
-            $table->integer('batch');
+            $table->integer('batch')->nullable();
             $table->string('CO')->nullable();
             $table->integer('PO1')->nullable();
             $table->integer('PO2')->nullable();
