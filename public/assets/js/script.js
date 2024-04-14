@@ -62,7 +62,7 @@ $(document).ready(function () {
     $('#searchInput').on('input', function () {
         const searchQuery = this.value.trim();
         // Send AJAX request to the server
-        fetch(`/course/search?query=${encodeURIComponent(searchQuery)}`)
+        fetch(/course/search?query=${encodeURIComponent(searchQuery)})
             .then(response => response.json())
             .then(data => {
                 // Update table rows with filtered data
@@ -150,8 +150,8 @@ var optionValues = {
             "Even": ["CA1401", "CA1402", "CA1404", "CA1408", "CA1407", "CA1461", "CA1462"]
         },
         "3rd-Year": {
-            "Odd": ["CA1501", "CA1503", "CA1506", "CA15**", "CA15**", "CA1561", "CA1563"],
-            "Even": ["CA1601", "CA1603", "CA16**", "CA16**", "CA1661", "CA1663", "CA1671"]
+            "Odd": ["CA1501", "CA1503", "CA1506", "CA15*", "CA15*", "CA1561", "CA1563"],
+            "Even": ["CA1601", "CA1603", "CA16*", "CA16*", "CA1661", "CA1663", "CA1671"]
         }
     },
     "mca": {
@@ -237,30 +237,14 @@ function restrictAlphabets(event) {
 
 // javaScript for Alphabet restiction start
 
-// function restrictInput(event) {
-//     // Get the key code of the pressed key
-//     let keyCode = event.keyCode || event.which;
-//     // Allow only alphanumeric characters
-//     let allowedChars = /[1-3]/;
-//     let keyChar = String.fromCharCode(keyCode);
-//     if (!allowedChars.test(keyChar)) {
-//         // If the pressed key is not alphanumeric, prevent the default action (typing)
-//         event.preventDefault();
-//         return false;
-//     }
-// }
-
 function restrictInput(event) {
     // Get the key code of the pressed key
     let keyCode = event.keyCode || event.which;
-    // Allow only numeric characters
+    // Allow only alphanumeric characters
     let allowedChars = /[1-3]/;
     let keyChar = String.fromCharCode(keyCode);
-    let inputField = document.getElementById("numericInput");
-    
-    // Check if the input value length is already equal to the maximum allowed length
-    if (inputField.value.length >= inputField.maxLength || !allowedChars.test(keyChar)) {
-        // If the input value length is equal to the maximum length or the pressed key is not numeric, prevent the default action (typing)
+    if (!allowedChars.test(keyChar)) {
+        // If the pressed key is not alphanumeric, prevent the default action (typing)
         event.preventDefault();
         return false;
     }
@@ -275,5 +259,3 @@ function restrictInput(event) {
 //   document.querySelector("#sidebar").classList.toggle("collapsed");
 // })
 // javaScript for Sidebar Toggle start
-
-
