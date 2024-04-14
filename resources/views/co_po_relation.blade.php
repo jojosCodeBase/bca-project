@@ -162,21 +162,21 @@
                             </thead>
                             <tbody class="custom-width">
                                 <tr>
-                                    <th class="">CO1</th>
-                                    <td class="text-center"><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)"></td>
-                                    <td class="text-center"><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)"></td>
+                                    <th class="text-center">CO1</th>
+                                    <td class=""><input type="text" name="co1_po1" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po2" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po3" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po4" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po5" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po6" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po7" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po8" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po9" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po10" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po11" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
+                                    <td class=""><input type="text" name="co1_po12" class="#" onkeypress="return restrictInput(event)" id="numericInput" maxlength="1"></td>
                                 </tr>
-                            @endforeach --}}
+                            {{-- @endforeach--}}
                         </table>
                         <p style="color:red;">Note : If there is no relation between CO & PO then leave the box empty.<br> Allowed inputs:  1, 2, 3 </p>
                     </div>

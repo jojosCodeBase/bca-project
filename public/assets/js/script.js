@@ -176,14 +176,30 @@ function restrictAlphabets(event) {
 
 // javaScript for Alphabet restiction start
 
+// function restrictInput(event) {
+//     // Get the key code of the pressed key
+//     let keyCode = event.keyCode || event.which;
+//     // Allow only alphanumeric characters
+//     let allowedChars = /[1-3]/;
+//     let keyChar = String.fromCharCode(keyCode);
+//     if (!allowedChars.test(keyChar)) {
+//         // If the pressed key is not alphanumeric, prevent the default action (typing)
+//         event.preventDefault();
+//         return false;
+//     }
+// }
+
 function restrictInput(event) {
     // Get the key code of the pressed key
     let keyCode = event.keyCode || event.which;
-    // Allow only alphanumeric characters
+    // Allow only numeric characters
     let allowedChars = /[1-3]/;
     let keyChar = String.fromCharCode(keyCode);
-    if (!allowedChars.test(keyChar)) {
-        // If the pressed key is not alphanumeric, prevent the default action (typing)
+    let inputField = document.getElementById("numericInput");
+    
+    // Check if the input value length is already equal to the maximum allowed length
+    if (inputField.value.length >= inputField.maxLength || !allowedChars.test(keyChar)) {
+        // If the input value length is equal to the maximum length or the pressed key is not numeric, prevent the default action (typing)
         event.preventDefault();
         return false;
     }
