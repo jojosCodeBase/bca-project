@@ -2,7 +2,7 @@
 @section('title', 'PO Attainment')
 @section('content')
     <div class="container-fluid">
-        <h5>{{ $cid }} - PO Attainment</h5>
+        <h5>{{ $cid }} - PO Attainment, Batch - {{ $batch }}</h5>
         <div class="table-responsive">
             <table class="table table-bordered table-light">
                 <thead class="text-center">
@@ -36,7 +36,12 @@
                             if ($count == 0) {
                                 $avgCoArray[] = $total;
                             } else {
-                                $avgCoArray[] = $total / $count;
+                                if(floor($total/$count) != ($total/$count)){
+                                    $formattedMarks = number_format($total/$count, 1);
+                                }else{
+                                    $formattedMarks = number_format($total/$count, 0);
+                                }
+                                $avgCoArray[] = $formattedMarks;
                             }
                             $total = 0;
                             $count = 0;
@@ -67,16 +72,21 @@
                     </tr>
                     <tr>
                         <th class="text-start">CO Attainment</th>
-                        <td colspan="13" class="text-center">4.908</td>
+                        <td colspan="13" class="text-center">1.5</td>
                     </tr>
                     @php
-                        $co_attainment = 4.908;
-                        echo '<pre>';
+                        $co_attainment = 1.5;
+                        // echo '<pre>';
                         // print_r($avgCoArray);
                         foreach ($avgCoArray as $value) {
-                            $poAttainmentArray[] = ($value / 3) * $co_attainment;
+                            if(floor(($value/3) * $co_attainment) != (($value/3) * $co_attainment)){
+                                $formattedMarks = number_format(($value / 3) * $co_attainment, 1);
+                            }else{
+                                $formattedMarks = number_format(($value / 3) * $co_attainment, 0);
+                            }
+                            $poAttainmentArray[] = $formattedMarks;
                         }
-                        echo '</pre>';
+                        // echo '</pre>';
                         // print_r($poAttainmentArray);
                     @endphp
                     <tr>

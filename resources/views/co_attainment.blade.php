@@ -2,7 +2,7 @@
 @section('title', 'CO Attainment')
 @section('content')
     <div class="container-fluid">
-        <h5>{{ $subjectCode }} - CO Attainment</h5>
+        <h5>{{ $subjectCode }} - CO Attainment, Batch - {{ $batch }}</h5>
         <div class="table-responsive">
             <table class="table table-bordered table-light">
                 <thead>

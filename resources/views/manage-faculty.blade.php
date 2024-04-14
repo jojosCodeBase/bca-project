@@ -3,22 +3,7 @@
 @section('breadcrumb', 'Faculty / Manage Faculty')
 @section('content')
     <div class="container">
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @elseif(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if ($errors->any())
-            <div id="alertMessage" class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
+        @include('include/error-alert')
         <div class="card mt-3 mt-xl-0">
             <div class="card-body">
                 <div class="row">
@@ -215,7 +200,7 @@
                                 <label for="" class="form-label">Email
                                     <span class="text-danger">*</span>
                                 </label>
-                                <input type="email" name="email" class="form-control" request>
+                                <input type="email" name="email" class="form-control" required>
                             </div>
                             <div class="col mb-3">
                                 <label for="" class="form-label">Password</label>

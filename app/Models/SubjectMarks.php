@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CA2313 extends Model
+class SubjectMarks extends Model
 {
     use HasFactory;
-
-    protected $table = 'CA2313';
+    protected $table = 'subject_marks';
 
     protected $fillable = [
+        'cid',
+        'batch',
         'regno',
         'q1',
         's1',

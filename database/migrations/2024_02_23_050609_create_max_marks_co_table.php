@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('max_marks_co', function (Blueprint $table) {
             $table->id();
             $table->string('cid');
+            $table->integer('batch');
+            $table->unique(['cid', 'batch']);
             $table->json('q1')->nullable(); // Total length 5 with 2 json places
             $table->json('s1')->nullable();
             $table->json('q2')->nullable(); // Total length 5 with 2 json places
