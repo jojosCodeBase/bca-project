@@ -301,15 +301,15 @@ class ExcelController extends Controller
             $errorMessages = [];
 
             // For the first row, validate column headers
-            if ($row === 1) {
-                foreach ($expectedHeaders as $index => $expectedHeader) {
-                    // Check if the header in the current column matches the expected header
-                    if ($rowData[0][$index] !== $expectedHeader) {
-                        $isValidRow = false;
-                        $errorMessages[] = "Row $row: Expected header '{$expectedHeader}' not found in column " . ($index + 1);
-                    }
-                }
-            }
+            // if ($row === 1) {
+            //     foreach ($expectedHeaders as $index => $expectedHeader) {
+            //         // Check if the header in the current column matches the expected header
+            //         if ($rowData[0][$index] !== $expectedHeader) {
+            //             $isValidRow = false;
+            //             $errorMessages[] = "Row $row: Expected header '{$expectedHeader}' not found in column " . ($index + 1);
+            //         }
+            //     }
+            // }
 
             // If the row is valid (either it's the header row or it contains data), add its data to $excelData
             if ($isValidRow || $row > 1) {

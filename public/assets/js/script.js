@@ -150,8 +150,8 @@ var optionValues = {
             "Even": ["CA1401", "CA1402", "CA1404", "CA1408", "CA1407", "CA1461", "CA1462"]
         },
         "3rd-Year": {
-            "Odd": ["CA1501", "CA1503", "CA1506", "CA15**", "CA15**", "CA1561", "CA1563"],
-            "Even": ["CA1601", "CA1603", "CA16**", "CA16**", "CA1661", "CA1663", "CA1671"]
+            "Odd": ["CA1501", "CA1503", "CA1506", "CA15*", "CA15*", "CA1561", "CA1563"],
+            "Even": ["CA1601", "CA1603", "CA16*", "CA16*", "CA1661", "CA1663", "CA1671"]
         }
     },
     "mca": {
@@ -259,5 +259,3 @@ function restrictInput(event) {
 //   document.querySelector("#sidebar").classList.toggle("collapsed");
 // })
 // javaScript for Sidebar Toggle start
-
-

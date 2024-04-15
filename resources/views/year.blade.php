@@ -1,6 +1,6 @@
 @extends('layouts.main')
-@section('title', 'Yearly')
-@section('breadcrumb', 'Analysis / Year Wise')
+@section('title', 'Year Wise')
+@section('breadcrumb', 'Year Wise')
 @section('content')
     <div class="container">
         <div class="card">

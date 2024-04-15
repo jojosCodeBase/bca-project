@@ -1,6 +1,6 @@
 @extends('layouts.main')
-@section('title', 'Upload')
-@section('breadcrumb', 'Menu / Upload Data')
+@section('title', 'Upload Data')
+@section('breadcrumb', 'Upload Data')
 @section('content')
     <div class="container flex-grow-1">
         @include('include/error-alert')
@@ -64,7 +64,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-12 my-3">
                             {{-- <select name="year" id="subjectId" class="form-select" required>
                                 <option value="" selected disabled>Select subject code</option>
                             </select> --}}

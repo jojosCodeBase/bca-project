@@ -1,6 +1,6 @@
 @extends('layouts/main')
 @section('title', 'CO-PO Relation')
-@section('breadcrumb', 'Menu/CO-PO Relation')
+@section('breadcrumb', 'CO-PO Relation')
 @section('content')
     <div class="container">
         @include('include/error-alert')

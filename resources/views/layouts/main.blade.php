@@ -89,7 +89,7 @@
                         </li>
                         <li class="sidebar-item {{ request()->is('admin/co_po_relation') ? 'active' : '' }}">
                             <a href="{{ route('admin-co_po_relation') }}" class="sidebar-nested-link">
-                                <i class="bi bi-cloud-arrow-up-fill"></i> CO/PO Relation
+                                <i class="bi bi-cloud-arrow-up-fill"></i> CO-PO Relation
                             </a>
                         </li>
                         <li class="sidebar-item">

@@ -1,6 +1,6 @@
 @extends('layouts.main')
-@section('title', 'Semester')
-@section('breadcrumb', 'Analaysis / Semester Wise')
+@section('title', 'Semester Wise')
+@section('breadcrumb', 'Semester Wise')
 @section('content')
     <div class="container-fluid">
         <div class="card">

@@ -1,6 +1,6 @@
 @extends('layouts/main')
 @section('title', 'Manage-Faculty')
-@section('breadcrumb', 'Faculty / Manage Faculty')
+@section('breadcrumb', 'Manage Faculty')
 @section('content')
     <div class="container">
         @include('include/error-alert')
