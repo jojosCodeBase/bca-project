@@ -224,4 +224,23 @@ max-width: 80px;
     width: 100%; /* Ensures it spans the entire width of the viewport */
     background-color: #f8f9fa;
 }
-  
+
+
+.btn-primary {
+    background: #355389;
+    border: #355389;
+    color: #fff;
+}
+
+.text-custom {
+    color: #355389;
+}
+
+.form-check-input:checked {
+    background-color: #355389;
+    border-color: #355389
+}
+
+a{
+    color: #355389;
+}
