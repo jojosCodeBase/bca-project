@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignedSubject;
 use App\Models\AttainmentPercentage;
 use App\Models\FinalCoAttainment;
 use App\Models\MoreThanSixty;
@@ -80,13 +81,14 @@ class DashboardController extends Controller
     {
         return view('manage-faculty', ['faculty' => User::where('is_faculty', 1)->get()]);
     }
-    public function updateSubject(Request $request){
+    public function updateSubject(Request $request)
+    {
         // dd($request->all());
         $query = Courses::where('cid', $request->subjectId)->update(['cname' => $request->subject_name]);
 
-        if($query){
+        if ($query) {
             return back()->with('success', 'Subject details updated successfully');
-        }else{
+        } else {
             return back()->with('error', 'Some error occured in updating subject details');
         }
     }
@@ -205,9 +207,9 @@ class DashboardController extends Controller
     public function getCoPoRelation($courseId)
     {
         $relation = CoPoRelation::where('cid', $courseId)->get();
-        if($relation->isEmpty()){
+        if ($relation->isEmpty()) {
             return response()->json('notfound');
-        }else{
+        } else {
             return response()->json($relation);
         }
     }
@@ -236,37 +238,66 @@ class DashboardController extends Controller
 
             // $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', 2021)->first();
 
-            try{
+            try {
                 // $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', $r->batch)->where('CO', $key)->first();
                 $relation = CoPoRelation::where('cid', $r->courseId)->where('CO', $key)->first();
-                if(is_null($relation)){
+                if (is_null($relation)) {
                     CoPoRelation::create($data);
-                }else{
+                } else {
                     $relation->update($data);
                 }
                 $data = [];
                 $flag = true;
-            }
-            catch(\Exception $e){
+            } catch (\Exception $e) {
                 dd($e);
                 $flag = false;
                 break;
             }
         }
 
-        if($flag){
+        if ($flag) {
             return back()->with('success', 'CO-PO Relation Updated Suceessfully');
-        }else{
+        } else {
             return back()->with('error', 'Some error occured in updating CO-PO Relation');
         }
     }
 
-    public function searchCourses(Request $request){
+    public function searchCourses(Request $request)
+    {
         $query = $request->input('query');
         $courses = Courses::where('cid', 'like', "%$query%")
             ->orWhere('cname', 'like', "%$query%")
             ->get();
 
         return response()->json($courses);
+    }
+
+    public function assignSubjectView()
+    {
+        $courses = Courses::all();
+        $faculties = User::where('is_faculty', 1)->get();
+
+        $assigned = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+            ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
+            ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name')
+            ->where('users.is_faculty', 1)
+            ->get()
+            ->toArray();
+
+
+        // dd($assigned);
+
+        return view('assign-subject', compact('courses', 'faculties', 'assigned'));
+    }
+    public function assignSubject(Request $request)
+    {
+        $query = AssignedSubject::create([
+            'cid' => $request->subject,
+            'faculty_id' => $request->faculty,
+        ]);
+        if ($query)
+            return back()->with('success', 'Subject assigned to faculty successfully');
+        else
+            return back()->with('error', 'Some error occured in assigning subject to faculty');
     }
 }

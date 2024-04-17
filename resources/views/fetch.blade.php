@@ -7,7 +7,7 @@
         <div class="card mt-3 mt-xl-0 mt-md-0">
             <div class="card-body">
                 <h4 class="text-muted">Upload Data</h4>
-                <form action="{{ route('admin-fetch-data') }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('fetch-data') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
