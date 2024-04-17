@@ -132,6 +132,10 @@ Route::middleware('auth')->group(function () {
             return view('forgot-password');
         })->name('forgot-password');
 
+        Route::get('assign-subject', function () {
+            return view('assign-subject');
+        })->name('assign-subject');
+
     });
 
     // ajax requests
