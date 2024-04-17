@@ -157,29 +157,23 @@ class DashboardController extends Controller
     public function getCOAttainment($cid, $batch)
     {
         // Attempt to retrieve data from the specified model
-        // $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->get();
-        $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->get();
+        $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->first();
 
-        if ($data->isEmpty())
-            return back()->with('error', 'No details found for the specified details');
+        // print_r($data);
+
+        // if ($data->isEmpty())
+        //     return back()->with('error', 'No details found for the specified details');
 
         // Retrieve max marks
-        $max_marks = MaxMarksCO::where('cid', $cid)->where('batch', $batch)->get();
+        $max_marks = MaxMarksCO::where('cid', $cid)->where('batch', $batch)->first();
+        $coAttainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
 
-        return view('co_attainment', ['data' => $data, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
+        // dd($data[0]['q1']);
+
+        return view('co_attainment', ['data' => $data, 'attainment' => $coAttainment, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
+        // return view('co_attainment_old', ['data' => $data, 'attainment' => $coAttainment, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
     }
 
-    function getCOLevel($attainmentPercentage)
-    {
-        if ($attainmentPercentage < 38)
-            return 0;
-        elseif ($attainmentPercentage >= 38 && $attainmentPercentage <= 51)
-            return 1;
-        elseif ($attainmentPercentage >= 52 && $attainmentPercentage <= 72)
-            return 2;
-        elseif ($attainmentPercentage >= 73)
-            return 3;
-    }
     public function getFinalCOAttainment($cid, $batch)
     {
         // $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();

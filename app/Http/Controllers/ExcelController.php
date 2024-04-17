@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MoreThanSixty;
+use App\Models\TargetMarks;
 use Exception;
 use App\Models\CA2313;
 use App\Models\Courses;
@@ -35,7 +37,6 @@ class ExcelController extends Controller
     public function saveData($dataArray, $regno, $batch, $cid)
     {
         // Convert Q1 and S1 arrays to JSON
-
         $jsonQ1 = json_encode($dataArray['Q1']);
         $jsonS1 = json_encode($dataArray['S1']);
         $jsonQ2 = json_encode($dataArray['Q2']);
@@ -171,6 +172,23 @@ class ExcelController extends Controller
             $target_marks[$examArray[$i]] = $copy_marks;
         }
 
+        // save target marks to database
+        // dd($target_marks);
+        TargetMarks::updateOrCreate(
+            ['cid' => $cid, 'batch' => $batch],
+            [
+                'q1' => json_encode($target_marks['q1'], true),
+                's1' => json_encode($target_marks['s1'], true),
+                'q2' => json_encode($target_marks['q2'], true),
+                's2' => json_encode($target_marks['s2'], true),
+                'assignment' => json_encode($target_marks['assignment'], true),
+                'end_sem' => json_encode($target_marks['end_sem'], true),
+                'total' => 0,
+            ]
+        );
+
+        // dd();
+
         $co_po = [
             'CO1' => null,
             'CO2' => null,
@@ -180,6 +198,7 @@ class ExcelController extends Controller
             'CO6' => null,
             'Total' => null,
         ];
+
         $copy_co_po = [];
         $target_marks_count = 0;
         $marks_more_than_sixty_percent_array = [];
@@ -222,6 +241,7 @@ class ExcelController extends Controller
                 $target_marks_count = 0;
             }
 
+
             // store the copy array to q1, s1, q2, respectively
             $marks_more_than_sixty_percent_array[$examArray[$index]] = $copy_co_po;
 
@@ -234,22 +254,22 @@ class ExcelController extends Controller
 
         }
 
-        // dd($target_marks);
+        // dd($marks_more_than_sixty_percent_array);
 
-        // adding co attainment to co attainment table
-        // $query = CoAttainment::create([
-        //     'cid' => $cid,
-        //     'batch' => $batch,
-        //     'q1' => json_encode($co_attainment['q1'], true),
-        //     's1' => json_encode($co_attainment['s1'], true),
-        //     'q2' => json_encode($co_attainment['q2'], true),
-        //     's2' => json_encode($co_attainment['s2'], true),
-        //     'assignment' => json_encode($co_attainment['assignment'], true),
-        //     'end_sem' => json_encode($co_attainment['end_sem'], true),
-        //     'total' => 0,
-        // ]);
+        $query = MoreThanSixty::updateOrCreate(
+            ['cid' => $cid, 'batch' => $batch],
+            [
+                'q1' => json_encode($marks_more_than_sixty_percent_array['q1'], true),
+                's1' => json_encode($marks_more_than_sixty_percent_array['s1'], true),
+                'q2' => json_encode($marks_more_than_sixty_percent_array['q2'], true),
+                's2' => json_encode($marks_more_than_sixty_percent_array['s2'], true),
+                'assignment' => json_encode($marks_more_than_sixty_percent_array['assignment'], true),
+                'end_sem' => json_encode($marks_more_than_sixty_percent_array['end_sem'], true),
+                'total' => 0,
+            ]
+        );
 
-        $query = CoAttainment::firstOrCreate(
+        $query = CoAttainment::updateOrCreate(
             ['cid' => $cid, 'batch' => $batch],
             [
                 'q1' => json_encode($co_attainment['q1'], true),
@@ -323,7 +343,8 @@ class ExcelController extends Controller
                 // return ['errors' => $errors];
                 return back()->withErrors($errors);
             } else {
-                continue;;
+                continue;
+                ;
             }
         }
 
