@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MoreThanSixty;
-use App\Models\TargetMarks;
 use Exception;
 use App\Models\CA2313;
 use App\Models\Courses;
 use App\Models\MaxMarksCO;
 use App\Models\ExcelUpload;
+use App\Models\TargetMarks;
 use App\Models\CoAttainment;
 use App\Models\SubjectMarks;
 use Illuminate\Http\Request;
+use App\Models\MoreThanSixty;
+use App\Models\FinalCoAttainment;
+use App\Models\AttainmentPercentage;
 use Illuminate\Database\QueryException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -137,6 +139,8 @@ class ExcelController extends Controller
     }
     function getCOLevel($attainmentPercentage)
     {
+        if ($attainmentPercentage == null)
+            return null;
         if ($attainmentPercentage < 38)
             return 0;
         elseif ($attainmentPercentage >= 38 && $attainmentPercentage <= 51)
@@ -145,6 +149,66 @@ class ExcelController extends Controller
             return 2;
         elseif ($attainmentPercentage >= 73)
             return 3;
+    }
+
+    // calculate final co attainment
+    function calculateFinalCOAttainment($cid, $batch)
+    {
+        $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
+        $q1 = json_decode($co_attainment['q1'], true);
+        $s1 = json_decode($co_attainment['s1'], true);
+        $q2 = json_decode($co_attainment['q2'], true);
+        $s2 = json_decode($co_attainment['s2'], true);
+        $assignment = json_decode($co_attainment['assignment'], true);
+        $end_sem = json_decode($co_attainment['end_sem'], true);
+
+        $examArray = [$q1, $s1, $q2, $s2, $assignment, $end_sem];
+
+        $totalAvgIntArray = [];
+        $grandTotal = [];
+
+        for ($i = 1; $i <= 5; $i++) {
+            $coMarksArray = [];
+
+            foreach ($examArray as $exam) {
+                if (isset($exam["CO$i"]) && !is_null($exam["CO$i"]) && $exam !== $end_sem) {
+                    $coMarksArray[] = $exam["CO$i"];
+                }
+            }
+
+            $totalAvgIntArray["CO$i"] = count($coMarksArray) > 0 ? round(array_sum($coMarksArray) / count($coMarksArray), 2) : null;
+        }
+
+        // Calculate grandTotal
+        foreach ($totalAvgIntArray as $key => $totalAvgInt) {
+            if (!is_null($totalAvgInt)) {
+                $grandTotal[$key] = round(($totalAvgInt + $end_sem[$key]) / 2, 2);
+            }
+        }
+
+        $finalCOAttainment = round(array_sum($grandTotal) / count($grandTotal), 2);
+
+        // Convert arrays to JSON
+        $totalAvgInternalJSON = json_encode($totalAvgIntArray);
+        $grandTotalJSON = json_encode($grandTotal);
+
+
+        // Update or create the record in the database
+        $query = FinalCoAttainment::updateOrCreate(
+            ['cid' => $cid, 'batch' => $batch],
+            [
+                'total_avg_internal' => $totalAvgInternalJSON,
+                'grand_total' => $grandTotalJSON,
+                'final_co_attainment' => $finalCOAttainment,
+            ]
+        );
+
+        if (!$query) {
+            return back()->with('error', 'Some error occured in uploading/updating CO Attainment');
+        }else{
+            return true;
+        }
+        // Optionally, you can return the calculated values or perform any other actions
     }
     public function calculate($cid, $batch)
     {
@@ -155,7 +219,7 @@ class ExcelController extends Controller
         //     return back()->with('error', 'No details found for the specified details');
 
         // Retrieve max marks
-        $max_marks = MaxMarksCO::where('cid', $cid)->first();
+        $max_marks = MaxMarksCO::where('cid', $cid)->where('batch', $batch)->first();
 
         $examArray = ['q1', 's1', 'q2', 's2', 'assignment', 'end_sem'];
         $target_marks = [];
@@ -166,15 +230,15 @@ class ExcelController extends Controller
 
             foreach ($copy_marks as $key => $x) {
                 if (!is_null($x)) {
-                    $copy_marks[$key] = (60 / 100) * $x;
+                    $copy_marks[$key] = round((60 / 100) * $x, 2);
                 }
             }
             $target_marks[$examArray[$i]] = $copy_marks;
         }
 
+
         // save target marks to database
-        // dd($target_marks);
-        TargetMarks::updateOrCreate(
+        $query = TargetMarks::updateOrCreate(
             ['cid' => $cid, 'batch' => $batch],
             [
                 'q1' => json_encode($target_marks['q1'], true),
@@ -187,7 +251,9 @@ class ExcelController extends Controller
             ]
         );
 
-        // dd();
+        if (!$query) {
+            return back()->with('error', 'Some error occured in uploading/updating target marks');
+        }
 
         $co_po = [
             'CO1' => null,
@@ -217,9 +283,12 @@ class ExcelController extends Controller
                 foreach ($data as $d) {
                     $marks = json_decode($d[$examArray[$index]], true);
 
-                    if (is_null($marks[$key]) || $marks[$key] == "AB")
-                        continue;
-                    else {
+                    if (is_null($marks[$key]) || $marks[$key] == "AB") {
+                        if ($target_marks_count === 0)
+                            $target_marks_count = null;
+                        else
+                            continue;
+                    } else {
                         if ($marks[$key] >= $target_marks[$examArray[$index]][$key]) {
                             $target_marks_count++;
                         } else
@@ -231,8 +300,13 @@ class ExcelController extends Controller
                 $copy_co_po[$key] = $target_marks_count;
 
                 // calculate attainment percentage
-                $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
-                // break;
+
+                // check for null
+                if ($target_marks_count == null) {
+                    $attainmentPercentage_CO_PO[$key] = null;
+                } else {
+                    $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
+                }
 
                 // calculate co attainment level
                 $co_attainment_CO_PO[$key] = $this->getCOLevel($attainmentPercentage_CO_PO[$key]);
@@ -240,7 +314,6 @@ class ExcelController extends Controller
                 // reset target_marks_count to 0 for counting next CO
                 $target_marks_count = 0;
             }
-
 
             // store the copy array to q1, s1, q2, respectively
             $marks_more_than_sixty_percent_array[$examArray[$index]] = $copy_co_po;
@@ -253,8 +326,6 @@ class ExcelController extends Controller
             $index++;
 
         }
-
-        // dd($marks_more_than_sixty_percent_array);
 
         $query = MoreThanSixty::updateOrCreate(
             ['cid' => $cid, 'batch' => $batch],
@@ -269,6 +340,27 @@ class ExcelController extends Controller
             ]
         );
 
+        if (!$query) {
+            return back()->with('error', 'Some error occured in uploading/updating student more than 60%');
+        }
+
+        $query = AttainmentPercentage::updateOrCreate(
+            ['cid' => $cid, 'batch' => $batch],
+            [
+                'q1' => json_encode($attainmentPercentage['q1'], true),
+                's1' => json_encode($attainmentPercentage['s1'], true),
+                'q2' => json_encode($attainmentPercentage['q2'], true),
+                's2' => json_encode($attainmentPercentage['s2'], true),
+                'assignment' => json_encode($attainmentPercentage['assignment'], true),
+                'end_sem' => json_encode($attainmentPercentage['end_sem'], true),
+                'total' => 0,
+            ]
+        );
+
+        if (!$query) {
+            return back()->with('error', 'Some error occured in uploading/updating attainment percentage');
+        }
+
         $query = CoAttainment::updateOrCreate(
             ['cid' => $cid, 'batch' => $batch],
             [
@@ -282,12 +374,19 @@ class ExcelController extends Controller
             ]
         );
 
-        if ($query->wasRecentlyCreated) {
-            $this->updated = 1;
+        if (!$query) {
+            return back()->with('error', 'Some error occured in uploading/updating CO Attainment');
+        }
+
+        if ($query && $this->calculateFinalCOAttainment($cid, $batch)) {
+            if ($query->wasRecentlyCreated)
+                $this->updated = 1;
+
             return true;
         } else {
             return false;
         }
+
     }
     public function rowDataValidation()
     {
@@ -316,9 +415,9 @@ class ExcelController extends Controller
         $errors = [];
         for ($row = 1; $row <= $highestRow; $row++) {
             $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
-
-            $isValidRow = true;
-            $errorMessages = [];
+            $excelData[] = $rowData[0];
+            // $isValidRow = true;
+            // $errorMessages = [];
 
             // For the first row, validate column headers
             // if ($row === 1) {
@@ -332,11 +431,11 @@ class ExcelController extends Controller
             // }
 
             // If the row is valid (either it's the header row or it contains data), add its data to $excelData
-            if ($isValidRow || $row > 1) {
-                $excelData[] = $rowData[0];
-            } else {
-                $errors = array_merge($errors, $errorMessages);
-            }
+            // if ($isValidRow || $row > 1) {
+            //     $excelData[] = $rowData[0];
+            // } else {
+            //     $errors = array_merge($errors, $errorMessages);
+            // }
 
             // If there are errors, handle them accordingly
             if (!empty($errors)) {
@@ -344,7 +443,6 @@ class ExcelController extends Controller
                 return back()->withErrors($errors);
             } else {
                 continue;
-                ;
             }
         }
 
@@ -428,7 +526,7 @@ class ExcelController extends Controller
             }
         }
         if ($flag == False)
-            return back()->with('error', 'some error occured in uploading file');
+            return back()->with('error', 'some error occured in uploading file due to flag false');
         else {
             if ($this->calculate($request->subjectId, $request->batch)) {
                 if ($this->updated == 1)
@@ -436,7 +534,7 @@ class ExcelController extends Controller
                 else
                     return back()->with('success', 'Marks Uploaded Successfully');
             } else {
-                return back()->with('error', 'some error occured in uploading file');
+                return back()->with('error', 'some error occured in uploading file in calculate');
             }
         }
     }

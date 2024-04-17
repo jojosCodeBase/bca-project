@@ -19,18 +19,18 @@
                     <h1 class="h2 text-custom fw-bold">Student Performance Assesment for<br>Outcome Based Education</h1>
                 </div>
 
-                <div class="col-xl-8 col-xxl-7">
+                <div class="col-xl-9 col-xxl-8">
                     <div class="login">
                         <div class="card shadow-lg p-xl-3 mb-xl-5 border-0">
                             <div class="card-body">
                                 <div class="row py-xl-4">
-                                    <div class="col-xl-5 d-flex align-items-center justify-content-center">
+                                    <div class="col-xl-6 d-flex align-items-center justify-content-center">
                                         <div class="m-sm-4 text-center mt-2 mb-2">
                                             <img src="{{ asset('assets/images/education-vector.jpg') }}" alt=""
                                                 class="login-img">
                                         </div>
                                     </div>
-                                    <div class="col-xl-7">
+                                    <div class="col-xl-6">
                                         <h4 class="fw-bold text-custom">Welcome Back!</h4>
                                         <span class="text-muted mb-5">Login to your account to continue</span>
 

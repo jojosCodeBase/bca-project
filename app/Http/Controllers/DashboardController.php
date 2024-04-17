@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttainmentPercentage;
+use App\Models\FinalCoAttainment;
+use App\Models\MoreThanSixty;
+use App\Models\TargetMarks;
 use Exception;
 use App\Models\User;
 use App\Models\Courses;
@@ -131,10 +135,7 @@ class DashboardController extends Controller
             return back()->with('error', 'Some error occured in adding faculty!');
     }
 
-
-
     // ajax requests
-
     public function getCourseInfo($cid)
     {
         try {
@@ -157,7 +158,7 @@ class DashboardController extends Controller
     public function getCOAttainment($cid, $batch)
     {
         // Attempt to retrieve data from the specified model
-        $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->first();
+        $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->get();
 
         // print_r($data);
 
@@ -167,25 +168,29 @@ class DashboardController extends Controller
         // Retrieve max marks
         $max_marks = MaxMarksCO::where('cid', $cid)->where('batch', $batch)->first();
         $coAttainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
+        $targetMarks = TargetMarks::where('cid', $cid)->where('batch', $batch)->first();
+        $more_than_sixty = MoreThanSixty::where('cid', $cid)->where('batch', $batch)->first();
+        $attainment_percentage = AttainmentPercentage::where('cid', $cid)->where('batch', $batch)->first();
 
         // dd($data[0]['q1']);
 
-        return view('co_attainment', ['data' => $data, 'attainment' => $coAttainment, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
+        return view('co_attainment', ['data' => $data, 'attainment' => $coAttainment, 'max_marks' => $max_marks, 'targetMarks' => $targetMarks, 'more_than_sixty' => $more_than_sixty, 'attainment_percentage' => $attainment_percentage, 'subjectCode' => $cid, 'batch' => $batch]);
         // return view('co_attainment_old', ['data' => $data, 'attainment' => $coAttainment, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
     }
 
     public function getFinalCOAttainment($cid, $batch)
     {
-        // $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
-        $co_attainment = CoAttainment::where('cid', $cid)->first();
-        return view('final_co_attainment', ['co_attainment' => $co_attainment, 'subjectCode' => $cid, 'batch' => $batch]);
+        $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
+        $finalCOAttainment = FinalCoAttainment::where('cid', $cid)->where('batch', $batch)->first();
+        return view('final_co_attainment', ['finalCOAttainment' => $finalCOAttainment, 'co_attainment' => $co_attainment, 'subjectCode' => $cid, 'batch' => $batch]);
     }
     public function getPOAttainment($cid, $batch)
     {
         $courses = Courses::all();
         // $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
-        $relation = CoPoRelation::where('cid', $cid)->get();
-        return view('po_attainment', compact('relation', 'courses', 'cid', 'batch'));
+        $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
+        $coAttainment = FinalCoAttainment::where('cid', $cid)->where('batch', $batch)->first();
+        return view('po_attainment', compact('relation', 'courses', 'cid', 'batch', 'coAttainment'));
     }
 
     public function coPoRelation()
@@ -209,7 +214,6 @@ class DashboardController extends Controller
     public function updateCoPoRelation(Request $r)
     {
         // add validation
-
         $COArrays = [
             'CO1' => $r->input('CO1'),
             'CO2' => $r->input('CO2'),

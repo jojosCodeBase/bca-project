@@ -37,9 +37,9 @@
                                 $avgCoArray[] = $total;
                             } else {
                                 if(floor($total/$count) != ($total/$count)){
-                                    $formattedMarks = number_format($total/$count, 1);
+                                    $formattedMarks = round($total/$count, 1);
                                 }else{
-                                    $formattedMarks = number_format($total/$count, 0);
+                                    $formattedMarks = round($total/$count, 0);
                                 }
                                 $avgCoArray[] = $formattedMarks;
                             }
@@ -72,22 +72,18 @@
                     </tr>
                     <tr>
                         <th class="text-start">CO Attainment</th>
-                        <td colspan="13" class="text-center">1.5</td>
+                        <td colspan="13" class="text-center">{{ $coAttainment['final_co_attainment'] }}</td>
                     </tr>
                     @php
-                        $co_attainment = 1.5;
-                        // echo '<pre>';
-                        // print_r($avgCoArray);
+                        $co_attainment = $coAttainment['final_co_attainment'];
                         foreach ($avgCoArray as $value) {
                             if(floor(($value/3) * $co_attainment) != (($value/3) * $co_attainment)){
-                                $formattedMarks = number_format(($value / 3) * $co_attainment, 1);
+                                $formattedMarks = round(($value / 3) * $co_attainment, 1);
                             }else{
-                                $formattedMarks = number_format(($value / 3) * $co_attainment, 0);
+                                $formattedMarks = round(($value / 3) * $co_attainment, 0);
                             }
                             $poAttainmentArray[] = $formattedMarks;
                         }
-                        // echo '</pre>';
-                        // print_r($poAttainmentArray);
                     @endphp
                     <tr>
                         <th class="text-start">PO Attainment</th>
