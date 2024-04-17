@@ -73,7 +73,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
 
-
+        Route::get('assign-subject', function () {
+            return view('assign-subject');
+        })->name('assign-subject');
 
         // ajax requests
         Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);
@@ -131,11 +133,6 @@ Route::middleware('auth')->group(function () {
         Route::get('forgot-password', function () {
             return view('forgot-password');
         })->name('forgot-password');
-
-        Route::get('assign-subject', function () {
-            return view('assign-subject');
-        })->name('assign-subject');
-
     });
 
     // ajax requests
