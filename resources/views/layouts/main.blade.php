@@ -117,6 +117,11 @@
                                 <i class="bi bi-card-checklist"></i> Manage Subjects
                             </a>
                         </li>
+                        <li class="sidebar-item {{ request()->is('admin/assign-subject') ? 'active' : '' }}">
+                            <a href="{{ route('assign-subject') }}" class="sidebar-nested-link">
+                                <i class="bi bi-card-checklist"></i> Assign Subjects
+                            </a>
+                        </li>
                         {{-- <li class="sidebar-item {{ request()->is('admin/tables') ? 'active' : '' }}">
                             <a href="{{ route('tables') }}" class="sidebar-nested-link">
                                 <i class="bi bi-database-gear"></i> Database Tables
