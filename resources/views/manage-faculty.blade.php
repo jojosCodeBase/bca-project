@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="col-xl-2 col-6 d-flex justify-content-end justify-content-xl-start">
-                        <button class="btn btn-success"data-bs-toggle="modal" data-bs-target="#addModal"></i>Add Faculty +
+                        <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#addModal"></i>Add Faculty +
                         </button>
                     </div>
                 </div>
