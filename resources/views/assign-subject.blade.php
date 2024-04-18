@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-4 col-6">
-                        <h4 class="text-muted">Assign Subjects</h4>
+                        <h4 class="text-custom">Assign Subjects</h4>
                     </div>
                     <div class="col-xl-7 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
@@ -47,22 +47,9 @@
                                         {{-- <td>{{ $a['name'] }}</td>
                                         <td>{{ $a['email'] }}</td> --}}
                                         <td>
-                                            <div class="more-btn">
-                                                <button class="dropdown" type="button" data-bs-toggle="dropdown"
-                                                    aria-expanded="false">
-                                                    <i class="bi bi-three-dots fs-4"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    @foreach ($courses as $course)
-                                                        <li>
-                                                            <button class="dropdown-item facultyViewButton" type="button"
-                                                                class="btn btn-primary" data-bs-toggle="modal"
-                                                                data-bs-target="#bcamodal">{{ $course->name }}</button>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+                                            <button class="btn btn-primary" type="button"><i class="bi bi-pencil-fill"></i></button>
                                         </td>
+                                       
                                     </tr>
                                 @endforeach
 
@@ -129,7 +116,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">Assign</button>
                     </div>
                     </form>
                 </div>

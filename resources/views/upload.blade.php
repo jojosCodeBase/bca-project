@@ -6,7 +6,7 @@
         @include('include/error-alert')
         <div class="card mt-xl-0 mt-3">
             <div class="card-body">
-                <h4 class="text-muted">Upload Data</h4>
+                <h4 class="text-custom">Upload Data</h4>
                 <form action="{{ route('file-upload') }}" method="POST" class="needs-validation" enctype="multipart/form-data"
                     novalidate>
                     @csrf

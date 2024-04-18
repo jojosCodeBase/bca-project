@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-3 col-6 ">
-                        <h4 class="text-muted">List of Faculty</h4>
+                        <h4 class="text-custom">List of Faculty</h4>
                     </div>
                     <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">

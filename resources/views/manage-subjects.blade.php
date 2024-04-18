@@ -40,7 +40,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-3 col-6 ">
-                        <h4 class="text-muted">All Subjects</h4>
+                        <h4 class="text-custom">All Subjects</h4>
                     </div>
                     <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
@@ -114,10 +114,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row px-3">
+                    <div class="row">
                         <form action="{{ route('add-subject') }}" method="POST" class="needs-validation" novalidate>
                             @csrf
-                            <div class="col-xl-12 col-lg-5 col-md-5 col-6 mt-1 mb-1">
+                            <div class="col-xl-12 col-lg-5 col-md-5 col-6 mb-2">
                                 <label class="form-label">Subject Code</label>
                                 <input type="text" class="form-control" name="cid" placeholder="E.g. CA1603"
                                     required>
@@ -125,7 +125,7 @@
                                     Please select year
                                 </div>
                             </div>
-                            <div class="col-xl-12 col-lg-5 col-md-5 col-6 mt-1 mb-1">
+                            <div class="col-xl-12 col-lg-5 col-md-5 col-6 mt-2 mb-2">
                                 <label class="form-label">Subject Name</label>
                                 <input type="text" class="form-control" name="cname"
                                     placeholder="E.g. Software Engineering" required>
