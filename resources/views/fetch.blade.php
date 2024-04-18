@@ -10,7 +10,7 @@
                 <form action="{{ route('fetch-data') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row">
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>
                                 <option value="2019">2019</option>
@@ -23,7 +23,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-12 col-md-3 col-12 my-3">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-12 my-3">
                             <select name="course" id="course" class="form-select" required>
                                 <option selected disabled value="">Select course</option>
                                 <option value="BCA">BCA</option>
@@ -34,25 +34,19 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-12 my-3">
                             <select name="year" id="year" class="form-select" required>
                                 <option selected disabled value="">Select year</option>
                                 <option value="1">1st Year</option>
                                 <option value="2">2nd Year</option>
                                 <option value="3">3rd Year</option>
                             </select>
-                            {{-- <select name="year" id="year" class="form-select" required>
-                                <option selected disabled value="">Select year</option>
-                            </select> --}}
                             <div class="invalid-feedback">
                                 Please select Year
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
-                            {{-- <select name="semester" id="semester" class="form-select" required>
-                                <option selected disabled value="" disabled>Select semester</option>
-                            </select> --}}
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-12 my-3">
                             <select name="semester" id="semester" class="form-select" required>
                                 <option selected disabled value="" disabled>Select semester</option>
                                 <option value="odd">Odd</option>
@@ -63,10 +57,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
-                            {{-- <select name="year" id="subjectId" class="form-select" required>
-                                <option value="" selected disabled>Select subject code</option>
-                            </select> --}}
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-12 my-3">
                             <select name="subjectId" id="subjectId" class="form-select" required>
                                 <option value="" selected disabled>Select subject code</option>
                                 @foreach ($courses as $c)
@@ -77,7 +68,7 @@
                                 Please select Subject-Id
                             </div>
                         </div>
-                        <div class=" col-xl-2 col-lg-3 col-12 my-3">
+                        <div class=" col-xl-2 col-lg-3 col-md-3 col-12 my-3">
                             <button type="submit" class="btn btn-primary w-100" id="myButton">Fetch</button>
                         </div>
 

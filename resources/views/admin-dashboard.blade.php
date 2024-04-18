@@ -4,7 +4,7 @@
 @section('content')
     {{-- <div class="container"> --}}
         <main class="content">
-            <div class="mb-1 p-1">
+            <div class="mb-3">
                 <h5>Admin Dashboard</h5>
             </div>
 
@@ -20,46 +20,46 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-3 col-6 mb-3">
+                <div class="col-xl-3 col-xxl-3 col-lg-4 col-md-4 col-6 mb-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-8">
-                                    <h6>Total Faculty</h6>
                                     <h2>{{ $totalFaculty }}</h2>
+                                    <h6>Total Faculty</h6>
                                 </div>
                                 <div class="col-4">
-                                    <i class="bi bi-person-video3 fs-3 text-success"></i>
+                                    <i class="bi bi-person-video3 fs-3 text-custom"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-6 mb-3">
+                <div class="col-xl-3 col-xxl-3 col-lg-4 col-md-4 col-6 mb-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-8">
-                                    <h6>Total Program</h6>
                                     <h2>2</h2>
+                                    <h6>Total Program</h6>
                                 </div>
                                 <div class="col-4">
-                                    <i class="bi bi-chat-left-text-fill fs-3 text-warning"></i>
+                                    <i class="bi bi-chat-left-text-fill fs-3 text-custom"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-6">
+                <div class="col-xl-3 col-xxl-3 col-lg-4 col-md-4 col-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-8">
-                                    <h6>Total Subjects</h6>
                                     <h2>{{ $courseCount }}</h2>
+                                    <h6>Total Subjects</h6>
                                 </div>
                                 <div class="col-4">
-                                    <i class="bi bi-journal-text fs-3 text-warning"></i>
+                                    <i class="bi bi-journal-text fs-3 text-custom"></i>
                                 </div>
                             </div>
                         </div>
