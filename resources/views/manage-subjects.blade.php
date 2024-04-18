@@ -45,8 +45,11 @@
                     <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
                             <div class="col-xl-8 col-10 pe-0">
-                                <input type="search" name="" id="searchInput" placeholder="Search by subject code or name"
-                                    class="form-control">
+                                <div class="input-group">
+                                    <input type="search" name="" id="searchInput"
+                                        placeholder="Search by subject code or name" class="form-control">
+                                    <span class="input-group-text bg-transparent"><i class="bi bi-search"></i></span>
+                                </div>
                             </div>
                             {{-- <div class="col-xl-1 col-2">
                                 <div class="btn-color">
@@ -162,8 +165,8 @@
                                     Subject Code
                                 </span>
                                 <div class="mt-2">
-                                    <input type="text" id="edit-modal-subject-code" class="form-control text-uppercase"
-                                        name="subjectId" readonly>
+                                    <input type="text" id="edit-modal-subject-code"
+                                        class="form-control text-uppercase" name="subjectId" readonly>
                                 </div>
                             </div>
                             <div class="col-12 pt-3">
