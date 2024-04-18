@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') | Result Analysis System</title>
     <link rel="icon" href="{{ asset('assets/images/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -21,122 +22,86 @@
                 </div>
                 @if (Auth::user()->is_faculty)
                     <ul class="sidear-nav">
-                        <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
-                            <a href="{{ url('/dashboard') }}" class="sidebar-link">
+                        <li class="sidebar-item {{ Route::is('dashboard') ? 'active' : '' }}">
+                            <a href="{{ route('dashboard') }}" class="sidebar-link">
                                 <i class="bi bi-sliders"></i> Dashboard
                             </a>
                         </li>
-
-                        <li class="sidebar-item">
-                            <span class="sidebar-link">
-                                <i class="bi bi-three-dots-vertical"></i> Menu
-                            </span>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('upload') ? 'active' : '' }}">
-                            <a href="{{ url('/upload') }}" class="sidebar-nested-link">
-                                <i class="bi bi-file-earmark-arrow-up-fill"></i> Upload Data
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('fetch') ? 'active' : '' }}">
-                            <a href="{{ url('/fetch') }}" class="sidebar-nested-link">
-                                <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('co_po_relation') ? 'active' : '' }}">
-                            <a href="{{ url('/co_po_relation') }}" class="sidebar-nested-link">
-                                <i class="bi bi-cloud-arrow-up-fill"></i> CO/PO Relation
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <span class="sidebar-link">
-                                <i class="bi bi-clipboard2-data-fill"></i> Analysis
-                            </span>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('semester') ? 'active' : '' }}">
-                            <a href="{{ url('/semester') }}" class="sidebar-nested-link">
-                                <i class="bi bi-calendar-fill"></i> Semester Wise
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('year') ? 'active' : '' }}">
-                            <a href="{{ url('/year') }}" class="sidebar-nested-link">
-                                <i class="bi bi-calendar3"></i> Year Wise
-                            </a>
-                        </li>
-                    </ul>
-                @else
-                    <ul class="sidear-nav">
-                        {{-- <li class="sidebar-item {{ Route::is('admin-dashboard') ? 'active' : '' }}"> --}}
-                        <li class="sidebar-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
-                            <a href="{{ route('admin-dashboard') }}" class="sidebar-link">
-                                <i class="bi bi-sliders"></i> Dashboard
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <span class="sidebar-link">
-                                <i class="bi bi-three-dots-vertical"></i> Menu
-                            </span>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/upload') ? 'active' : '' }}">
-                            <a href="{{ route('admin-upload') }}" class="sidebar-nested-link">
-                                <i class="bi bi-file-earmark-arrow-up-fill"></i> Upload Data
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/fetch') ? 'active' : '' }}">
-                            <a href="{{ route('admin-fetch') }}" class="sidebar-nested-link">
-                                <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/co_po_relation') ? 'active' : '' }}">
-                            <a href="{{ route('admin-co_po_relation') }}" class="sidebar-nested-link">
-                                <i class="bi bi-cloud-arrow-up-fill"></i> CO-PO Relation
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <span class="sidebar-link">
-                                <i class="bi bi-clipboard2-data-fill"></i> Analysis
-                            </span>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/semester') ? 'active' : '' }}">
-                            <a href="{{ route('admin-semester') }}" class="sidebar-nested-link">
-                                <i class="bi bi-calendar-fill"></i> Semester Wise
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/year') ? 'active' : '' }}">
-                            <a href="{{ route('admin-year') }}" class="sidebar-nested-link">
-                                <i class="bi bi-calendar3"></i> Year Wise
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <span class="sidebar-link">
-                                <i class="bi bi-journal-text"></i> Subjects
-                            </span>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/manage-subjects') ? 'active' : '' }}">
-                            <a href="{{ route('manage-subjects') }}" class="sidebar-nested-link">
-                                <i class="bi bi-card-checklist"></i> Manage Subjects
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/assign-subject') ? 'active' : '' }}">
-                            <a href="{{ route('assign-subject') }}" class="sidebar-nested-link">
-                                <i class="bi bi-card-checklist"></i> Assign Subjects
-                            </a>
-                        </li>
-                        {{-- <li class="sidebar-item {{ request()->is('admin/tables') ? 'active' : '' }}">
+                    @else
+                        <ul class="sidear-nav">
+                            <li class="sidebar-item {{ Route::is('admin-dashboard') ? 'active' : '' }}">
+                                {{-- <li class="sidebar-item {{ request()->is('admin/dashboard') ? 'active' : '' }}"> --}}
+                                <a href="{{ route('admin-dashboard') }}" class="sidebar-link">
+                                    <i class="bi bi-sliders"></i> Dashboard
+                                </a>
+                            </li>
+                @endif
+                <li class="sidebar-item">
+                    <span class="sidebar-link">
+                        <i class="bi bi-three-dots-vertical"></i> Menu
+                    </span>
+                </li>
+                <li class="sidebar-item {{ Route::is('upload') ? 'active' : '' }}">
+                    <a href="{{ route('upload') }}" class="sidebar-nested-link">
+                        <i class="bi bi-file-earmark-arrow-up-fill"></i> Upload Data
+                    </a>
+                </li>
+                <li class="sidebar-item {{ Route::is('fetch') ? 'active' : '' }}">
+                    <a href="{{ route('fetch') }}" class="sidebar-nested-link">
+                        <i class="bi bi-file-earmark-arrow-down-fill"></i> Fetch Data
+                    </a>
+                </li>
+                <li class="sidebar-item {{ Route::is('co_po_relation') ? 'active' : '' }}">
+                    <a href="{{ route('co_po_relation') }}" class="sidebar-nested-link">
+                        <i class="bi bi-cloud-arrow-up-fill"></i> CO-PO Relation
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <span class="sidebar-link">
+                        <i class="bi bi-clipboard2-data-fill"></i> Analysis
+                    </span>
+                </li>
+                <li class="sidebar-item {{ Route::is('semester') ? 'active' : '' }}">
+                    <a href="{{ route('semester') }}" class="sidebar-nested-link">
+                        <i class="bi bi-calendar-fill"></i> Semester Wise
+                    </a>
+                </li>
+                <li class="sidebar-item {{ Route::is('year') ? 'active' : '' }}">
+                    <a href="{{ route('year') }}" class="sidebar-nested-link">
+                        <i class="bi bi-calendar3"></i> Year Wise
+                    </a>
+                </li>
+                @if (!Auth::user()->is_faculty)
+                    <li class="sidebar-item">
+                        <span class="sidebar-link">
+                            <i class="bi bi-journal-text"></i> Subjects
+                        </span>
+                    </li>
+                    <li class="sidebar-item {{ request()->is('admin/manage-subjects') ? 'active' : '' }}">
+                        <a href="{{ route('manage-subjects') }}" class="sidebar-nested-link">
+                            <i class="bi bi-card-checklist"></i> Manage Subjects
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->is('admin/assign-subject') ? 'active' : '' }}">
+                        <a href="{{ route('assign-subject') }}" class="sidebar-nested-link">
+                            <i class="bi bi-card-checklist"></i> Assign Subjects
+                        </a>
+                    </li>
+                    {{-- <li class="sidebar-item {{ request()->is('admin/tables') ? 'active' : '' }}">
                             <a href="{{ route('tables') }}" class="sidebar-nested-link">
                                 <i class="bi bi-database-gear"></i> Database Tables
                             </a>
                         </li> --}}
-                        <li class="sidebar-item">
-                            <span class="sidebar-link">
-                                <i class="bi bi-three-dots-vertical"></i> Faculty
-                            </span>
-                        </li>
-                        <li class="sidebar-item {{ request()->is('admin/manage-faculty') ? 'active' : '' }}">
-                            <a href="{{ route('manage-faculty') }}" class="sidebar-nested-link">
-                                <i class="bi bi-people-fill"></i> Manage Faculty
-                            </a>
-                        </li>
+                    <li class="sidebar-item">
+                        <span class="sidebar-link">
+                            <i class="bi bi-three-dots-vertical"></i> Faculty
+                        </span>
+                    </li>
+                    <li class="sidebar-item {{ request()->is('admin/manage-faculty') ? 'active' : '' }}">
+                        <a href="{{ route('manage-faculty') }}" class="sidebar-nested-link">
+                            <i class="bi bi-people-fill"></i> Manage Faculty
+                        </a>
+                    </li>
                     </ul>
                 @endif
             </div>
@@ -161,17 +126,17 @@
                                 <span class="text-dark">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                @if (Auth::user()->is_faculty)
-                                    <a href="{{ route('profile.edit') }}" class="dropdown-item"><i
-                                            class="bi bi-person-fill fs-5 pe-1"></i>
-                                        Profile
-                                    </a>
+                                <a href="{{ route('profile.edit') }}" class="dropdown-item"><i
+                                        class="bi bi-person-fill fs-5 pe-1"></i>
+                                    Profile
+                                </a>
+                                {{-- @if (Auth::user()->is_faculty)
                                 @else
                                     <a href="{{ route('admin-profile.edit') }}" class="dropdown-item"><i
                                             class="bi bi-person-fill fs-5 pe-1"></i>
                                         Profile
                                     </a>
-                                @endif
+                                @endif --}}
                                 <form method="POST" action="{{ route('logout') }}">
                                     <button type="submit" class="dropdown-item"><i
                                             class="bi bi-box-arrow-right fs-5 pe-1"></i> Log-Out</button>
@@ -209,6 +174,13 @@
 
     @yield('scripts')
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.selectpicker').selectpicker();
+        });
+    </script>
 </body>
 
 </html>

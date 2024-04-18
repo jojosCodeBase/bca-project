@@ -7,8 +7,8 @@
         <div class="card mt-xl-0 mt-3">
             <div class="card-body">
                 <h4 class="text-muted">Upload Data</h4>
-                <form action="{{ route('admin-file-upload') }}" method="POST" class="needs-validation"
-                    enctype="multipart/form-data" novalidate>
+                <form action="{{ route('file-upload') }}" method="POST" class="needs-validation" enctype="multipart/form-data"
+                    novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
@@ -65,10 +65,7 @@
                         </div>
 
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-12 my-3">
-                            {{-- <select name="year" id="subjectId" class="form-select" required>
-                                <option value="" selected disabled>Select subject code</option>
-                            </select> --}}
-                            <select name="subjectId" id="subjectId" class="form-select" required>
+                            <select name="subjectId" class="selectpicker form-control" id="subjectId" data-live-search="true" required>
                                 <option value="" selected disabled>Select subject code</option>
                                 @foreach ($courses as $c)
                                     <option value="{{ $c['cid'] }}">{{ $c['cid'] }} - {{ $c['cname'] }}</option>
