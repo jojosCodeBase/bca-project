@@ -110,7 +110,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Subject</h1>
+                    <h1 class="modal-title fs-5 text-custom" id="exampleModalLabel">Add Subject</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -150,7 +150,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Subject Info</h1>
+                    <h1 class="modal-title fs-5 text-custom" id="exampleModalLabel">Edit Subject Info</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('update.subject.info') }}" method="POST">
@@ -199,7 +199,7 @@
                         </div>
                     </div>
 
-                    <h4 class="text-center text-muted">Delete Subject</h4>
+                    <h4 class="text-center text-custom">Delete Subject</h4>
 
                     <p class="text-danger fs-6 text-center">Are you sure you want to delete this Subject? <br>This
                         action cannot be undone</p>

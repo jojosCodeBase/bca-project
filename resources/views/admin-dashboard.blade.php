@@ -2,9 +2,9 @@
 @section('title', 'Admin Dashboard')
 @section('breadcrumb', 'Dashboard')
 @section('content')
-    <div class="container">
+    {{-- <div class="container"> --}}
         <main class="content">
-            <div class="mb-3 p-1">
+            <div class="mb-1 p-1">
                 <h5>Admin Dashboard</h5>
             </div>
 
@@ -12,7 +12,7 @@
                 <div class="col-xl-12 col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4>Welcome Admin</h4>
+                            <h4 class="text-custom">Welcome Admin</h4>
                             <p class="card-text text-muted">Last updated: 15-03-24</p>
                         </div>
                     </div>
@@ -113,6 +113,6 @@
                 </div>
             </div>
         </main>
-    </div>
+    {{-- </div> --}}
 
 @endsection

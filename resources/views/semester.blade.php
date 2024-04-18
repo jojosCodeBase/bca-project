@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <h4 class="py-2 text-muted">Semester Wise</h4>
+                    <h4 class="py-2 text-custom">Semester Wise</h4>
                     <div class="col-xl-2 col-lg-3 col-md-3 col-6 mt-1">
                         <select name="Year" id="years" class="form-select">
                             <option value="#">Select year</option>
