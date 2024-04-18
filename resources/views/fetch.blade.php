@@ -6,7 +6,7 @@
         @include('include/error-alert')
         <div class="card mt-3 mt-xl-0 mt-md-0">
             <div class="card-body">
-                <h4 class="text-muted">Upload Data</h4>
+                <h4 class="text-custom">Fetch Data</h4>
                 <form action="{{ route('fetch-data') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <div class="row">
@@ -99,7 +99,7 @@
                         </div> --}}
                     </div>
                     {{-- <div class="row">
-                        <h4 class="text-muted">Fetch Data</h4>
+                        <h4 class="text-custom">Fetch Data</h4>
                         <div class="col-xl-3 col-lg-3 col-sm-12 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>

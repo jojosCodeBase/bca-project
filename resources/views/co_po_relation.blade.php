@@ -25,8 +25,8 @@
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-body">
-                        <table class="table table-hover table-bordered border-dark">
-                            <thead class="bg-dark text-light">
+                        <table class="table table-striped">
+                            <thead class="bg-custom text-light">
                                 <tr>
                                     <th>Subject Code</th>
                                     <th>Subject Name</th>
@@ -39,11 +39,11 @@
                                     <tr>
                                         <td class="courseId" data-course-id="{{ $c['cid'] }}">{{ $c['cid'] }}</td>
                                         <td>{{ $c['cname'] }}</td>
-                                        <td class="text-center">
+                                        <td>
                                             <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0 modelViewBtn"
                                                 data-bs-toggle="modal" data-bs-target="#viewCOPOModal"><i
                                                     class="bi bi-eye-fill"></i></button>
-                                            <button class="btn btn-warning coPoUpdateBtn" data-bs-toggle="modal"
+                                            <button class="btn btn-primary coPoUpdateBtn" data-bs-toggle="modal"
                                                 data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
                                         </td>
                                     </tr>
