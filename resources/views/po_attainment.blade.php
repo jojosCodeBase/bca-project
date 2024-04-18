@@ -21,7 +21,7 @@
                     <th>PO11</th>
                     <th>PO12</th>
                 </thead>
-                <tbody class="custom-width text-center">
+                <tbody class="text-center">
                     @php
                         $avgCoArray = [];
                         $poAttainmentArray = [];

@@ -210,7 +210,11 @@ class DashboardController extends Controller
     {
         $courses = Courses::all();
         // $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
-        $relation = CoPoRelation::where('cid', $cid)->where('batch', $batch)->get();
+
+        // for testing purpose batch is not added, but need to be added in production
+
+        $relation = CoPoRelation::where('cid', $cid)->get();
+        // dd($relation);
         $coAttainment = FinalCoAttainment::where('cid', $cid)->where('batch', $batch)->first();
         return view('po_attainment', compact('relation', 'courses', 'cid', 'batch', 'coAttainment'));
     }
