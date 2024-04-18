@@ -32,7 +32,7 @@
                         @if (Auth::user()->is_faculty)
                             <form method="post" action="{{ route('profile.update') }}">
                             @else
-                                <form method="post" action="{{ route('admin-profile.update') }}">
+                                <form method="post" action="{{ route('profile.update') }}">
                         @endif
                         @csrf
                         @method('patch')
