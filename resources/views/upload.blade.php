@@ -4,14 +4,14 @@
 @section('content')
     <div class="container flex-grow-1">
         @include('include/error-alert')
-        <div class="card mt-xl-0 mt-3">
+        <div class="card">
             <div class="card-body">
                 <h4 class="text-custom">Upload Data</h4>
                 <form action="{{ route('file-upload') }}" method="POST" class="needs-validation" enctype="multipart/form-data"
                     novalidate>
                     @csrf
                     <div class="row">
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>
                                 <option value="2019">2019</option>
@@ -24,7 +24,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-12 col-md-3 col-12 my-3">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 my-3">
                             <select name="course" id="course" class="form-select" required>
                                 <option selected disabled value="">Select course</option>
                                 <option value="BCA">BCA</option>
@@ -35,7 +35,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 my-3">
                             <select name="year" id="year" class="form-select" required>
                                 <option selected disabled value="">Select year</option>
                                 <option value="1">1st Year</option>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 my-3">
+                        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 my-3">
                             {{-- <select name="semester" id="semester" class="form-select" required>
                                 <option selected disabled value="" disabled>Select semester</option>
                             </select> --}}
@@ -64,7 +64,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-12 my-3">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-12 my-3">
                             <select name="subjectId" class="selectpicker form-control" id="subjectId" data-live-search="true" required>
                                 <option value="" selected disabled>Select subject code</option>
                                 @foreach ($courses as $c)
@@ -76,7 +76,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-7 col-xl-7 col-lg-7  col-md-10 col-12 my-3">
+                        <div class="col-xxl-7 col-xl-7 col-lg-10 col-md-10 col-12 my-3">
                             <div class="row">
                                 <div class=" col-xl-9 col-lg-9 col-md-9 col-12">
                                     <input type="file" name="file" id="file" class="form-control"
