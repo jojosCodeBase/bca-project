@@ -221,12 +221,17 @@ class DashboardController extends Controller
 
     public function coPoRelation()
     {
-        $courses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
-            ->select('courses.cname as cname', 'courses.cid as cid', 'courses.updated_at as updated_at')
-            ->where('faculty_id', Auth::user()->id)
-            ->get();
+        if(Auth::user()->is_faculty){
+            $courses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+                ->select('courses.cname as cname', 'courses.cid as cid', 'courses.updated_at as updated_at')
+                ->where('faculty_id', Auth::user()->id)
+                ->get();
+        }else{
+            $courses = Courses::all();
+        }
 
         $relation = CoPoRelation::all();
+
         return view('co_po_relation', compact('relation', 'courses'));
     }
     // ajax requests
