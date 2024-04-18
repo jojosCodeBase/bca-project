@@ -1,7 +1,7 @@
 @extends('layouts/main')
 @section('title', 'Dashboard')
 @section('content')
-    <main class="content p-lx-4 p-lg-4 p-md-4">
+    <main class="content">
         <div class="mb-3 p-1">
             <h5>Faculty Dashboard</h5>
         </div>
@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-8">
-                                <h6>Total Faculty</h6>
+                                <h6>Assign Subjects</h6>
                                 <h2>25</h2>
                             </div>
                             <div class="col-4">
