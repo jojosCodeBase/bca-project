@@ -23,7 +23,7 @@
                     @for ($i = 0; $i < count($poArray); $i++)
                         <tr>
                             <th rowspan="6">{{ $cid[$i] }}</th>
-                            @foreach ($poArray[$i] as $co => $r)
+                            @foreach (json_decode($poArray[$i], true) as $co => $r)
                                 @php
                                     $r = json_decode($r, true);
                                 @endphp

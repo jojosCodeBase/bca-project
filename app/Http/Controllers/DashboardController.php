@@ -377,19 +377,25 @@ class DashboardController extends Controller
     }
 
     public function directPOAttainment(){
-        $grandTotal1 = FinalCoAttainment::where('cid', 'CA2313')->where('batch', 2021)->pluck('grand_total')->first();
-        $grandTotal2 = FinalCoAttainment::where('cid', 'CA1603')->where('batch', 2021)->pluck('grand_total')->first();
+        $batch = 2021;
 
-        $po1 = json_decode(CoPoRelation::where('cid', 'CA2313')->pluck('co_po')->first(), true);
-        $po2 = json_decode(CoPoRelation::where('cid', 'CA1603')->pluck('co_po')->first(), true);
+        $cid = Courses::join('final_co_attainment', 'final_co_attainment.cid', '=', 'courses.cid')
+        ->where('batch', $batch)
+        ->pluck('courses.cid')
+        ->toArray();
 
-        $cid = ['CA2312', 'CA1603'];
-        $poArray = [$po1, $po2];
-        $grandTotalArray = [json_decode($grandTotal1, true), json_decode($grandTotal2, true)];
+        $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
+        ->where('final_co_attainment.batch', $batch)
+        ->pluck('co_po_relation.co_po')
+        ->toArray();
 
-        // dd($poArray);
-        // $relation = json_decode(CoPoRelation::where('cid', 'CA2313')->pluck('co_po')->first(), true);
+        $grandTotalArray = FinalCoAttainment::join('courses', 'courses.cid', '=', 'final_co_attainment.cid')
+        ->where('final_co_attainment.batch', $batch)
+        ->pluck('final_co_attainment.grand_total')
+        ->map(function ($item) {
+            return json_decode($item, true);
+        });
 
-        return view('direct-po-attainment', compact('grandTotal1', 'grandTotal2', 'cid', 'poArray', 'grandTotalArray'));
+        return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray'));
     }
 }
