@@ -112,7 +112,7 @@
                 <button class="btn" id="sidebar-toggle" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="breadcrumb-bar text-primary px-3">
+                <div class="breadcrumb-bar text-custom px-3">
                     <span class="breadcrumb-item fs-6">
                         @yield('breadcrumb')
                     </span>

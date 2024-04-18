@@ -1,5 +1,6 @@
-@extends('layouts.main')
+@extends('layouts.table-style')
 @section('title', 'Final CO Attainment')
+@section('breadcrumb', 'Final CO Attainment')
 @section('content')
     <div class="container-fluid">
         <h5>{{ $subjectCode }} - Final CO Attainment, Batch - {{ $batch }}</h5>
