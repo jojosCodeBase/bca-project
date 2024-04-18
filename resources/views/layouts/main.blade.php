@@ -157,7 +157,7 @@
                 </div>
             </nav>
 
-            <main class="content p-lx-4 p-lg-4 p-md-4">
+            <main class="content p-lx-3 p-lg-3 p-md-3 pt-3">
                 @yield('content')
             </main>
 

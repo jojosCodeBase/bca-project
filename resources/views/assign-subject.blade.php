@@ -13,8 +13,11 @@
                     <div class="col-xl-7 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
                             <div class="col-xl-6 col-10 pe-0">
-                                <input type="search" name="" id="" placeholder="Search Faculty"
-                                    class="form-control">
+                                <div class="input-group">
+                                    <input type="search" name="" id="" placeholder="Search Faculty"
+                                        class="form-control"><span class="input-group-text bg-transparent"><i
+                                            class="bi bi-search"></i></span>
+                                </div>
                             </div>
                             <div class="col-xl-4 col-3">
                                 <div class="btn-color">
@@ -93,8 +96,7 @@
                                 </div>
                                 <div class="col-12 mt-2">
                                     <label for="faculty-name" class="form-label">Faculty</label>
-                                    <select name="faculty" class="selectpicker form-control"
-                                        data-live-search="true">
+                                    <select name="faculty" class="selectpicker form-control" data-live-search="true">
                                         <option value="" selected disabled>Select faculty from list</option>
                                         @foreach ($faculties as $faculty)
                                             <option value="{{ $faculty['id'] }}">{{ $faculty['name'] }}</option>

@@ -4,15 +4,17 @@
 @section('content')
     <div class="container">
         @include('include/error-alert')
-        <div class="row d-flex justify-content-center mt-xl-0 mt-3">
-            <div class="col-xl-6 col-12">
+        <div class="row d-flex justify-content-center mt-xl-0 mt-2">
+            <div class="col-xxl-6 col-xl-6 col-md-9 col-12">
                 <div class="card pe-3">
                     <div class="card-body">
                         <form action="">
                             <div class="row">
-                                <div class="col-10">
-                                    <input type="search" name="" id="" placeholder="E.g. CA1603"
-                                        class="form-control">
+                                <div class="col-9 me-2">
+                                    <div class="input-group">
+                                        <input type="search" name="" id="" placeholder="E.g. CA1603"
+                                            class="form-control"><span class="input-group-text bg-transparent"><i class="bi bi-search"></i></span>
+                                    </div>
                                 </div>
                                 <div class="col-2 d-flex justify-content-center">
                                     <button class="btn btn-primary">Search</button>
@@ -25,6 +27,9 @@
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-body">
+                        <div class="mb-3">
+                            <h4 class="text-custom">CO-PO Relations</h4>
+                        </div>
                         <table class="table table-striped">
                             <thead class="bg-custom text-light">
                                 <tr>
@@ -40,7 +45,7 @@
                                         <td class="courseId" data-course-id="{{ $c['cid'] }}">{{ $c['cid'] }}</td>
                                         <td>{{ $c['cname'] }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-xl-0 modelViewBtn"
+                                            <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-md-0 mb-xl-0 modelViewBtn"
                                                 data-bs-toggle="modal" data-bs-target="#viewCOPOModal"><i
                                                     class="bi bi-eye-fill"></i></button>
                                             <button class="btn btn-primary coPoUpdateBtn" data-bs-toggle="modal"

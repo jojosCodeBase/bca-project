@@ -20,14 +20,14 @@
             </div>
         @endif
 
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Profile</h1>
+        <div class="mb-2">
+            <h2 class="mt-3 text-custom">Profile</h2>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-xl-6 mb-3">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Profile Information</h4>
+                        <h4 class="text-custom">Profile Information</h4>
                         {{-- <p>Update your account's profile information and email address.</p> --}}
                         @if (Auth::user()->is_faculty)
                             <form method="post" action="{{ route('profile.update') }}">
@@ -56,16 +56,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-xl-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Update Password</h4>
+                        <h4 class="text-custom">Update Password</h4>
                         {{-- <p>Ensure your account is using a long, random password to stay secure.</p> --}}
                         <form method="post" action="{{ route('password.update') }}">
                             @csrf
                             @method('put')
                             <div class="form-group">
-                                <label class="form-label">Current Password</label>
+                                <label class="form-label">Current Password
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <input type="password" class="form-control" name="current_password">
                                 <div class="mt-2 text-danger">
                                     @if ($errors->updatePassword->has('current_password'))
@@ -74,7 +76,9 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label class="form-label">New Password</label>
+                                <label class="form-label">New Password
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <input type="password" class="form-control" name="password">
                                 <div class="mt-2 text-danger">
                                     @if ($errors->updatePassword->has('password'))
@@ -83,7 +87,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Confirm Password</label>
+                                <label class="form-label">Confirm Password
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <input type="password" class="form-control" name="password_confirmation">
                             </div>
                             <div class="form-group mt-3">

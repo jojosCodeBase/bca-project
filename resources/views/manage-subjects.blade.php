@@ -11,27 +11,8 @@
             border-bottom: none;
         }
     </style>
-    <div class="container mb-4">
+    <div class="container mb-2">
         @include('include/error-alert')
-        {{-- <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-4">
-                                    <input type="search" name="" id="" placeholder="E.g. CA1603"
-                                        class="form-control">
-                                </div>
-                                <div class="col-2 d-flex justify-content-center">
-                                    <button class="btn btn-primary">Search</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 
     <div class="container">
@@ -42,17 +23,15 @@
                     <div class="col-xl-3 col-6 ">
                         <h4 class="text-custom">All Subjects</h4>
                     </div>
-                    <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
+                    <div class="col-xl-7 col-md-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
-                            <div class="col-xl-8 col-10 pe-0">
-                                <input type="search" name="" id="searchInput" placeholder="Search by subject code or name"
-                                    class="form-control">
-                            </div>
-                            {{-- <div class="col-xl-1 col-2">
-                                <div class="btn-color">
-                                    <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                            <div class="col-xl-8 col-12 pe-0">
+                                <div class="input-group">
+                                    <input type="search" name="" id="searchInput"
+                                        placeholder="Search by subject code or name" class="form-control">
+                                    <span class="input-group-text bg-transparent"><i class="bi bi-search"></i></span>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-2 col-6 d-flex justify-content-end justify-content-xl-start">
@@ -117,7 +96,7 @@
                     <div class="row">
                         <form action="{{ route('add-subject') }}" method="POST" class="needs-validation" novalidate>
                             @csrf
-                            <div class="col-xl-12 col-lg-5 col-md-5 col-6 mb-2">
+                            <div class="col-12 mb-2">
                                 <label class="form-label">Subject Code</label>
                                 <input type="text" class="form-control" name="cid" placeholder="E.g. CA1603"
                                     required>
@@ -125,7 +104,7 @@
                                     Please select year
                                 </div>
                             </div>
-                            <div class="col-xl-12 col-lg-5 col-md-5 col-6 mt-2 mb-2">
+                            <div class="col-12 mt-2 mb-2">
                                 <label class="form-label">Subject Name</label>
                                 <input type="text" class="form-control" name="cname"
                                     placeholder="E.g. Software Engineering" required>
@@ -135,7 +114,7 @@
                             </div>
                             <div class="modal-footer  my-1 d-flex justify-content-end pe-2">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Add</button>
                             </div>
                         </form>
                     </div>
@@ -162,8 +141,8 @@
                                     Subject Code
                                 </span>
                                 <div class="mt-2">
-                                    <input type="text" id="edit-modal-subject-code" class="form-control text-uppercase"
-                                        name="subjectId" readonly>
+                                    <input type="text" id="edit-modal-subject-code"
+                                        class="form-control text-uppercase" name="subjectId" readonly>
                                 </div>
                             </div>
                             <div class="col-12 pt-3">
