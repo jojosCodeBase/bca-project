@@ -16,9 +16,6 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
 
 Route::middleware('auth')->group(function () {
     // Common routes accessible to both admin and faculty

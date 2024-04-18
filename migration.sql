@@ -1,0 +1,157 @@
+CREATE TABLE `users` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL UNIQUE,
+    `email_verified_at` TIMESTAMP NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `is_faculty` INT NOT NULL DEFAULT 1,
+    `regno` INT NOT NULL DEFAULT 0,
+    `remember_token` VARCHAR(100) NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `courses` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `cname` VARCHAR(255) NOT NULL,
+    UNIQUE INDEX `courses_cid_cname_unique` (`cid`, `cname`),
+    `assigned` INT NOT NULL DEFAULT 0,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `max_marks_co` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `batch` INT NOT NULL,
+    UNIQUE INDEX `max_marks_co_cid_batch_unique` (`cid`, `batch`),
+    `q1` JSON NULL,
+    `s1` JSON NULL,
+    `q2` JSON NULL,
+    `s2` JSON NULL,
+    `assignment` JSON NULL,
+    `end_sem` JSON NULL,
+    `total` DECIMAL(5,1) NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `co_attainment` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `batch` INT NOT NULL,
+    `q1` JSON NOT NULL,
+    `s1` JSON NOT NULL,
+    `q2` JSON NOT NULL,
+    `s2` JSON NOT NULL,
+    `assignment` JSON NOT NULL,
+    `end_sem` JSON NOT NULL,
+    `total` JSON NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `co_po_relation` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `batch` INT NULL,
+    `CO` VARCHAR(255) NULL,
+    `PO1` INT NULL,
+    `PO2` INT NULL,
+    `PO3` INT NULL,
+    `PO4` INT NULL,
+    `PO5` INT NULL,
+    `PO6` INT NULL,
+    `PO7` INT NULL,
+    `PO8` INT NULL,
+    `PO9` INT NULL,
+    `PO10` INT NULL,
+    `PO11` INT NULL,
+    `PO12` INT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `subject_marks` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `batch` BIGINT NOT NULL,
+    `regno` BIGINT NOT NULL,
+    UNIQUE INDEX `subject_marks_cid_batch_regno_unique` (`cid`, `batch`, `regno`),
+    `q1` JSON NOT NULL,
+    `s1` JSON NOT NULL,
+    `q2` JSON NOT NULL,
+    `s2` JSON NOT NULL,
+    `assignment` JSON NOT NULL,
+    `end_sem` JSON NOT NULL,
+    `total` DECIMAL(5,1) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `target_marks` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `batch` INT NOT NULL,
+    `q1` JSON NOT NULL,
+    `s1` JSON NOT NULL,
+    `q2` JSON NOT NULL,
+    `s2` JSON NOT NULL,
+    `assignment` JSON NOT NULL,
+    `end_sem` JSON NOT NULL,
+    `total` JSON NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `more_than_sixty` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `batch` INT NOT NULL,
+    `q1` JSON NOT NULL,
+    `s1` JSON NOT NULL,
+    `q2` JSON NOT NULL,
+    `s2` JSON NOT NULL,
+    `assignment` JSON NOT NULL,
+    `end_sem` JSON NOT NULL,
+    `total` JSON NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `attainment_percentage` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `batch` INT NOT NULL,
+    `q1` JSON NOT NULL,
+    `s1` JSON NOT NULL,
+    `q2` JSON NOT NULL,
+    `s2` JSON NOT NULL,
+    `assignment` JSON NOT NULL,
+    `end_sem` JSON NOT NULL,
+    `total` JSON NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `final_co_attainment` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `batch` INT NOT NULL,
+    `grand_total` JSON NOT NULL,
+    `total_avg_internal` JSON NOT NULL,
+    `final_co_attainment` JSON NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE `assigned_subjects` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `cid` VARCHAR(255) NOT NULL,
+    `faculty_id` BIGINT UNSIGNED NOT NULL,
+    UNIQUE INDEX `assigned_subjects_cid_faculty_id_unique` (`cid`, `faculty_id`),
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
