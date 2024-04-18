@@ -28,44 +28,29 @@
                     <h5 class="text-muted mt-4">List Of Faculty</h5>
 
                     <div class="table-responsive">
-                        <table class="table table-hover my-4">
+                        <table class="table table-striped my-4">
                             <thead>
                                 <tr>
                                     <th>Sl.No.</th>
-                                    <th>Subject</th>
                                     <th>Faculty Name</th>
+                                    <th>Subject</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @dump($assigned) --}}
-                                @foreach ($assigned as $a)
+                                @foreach ($facultyDropdown as $key => $fd)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $a['course_name'] }}</td>
-                                        <td>{{ $a['faculty_name'] }}</td>
-                                        {{-- <td>{{ $a['name'] }}</td>
-                                        <td>{{ $a['email'] }}</td> --}}
+                                        <td>{{ $key }}</td>
                                         <td>
-                                            <div class="more-btn">
-                                                <button class="dropdown" type="button" data-bs-toggle="dropdown"
-                                                    aria-expanded="false">
-                                                    <i class="bi bi-three-dots fs-4"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    @foreach ($courses as $course)
-                                                        <li>
-                                                            <button class="dropdown-item facultyViewButton" type="button"
-                                                                class="btn btn-primary" data-bs-toggle="modal"
-                                                                data-bs-target="#bcamodal">{{ $course->name }}</button>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+                                            <select name="" id="" class="form-select">
+                                                @foreach($fd as $subject)
+                                                    <option value="">{{ $subject }}</option>
+                                                @endforeach
+                                            </select>
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
