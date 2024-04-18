@@ -1,5 +1,6 @@
 @extends('layouts/main')
 @section('title', 'Dashboard')
+@section('breadcrumb', 'Dashboard')
 @section('content')
     <main class="content">
         <div class="mb-3 p-1">
@@ -23,8 +24,8 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-8">
-                                <h6>Assign Subjects</h6>
-                                <h2>25</h2>
+                                <h6>Assigned Subjects</h6>
+                                <h2>{{ count($courses) }}</h2>
                             </div>
                             <div class="col-4">
                                 <i class="bi bi-person-video3 fs-3 text-success"></i>
@@ -63,18 +64,18 @@
                                 <th>Subject Id</th>
                                 <th>Subject Name</th>
                                 <th>Date</th>
-                                <th>View</th>
+                                {{-- <th>View</th> --}}
                             </thead>
                             <tbody>
-                                @for($i=0; $i<count($courses); $i++)
+                                @foreach ($courses as $c)
                                     <tr>
-                                        <td>{{ $i+1 }}</td>
-                                        <td>{{ $courses[$i]['cid'] }}</td>
-                                        <td>{{ $courses[$i]['cname'] }}</td>
-                                        <td>{{ $courses[$i]['created_at'] }}</td>
-                                        <td><a href="#">View</a></td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $c['cid'] }}</td>
+                                        <td>{{ $c['cname'] }}</td>
+                                        <td>{{ $c['updated_at'] }}</td>
+                                        {{-- <td><a href="#">View</a></td> --}}
                                     </tr>
-                                @endfor
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

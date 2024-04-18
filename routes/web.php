@@ -71,10 +71,12 @@ Route::middleware('auth')->group(function () {
 
         Route::get('assign-subject', [DashboardController::class, 'assignSubjectView'])->name('assign-subject');
         Route::post('assign-subject', [DashboardController::class, 'assignSubject'])->name('assign-subject');
+        Route::post('assign-subject/update', [DashboardController::class, 'assignSubjectUpdate'])->name('edit-assign-subject');
 
         // ajax requests
         Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);
         Route::get('getFacultyInfo/{id}', [DashboardController::class, 'getFacultyInfo']);
+        Route::get('get_assigned_courses', [DashboardController::class, 'getAssignedSubjects']);
     });
 
     Route::middleware('faculty')->group(function () {
@@ -87,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/course/search', [DashboardController::class, 'searchCourses']);
 
     Route::get('/test', [DashboardController::class, 'liveSearch'])->name('liveSearch');
+
 });
 
 require __DIR__ . '/auth.php';
