@@ -123,7 +123,7 @@
                             <a href="" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
                                 <img src="{{ asset('assets/images/admin.png') }}"
                                     class="rounded-circle avatar img-fluid" alt="profile-ph">
-                                <span class="text-dark">{{ Auth::user()->name }}</span>
+                                <span class="text-custom d-none s-md-inline d-lg-inline d-xl-inline d-xxl-inline">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="{{ route('profile.edit') }}" class="dropdown-item"><i
