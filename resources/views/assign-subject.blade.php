@@ -33,24 +33,32 @@
                                 <tr>
                                     <th>Sl.No.</th>
                                     <th>Faculty Name</th>
-                                    <th>Subject</th>
+                                    <th>Subjects Assigned</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($facultyDropdown as $key => $fd)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $key }}</td>
-                                        <td>
-                                            <select name="" id="" class="form-select">
-                                                @foreach($fd as $subject)
-                                                    <option value="">{{ $subject }}</option>
-                                                @endforeach
-                                            </select>
-                                            <button class="btn btn-primary" type="button"><i class="bi bi-pencil-fill"></i></button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($fd as $facultyId => $courses)
+                                        <tr>
+                                            <td>{{ $loop->parent->iteration }}</td>
+                                            <td>{{ $key }}</td>
+                                            <td>
+                                                <select name="courses[{{ $facultyId }}]" class="form-select">
+                                                    @foreach ($courses as $cid => $cname)
+                                                        <option value="{{ $cid }}">{{ $cid }} -
+                                                            {{ $cname }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary editAssignedSubject" type="button"
+                                                    data-faculty-id="{{ $facultyId }}" data-bs-toggle="modal"
+                                                    data-bs-target="#assignEditModal"><i
+                                                        class="bi bi-pencil-fill"></i></button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @endforeach
                             </tbody>
                         </table>
@@ -68,24 +76,24 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Assign Subject</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <form action="{{ route('assign-subject') }}" method="POST">
+                    <form action="{{ route('assign-subject') }}" method="POST">
+                        <div class="modal-body">
+                            <div class="row">
                                 @csrf
-                                <div class="col">
+                                <div class="col-12">
                                     <label for="subject-name" class="form-label">Subject Name</label>
                                     <select id="subject-name" name="subject" class="selectpicker form-control"
                                         data-live-search="true">
                                         <option value="" selected disabled>Select subject from list</option>
-                                        @foreach ($courses as $c)
+                                        @foreach ($allCourses as $c)
                                             <option value="{{ $c['cid'] }}">{{ $c['cid'] }} - {{ $c['cname'] }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col mt-2">
+                                <div class="col-12 mt-2">
                                     <label for="faculty-name" class="form-label">Faculty</label>
-                                    <select id="faculty-name" name="faculty" class="selectpicker form-control"
+                                    <select name="faculty" class="selectpicker form-control"
                                         data-live-search="true">
                                         <option value="" selected disabled>Select faculty from list</option>
                                         @foreach ($faculties as $faculty)
@@ -93,7 +101,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col mt-2">
+                                <div class="col-12 mt-2">
                                     <label for="course" class="form-label">Course</label>
                                     <select id="course" name="course" class="form-select">
                                         <option value="" selected disabled>Select course from list</option>
@@ -102,7 +110,7 @@
                                         <!-- Add more options as needed -->
                                     </select>
                                 </div>
-                                <div class="col mt-2">
+                                <div class="col-12 mt-2">
                                     <label for="semester" class="form-label">Semester</label>
                                     <select id="semester" name="semester" class="form-select">
                                         <option value="" selected disabled>Select semester from list</option>
@@ -112,49 +120,103 @@
                                         <!-- Add more options as needed -->
                                     </select>
                                 </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Assign</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Assign</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
         {{-- assign subject modal end --}}
 
-        {{-- faculty-Edit modal start --}}
-        <div class="modal fade" id="bcamodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {{-- assign subject edit modal start --}}
+        <div class="modal fade" id="assignEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Faculty Details</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Assigned Subjects</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <form action="">
-                                <div class="col">
-                                    <label for="" class="form-label">Faculty Id</label>
-                                    <input type="text" id="faculty-edit-id" class="form-control">
+                    <form action="{{ route('edit-assign-subject') }}" id="editForm" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="faculty-edit-id" class="form-label">Faculty Name</label>
+                                    <input type="text" id="faculty-name" class="form-control" disabled>
                                 </div>
-                                <div class="col mt-2">
-                                    <label for="" class="form-label">Name</label>
-                                    <input type="text" id="faculty-edit-name" class="form-control">
+                                <div class="col-12 mt-2">
+                                    <label for="subject-checkboxes" class="form-label">Assigned Subjects:</label>
+                                    <div id="subject-checkboxes">
+                                        <!-- Assigned subjects checkboxes will be inserted here dynamically -->
+                                    </div>
+                                    <span id="alert-message" class="text-danger" style="display: none;">No subejcts are
+                                        checked. Please select at least one subject</span>
                                 </div>
-                                <div class="col mt-2">
-                                    <label for="" class="form-label">Email</label>
-                                    <input type="text" id="faculty-edit-email" class="form-control">
-                                </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Update</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger" id="removeBtn">Remove Selected</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        {{-- faculty-Edit modal end --}}
+        {{-- assign subject edit modal end --}}
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.editAssignedSubject').click(function() {
+                var facultyId = $(this).data('faculty-id');
+                // console.log(facultyId);
+                // alert(facultyId);
+                $.ajax({
+                    url: '/admin/get_assigned_courses',
+                    method: 'GET',
+                    data: {
+                        faculty_id: facultyId
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('#faculty-name').val(response[0]['faculty_name']);
+                        $('#subject-checkboxes').empty(); // Clear previous checkboxes
+
+                        if (response.length > 0) {
+                            response.forEach(function(course) {
+                                var checkbox =
+                                    '<div class="form-check"><input class="form-check-input" type="checkbox" value="' +
+                                    course.course_id + // Accessing the course ID
+                                    '" name="checked_courses[]"><label class="form-check-label">' +
+                                    course.course_name +
+                                    '</label></div>'; // Accessing the course name
+                                $('#subject-checkboxes').append(checkbox);
+                            });
+                        } else {
+                            $('#subject-checkboxes').html(
+                                '<p>No courses assigned to this faculty.</p>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+
+            $('#removeBtn').on('click', function() {
+                // Check if any checkboxes are checked
+                var checkedCheckboxes = $('input[type="checkbox"]:checked');
+                if (checkedCheckboxes.length == 0) {
+                    $('#alert-message').css('display', 'block');
+                } else {
+                    $('#alert-message').css('display', 'none');
+                }
+            });
+
+        });
+    </script>
+
 @endsection

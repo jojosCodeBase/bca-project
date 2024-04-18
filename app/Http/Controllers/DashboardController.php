@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AssignedSubject;
-use App\Models\AttainmentPercentage;
-use App\Models\FinalCoAttainment;
-use App\Models\MoreThanSixty;
-use App\Models\TargetMarks;
 use Exception;
 use App\Models\User;
 use App\Models\Courses;
 use App\Models\MaxMarksCO;
 use App\Models\ExcelUpload;
+use App\Models\TargetMarks;
 use App\Models\CoAttainment;
 use App\Models\CoPoRelation;
 use App\Models\SubjectMarks;
 use Illuminate\Http\Request;
+use App\Models\MoreThanSixty;
+use App\Models\AssignedSubject;
 use Illuminate\Validation\Rules;
+use App\Models\FinalCoAttainment;
+use App\Models\AttainmentPercentage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -34,18 +35,37 @@ class DashboardController extends Controller
 
     public function userDashboard()
     {
-        $x = 'Courses';
-        $modelClass = 'App\\Models\\' . $x;
-        return view('user-dashboard', ['courses' => $modelClass::orderBy('updated_at', 'desc')->get()]);
+        // $courses = AssignedSubject::where('faculty_id', Auth::user()->id)->get();
+        $courses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+            ->select('courses.cname as cname', 'courses.cid as cid', 'courses.updated_at as updated_at')
+            ->where('faculty_id', Auth::user()->id)
+            ->get();
+
+        // dd($courses);
+        return view('user-dashboard', compact('courses'));
     }
     public function fetchView()
     {
-        $courses = Courses::orderBy('cname', 'asc')->get();
+        if (Auth::user()->is_faculty) {
+            $courses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+                ->select('courses.cname as cname', 'courses.cid as cid', 'courses.updated_at as updated_at')
+                ->where('faculty_id', Auth::user()->id)
+                ->orderBy('cname', 'asc')
+                ->get();
+        } else
+            $courses = Courses::orderBy('cname', 'asc')->get();
         return view('fetch', ['courses' => $courses]);
     }
     public function uploadView()
     {
-        $courses = Courses::orderBy('cname', 'asc')->get();
+        if (Auth::user()->is_faculty) {
+            $courses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+                ->select('courses.cname as cname', 'courses.cid as cid', 'courses.updated_at as updated_at')
+                ->where('faculty_id', Auth::user()->id)
+                ->orderBy('cname', 'asc')
+                ->get();
+        } else
+            $courses = Courses::orderBy('cname', 'asc')->get();
         return view('upload', ['courses' => $courses]);
     }
     public function fetchData(Request $r)
@@ -197,10 +217,12 @@ class DashboardController extends Controller
 
     public function coPoRelation()
     {
-        $courses = Courses::all();
+        $courses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+            ->select('courses.cname as cname', 'courses.cid as cid', 'courses.updated_at as updated_at')
+            ->where('faculty_id', Auth::user()->id)
+            ->get();
+
         $relation = CoPoRelation::all();
-        // $relation = CoPoRelation::where('cid', $courseId)->get();
-        // return view('co_po_relation', compact('relation', 'courses', 'cid', 'batch'));
         return view('co_po_relation', compact('relation', 'courses'));
     }
     // ajax requests
@@ -274,7 +296,7 @@ class DashboardController extends Controller
 
     public function assignSubjectView()
     {
-        $courses = Courses::where('assigned', 0)->get();
+        $allCourses = Courses::where('assigned', 0)->get();
 
         $faculties = User::where('is_faculty', 1)->get();
 
@@ -287,14 +309,29 @@ class DashboardController extends Controller
 
         $assignedSubjects = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
             ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
-            ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name')
+            ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name', 'users.id as faculty_id')
             ->where('users.is_faculty', 1)
             ->get();
 
         // dd($assignedSubjects);
 
+        // $facultyDropdown = [];
+        // foreach ($assignedSubjects as $assignedSubject) {
+        //     $facultyName = $assignedSubject->faculty_name;
+        //     $subjectName = $assignedSubject->course_name;
+
+        //     // If faculty name is not in the dropdown array, initialize it with an empty array
+        //     if (!isset($facultyDropdown[$facultyName])) {
+        //         $facultyDropdown[$facultyName] = [];
+        //     }
+
+        //     // Add the subject to the faculty's dropdown array
+        //     $facultyDropdown[$facultyName][$assignedSubject->cid] = $subjectName;
+        // }
+
         $facultyDropdown = [];
         foreach ($assignedSubjects as $assignedSubject) {
+            $facultyId = $assignedSubject->faculty_id;
             $facultyName = $assignedSubject->faculty_name;
             $subjectName = $assignedSubject->course_name;
 
@@ -304,8 +341,10 @@ class DashboardController extends Controller
             }
 
             // Add the subject to the faculty's dropdown array
-            $facultyDropdown[$facultyName][$assignedSubject->id] = $subjectName;
+            $facultyDropdown[$facultyName][$facultyId][$assignedSubject->cid] = $subjectName;
         }
+
+        // dd($facultyDropdown);
 
         // foreach($facultyDropdown as $key => $fd){
         //     echo $key;
@@ -313,7 +352,7 @@ class DashboardController extends Controller
         // }
         // dd($assignedSubjects, $facultyDropdown);
 
-        return view('assign-subject', compact('courses', 'faculties', 'assignedSubjects', 'facultyDropdown'));
+        return view('assign-subject', compact('allCourses', 'faculties', 'assignedSubjects', 'facultyDropdown'));
     }
     public function assignSubject(Request $request)
     {
@@ -328,5 +367,30 @@ class DashboardController extends Controller
             return back()->with('success', 'Subject assigned to faculty successfully');
         else
             return back()->with('error', 'Some error occured in assigning subject to faculty');
+    }
+    public function assignSubjectUpdate(Request $request)
+    {
+        try {
+            foreach ($request->checked_courses as $cid) {
+                AssignedSubject::where('cid', $cid)->delete();
+                Courses::where('cid', $cid)->update(['assigned' => 0]);
+            }
+            return back()->with('success', 'Assigned subjects updated successfully');
+        } catch (Exception $e) {
+
+            return back()->with('error', 'An error occurred while updating assigned subjects: ' . $e->getMessage());
+        }
+    }
+
+    public function getAssignedSubjects(Request $request)
+    {
+        // Fetch assigned courses for the given faculty ID
+        $assignedCourses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+            ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
+            ->select('courses.cid as course_id', 'courses.cname as course_name', 'users.name as faculty_name')
+            ->where('assigned_subjects.faculty_id', $request->faculty_id)
+            ->get();
+
+        return response()->json($assignedCourses);
     }
 }
