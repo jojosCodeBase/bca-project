@@ -13,5 +13,6 @@ class Courses extends Model
     protected $fillable = [
         'cid',
         'cname',
+        'assigned',
     ];
 }

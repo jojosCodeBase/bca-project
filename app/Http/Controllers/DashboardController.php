@@ -274,20 +274,46 @@ class DashboardController extends Controller
 
     public function assignSubjectView()
     {
-        $courses = Courses::all();
+        $courses = Courses::where('assigned', 0)->get();
+
         $faculties = User::where('is_faculty', 1)->get();
 
-        $assigned = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+        // $assigned = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+        //     ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
+        //     ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name')
+        //     ->where('users.is_faculty', 1)
+        //     ->get()
+        //     ->toArray();
+
+        $assignedSubjects = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
             ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
             ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name')
             ->where('users.is_faculty', 1)
-            ->get()
-            ->toArray();
+            ->get();
 
+        // dd($assignedSubjects);
 
-        // dd($assigned);
+        $facultyDropdown = [];
+        foreach ($assignedSubjects as $assignedSubject) {
+            $facultyName = $assignedSubject->faculty_name;
+            $subjectName = $assignedSubject->course_name;
 
-        return view('assign-subject', compact('courses', 'faculties', 'assigned'));
+            // If faculty name is not in the dropdown array, initialize it with an empty array
+            if (!isset($facultyDropdown[$facultyName])) {
+                $facultyDropdown[$facultyName] = [];
+            }
+
+            // Add the subject to the faculty's dropdown array
+            $facultyDropdown[$facultyName][$assignedSubject->id] = $subjectName;
+        }
+
+        // foreach($facultyDropdown as $key => $fd){
+        //     echo $key;
+        //     print_r($fd);
+        // }
+        // dd($assignedSubjects, $facultyDropdown);
+
+        return view('assign-subject', compact('courses', 'faculties', 'assignedSubjects', 'facultyDropdown'));
     }
     public function assignSubject(Request $request)
     {
@@ -295,6 +321,9 @@ class DashboardController extends Controller
             'cid' => $request->subject,
             'faculty_id' => $request->faculty,
         ]);
+
+        Courses::where('cid', $request->subject)->update(['assigned' => 1]);
+
         if ($query)
             return back()->with('success', 'Subject assigned to faculty successfully');
         else

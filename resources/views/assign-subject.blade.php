@@ -28,31 +28,30 @@
                     <h5 class="text-muted mt-4">List Of Faculty</h5>
 
                     <div class="table-responsive">
-                        <table class="table table-hover my-4">
+                        <table class="table table-striped my-4">
                             <thead>
                                 <tr>
                                     <th>Sl.No.</th>
-                                    <th>Subject</th>
                                     <th>Faculty Name</th>
+                                    <th>Subject</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @dump($assigned) --}}
-                                @foreach ($assigned as $a)
+                                @foreach ($facultyDropdown as $key => $fd)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $a['course_name'] }}</td>
-                                        <td>{{ $a['faculty_name'] }}</td>
-                                        {{-- <td>{{ $a['name'] }}</td>
-                                        <td>{{ $a['email'] }}</td> --}}
+                                        <td>{{ $key }}</td>
                                         <td>
+                                            <select name="" id="" class="form-select">
+                                                @foreach($fd as $subject)
+                                                    <option value="">{{ $subject }}</option>
+                                                @endforeach
+                                            </select>
                                             <button class="btn btn-primary" type="button"><i class="bi bi-pencil-fill"></i></button>
                                         </td>
-                                       
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>

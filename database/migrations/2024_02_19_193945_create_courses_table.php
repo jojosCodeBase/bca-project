@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('cid');
             $table->string('cname');
+            $table->unique(['cid', 'cname']);
+            $table->integer('assigned')->default(0);
             $table->timestamps();
         });
     }
