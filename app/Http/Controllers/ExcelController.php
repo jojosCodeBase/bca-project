@@ -270,7 +270,6 @@ class ExcelController extends Controller
         $marks_more_than_sixty_percent_array = [];
         $co_attainment = [];
 
-        // print_r($target_marks);
         $attainmentPercentage = [];
         $attainmentPercentage_CO_PO = [];
         $co_attainment_CO_PO = [];
@@ -279,7 +278,6 @@ class ExcelController extends Controller
         for ($i = 0; $i < count($target_marks); $i++) {
             // here key is co1, co2, co3..
             foreach ($co_po as $key => $v) {
-                // echo $key . '=>' . $v;
                 foreach ($data as $d) {
                     $marks = json_decode($d[$examArray[$index]], true);
 
@@ -324,7 +322,6 @@ class ExcelController extends Controller
             // store co attainment level
             $co_attainment[$examArray[$index]] = $co_attainment_CO_PO;
             $index++;
-
         }
 
         $query = MoreThanSixty::updateOrCreate(

@@ -12,18 +12,6 @@ class CoPoRelation extends Model
     protected $fillable = [
         'batch',
         'cid',
-        'CO',
-        'PO1',
-        'PO2',
-        'PO3',
-        'PO4',
-        'PO5',
-        'PO6',
-        'PO7',
-        'PO8',
-        'PO9',
-        'PO10',
-        'PO11',
-        'PO12',
+        'co_po',
     ];
 }

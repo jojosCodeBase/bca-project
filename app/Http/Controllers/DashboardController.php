@@ -68,10 +68,6 @@ class DashboardController extends Controller
             $courses = Courses::orderBy('cname', 'asc')->get();
         return view('upload', ['courses' => $courses]);
     }
-    public function fetchData(Request $r)
-    {
-        dd($r->all());
-    }
 
     public function addSubject(Request $request)
     {
@@ -213,8 +209,8 @@ class DashboardController extends Controller
 
         // for testing purpose batch is not added, but need to be added in production
 
-        $relation = CoPoRelation::where('cid', $cid)->get();
-        // dd($relation);
+        $relation = json_decode(CoPoRelation::where('cid', $cid)->pluck('co_po')->first(), true);
+        // dd(json_decode($relation, true));
         $coAttainment = FinalCoAttainment::where('cid', $cid)->where('batch', $batch)->first();
         return view('po_attainment', compact('relation', 'courses', 'cid', 'batch', 'coAttainment'));
     }
@@ -247,47 +243,24 @@ class DashboardController extends Controller
     public function updateCoPoRelation(Request $r)
     {
         // add validation
-        $COArrays = [
-            'CO1' => $r->input('CO1'),
-            'CO2' => $r->input('CO2'),
-            'CO3' => $r->input('CO3'),
-            'CO4' => $r->input('CO4'),
-            'CO5' => $r->input('CO5'),
+        $CO_PO_Array = [
+            'CO1' => json_encode($r->input('CO1'), true),
+            'CO2' => json_encode($r->input('CO2'), true),
+            'CO3' => json_encode($r->input('CO3'), true),
+            'CO4' => json_encode($r->input('CO4'), true),
+            'CO5' => json_encode($r->input('CO5'), true),
         ];
 
-        $data = [];
-        $flag = true;
-        foreach ($COArrays as $key => $CO) {
-            $data = [
-                'cid' => $r->courseId,
-                // 'batch' => $r->batch,
-                'CO' => $key
-            ];
-            for ($i = 1; $i <= 12; $i++) {
-                $data["PO$i"] = $CO["PO$i"] ?? null;
-            }
+        $query = CoPoRelation::updateOrCreate(
+            ['cid' => $r->courseId],
+            ['co_po' => json_encode($CO_PO_Array, true)],
+        );
 
-            // $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', 2021)->first();
-
-            try {
-                // $relation = CoPoRelation::where('cid', $r->courseId)->where('batch', $r->batch)->where('CO', $key)->first();
-                $relation = CoPoRelation::where('cid', $r->courseId)->where('CO', $key)->first();
-                if (is_null($relation)) {
-                    CoPoRelation::create($data);
-                } else {
-                    $relation->update($data);
-                }
-                $data = [];
-                $flag = true;
-            } catch (\Exception $e) {
-                dd($e);
-                $flag = false;
-                break;
-            }
-        }
-
-        if ($flag) {
-            return back()->with('success', 'CO-PO Relation Updated Suceessfully');
+        if ($query) {
+            if($query->wasRecentlyCreated)
+                return back()->with('success', 'CO-PO Relation Uploaded Suceessfully');
+            else
+                return back()->with('success', 'CO-PO Relation Updated Suceessfully');
         } else {
             return back()->with('error', 'Some error occured in updating CO-PO Relation');
         }
@@ -401,5 +374,22 @@ class DashboardController extends Controller
             ->get();
 
         return response()->json($assignedCourses);
+    }
+
+    public function directPOAttainment(){
+        $grandTotal1 = FinalCoAttainment::where('cid', 'CA2313')->where('batch', 2021)->pluck('grand_total')->first();
+        $grandTotal2 = FinalCoAttainment::where('cid', 'CA1603')->where('batch', 2021)->pluck('grand_total')->first();
+
+        $po1 = json_decode(CoPoRelation::where('cid', 'CA2313')->pluck('co_po')->first(), true);
+        $po2 = json_decode(CoPoRelation::where('cid', 'CA1603')->pluck('co_po')->first(), true);
+
+        $cid = ['CA2312', 'CA1603'];
+        $poArray = [$po1, $po2];
+        $grandTotalArray = [json_decode($grandTotal1, true), json_decode($grandTotal2, true)];
+
+        // dd($poArray);
+        // $relation = json_decode(CoPoRelation::where('cid', 'CA2313')->pluck('co_po')->first(), true);
+
+        return view('direct-po-attainment', compact('grandTotal1', 'grandTotal2', 'cid', 'poArray', 'grandTotalArray'));
     }
 }
