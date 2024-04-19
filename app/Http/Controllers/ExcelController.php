@@ -46,7 +46,7 @@ class ExcelController extends Controller
         $jsonAssignment = json_encode($dataArray['Assignment']);
         $jsonEndSem = json_encode($dataArray['End Sem']);
 
-        if ($regno == "Max Marks/CO") {
+        if (strtolower($regno) == strtolower("Max Marks/CO")) {
             // if already exists then update
             $existingRecord = MaxMarksCO::where('cid', $cid)
                 ->where('batch', $batch)
