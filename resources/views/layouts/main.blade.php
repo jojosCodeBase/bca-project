@@ -17,8 +17,10 @@
         <aside id="sidebar" class="sidebarMobile">
             <!-- Content for sidebar -->
             <div class="h-100">
-                <div class="sidebar-logo">
-                    <a href="#">Result Analysis</a>
+                {{-- <div class="sidebar-logo"> --}}
+                <div>
+                    {{-- <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="img-fluid"></a> --}}
+                    <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="img-fluid"></a>
                 </div>
                 @if (Auth::user()->is_faculty)
                     <ul class="sidear-nav">
