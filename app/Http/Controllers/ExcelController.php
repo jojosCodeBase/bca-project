@@ -12,21 +12,16 @@ use App\Models\CoAttainment;
 use App\Models\SubjectMarks;
 use Illuminate\Http\Request;
 use App\Models\MoreThanSixty;
+use App\Exports\CoursesExport;
 use App\Models\FinalCoAttainment;
 use App\Models\AttainmentPercentage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DirectAttainmentExport;
 use Illuminate\Database\QueryException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ExcelController extends Controller
 {
-
-    public function view($id)
-    {
-        $data = ExcelUpload::where('cid', $id)->get();
-        return view('excel.view', ['data' => $data]);
-    }
-    private $labels = ['REGNO', 'Q1', 'S1', 'Q2', 'S2', 'ASSIGNMENT', 'ATTENDANCE', 'TOTAL'];
-
     protected $updated = 0;
     public function saveData($dataArray, $regno, $batch, $cid)
     {
@@ -197,7 +192,7 @@ class ExcelController extends Controller
 
         if (!$query) {
             return back()->with('error', 'Some error occured in uploading/updating CO Attainment');
-        }else{
+        } else {
             return true;
         }
         // Optionally, you can return the calculated values or perform any other actions

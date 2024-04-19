@@ -90,7 +90,12 @@ Route::middleware('auth')->group(function () {
     Route::post('update-co-po-relation', [DashboardController::class, 'updateCoPoRelation'])->name('update-co-po-relation');
     Route::get('/course/search', [DashboardController::class, 'searchCourses']);
 
-    Route::get('/test', [DashboardController::class, 'liveSearch'])->name('liveSearch');
+    Route::get('/test', [DashboardController::class, 'testPage'])->name('testPage');
+
+    Route::get('/export', [ExcelController::class, 'export'])->name('export-table');
+
+    Route::get('/export-courses', [ExcelController::class, 'exportCourses']);
+
 
 });
 

@@ -62,10 +62,11 @@ class DashboardController extends Controller
             return back()->with('error', 'No data found, upload marks first');
         }
 
-        if(!CoPoRelation::where('cid', $r->subjectId)->get()){
-            return back()->with('error', 'Enter CO PO Relation for this subject');
-        }
+        $coPoRelation = CoPoRelation::where('cid', $r->subjectId)->get();
 
+        if($coPoRelation->isEmpty()){
+            return back()->with('error', 'CO PO Relation not found for this subject');
+        }
         return view('show-data', ['subjectCode' => $r->subjectId, 'batch' => $r->batch]);
     }
     public function uploadView()
@@ -247,12 +248,9 @@ class DashboardController extends Controller
     {
         $relation = CoPoRelation::where('cid', $courseId)->pluck('co_po')->first();
         if (is_null($relation)) {
-            // dd($relation);
             return response()->json('notfound');
         } else {
-            // dd($relation);
             return response()->json($relation);
-            // return response()->json(json_decode($relation, true));
         }
     }
     public function updateCoPoRelation(Request $r)
@@ -413,5 +411,10 @@ class DashboardController extends Controller
             });
 
         return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray'));
+    }
+
+    public function testPage(){
+        $courses = Courses::all();
+        return view('test-page', compact('courses'));
     }
 }
