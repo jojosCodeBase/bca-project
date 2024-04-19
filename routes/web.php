@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('upload', [ExcelController::class, 'fileUpload'])->name('file-upload');
 
     Route::get('fetch', [DashboardController::class, 'fetchView'])->name('fetch');
-    Route::post('fetch', [ExcelController::class, 'readDbData'])->name('fetch-data');
+    Route::post('fetch', [DashboardController::class, 'fetchData'])->name('fetch-data');
 
     Route::get('co-attainment/{cid}/{batch}', [DashboardController::class, 'getCOAttainment'])->name('co.attainment');
     Route::get('final-co-attainment/{cid}/{batch}', [DashboardController::class, 'getFinalCOAttainment'])->name('final.co.attainment');

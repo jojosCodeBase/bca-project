@@ -27,14 +27,6 @@ class ExcelController extends Controller
     }
     private $labels = ['REGNO', 'Q1', 'S1', 'Q2', 'S2', 'ASSIGNMENT', 'ATTENDANCE', 'TOTAL'];
 
-    public function readDbData(Request $r)
-    {
-        if (Courses::count() > 0) {
-            return view('show-data', ['subjectCode' => $r->subjectId, 'batch' => $r->batch]);
-        } else {
-            return back()->with('error', 'No subjects found, add subject in Manage Subjects');
-        }
-    }
     protected $updated = 0;
     public function saveData($dataArray, $regno, $batch, $cid)
     {

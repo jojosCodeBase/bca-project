@@ -56,6 +56,18 @@ class DashboardController extends Controller
             $courses = Courses::orderBy('cname', 'asc')->get();
         return view('fetch', ['courses' => $courses]);
     }
+    public function fetchData(Request $r)
+    {
+        if(!CoAttainment::where('cid', $r->subjectId)->first()){
+            return back()->with('error', 'No data found, upload marks first');
+        }
+
+        if(!CoPoRelation::where('cid', $r->subjectId)->get()){
+            return back()->with('error', 'Enter CO PO Relation for this subject');
+        }
+
+        return view('show-data', ['subjectCode' => $r->subjectId, 'batch' => $r->batch]);
+    }
     public function uploadView()
     {
         if (Auth::user()->is_faculty) {
@@ -217,12 +229,12 @@ class DashboardController extends Controller
 
     public function coPoRelation()
     {
-        if(Auth::user()->is_faculty){
+        if (Auth::user()->is_faculty) {
             $courses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
                 ->select('courses.cname as cname', 'courses.cid as cid', 'courses.updated_at as updated_at')
                 ->where('faculty_id', Auth::user()->id)
                 ->get();
-        }else{
+        } else {
             $courses = Courses::all();
         }
 
@@ -233,11 +245,14 @@ class DashboardController extends Controller
     // ajax requests
     public function getCoPoRelation($courseId)
     {
-        $relation = CoPoRelation::where('cid', $courseId)->get();
-        if ($relation->isEmpty()) {
+        $relation = CoPoRelation::where('cid', $courseId)->pluck('co_po')->first();
+        if (is_null($relation)) {
+            // dd($relation);
             return response()->json('notfound');
         } else {
+            // dd($relation);
             return response()->json($relation);
+            // return response()->json(json_decode($relation, true));
         }
     }
     public function updateCoPoRelation(Request $r)
@@ -257,7 +272,7 @@ class DashboardController extends Controller
         );
 
         if ($query) {
-            if($query->wasRecentlyCreated)
+            if ($query->wasRecentlyCreated)
                 return back()->with('success', 'CO-PO Relation Uploaded Suceessfully');
             else
                 return back()->with('success', 'CO-PO Relation Updated Suceessfully');
@@ -376,25 +391,26 @@ class DashboardController extends Controller
         return response()->json($assignedCourses);
     }
 
-    public function directPOAttainment(){
+    public function directPOAttainment()
+    {
         $batch = 2021;
 
         $cid = Courses::join('final_co_attainment', 'final_co_attainment.cid', '=', 'courses.cid')
-        ->where('batch', $batch)
-        ->pluck('courses.cid')
-        ->toArray();
+            ->where('batch', $batch)
+            ->pluck('courses.cid')
+            ->toArray();
 
         $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
-        ->where('final_co_attainment.batch', $batch)
-        ->pluck('co_po_relation.co_po')
-        ->toArray();
+            ->where('final_co_attainment.batch', $batch)
+            ->pluck('co_po_relation.co_po')
+            ->toArray();
 
         $grandTotalArray = FinalCoAttainment::join('courses', 'courses.cid', '=', 'final_co_attainment.cid')
-        ->where('final_co_attainment.batch', $batch)
-        ->pluck('final_co_attainment.grand_total')
-        ->map(function ($item) {
-            return json_decode($item, true);
-        });
+            ->where('final_co_attainment.batch', $batch)
+            ->pluck('final_co_attainment.grand_total')
+            ->map(function ($item) {
+                return json_decode($item, true);
+            });
 
         return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray'));
     }
