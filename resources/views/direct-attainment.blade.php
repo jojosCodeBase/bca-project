@@ -31,8 +31,8 @@
                                 Please select Course
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-xl-2 col-lg-6 col-md-6 col-12 my-3">
-                            <button type="submit" class="btn btn-primary w-50" id="myButton">Submit</button>
+                        <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
+                            <button type="submit" class="btn btn-primary w-50 w-md-100" id="myButton">Submit</button>
                         </div>
                     </div>
                 </form>

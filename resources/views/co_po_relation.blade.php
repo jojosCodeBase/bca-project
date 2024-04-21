@@ -45,7 +45,7 @@
                                         <td class="courseId" data-course-id="{{ $c['cid'] }}">{{ $c['cid'] }}</td>
                                         <td>{{ $c['cname'] }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary me-xl-2 mb-2 mb-md-0 mb-xl-0 modelViewBtn"
+                                            <button type="button" class="btn btn-primary me-xl-2 mb-md-0 mb-2 mb-0 modelViewBtn"
                                                 data-bs-toggle="modal" data-bs-target="#viewCOPOModal"><i
                                                     class="bi bi-eye-fill"></i></button>
                                             <button class="btn btn-primary coPoUpdateBtn" data-bs-toggle="modal"
