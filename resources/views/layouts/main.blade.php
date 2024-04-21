@@ -59,8 +59,8 @@
                     </a>
                 </li>
                 @if (!Auth::user()->is_faculty)
-                    <li class="sidebar-item {{ Route::is('directPOAttainment') ? 'active' : '' }}">
-                        <a href="{{ route('directPOAttainment') }}" class="sidebar-nested-link">
+                    <li class="sidebar-item {{ Route::is('direct-attainment') ? 'active' : '' }}">
+                        <a href="{{ route('direct-attainment') }}" class="sidebar-nested-link">
                             <i class="bi bi-cloud-arrow-up-fill"></i> Direct Attainment
                         </a>
                     </li>
