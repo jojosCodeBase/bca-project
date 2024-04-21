@@ -12,29 +12,16 @@ use App\Models\CoAttainment;
 use App\Models\SubjectMarks;
 use Illuminate\Http\Request;
 use App\Models\MoreThanSixty;
+use App\Exports\CoursesExport;
 use App\Models\FinalCoAttainment;
 use App\Models\AttainmentPercentage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DirectAttainmentExport;
 use Illuminate\Database\QueryException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ExcelController extends Controller
 {
-
-    public function view($id)
-    {
-        $data = ExcelUpload::where('cid', $id)->get();
-        return view('excel.view', ['data' => $data]);
-    }
-    private $labels = ['REGNO', 'Q1', 'S1', 'Q2', 'S2', 'ASSIGNMENT', 'ATTENDANCE', 'TOTAL'];
-
-    public function readDbData(Request $r)
-    {
-        if (Courses::count() > 0) {
-            return view('show-data', ['subjectCode' => $r->subjectId, 'batch' => $r->batch]);
-        } else {
-            return back()->with('error', 'No subjects found, add subject in Manage Subjects');
-        }
-    }
     protected $updated = 0;
     public function saveData($dataArray, $regno, $batch, $cid)
     {
@@ -46,7 +33,7 @@ class ExcelController extends Controller
         $jsonAssignment = json_encode($dataArray['Assignment']);
         $jsonEndSem = json_encode($dataArray['End Sem']);
 
-        if ($regno == "Max Marks/CO") {
+        if (strtolower($regno) == strtolower("Max Marks/CO")) {
             // if already exists then update
             $existingRecord = MaxMarksCO::where('cid', $cid)
                 ->where('batch', $batch)
@@ -205,7 +192,7 @@ class ExcelController extends Controller
 
         if (!$query) {
             return back()->with('error', 'Some error occured in uploading/updating CO Attainment');
-        }else{
+        } else {
             return true;
         }
         // Optionally, you can return the calculated values or perform any other actions
@@ -270,7 +257,6 @@ class ExcelController extends Controller
         $marks_more_than_sixty_percent_array = [];
         $co_attainment = [];
 
-        // print_r($target_marks);
         $attainmentPercentage = [];
         $attainmentPercentage_CO_PO = [];
         $co_attainment_CO_PO = [];
@@ -279,7 +265,6 @@ class ExcelController extends Controller
         for ($i = 0; $i < count($target_marks); $i++) {
             // here key is co1, co2, co3..
             foreach ($co_po as $key => $v) {
-                // echo $key . '=>' . $v;
                 foreach ($data as $d) {
                     $marks = json_decode($d[$examArray[$index]], true);
 
@@ -324,7 +309,6 @@ class ExcelController extends Controller
             // store co attainment level
             $co_attainment[$examArray[$index]] = $co_attainment_CO_PO;
             $index++;
-
         }
 
         $query = MoreThanSixty::updateOrCreate(

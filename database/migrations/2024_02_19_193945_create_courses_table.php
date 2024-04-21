@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('cid');
+            $table->string('cid')->unique();
             $table->string('cname');
-            $table->unique(['cid', 'cname']);
             $table->integer('assigned')->default(0);
             $table->timestamps();
         });

@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('upload', [ExcelController::class, 'fileUpload'])->name('file-upload');
 
     Route::get('fetch', [DashboardController::class, 'fetchView'])->name('fetch');
-    Route::post('fetch', [ExcelController::class, 'readDbData'])->name('fetch-data');
+    Route::post('fetch', [DashboardController::class, 'fetchData'])->name('fetch-data');
 
     Route::get('co-attainment/{cid}/{batch}', [DashboardController::class, 'getCOAttainment'])->name('co.attainment');
     Route::get('final-co-attainment/{cid}/{batch}', [DashboardController::class, 'getFinalCOAttainment'])->name('final.co.attainment');
@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::get('year', function () {
         return view('year');
     })->name('year');
+
+    Route::get('direct-po-attainment', [DashboardController::class, 'directPOAttainment'])->name('directPOAttainment');
 
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -88,7 +90,12 @@ Route::middleware('auth')->group(function () {
     Route::post('update-co-po-relation', [DashboardController::class, 'updateCoPoRelation'])->name('update-co-po-relation');
     Route::get('/course/search', [DashboardController::class, 'searchCourses']);
 
-    Route::get('/test', [DashboardController::class, 'liveSearch'])->name('liveSearch');
+    Route::get('/test', [DashboardController::class, 'testPage'])->name('testPage');
+
+    Route::get('/export', [ExcelController::class, 'export'])->name('export-table');
+
+    Route::get('/export-courses', [ExcelController::class, 'exportCourses']);
+
 
     //Admin Po Attainment
 

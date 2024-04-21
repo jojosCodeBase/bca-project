@@ -4,17 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('co_po_relation', function (Blueprint $table) {
+        Schema::create('direct_po_attainment', function (Blueprint $table) {
             $table->id();
-            $table->string('cid');
-            $table->integer('batch')->nullable();
-            $table->json('co_po')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('co_po_relation');
+        Schema::dropIfExists('direct_po_attainment');
     }
 };

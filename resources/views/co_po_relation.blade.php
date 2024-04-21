@@ -13,7 +13,8 @@
                                 <div class="col-9 me-2">
                                     <div class="input-group">
                                         <input type="search" name="" id="" placeholder="E.g. CA1603"
-                                            class="form-control"><span class="input-group-text bg-transparent"><i class="bi bi-search"></i></span>
+                                            class="form-control"><span class="input-group-text bg-transparent"><i
+                                                class="bi bi-search"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-2 d-flex justify-content-center">
@@ -45,7 +46,8 @@
                                         <td class="courseId" data-course-id="{{ $c['cid'] }}">{{ $c['cid'] }}</td>
                                         <td>{{ $c['cname'] }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary me-xl-2 mb-md-0 mb-2 mb-0 modelViewBtn"
+                                            <button type="button"
+                                                class="btn btn-primary me-xl-2 mb-2 mb-md-0 mb-xl-0 modelViewBtn"
                                                 data-bs-toggle="modal" data-bs-target="#viewCOPOModal"><i
                                                     class="bi bi-eye-fill"></i></button>
                                             <button class="btn btn-primary coPoUpdateBtn" data-bs-toggle="modal"
@@ -152,7 +154,8 @@
                             </thead>
                             <tbody class="custom-width"></tbody>
                         </table>
-                        <p style="color:red;">Note : If there is no relation between CO & PO then leave the box empty.<br> Allowed inputs:  1, 2, 3 </p>
+                        <p style="color:red;">Note : If there is no relation between CO & PO then leave the box empty.<br>
+                            Allowed inputs: 1, 2, 3 </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -174,16 +177,19 @@
                 type: 'GET',
                 dataType: "json",
                 success: function(response) {
+                    const data = JSON.parse(response);
+
                     $('.custom-width').empty();
 
                     // Iterate through the response data and add rows to the table
-                    $.each(response, function(index, item) {
+                    $.each(data, function(header, item) {
+                        var itemArray = JSON.parse(item)
                         var row = $('<tr>');
-                        row.append($('<th>').text(item['CO'])); // Add Course ID cell
+                        row.append($('<th>').text(header)); // Add Course ID cell
 
                         // Add PO cells
                         for (var i = 1; i <= 12; i++) {
-                            var poValue = item['PO' + i] ||
+                            var poValue = itemArray['PO' + i] ||
                                 ''; // Get PO value or empty string if null
                             row.append($('<td>').addClass('text-center').text(poValue));
                         }
@@ -205,9 +211,11 @@
                 type: 'GET',
                 dataType: "json",
                 success: function(response) {
-                    if(response === "notfound"){
+                    if (response === "notfound") {
                         $('.custom-width').empty();
+
                         $('#updateCourseId').val(courseId);
+
                         var co_array = ['CO1', 'CO2', 'CO3', 'CO4', 'CO5'];
                         $.each(co_array, function(index, item) {
                             // Create a new row for each CO-PO relation
@@ -233,25 +241,31 @@
                             // Append the row to the table body
                             $('.custom-width').append(row);
                         });
-                    }else{
-                        $('.custom-width').empty();
-                        $('#updateCourseId').val(response[0]['cid'])
-                        $.each(response, function(index, item) {
+                    } else {
+                        $('.custom-width').empty(); // Clear existing content
+
+                        const data = JSON.parse(response);
+
+                        $('#updateCourseId').val(courseId); // Set the course ID value
+
+                        // Iterate through the response data and add rows to the table
+                        $.each(data, function(header, item) {
+                            var itemArray = JSON.parse(item)
+
                             // Create a new row for each CO-PO relation
                             var row = $('<tr>');
 
                             // Add CO cell
-                            row.append($('<th>').addClass('text-center').text(item.CO));
+                            row.append($('<th>').addClass('text-center').text(header));
 
                             // Add input fields for POs
                             for (var i = 1; i <= 12; i++) {
                                 var inputField = $('<input>').attr({
                                     type: 'text',
-                                    name: item.CO + '[PO' + i + ']',
+                                    name: header + '[PO' + i + ']',
                                     class: 'text-center',
-                                    value: item['PO' +
-                                        i
-                                    ], // Populate the 'value' attribute with the fetched data
+                                    value: itemArray['PO' +
+                                    i], // Populate the 'value' attribute with the fetched data
                                     onkeypress: 'return restrictInput(event)'
                                 });
                                 var td = $('<td>').addClass('text-center').append(inputField);
@@ -261,6 +275,7 @@
                             // Append the row to the table body
                             $('.custom-width').append(row);
                         });
+
                     }
                 },
                 error: function(xhr, status, error) {

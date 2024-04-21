@@ -41,7 +41,7 @@
                         <tbody>
                             @foreach ($faculty as $f)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td class="facultyId">{{ $f['regno'] }}</td>
                                     <td>{{ $f['name'] }}</td>
                                     <td>{{ $f['email'] }}</td>

@@ -17,8 +17,10 @@
         <aside id="sidebar" class="sidebarMobile">
             <!-- Content for sidebar -->
             <div class="h-100">
-                <div class="sidebar-logo">
-                    <a href="#">Result Analysis</a>
+                {{-- <div class="sidebar-logo"> --}}
+                <div>
+                    {{-- <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="img-fluid"></a> --}}
+                    <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="img-fluid"></a>
                 </div>
                 @if (Auth::user()->is_faculty)
                     <ul class="sidear-nav">
@@ -56,11 +58,13 @@
                         <i class="bi bi-cloud-arrow-up-fill"></i> CO-PO Relation
                     </a>
                 </li>
-                <li class="sidebar-item {{ Route::is('direct-attainment') ? 'active' : '' }}">
-                    <a href="{{ route('direct-attainment') }}" class="sidebar-nested-link">
-                        <i class="bi bi-calculator-fill"></i> Direct Attainment
-                    </a>
-                </li>
+                @if (!Auth::user()->is_faculty)
+                    <li class="sidebar-item {{ Route::is('directPOAttainment') ? 'active' : '' }}">
+                        <a href="{{ route('directPOAttainment') }}" class="sidebar-nested-link">
+                            <i class="bi bi-cloud-arrow-up-fill"></i> Direct Attainment
+                        </a>
+                    </li>
+                @endif
                 <li class="sidebar-item">
                     <span class="sidebar-link">
                         <i class="bi bi-clipboard2-data-fill"></i> Analysis
@@ -128,7 +132,8 @@
                             <a href="" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
                                 <img src="{{ asset('assets/images/admin.png') }}"
                                     class="rounded-circle avatar img-fluid" alt="profile-ph">
-                                <span class="text-custom d-none s-md-inline d-lg-inline d-xl-inline d-xxl-inline">{{ Auth::user()->name }}</span>
+                                <span
+                                    class="text-custom d-none s-md-inline d-lg-inline d-xl-inline d-xxl-inline">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="{{ route('profile.edit') }}" class="dropdown-item"><i
