@@ -97,6 +97,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/export-courses', [ExcelController::class, 'exportCourses']);
 
 
+    //Admin Po Attainment
+
+    Route::get('direct-attainment',function(){
+        return view('direct-attainment');
+    })->name('direct-attainment');
+    
+
 });
 
 require __DIR__ . '/auth.php';
