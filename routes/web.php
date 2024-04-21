@@ -90,6 +90,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/test', [DashboardController::class, 'liveSearch'])->name('liveSearch');
 
+    //Admin Po Attainment
+
+    Route::get('direct-attainment',function(){
+        return view('direct-attainment');
+    })->name('direct-attainment');
+    
+
 });
 
 require __DIR__ . '/auth.php';

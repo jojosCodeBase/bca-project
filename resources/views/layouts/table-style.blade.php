@@ -16,9 +16,9 @@
     <div class="wrapper">
         <div class="main">
             <nav class="navbar navbar-expand px-3 border-bottom bg-light">
-                <button class="btn" id="sidebar-toggle" type="button">
+                {{-- <button class="btn" id="sidebar-toggle" type="button">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> --}}
                 <div class="breadcrumb-bar text-custom px-3">
                     <span class="breadcrumb-item fs-6">
                         @yield('breadcrumb')

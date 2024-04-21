@@ -56,6 +56,11 @@
                         <i class="bi bi-cloud-arrow-up-fill"></i> CO-PO Relation
                     </a>
                 </li>
+                <li class="sidebar-item {{ Route::is('direct-attainment') ? 'active' : '' }}">
+                    <a href="{{ route('direct-attainment') }}" class="sidebar-nested-link">
+                        <i class="bi bi-calculator-fill"></i> Direct Attainment
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <span class="sidebar-link">
                         <i class="bi bi-clipboard2-data-fill"></i> Analysis
