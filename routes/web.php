@@ -79,6 +79,12 @@ Route::middleware('auth')->group(function () {
         Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);
         Route::get('getFacultyInfo/{id}', [DashboardController::class, 'getFacultyInfo']);
         Route::get('get_assigned_courses', [DashboardController::class, 'getAssignedSubjects']);
+
+        Route::get('direct-attainment',function(){
+            return view('direct-attainment');
+        })->name('direct-attainment');  
+
+        Route::post('get-direct-attainment', [DashboardController::class, 'directPOAttainment'])->name('get-direct-attainment');
     });
 
     Route::middleware('faculty')->group(function () {
@@ -98,15 +104,6 @@ Route::middleware('auth')->group(function () {
 
 
     //Admin Po Attainment
-
-    Route::get('direct-attainment',function(){
-        return view('direct-attainment');
-    })->name('direct-attainment');
-
-    Route::get('direct-po-attainment',function(){
-        return view('direct-po-attainment');
-    })->name('direct-po-attainment');
-    
 
 });
 
