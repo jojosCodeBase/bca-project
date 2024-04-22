@@ -74,14 +74,14 @@
         }
 
         // Generate labels for 11 years
-        const labels = generateYears(11);
+        const labels = generateYears(25);
 
         // Data configuration
         const data = {
             labels: labels,
             datasets: [{
-                label: 'Yearly CO/PO Attainment',
-                data: [65, 59, 80, 81, 56, 55, 40, 57, 45, 75, 68, /* Add your data for 11 years here */ ],
+                label: 'Yearly Direct Attainment',
+                data: [1.1, 5.7, 8.0, 8.1, 5.6, 5.5, 4.0, 5.7, 4.5, 7.5, 6.8,1.1, 5.7, 8.0, 8.1, 5.6, 5.5, 4.0, 5.7, 4.5, 7.5, 6.8, 5.7, 4.5, 7.5, 6.8 /* Add your data for 11 years here */ ],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
@@ -100,8 +100,13 @@
             data: data,
             options: {
                 scales: {
+                    // y: {
+                    //     beginAtZero: true
+                    // }
                     y: {
-                        beginAtZero: true
+                        min: 0,
+                        max: 10,
+                        stepSize: 0.5
                     }
                 }
             }
