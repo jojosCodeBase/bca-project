@@ -88,7 +88,7 @@
                     </li>
                     <li class="sidebar-item {{ request()->is('admin/manage-subjects') ? 'active' : '' }}">
                         <a href="{{ route('manage-subjects') }}" class="sidebar-nested-link">
-                            <i class="bi bi-card-checklist"></i> Manage Subjects
+                            <i class="bi bi-kanban-fill"></i> Manage Subjects
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->is('admin/assign-subject') ? 'active' : '' }}">
