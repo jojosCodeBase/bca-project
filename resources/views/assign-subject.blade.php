@@ -10,7 +10,7 @@
                     <div class="col-xl-4 col-6">
                         <h4 class="text-custom">Assign Subjects</h4>
                     </div>
-                    <div class="col-xl-7 mt-3 mt-xl-0">
+                    <div class="col-xl-8 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
                             <div class="col-xl-6 col-10 pe-0">
                                 <div class="input-group">
@@ -19,7 +19,7 @@
                                             class="bi bi-search"></i></span>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-3">
+                            <div class="col-xl-3 col-3 d-flex ">
                                 <div class="btn-color">
                                     <button class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#assignSubjectModal">Assign subject<i

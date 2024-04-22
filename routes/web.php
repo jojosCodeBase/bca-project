@@ -102,6 +102,10 @@ Route::middleware('auth')->group(function () {
     Route::get('direct-attainment',function(){
         return view('direct-attainment');
     })->name('direct-attainment');
+
+    Route::get('direct-po-attainment',function(){
+        return view('direct-po-attainment');
+    })->name('direct-po-attainment');
     
 
 });
