@@ -35,7 +35,7 @@ function getFacultyInfo(fid, callback) {
 }
 
 $(document).ready(function () {
-    $('.facultyViewButton').on('click', function () {
+    $(document).on('click', '.facultyViewButton', function () {
         var fid = $(this).closest('tr').find('.facultyId').text();
         getFacultyInfo(fid, function (response) {
             $('#faculty-view-id').text(response.regno);
@@ -43,9 +43,9 @@ $(document).ready(function () {
             $('#faculty-view-name').text(response.name);
             $('#facultyViewModal').modal('show');
         });
-
     });
-    $('#editFacultyBtn').on('click', function () {
+
+    $(document).on('click', '#editFacultyBtn', function () {
         var fid = $(this).closest('tr').find('.facultyId').text();
 
         getFacultyInfo(fid, function (response) {
@@ -55,11 +55,11 @@ $(document).ready(function () {
             $('#facultyEditModal').modal('show');
         });
     });
-    $('#deleteFacultyBtn').on('click', () => {
-        alert('delete');
+    $(document).on('click', '#deleteFacultyBtn', function() {
+        $('#delete-faculty-id').val(($(this).data('faculty-id')));
     });
 
-    $('#searchInput').on('input', function () {
+    $(document).on('input','#searchInput', function () {
         const searchQuery = this.value.trim();
         // Send AJAX request to the server
         fetch(`/course/search?query=${encodeURIComponent(searchQuery)}`)
@@ -79,9 +79,9 @@ $(document).ready(function () {
                     `;
                 }
                 else {
-                    if($('#searchInput').val() == ''){
+                    if ($('#searchInput').val() == '') {
                         $('#pagination').css('display', 'block');
-                    }else{
+                    } else {
                         $('#pagination').css('display', 'none');
                     }
                     data.forEach(course => {
@@ -116,6 +116,46 @@ $(document).ready(function () {
             .catch(error => {
                 console.error('Error:', error);
             });
+    });
+
+    // faculty search ajax
+
+    $('#facultySearch').on('input', function () {
+        var searchString = $(this).val();
+        // alert(searchString);
+        $.ajax({
+            type: 'GET',
+            url: '/admin/get-faculty-info/',
+            data: {
+                searchData: searchString,
+            },
+            success: function (response) {
+                $('.facultyFilter').html(response);
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+    $('#co_po_search').on('input', function () {
+        var searchString = $(this).val();
+        // alert(searchString);
+        $.ajax({
+            type: 'GET',
+            url: '/admin/get-co_po_relation/',
+            data: {
+                searchData: searchString,
+            },
+            success: function (response) {
+                $('.co_po_filter').html(response);
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
     });
 
     // edit subject modal ajax
