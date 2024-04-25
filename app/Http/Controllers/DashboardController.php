@@ -237,7 +237,7 @@ class DashboardController extends Controller
                 ->where('faculty_id', Auth::user()->id)
                 ->get();
         } else {
-            $courses = Courses::all();
+            $courses = Courses::paginate(10);
         }
 
         $relation = CoPoRelation::all();

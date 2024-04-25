@@ -372,15 +372,11 @@ class ExcelController extends Controller
         }
 
     }
-    public function rowDataValidation()
-    {
 
-    }
     public function fileUpload(Request $request)
     {
-        // dd($request->all());
         $request->validate([
-            'file' => 'required',
+            'file' => 'required|mimes:xls,xlsx',
         ]);
 
         $filePath = $request->file('file')->path();
@@ -400,26 +396,6 @@ class ExcelController extends Controller
         for ($row = 1; $row <= $highestRow; $row++) {
             $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
             $excelData[] = $rowData[0];
-            // $isValidRow = true;
-            // $errorMessages = [];
-
-            // For the first row, validate column headers
-            // if ($row === 1) {
-            //     foreach ($expectedHeaders as $index => $expectedHeader) {
-            //         // Check if the header in the current column matches the expected header
-            //         if ($rowData[0][$index] !== $expectedHeader) {
-            //             $isValidRow = false;
-            //             $errorMessages[] = "Row $row: Expected header '{$expectedHeader}' not found in column " . ($index + 1);
-            //         }
-            //     }
-            // }
-
-            // If the row is valid (either it's the header row or it contains data), add its data to $excelData
-            // if ($isValidRow || $row > 1) {
-            //     $excelData[] = $rowData[0];
-            // } else {
-            //     $errors = array_merge($errors, $errorMessages);
-            // }
 
             // If there are errors, handle them accordingly
             if (!empty($errors)) {
@@ -467,48 +443,55 @@ class ExcelController extends Controller
 
 
         $flag = True;
-        for ($row = 2; $row < count($excelData); $row++) {
-            $regno = $excelData[$row][0];
-            // echo $regno . ' row = ' . $row . "<br>";
-            for ($x = 1; $x < count($associativeArray); $x++) {
-                $start = $associativeArray[$header[$x]];
 
-                if ($x == count($associativeArray) - 1) {
-                    $end = count($excelData[1]);
-                } else {
-                    $end = $associativeArray[$header[$x + 1]];
-                }
+        try{
+            for ($row = 2; $row < count($excelData); $row++) {
+                $regno = $excelData[$row][0];
+                // echo $regno . ' row = ' . $row . "<br>";
+                for ($x = 1; $x < count($associativeArray); $x++) {
+                    $start = $associativeArray[$header[$x]];
 
-                for ($j = $start; $j < $end; $j++) {
-                    if (array_key_exists($excelData[1][$j], $co_po)) {
-                        $co_po[$excelData[1][$j]] = $excelData[$row][$j];
+                    if ($x == count($associativeArray) - 1) {
+                        $end = count($excelData[1]);
+                    } else {
+                        $end = $associativeArray[$header[$x + 1]];
                     }
+
+                    for ($j = $start; $j < $end; $j++) {
+                        if (array_key_exists($excelData[1][$j], $co_po)) {
+                            $co_po[$excelData[1][$j]] = $excelData[$row][$j];
+                        }
+                    }
+
+                    if (array_key_exists($header[$x], $dataArray)) {
+                        $dataArray[$header[$x]] = $co_po;
+                    }
+
+                    // reset co_po after storing
+                    $co_po = [
+                        'CO1' => null,
+                        'CO2' => null,
+                        'CO3' => null,
+                        'CO4' => null,
+                        'CO5' => null,
+                        'CO6' => null,
+                        'Total' => null,
+                    ];
+                    $dataArray['regno'] = $regno;
+                    $dataArray['cid'] = $request->subjectId;
+                    $dataArray['batch'] = $request->batch;
                 }
 
-                if (array_key_exists($header[$x], $dataArray)) {
-                    $dataArray[$header[$x]] = $co_po;
+                if ($this->saveData($dataArray, $regno, $request->batch, $request->subjectId) == False) {
+                    $flag = False;
+                    break;
                 }
-
-                // reset co_po after storing
-                $co_po = [
-                    'CO1' => null,
-                    'CO2' => null,
-                    'CO3' => null,
-                    'CO4' => null,
-                    'CO5' => null,
-                    'CO6' => null,
-                    'Total' => null,
-                ];
-                $dataArray['regno'] = $regno;
-                $dataArray['cid'] = $request->subjectId;
-                $dataArray['batch'] = $request->batch;
-            }
-
-            if ($this->saveData($dataArray, $regno, $request->batch, $request->subjectId) == False) {
-                $flag = False;
-                break;
             }
         }
+        catch(Exception $e){
+            return back()->with('error', 'Excel sheet not in correct format, please try again');
+        }
+
         if ($flag == False)
             return back()->with('error', 'some error occured in uploading file due to flag false');
         else {

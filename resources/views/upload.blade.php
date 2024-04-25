@@ -80,7 +80,7 @@
                             <div class="row">
                                 <div class=" col-xl-9 col-lg-9 col-md-9 col-12">
                                     <input type="file" name="file" id="file" class="form-control"
-                                        aria-label="file example" required>
+                                        aria-label="file example" required accept=".xls, .xlsx">
                                     <span class="text-danger" id="file-error"></span>
                                     <div class="invalid-feedback">
                                         Please Choose a file

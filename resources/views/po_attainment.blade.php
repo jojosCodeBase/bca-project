@@ -47,7 +47,7 @@
                         <tr>
                             <th class="text-start">{{ $key }}</th>
                             @foreach (range(1, 12) as $index)
-                                <th class="text-center">{{ $r['PO' . $index] }}</th>
+                                <td class="text-center">{{ $r['PO' . $index] }}</td>
                             @endforeach
                         </tr>
                     @endforeach
