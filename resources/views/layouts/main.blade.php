@@ -20,7 +20,8 @@
                 {{-- <div class="sidebar-logo"> --}}
                 <div>
                     {{-- <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="img-fluid"></a> --}}
-                    <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="img-fluid"></a>
+                    <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"
+                            class="img-fluid"></a>
                 </div>
                 @if (Auth::user()->is_faculty)
                     <ul class="sidear-nav">
@@ -190,6 +191,23 @@
         $(document).ready(function() {
             $('.selectpicker').selectpicker();
         });
+
+        var alertDiv = document.getElementById('alertMessage');
+
+        // Function to fade out the alert message
+        function fadeOutAlert() {
+            // Set opacity to 0 over 1 second (1000 milliseconds)
+            alertDiv.style.transition = "opacity 1s";
+            alertDiv.style.opacity = 0;
+
+            // After 1 second, remove the alert message from the DOM
+            setTimeout(function() {
+                alertDiv.remove();
+            }, 1000);
+        }
+
+        // Call fadeOutAlert after 5 seconds
+        setTimeout(fadeOutAlert, 3000);
     </script>
 </body>
 

@@ -65,9 +65,9 @@
                                                         data-bs-target="#editSubjectModal">Edit</button>
                                                 </li>
                                                 <li>
-                                                    <button class="dropdown-item" type="button"
+                                                    <button class="dropdown-item deleteBtn" type="button"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#deleteSubjectModal">Delete</button>
+                                                        data-bs-target="#deleteSubjectModal" data-course-id="{{ $c['cid'] }}">Delete</button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -183,15 +183,28 @@
                     <p class="text-danger fs-6 text-center">Are you sure you want to delete this Subject? <br>This
                         action cannot be undone</p>
 
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-8 d-flex justify-content-center mb-3">
-                            <button type="button" class="btn btn-secondary me-4" data-bs-dismiss="modal">Cancel</button>
-                            <button class="btn btn-danger">Yes, Delete !</button>
+                    <form action="{{ route('delete.subject') }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <input type="text" id="cid" name="cid" hidden>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-8 d-flex justify-content-center mb-3">
+                                <button type="button" class="btn btn-secondary me-4" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-danger">Yes, Delete !</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     {{-- Delete-Subject modal end --}}
+@endsection
+@section('scripts')
+<script>
+    $(document).on('click', '.deleteBtn',  function(){
+        $('#cid').val($(this).data('course-id'));
+        $('#deleteSubjectModal').show();
+    });
+</script>
 @endsection

@@ -82,27 +82,29 @@
                     <h1 class="modal-title fs-5 text-custom" id="exampleModalLabel">Faculty Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <form action="">
-                            <div class="col">
+                <form action="{{ route('update-faculty') }}" method="POST">
+                    @csrf
+                    @method('patch')
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
                                 <label for="" class="form-label">Faculty Id</label>
-                                <input type="text" id="faculty-edit-id" class="form-control">
+                                <input type="text" id="faculty-edit-id" name="regno" class="form-control" readonly>
                             </div>
-                            <div class="col mt-2">
+                            <div class="col-12 mt-2">
                                 <label for="" class="form-label">Name</label>
-                                <input type="text" id="faculty-edit-name" class="form-control">
+                                <input type="text" id="faculty-edit-name" name="name" class="form-control">
                             </div>
-                            <div class="col mt-2">
+                            <div class="col-12 mt-2">
                                 <label for="" class="form-label">Email</label>
-                                <input type="text" id="faculty-edit-email" class="form-control">
+                                <input type="email" id="faculty-edit-email" name="email" class="form-control">
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Update</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -120,7 +122,7 @@
                     </div>
                     <form action="{{ route('delete-faculty') }}" method="POST">
                         @csrf
-                        <input type="text" id="delete-faculty-id" name="id"  hidden>
+                        <input type="text" id="delete-faculty-id" name="id" hidden>
                         <h4 class="text-center text-custom">Delete Faculty</h4>
                         <p class="text-danger text-center">Are you sure you want to delete this faculty? <br>This action
                             cannot
