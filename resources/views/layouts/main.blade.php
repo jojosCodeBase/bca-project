@@ -208,7 +208,7 @@
         }
 
         // Call fadeOutAlert after 5 seconds
-        setTimeout(fadeOutAlert, 3000);
+        setTimeout(fadeOutAlert, 5000);
     </script>
 </body>
 

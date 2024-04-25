@@ -379,6 +379,37 @@ class ExcelController extends Controller
             'file' => 'required|mimes:xls,xlsx',
         ]);
 
+        // $filePath = $request->file('file')->path();
+        // $courseId = $request->file('file')->getClientOriginalName();
+        // $courseId = strtoupper(str_replace(' ', '_', pathinfo($courseId, PATHINFO_FILENAME)));
+        // $spreadsheet = IOFactory::load($filePath);
+        // $worksheet = $spreadsheet->getActiveSheet();
+
+        // $highestRow = $worksheet->getHighestDataRow();
+        // $highestColumn = $worksheet->getHighestDataColumn();
+
+        // $expectedHeaders = ['Reg No', 'Q1', 'S1', 'Q2', 'S2', 'Assignment', 'End Sem'];
+
+        // // Loop through each row and store the data
+        // $excelData = [];
+        // $errors = [];
+        // $nullCount = 0;
+        // for ($row = 1; $row <= $highestRow; $row++) {
+        //     $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
+
+        //     if(!is_null($rowData[0][0])){
+        //         $excelData[] = $rowData[0];
+        //     }else{
+        //         $nullCount++;
+
+        //         if($nullCount > 3){
+        //             break;
+        //         }
+        //     }
+        //     // dd($rowData);
+        //     // echo $row;
+        // }
+
         $filePath = $request->file('file')->path();
         $courseId = $request->file('file')->getClientOriginalName();
         $courseId = strtoupper(str_replace(' ', '_', pathinfo($courseId, PATHINFO_FILENAME)));
@@ -393,17 +424,29 @@ class ExcelController extends Controller
         // Loop through each row and store the data
         $excelData = [];
         $errors = [];
+        $nullCount = 0;
+        $executedRows = [];
         for ($row = 1; $row <= $highestRow; $row++) {
             $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
-            $excelData[] = $rowData[0];
 
-            // If there are errors, handle them accordingly
-            if (!empty($errors)) {
-                // return ['errors' => $errors];
-                return back()->withErrors($errors);
+            // dd($rowData[0][0]);
+
+            if (!is_null($rowData[0][0])) {
+                // Check if the row data is a duplicate
+                if (in_array($rowData[0][0], $executedRows)) {
+                    $errors[] = "Duplicate row found at row - $row";
+                }
+                $executedRows[] = $rowData[0][0];
             } else {
-                continue;
+                $nullCount++;
+                if ($nullCount > 3) {
+                    break;
+                }
             }
+        }
+
+        if(!empty($errors)){
+            return back()->with('errorsArray', $errors);
         }
 
         // Initialize an empty associative array
@@ -444,7 +487,7 @@ class ExcelController extends Controller
 
         $flag = True;
 
-        try{
+        try {
             for ($row = 2; $row < count($excelData); $row++) {
                 $regno = $excelData[$row][0];
                 // echo $regno . ' row = ' . $row . "<br>";
@@ -487,9 +530,9 @@ class ExcelController extends Controller
                     break;
                 }
             }
-        }
-        catch(Exception $e){
-            return back()->with('error', 'Excel sheet not in correct format, please try again');
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            return back()->with('error', 'Excel sheet not in correct format, please try again' . $e->getMessage());
         }
 
         if ($flag == False)

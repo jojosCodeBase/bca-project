@@ -14,3 +14,11 @@
         @endforeach
     </div>
 @endif
+
+@if (session('errorsArray'))
+    <div id="alertMessage" class="alert alert-danger">
+        @foreach (session('errorsArray') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif
