@@ -29,9 +29,9 @@ class DashboardController extends Controller
         $totalCourses = Courses::count();
         $totalFaculty = User::where('is_faculty', 1)->count();
         $uploaded = CoAttainment::join('courses', 'courses.cid', '=', 'co_attainment.cid')
-        ->orderBy('co_attainment.updated_at', 'desc')
-        ->select('courses.cname', 'co_attainment.cid', 'co_attainment.updated_at')
-        ->paginate(10);
+            ->orderBy('co_attainment.updated_at', 'desc')
+            ->select('courses.cname', 'co_attainment.cid', 'co_attainment.updated_at')
+            ->paginate(10);
         // dd($uploaded);
         return view('admin-dashboard', ['uploaded' => $uploaded, 'courseCount' => $totalCourses, 'totalFaculty' => $totalFaculty]);
     }
@@ -61,13 +61,13 @@ class DashboardController extends Controller
     }
     public function fetchData(Request $r)
     {
-        if(!CoAttainment::where('cid', $r->subjectId)->first()){
+        if (!CoAttainment::where('cid', $r->subjectId)->first()) {
             return back()->with('error', 'No data found, upload marks first');
         }
 
         $coPoRelation = CoPoRelation::where('cid', $r->subjectId)->get();
 
-        if($coPoRelation->isEmpty()){
+        if ($coPoRelation->isEmpty()) {
             return back()->with('error', 'CO PO Relation not found for this subject');
         }
         return view('show-data', ['subjectCode' => $r->subjectId, 'batch' => $r->batch]);
@@ -125,17 +125,24 @@ class DashboardController extends Controller
         }
     }
 
-    public function deleteFaculty(Request $r){
+    public function deleteFaculty(Request $r)
+    {
         $r->validate([
             'id' => 'required|numeric|max:9999999999',
         ]);
 
-        $user = User::where(['id' => $r->id])->delete();
 
-        if($user)
-            return back()->with('success', 'Faculty deleted Successfully !');
-        else
-            return back()->with('error', 'Some error occured in deleting faculty!');
+        if (AssignedSubject::where('faculty_id', $r->id)->first()) {
+            return back()->with('error', 'Cannot delete, faculty is assigned to subjects');
+        } else {
+            $user = User::where(['id' => $r->id])->delete();
+
+            if ($user)
+                return back()->with('success', 'Faculty deleted Successfully !');
+            else
+                return back()->with('error', 'Some error occured in deleting faculty!');
+        }
+
     }
 
     public function addFaculty(Request $r)
@@ -407,32 +414,70 @@ class DashboardController extends Controller
         return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray'));
     }
 
-    public function testPage(){
+    public function testPage()
+    {
         $courses = Courses::all();
         return view('test-page', compact('courses'));
     }
 
-    public function facultyInfo(Request $request){
-        if($request->searchData == ""){
+    public function facultyInfo(Request $request)
+    {
+        if ($request->searchData == "") {
             $faculty = User::where('is_faculty', 1)->get();
-        }else{
+        } else {
             $faculty = User::where('regno', 'LIKE', '%' . $request->searchData . '%')
-            ->orWhere('name', 'LIKE', '%' . $request->searchData . '%')
-            ->where('is_faculty', 1)
-            ->get();
+                ->orWhere('name', 'LIKE', '%' . $request->searchData . '%')
+                ->where('is_faculty', 1)
+                ->get();
         }
 
         return view('faculty-table', compact('faculty'));
     }
-    public function getCourses(Request $request){
-        if($request->searchData == ""){
+    public function getCourses(Request $request)
+    {
+        if ($request->searchData == "") {
             $courses = Courses::orderBy('updated_at', 'desc')->get();
-        }else{
+        } else {
             $courses = Courses::where('cid', 'LIKE', '%' . $request->searchData . '%')
-            ->orWhere('cname', 'LIKE', '%' . $request->searchData . '%')
-            ->get();
+                ->orWhere('cname', 'LIKE', '%' . $request->searchData . '%')
+                ->get();
         }
 
         return view('co_po_relation-table', compact('courses'));
+    }
+
+    public function updateFaculty(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255',
+        ]);
+
+        $update = User::where('regno', $request->regno)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        if ($update)
+            return back()->with('success', 'Faculty details updated successfully');
+        else
+            return back()->with('error', 'Some error occured while updating faculty details');
+    }
+
+    public function deleteSubject(Request $request)
+    {
+        $course = Courses::where('cid', $request->cid)->first();
+        // dd($course);
+
+        if ($course['assigned']) {
+            return redirect()->back()->with('error', 'This subject is assigned and cannot be deleted');
+        } else {
+            $delete = Courses::where('cid', $request->cid)->delete();
+
+            if ($delete)
+                return redirect()->back()->with('success', 'Subject deleted successfully');
+            else
+                return redirect()->back()->with('error', 'Some error occured in deleting subject');
+        }
     }
 }

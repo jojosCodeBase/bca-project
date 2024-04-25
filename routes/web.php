@@ -65,9 +65,11 @@ Route::middleware('auth')->group(function () {
         Route::get('manage-subjects', [DashboardController::class, 'manageSubjects'])->name('manage-subjects');
         Route::post('manage-subjects/add', [DashboardController::class, 'addSubject'])->name('add-subject');
         Route::post('manage-subjects/update', [DashboardController::class, 'updateSubject'])->name('update.subject.info');
+        Route::delete('manage-subjects/delete', [DashboardController::class, 'deleteSubject'])->name('delete.subject');
 
         Route::get('manage-faculty', [DashboardController::class, 'manageFaculty'])->name('manage-faculty');
         Route::post('manage-faculty/add', [DashboardController::class, 'addFaculty'])->name('add-faculty');
+        Route::patch('manage-faculty/update', [DashboardController::class, 'updateFaculty'])->name('update-faculty');
         Route::post('manage-faculty/delete', [DashboardController::class, 'deleteFaculty'])->name('delete-faculty');
 
         // Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');

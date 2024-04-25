@@ -97,13 +97,13 @@ $(document).ready(function () {
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <button class="dropdown-item btn btn-primary editButton" type="button" data-bs-toggle="modal"
+                                        <button class="dropdown-item editButton" type="button" data-bs-toggle="modal"
                                             data-bs-target="#editSubjectModal">Edit</button>
                                     </li >
                                     <li>
-                                        <button class="dropdown-item btn btn-primary" type="button"
+                                        <button class="dropdown-item deleteBtn" type="button"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#deleteSubjectModal">Delete</button>
+                                            data-bs-target="#deleteSubjectModal" data-course-id=${course.cid}>Delete</button>
                                     </li>
                                 </ul>
                             </div>
