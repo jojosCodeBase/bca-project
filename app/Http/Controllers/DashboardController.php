@@ -26,11 +26,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $x = 'Courses';
-        $modelClass = 'App\\Models\\' . $x;
         $totalCourses = Courses::count();
         $totalFaculty = User::where('is_faculty', 1)->count();
-        return view('admin-dashboard', ['courses' => $modelClass::orderBy('updated_at', 'desc')->paginate(10), 'courseCount' => $totalCourses, 'totalFaculty' => $totalFaculty]);
+        $uploaded = CoAttainment::join('courses', 'courses.cid', '=', 'co_attainment.cid')
+        ->orderBy('co_attainment.updated_at', 'desc')
+        ->select('courses.cname', 'co_attainment.cid', 'co_attainment.updated_at')
+        ->paginate(10);
+        // dd($uploaded);
+        return view('admin-dashboard', ['uploaded' => $uploaded, 'courseCount' => $totalCourses, 'totalFaculty' => $totalFaculty]);
     }
 
     public function userDashboard()
@@ -122,27 +125,18 @@ class DashboardController extends Controller
         }
     }
 
-    // public function addFaculty(Request $r){
-    //     // dd($r->all());
-    //     $r->validate([
-    //         'id' => 'required|numeric|max:9999999999',
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|string|lowercase|email|max:255|unique:users,email',
-    //         'password' => ['required', 'string', Rules\Password::defaults()],
-    //     ]);
+    public function deleteFaculty(Request $r){
+        $r->validate([
+            'id' => 'required|numeric|max:9999999999',
+        ]);
 
-    //     $user = User::create([
-    //         'id' => $r->id,
-    //         'name' => $r->name,
-    //         'email' => $r->email,
-    //         'password' => Hash::make($r->password),
-    //     ]);
+        $user = User::where(['id' => $r->id])->delete();
 
-    //     if($user)
-    //         return back()->with('success', 'Faculty added Successfully !');
-    //     else
-    //         return back()->with('error', 'Some error occured in adding faculty!');
-    // }
+        if($user)
+            return back()->with('success', 'Faculty deleted Successfully !');
+        else
+            return back()->with('error', 'Some error occured in deleting faculty!');
+    }
 
     public function addFaculty(Request $r)
     {
@@ -416,5 +410,29 @@ class DashboardController extends Controller
     public function testPage(){
         $courses = Courses::all();
         return view('test-page', compact('courses'));
+    }
+
+    public function facultyInfo(Request $request){
+        if($request->searchData == ""){
+            $faculty = User::where('is_faculty', 1)->get();
+        }else{
+            $faculty = User::where('regno', 'LIKE', '%' . $request->searchData . '%')
+            ->orWhere('name', 'LIKE', '%' . $request->searchData . '%')
+            ->where('is_faculty', 1)
+            ->get();
+        }
+
+        return view('faculty-table', compact('faculty'));
+    }
+    public function getCourses(Request $request){
+        if($request->searchData == ""){
+            $courses = Courses::orderBy('updated_at', 'desc')->get();
+        }else{
+            $courses = Courses::where('cid', 'LIKE', '%' . $request->searchData . '%')
+            ->orWhere('cname', 'LIKE', '%' . $request->searchData . '%')
+            ->get();
+        }
+
+        return view('co_po_relation-table', compact('courses'));
     }
 }

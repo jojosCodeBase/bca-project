@@ -58,16 +58,17 @@
                         </div>
 
                         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-12 my-3">
-                            <select name="subjectId" id="subjectId" class="form-select" required>
+                            <select name="subjectId" class="selectpicker form-control" id="subjectId" data-live-search="true" required>
                                 <option value="" selected disabled>Select subject code</option>
                                 @foreach ($courses as $c)
                                     <option value="{{ $c['cid'] }}">{{ $c['cid'] }} - {{ $c['cname'] }}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
-                                Please select Subject-Id
+                                Please select subject
                             </div>
                         </div>
+
                         <div class=" col-xl-2 col-lg-3 col-md-3 col-12 my-3">
                             <button type="submit" class="btn btn-primary w-100" id="myButton">Fetch</button>
                         </div>

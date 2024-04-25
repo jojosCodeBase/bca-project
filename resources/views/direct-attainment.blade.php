@@ -2,12 +2,12 @@
 @section('title', 'Direct Attainment')
 @section('breadcrumb', 'Direct Attainment')
 @section('content')
-
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
                 <h4 class="text-custom">Direct Attainment</h4>
-                <form action="" class="needs-validation" novalidate>
+                <form action="{{ route('get-direct-attainment') }}" method="POST" class="needs-validation" novalidate>
+                    @csrf
                     <div class="row">
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
-                            <a href="{{ route('direct-po-attainment')}}">
+                            <a href={{route('direct-po-attainment')}}>
                             <button type="submit" class="btn btn-primary w-50 w-md-100" id="myButton">Submit
                             </button>
                         </a>

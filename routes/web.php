@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('manage-faculty', [DashboardController::class, 'manageFaculty'])->name('manage-faculty');
         Route::post('manage-faculty/add', [DashboardController::class, 'addFaculty'])->name('add-faculty');
+        Route::post('manage-faculty/delete', [DashboardController::class, 'deleteFaculty'])->name('delete-faculty');
 
         // Route::get('read', [ExcelController::class, 'readDbData'])->name('admin-readDbData');
 
@@ -75,10 +76,21 @@ Route::middleware('auth')->group(function () {
         Route::post('assign-subject', [DashboardController::class, 'assignSubject'])->name('assign-subject');
         Route::post('assign-subject/update', [DashboardController::class, 'assignSubjectUpdate'])->name('edit-assign-subject');
 
+
         // ajax requests
         Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);
         Route::get('getFacultyInfo/{id}', [DashboardController::class, 'getFacultyInfo']);
         Route::get('get_assigned_courses', [DashboardController::class, 'getAssignedSubjects']);
+
+        Route::get('direct-attainment',function(){
+            return view('direct-attainment');
+        })->name('direct-attainment');
+
+        Route::post('get-direct-attainment', [DashboardController::class, 'directPOAttainment'])->name('get-direct-attainment');
+
+        Route::get('/get-faculty-info', [DashboardController::class, 'facultyInfo']);
+        Route::get('/get-co_po_relation', [DashboardController::class, 'getCourses']);
+
     });
 
     Route::middleware('faculty')->group(function () {
@@ -97,16 +109,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/export-courses', [ExcelController::class, 'exportCourses']);
 
 
+
+
     //Admin Po Attainment
-
-    Route::get('direct-attainment',function(){
-        return view('direct-attainment');
-    })->name('direct-attainment');
-
-    Route::get('direct-po-attainment',function(){
-        return view('direct-po-attainment');
-    })->name('direct-po-attainment');
-    
 
 });
 

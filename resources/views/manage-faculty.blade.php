@@ -14,9 +14,9 @@
                         <div class="row d-flex justify-content-xl-end">
                             <div class="col-xl-6 col-10 pe-0">
                                 <div class="input-group">
-                                    <input type="search" name="" id="" placeholder="Search by id or name"
-                                        class="form-control"><span class="input-group-text bg-transparent"><i
-                                            class="bi bi-search"></i></span>
+                                    <input type="search" name="" id="facultySearch"
+                                        placeholder="Search by id or name" class="form-control"><span
+                                        class="input-group-text bg-transparent"><i class="bi bi-search"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -38,40 +38,8 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            @foreach ($faculty as $f)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td class="facultyId">{{ $f['regno'] }}</td>
-                                    <td>{{ $f['name'] }}</td>
-                                    <td>{{ $f['email'] }}</td>
-                                    <td>
-                                        <div class="more-btn">
-                                            <button class="dropdown" type="button" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
-                                                <i class="bi bi-three-dots fs-4"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <button class="dropdown-item facultyViewButton" id="viewFacultyBtn"
-                                                        type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#facultyViewModal">View</button>
-                                                </li>
-                                                <li>
-                                                    <button class="dropdown-item facultyEditButton" type="button"
-                                                        id="editFacultyBtn" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#facultyEditModal">Edit</button>
-                                                </li>
-                                                <li>
-                                                    <button class="dropdown-item facultyDeleteButton" id="deleteFacultyBtn"
-                                                        type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#facultyDeleteModal">Delete</button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        <tbody class="facultyFilter">
+                            @include('faculty-table')
                         </tbody>
                     </table>
                 </div>
@@ -141,8 +109,7 @@
     {{-- faculty-Edit modal end --}}
 
     {{-- faculty-Delete modal start --}}
-    <div class="modal fade" id="facultyDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="facultyDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -151,18 +118,22 @@
                             <i class="rounded-circle bi bi-exclamation-triangle-fill text-warning fs-1"></i>
                         </div>
                     </div>
+                    <form action="{{ route('delete-faculty') }}" method="POST">
+                        @csrf
+                        <input type="text" id="delete-faculty-id" name="id"  hidden>
+                        <h4 class="text-center text-custom">Delete Faculty</h4>
+                        <p class="text-danger text-center">Are you sure you want to delete this faculty? <br>This action
+                            cannot
+                            be undone !
+                        </p>
 
-                    <h4 class="text-center text-custom">Delete Faculty</h4>
-                    <p class="text-danger text-center">Are you sure you want to delete this faculty? <br>This action cannot
-                        be undone !
-                    </p>
-
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-8   d-flex justify-content-center">
-                            <button class="btn btn-secondary me-5" data-bs-dismiss="modal">Cancel</button>
-                            <button class="btn btn-danger">Yes, Delete !</button>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-8   d-flex justify-content-center">
+                                <button class="btn btn-secondary me-5" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-danger">Yes, Delete !</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

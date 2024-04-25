@@ -5,58 +5,39 @@
     <div class="container">
         @include('include/error-alert')
         <div class="row d-flex justify-content-center mt-xl-0 mt-2">
-            <div class="col-xxl-6 col-xl-6 col-md-9 col-12">
-                <div class="card pe-3">
-                    <div class="card-body">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-9 me-2">
-                                    <div class="input-group">
-                                        <input type="search" name="" id="" placeholder="E.g. CA1603"
-                                            class="form-control"><span class="input-group-text bg-transparent"><i
-                                                class="bi bi-search"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-2 d-flex justify-content-center">
-                                    <button class="btn btn-primary">Search</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div class="col-12">
                 <div class="card my-4">
                     <div class="card-body">
-                        <div class="mb-3">
-                            <h4 class="text-custom">CO-PO Relations</h4>
+                        <div class="row mb-4">
+                            <div class="col-xl-3 col-6 ">
+                                <h4 class="text-custom">CO PO Relations</h4>
+                            </div>
+                            <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
+                                <div class="row d-flex justify-content-xl-end">
+                                    <div class="col-xl-6 col-10 pe-0">
+                                        <div class="input-group">
+                                            <input type="search" name="" id="co_po_search"
+                                                placeholder="Search by id or name" class="form-control"><span
+                                                class="input-group-text bg-transparent"><i class="bi bi-search"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <table class="table table-striped">
-                            <thead class="bg-custom text-light">
-                                <tr>
-                                    <th>Subject Code</th>
-                                    <th>Subject Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            {{-- @dump($relation) --}}
-                            <tbody>
-                                @foreach ($courses as $c)
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-custom text-light">
                                     <tr>
-                                        <td class="courseId" data-course-id="{{ $c['cid'] }}">{{ $c['cid'] }}</td>
-                                        <td>{{ $c['cname'] }}</td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-primary me-xl-2 mb-2 mb-md-0 mb-xl-0 modelViewBtn"
-                                                data-bs-toggle="modal" data-bs-target="#viewCOPOModal"><i
-                                                    class="bi bi-eye-fill"></i></button>
-                                            <button class="btn btn-primary coPoUpdateBtn" data-bs-toggle="modal"
-                                                data-bs-target="#updateCOPOModal"><i class="bi bi-pencil-fill"></i></button>
-                                        </td>
+                                        <th>Subject Code</th>
+                                        <th>Subject Name</th>
+                                        <th>Action</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="co_po_filter">
+                                    @include('co_po_relation-table')
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -94,24 +75,6 @@
                         <tbody class="custom-width coPoRelation">
                         </tbody>
                     </table>
-                    {{-- @foreach ($relation as $r)
-                        <tr>
-                            <th class="">{{ $r['CO'] }}</th>
-                            <td class="text-center">{{ $r['PO1'] }}</td>
-                            <td class="text-center">{{ $r['PO2'] }}</td>
-                            <td class="text-center">{{ $r['PO3'] }}</td>
-                            <td class="text-center">{{ $r['PO4'] }}</td>
-                            <td class="text-center">{{ $r['PO5'] }}</td>
-                            <td class="text-center">{{ $r['PO6'] }}</td>
-                            <td class="text-center">{{ $r['PO7'] }}</td>
-                            <td class="text-center">{{ $r['PO8'] }}</td>
-                            <td class="text-center">{{ $r['PO9'] }}</td>
-                            <td class="text-center">{{ $r['PO10'] }}</td>
-                            <td class="text-center">{{ $r['PO11'] }}</td>
-                            <td class="text-center">{{ $r['PO12'] }}</td>
-                        </tr>
-                    @endforeach --}}
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -265,7 +228,8 @@
                                     name: header + '[PO' + i + ']',
                                     class: 'text-center',
                                     value: itemArray['PO' +
-                                    i], // Populate the 'value' attribute with the fetched data
+                                        i
+                                        ], // Populate the 'value' attribute with the fetched data
                                     onkeypress: 'return restrictInput(event)'
                                 });
                                 var td = $('<td>').addClass('text-center').append(inputField);

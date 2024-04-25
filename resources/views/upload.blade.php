@@ -72,7 +72,7 @@
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
-                                Please select Subject-Id
+                                Please select subject
                             </div>
                         </div>
 

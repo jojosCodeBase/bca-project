@@ -60,12 +60,12 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <button class="dropdown-item btn btn-primary editButton" type="button"
+                                                    <button class="dropdown-item editButton" type="button"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#editSubjectModal">Edit</button>
                                                 </li>
                                                 <li>
-                                                    <button class="dropdown-item btn btn-primary" type="button"
+                                                    <button class="dropdown-item" type="button"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#deleteSubjectModal">Delete</button>
                                                 </li>
@@ -195,53 +195,3 @@
     </div>
     {{-- Delete-Subject modal end --}}
 @endsection
-{{-- @section('scripts')
-    <script>
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const searchQuery = this.value.trim();
-            // Send AJAX request to the server
-            fetch(`/course/search?query=${encodeURIComponent(searchQuery)}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Update table rows with filtered data
-                    const tableBody = document.querySelector('#table tbody');
-                    tableBody.innerHTML = '';
-
-                    data.forEach(course => {
-                        tableBody.innerHTML += `
-                        <tr>
-                            <td class="courseId">${course.cid}</td>
-                            <td>${course.cname}</td>
-                            <td>
-                                <div class="more-btn">
-                                    <button class="dropdown" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="bi bi-three-dots fs-4"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <button class="dropdown-item editButton" type="button"
-                                                class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#editSubjectModal">Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button" class="btn btn-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteSubjectModal">Delete</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    `;
-                    });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-        // document.addEventListener('DOMContentLoaded', function() {
-        // });
-    </script>
-
-@endsection --}}
