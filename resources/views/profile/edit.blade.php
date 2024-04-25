@@ -90,23 +90,26 @@
                                 <label class="form-label">Confirm Password
                                     <span class="text-danger">*</span>
                                 </label>
-                                <input type="password" class="form-control" name="password_confirmation">
+                                <input type="password" class="form-control" name="password_confirmation" id="password">
                             </div>
-                            <div class="form-group mt-3">
-                                <div class="d-flex justify-content-end">
-                                    <input type="submit" class="btn btn-primary" value="Change Password">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mt-3">
+                                        <input type="submit" class="btn btn-primary" value="Change Password">
+                                    </div>
                                 </div>
-                                <div>
-
+                                <div class="col-6 d-flex justify-content-end align-items-center">
+                                    <label for="checkbox" class="form-check user-select-none">Show Password
+                                        <input type="checkbox" class="form-check-input" value="remember_me"
+                                            name="remember-me" id="checkbox">
+                                        <span class="form-check-label" id="#"></span>
+                                    </label>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-4">
-
         </div>
     </div>
 @endsection
