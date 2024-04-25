@@ -283,8 +283,9 @@ function restrictInput(event) {
     // Allow only alphanumeric characters
     let allowedChars = /[1-3]/;
     let keyChar = String.fromCharCode(keyCode);
-    if (!allowedChars.test(keyChar)) {
-        // If the pressed key is not alphanumeric, prevent the default action (typing)
+    // Check if the input length is already 1
+    if (event.target.value.length >= 1 || !allowedChars.test(keyChar)) {
+        // If the input length is already 1 or the pressed key is not alphanumeric, prevent the default action (typing)
         event.preventDefault();
         return false;
     }

@@ -2,7 +2,7 @@
 @section('title', 'Upload Data')
 @section('breadcrumb', 'Upload Data')
 @section('content')
-    <div class="container flex-grow-1">
+    <div class="container-fluid flex-grow-1">
         @include('include/error-alert')
         <div class="card">
             <div class="card-body">

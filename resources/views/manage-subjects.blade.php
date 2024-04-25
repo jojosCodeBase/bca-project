@@ -11,11 +11,11 @@
             border-bottom: none;
         }
     </style>
-    <div class="container mb-2">
+    <div class="container-fluid mb-2">
         @include('include/error-alert')
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         {{-- <h3 class="text-muted mb-4 mt-1">All Subjects</h3> --}}
         <div class="card">
             <div class="card-body">
