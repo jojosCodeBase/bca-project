@@ -117,7 +117,7 @@
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </div>
                             <div></div>
-                            <p>Note:</p>
+                            <p style="color: red">Note:</p>
                         </form>
                     </div>
                 </div>
