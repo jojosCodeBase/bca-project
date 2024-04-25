@@ -253,6 +253,10 @@ a{
 }
 
 .bg-custom{
-    background-color: #355389;
+    background-color: #0659f3;
 
+}
+
+.btn-primary:hover{
+    background-color: #304161;
 }

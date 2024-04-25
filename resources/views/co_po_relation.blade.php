@@ -2,7 +2,7 @@
 @section('title', 'CO-PO Relation')
 @section('breadcrumb', 'CO-PO Relation')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         @include('include/error-alert')
         <div class="row d-flex justify-content-center mt-xl-0 mt-2">
             <div class="col-12">

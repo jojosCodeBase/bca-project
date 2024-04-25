@@ -32,8 +32,10 @@
                             </div>
                         </div>
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
-                                <button type="submit" class="btn btn-primary w-50 w-md-100" id="myButton">Submit
-                                </button>
+                            <a href={{route('direct-po-attainment')}}>
+                            <button type="submit" class="btn btn-primary w-50 w-md-100" id="myButton">Submit
+                            </button>
+                        </a>
                         </div>
                     </div>
                 </form>

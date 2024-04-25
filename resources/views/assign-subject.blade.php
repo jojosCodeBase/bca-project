@@ -2,7 +2,7 @@
 @section('title', 'Assign Subjects')
 @section('breadcrumb', 'Assign Subjects')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         @include('include/error-alert')
         <div class="card">
             <div class="card-body">
@@ -22,8 +22,7 @@
                             <div class="col-xl-3 col-3 d-flex ">
                                 <div class="btn-color">
                                     <button class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#assignSubjectModal">Assign subject<i
-                                            class="bi bi-plus"></i></button>
+                                        data-bs-target="#assignSubjectModal">Assign subject</button>
                                 </div>
                             </div>
                         </div>
