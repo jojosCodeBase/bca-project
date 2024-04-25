@@ -1,6 +1,6 @@
 @extends('layouts.table-style')
 @section('title', 'Direct Attainment')
-@section('breadcrumb', 'Direct Attainment')
+@section('breadcrumb', '')
 @section('content')
     <div class="container-fluid">
         <h5 class="">Direct Attainment, Batch - 2021</h5>
