@@ -172,6 +172,7 @@ class ExcelController extends Controller
                 $grandTotal[$key] = round(($totalAvgInt + $end_sem[$key]) / 2, 2);
             }
         }
+        // dd($grandTotal);
 
         $finalCOAttainment = round(array_sum($grandTotal) / count($grandTotal), 2);
 
@@ -397,18 +398,21 @@ class ExcelController extends Controller
         // for ($row = 1; $row <= $highestRow; $row++) {
         //     $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
 
-        //     if(!is_null($rowData[0][0])){
+        //     // if(!is_null($rowData[0][0])){
         //         $excelData[] = $rowData[0];
-        //     }else{
-        //         $nullCount++;
+        //     // }
+        //     // }else{
+        //     //     $nullCount++;
 
-        //         if($nullCount > 3){
-        //             break;
-        //         }
-        //     }
+        //     //     if($nullCount > 3){
+        //     //         break;
+        //     //     }
+        //     // }
         //     // dd($rowData);
         //     // echo $row;
         // }
+
+        // dd($excelData);
 
         $filePath = $request->file('file')->path();
         $courseId = $request->file('file')->getClientOriginalName();
@@ -421,6 +425,8 @@ class ExcelController extends Controller
 
         $expectedHeaders = ['Reg No', 'Q1', 'S1', 'Q2', 'S2', 'Assignment', 'End Sem'];
 
+
+
         // Loop through each row and store the data
         $excelData = [];
         $errors = [];
@@ -429,7 +435,7 @@ class ExcelController extends Controller
         for ($row = 1; $row <= $highestRow; $row++) {
             $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
 
-            // dd($rowData[0][0]);
+            $excelData[] = $rowData[0];
 
             if (!is_null($rowData[0][0])) {
                 // Check if the row data is a duplicate
@@ -448,6 +454,8 @@ class ExcelController extends Controller
         if(!empty($errors)){
             return back()->with('errorsArray', $errors);
         }
+
+        // dd($excelData);
 
         // Initialize an empty associative array
         $associativeArray = [];

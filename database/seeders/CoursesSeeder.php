@@ -48,11 +48,14 @@ class CoursesSeeder extends Seeder
 
         // Generate course seeder for 20 subjects
         $courses = [];
+        $courseTypes = ['MCA', 'BCA'];
         for ($i = 0; $i < 20; $i++) {
+            // Randomly select course type
+            $courseType = $courseTypes[array_rand($courseTypes)];
             $courseId = generateCourseId();
             $subjectIndex = array_rand($subjects);
             $subject = $subjects[$subjectIndex];
-            $courses[] = ['cid' => $courseId, 'cname' => $subject];
+            $courses[] = ['cid' => $courseId, 'cname' => $subject, 'course' => $courseType];
         }
 
         // Insert courses into the database

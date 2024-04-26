@@ -45,6 +45,7 @@
                         <thead>
                             <th>Subject Code</th>
                             <th>Subject Name</th>
+                            <th>Course</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
@@ -52,6 +53,7 @@
                                 <tr>
                                     <td class="courseId">{{ $c['cid'] }}</td>
                                     <td>{{ $c['cname'] }}</td>
+                                    <td>{{ $c['course'] }}</td>
                                     <td>
                                         <div class="more-btn">
                                             <button class="dropdown" type="button" data-bs-toggle="dropdown"
@@ -98,8 +100,8 @@
                             @csrf
                             <div class="col-12 mb-2">
                                 <label class="form-label">Subject Code</label>
-                                <input type="text" class="form-control" name="cid" placeholder="E.g. CA1603"
-                                    required>
+                                <input type="text" class="form-control capitalize" name="cid" placeholder="E.g. CA1603"
+                                    required>s
                                 <div class="invalid-feedback">
                                     Please select year
                                 </div>
@@ -108,6 +110,17 @@
                                 <label class="form-label">Subject Name</label>
                                 <input type="text" class="form-control" name="cname"
                                     placeholder="E.g. Software Engineering" required>
+                                <div class="invalid-feedback">
+                                    Please select course
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2 mb-2">
+                                <label class="form-label">Subject Name</label>
+                                <select name="course" class="form-select" id="" required>
+                                    <option value="" selected disabled>Select course from list</option>
+                                    <option value="MCA">MCA</option>
+                                    <option value="BCA">BCA</option>
+                                </select>
                                 <div class="invalid-feedback">
                                     Please select course
                                 </div>
@@ -152,6 +165,17 @@
                                 <div class="mt-1">
                                     <input type="text" id="edit-modal-subject-name" name="subject_name"
                                         class="form-control" placeholder="E.g. Python">
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2 mb-2">
+                                <label class="form-label">Subject Name</label>
+                                <select name="course" class="form-select" id="edit-modal-subject-course" required>
+                                    <option value="" selected disabled>Select course from list</option>
+                                    <option value="MCA">MCA</option>
+                                    <option value="BCA">BCA</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select course
                                 </div>
                             </div>
                         </div>

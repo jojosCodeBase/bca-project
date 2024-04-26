@@ -259,3 +259,7 @@ a{
 .btn-primary:hover{
     background-color: #304161;
 }
+.capitalize {
+    text-transform: uppercase;
+}
+
