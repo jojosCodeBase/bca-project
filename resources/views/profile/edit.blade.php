@@ -36,11 +36,12 @@
                         @endif
                         @csrf
                         @method('patch')
-
-                        <div class="form-group mt-2">
-                            <label class="form-label">Faculty Id.</label>
-                            <input type="text" class="form-control" name="text" value="202116057" readonly>
-                        </div>
+                        @if (Auth::user()->is_faculty)
+                            <div class="form-group mt-2">
+                                <label class="form-label">Faculty Id.</label>
+                                <input type="text" class="form-control" name="text" value="{{ Auth::user()->regno }}" readonly>
+                            </div>
+                        @endif
                         <div class="form-group mt-2">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control" name="name" value="{{ $user->name }}">
