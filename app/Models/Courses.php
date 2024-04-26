@@ -14,5 +14,6 @@ class Courses extends Model
         'cid',
         'cname',
         'assigned',
+        'course',
     ];
 }

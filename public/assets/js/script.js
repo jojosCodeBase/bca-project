@@ -89,6 +89,7 @@ $(document).ready(function () {
                     <tr>
                         <td class="courseId">${course.cid}</td>
                         <td>${course.cname}</td>
+                        <td>${course.course}</td>
                         <td>
                             <div class="more-btn">
                                 <button class="dropdown" type="button" data-bs-toggle="dropdown"
@@ -170,6 +171,7 @@ $(document).ready(function () {
                 console.log(response[0]);
                 $('#edit-modal-subject-code').val(response[0].cid);
                 $('#edit-modal-subject-name').val(response[0].cname);
+                $('#edit-modal-subject-course').val(response[0].course);
                 $('#editSubjectModal').modal('show');
             },
             error: function (xhr, status, error) {

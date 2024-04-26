@@ -38,9 +38,11 @@
                                 </tbody>
                             </table>
                         </div>
+                        @if(!Auth::user()->is_faculty)
+                            {{ $courses->links() }}
+                        @endif
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -229,7 +231,7 @@
                                     class: 'text-center',
                                     value: itemArray['PO' +
                                         i
-                                        ], // Populate the 'value' attribute with the fetched data
+                                    ], // Populate the 'value' attribute with the fetched data
                                     onkeypress: 'return restrictInput(event)'
                                 });
                                 var td = $('<td>').addClass('text-center').append(inputField);

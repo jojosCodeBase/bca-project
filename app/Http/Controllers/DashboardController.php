@@ -87,9 +87,18 @@ class DashboardController extends Controller
 
     public function addSubject(Request $request)
     {
+        $request->validate([
+            'cid' => 'required|string|max:10|unique:courses',
+            'cname' => 'required|string|max:50',
+            'course' => 'required|string|max:10',
+        ],[
+            'unique' => 'Subject already exists',
+        ]);
+
         $courses = Courses::create([
-            'cid' => $request->cid,
+            'cid' => strtoupper($request->cid),
             'cname' => $request->cname,
+            'course' => $request->course,
         ]);
 
         if ($courses)
@@ -106,7 +115,7 @@ class DashboardController extends Controller
 
     public function manageSubjects()
     {
-        return view('manage-subjects', ['courses' => Courses::orderBy('cname', 'asc')->paginate(10)]);
+        return view('manage-subjects', ['courses' => Courses::orderBy('updated_at', 'desc')->paginate(10)]);
     }
 
     public function manageFaculty()
@@ -237,7 +246,7 @@ class DashboardController extends Controller
                 ->where('faculty_id', Auth::user()->id)
                 ->get();
         } else {
-            $courses = Courses::all();
+            $courses = Courses::paginate(10);
         }
 
         $relation = CoPoRelation::all();
@@ -390,26 +399,32 @@ class DashboardController extends Controller
         return response()->json($assignedCourses);
     }
 
-    public function directPOAttainment()
+    public function directPOAttainment(Request $request)
     {
-        $batch = 2021;
+        // dd($request->all());
 
         $cid = Courses::join('final_co_attainment', 'final_co_attainment.cid', '=', 'courses.cid')
-            ->where('batch', $batch)
+            ->where('batch', $request->batch)
+            ->where('courses.course', $request->course)
             ->pluck('courses.cid')
             ->toArray();
 
-        $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
-            ->where('final_co_attainment.batch', $batch)
+
+            $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
+            ->leftJoin('courses', 'courses.cid', '=', 'final_co_attainment.cid')
+            ->where('final_co_attainment.batch', $request->batch)
+            ->where('courses.course', $request->course)
             ->pluck('co_po_relation.co_po')
             ->toArray();
 
-        $grandTotalArray = FinalCoAttainment::join('courses', 'courses.cid', '=', 'final_co_attainment.cid')
-            ->where('final_co_attainment.batch', $batch)
+            $grandTotalArray = FinalCoAttainment::join('courses', 'courses.cid', '=', 'final_co_attainment.cid')
+            ->where('final_co_attainment.batch', $request->batch)
+            ->where('courses.course', $request->course)
             ->pluck('final_co_attainment.grand_total')
             ->map(function ($item) {
                 return json_decode($item, true);
             });
+            // dd($grandTotalArray);
 
         return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray'));
     }
