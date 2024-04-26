@@ -129,6 +129,8 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </div>
+                            <div></div>
+                            <p style="color: red">Note:</p>
                         </form>
                     </div>
                 </div>

@@ -9,11 +9,11 @@
                 <div class="card my-4">
                     <div class="card-body">
                         <div class="row mb-4">
-                            <div class="col-xl-3 col-6 ">
+                            <div class="col-xl-4 col-6 ">
                                 <h4 class="text-custom">CO PO Relations</h4>
                             </div>
-                            <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
-                                <div class="row d-flex justify-content-xl-end">
+                            <div class="col-xl-8 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
+                                <div class="row d-flex justify-content-xl-end pe-xl-4">
                                     <div class="col-xl-6 col-10 pe-0">
                                         <div class="input-group">
                                             <input type="search" name="" id="co_po_search"
