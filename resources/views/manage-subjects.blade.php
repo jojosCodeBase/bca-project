@@ -23,9 +23,9 @@
                     <div class="col-xl-3 col-6 ">
                         <h4 class="text-custom">All Subjects</h4>
                     </div>
-                    <div class="col-xl-7 col-md-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
+                    <div class="col-xl-7 col-md-12 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
-                            <div class="col-xl-8 col-12 pe-0">
+                            <div class="col-xl-8 col-12">
                                 <div class="input-group">
                                     <input type="search" name="" id="searchInput"
                                         placeholder="Search by subject code or name" class="form-control">

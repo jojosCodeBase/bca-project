@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Year Wise')
-@section('breadcrumb', 'Year Wise')
+@section('title', 'BCA Report')
+@section('breadcrumb', 'BCA Report')
 @section('content')
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <h4 class="py-2 text-custom">Year Wise</h4>
+                    <h4 class="py-2 text-custom">BCA Report</h4>
                     <div class="col-xl-2 col-lg-3 col-md-3 col-6 mt-1">
                         <select name="Year" id="years" class="form-select">
                             <option value="#">Select year</option>
@@ -41,75 +41,42 @@
                             <option value="CA1637">CA1637</option>
                         </select>
                     </div>
-                    <div class="col-xl-1 d-flex">
-                        <input type="submit" name="#" id="#" value="Fetch" class="btn btn-primary ">
+                    <div class="col-xl-1 d-flex justify-content-end">
+                        <input type="submit" name="" value="Fetch" class="btn btn-primary w-100">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card mt-2">
-            <div class="card-body">
-                <div class="row ">
-                    <div class="col d-flex justify-content-center">
-                        <div style="width: 80%; margin: 0 auto;">
-                            <!-- Canvas element for the chart -->
-                            <canvas id="myChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+        <div class="row mt-2">
+            <div class="col d-flex justify-content-center">
+                <div id="piechart" style="width: 900px; height: 400px;"></div>
             </div>
         </div>
     </div>
 @endsection
 @section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        function generateYears(count) {
-            const currentYear = new Date().getFullYear();
-            const years = [];
-            for (let i = 0; i < count; i++) {
-                years.push(currentYear - count + 1 + i);
-            }
-            return years;
-        }
-
-        // Generate labels for 11 years
-        const labels = generateYears(25);
-
-        // Data configuration
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'Yearly Direct Attainment',
-                data: [1.1, 5.7, 8.0, 8.1, 5.6, 5.5, 4.0, 5.7, 4.5, 7.5, 6.8,1.1, 5.7, 8.0, 8.1, 5.6, 5.5, 4.0, 5.7, 4.5, 7.5, 6.8, 5.7, 4.5, 7.5, 6.8 /* Add your data for 11 years here */ ],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        };
-        const config = {
-            type: 'line',
-            data: data,
-        };
-
-        const ctx = document.getElementById('myChart').getContext('2d');
-
-        // Create the chart
-        const myChart = new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: {
-                scales: {
-                    // y: {
-                    //     beginAtZero: true
-                    // }
-                    y: {
-                        min: 0,
-                        max: 10,
-                        stepSize: 0.5
-                    }
-                }
-            }
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
         });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['CO', 60],
+                ['PO', 40]
+            ]);
+
+            var options = {
+                title: 'CO/PO Attainment'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
     </script>
 @endsection
