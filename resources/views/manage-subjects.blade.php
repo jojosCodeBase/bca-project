@@ -2,15 +2,6 @@
 @section('title', 'Manage Subjects')
 @section('breadcrumb', 'Manage Subjects')
 @section('content')
-    <style>
-        .modal-footer {
-            border-top: none;
-        }
-
-        .modal-header {
-            border-bottom: none;
-        }
-    </style>
     <div class="container-fluid mb-2">
         @include('include/error-alert')
     </div>
@@ -68,8 +59,8 @@
                                                 </li>
                                                 <li>
                                                     <button class="dropdown-item deleteBtn" type="button"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#deleteSubjectModal" data-course-id="{{ $c['cid'] }}">Delete</button>
+                                                        data-bs-toggle="modal" data-bs-target="#deleteSubjectModal"
+                                                        data-course-id="{{ $c['cid'] }}">Delete</button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -100,8 +91,8 @@
                             @csrf
                             <div class="col-12 mb-2">
                                 <label class="form-label">Subject Code</label>
-                                <input type="text" class="form-control capitalize" name="cid" placeholder="E.g. CA1603"
-                                    required>s
+                                <input type="text" class="form-control capitalize" name="cid"
+                                    placeholder="E.g. CA1603" required>s
                                 <div class="invalid-feedback">
                                     Please select year
                                 </div>
@@ -129,8 +120,10 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </div>
-                            <div></div>
-                            <p style="color: red">Note:</p>
+                            <hr>
+                            <div class="">
+                                <p style="color: red">Note:</p>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -140,7 +133,8 @@
     {{-- Add-Subject modal end --}}
 
     {{-- Edit-Subject modal start --}}
-    <div class="modal fade" id="editSubjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editSubjectModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -215,7 +209,8 @@
                         <input type="text" id="cid" name="cid" hidden>
                         <div class="row d-flex justify-content-center">
                             <div class="col-8 d-flex justify-content-center mb-3">
-                                <button type="button" class="btn btn-secondary me-4" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-secondary me-4"
+                                    data-bs-dismiss="modal">Cancel</button>
                                 <button class="btn btn-danger">Yes, Delete !</button>
                             </div>
                         </div>
@@ -227,10 +222,10 @@
     {{-- Delete-Subject modal end --}}
 @endsection
 @section('scripts')
-<script>
-    $(document).on('click', '.deleteBtn',  function(){
-        $('#cid').val($(this).data('course-id'));
-        $('#deleteSubjectModal').show();
-    });
-</script>
+    <script>
+        $(document).on('click', '.deleteBtn', function() {
+            $('#cid').val($(this).data('course-id'));
+            $('#deleteSubjectModal').show();
+        });
+    </script>
 @endsection

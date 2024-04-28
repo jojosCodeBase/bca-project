@@ -141,13 +141,6 @@
                                         class="bi bi-person-fill fs-5 pe-1"></i>
                                     Profile
                                 </a>
-                                {{-- @if (Auth::user()->is_faculty)
-                                @else
-                                    <a href="{{ route('admin-profile.edit') }}" class="dropdown-item"><i
-                                            class="bi bi-person-fill fs-5 pe-1"></i>
-                                        Profile
-                                    </a>
-                                @endif --}}
                                 <form method="POST" action="{{ route('logout') }}">
                                     <button type="submit" class="dropdown-item"><i
                                             class="bi bi-box-arrow-right fs-5 pe-1"></i> Log-Out</button>
@@ -163,18 +156,6 @@
             <main class="content p-lx-3 p-lg-3 p-md-3 pt-3">
                 @yield('content')
             </main>
-
-            {{-- <div class="footer">
-                <div class="container-fluid">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-6">
-                            <p>
-                                <strong>Developed by Bikram Das & Kunsang Moktan</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 
@@ -184,8 +165,10 @@
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/showPassword.js') }}"></script>
 
+
     @yield('scripts')
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/chart.js') }}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script>

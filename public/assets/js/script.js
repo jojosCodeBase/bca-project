@@ -302,3 +302,54 @@ function restrictInput(event) {
 //   document.querySelector("#sidebar").classList.toggle("collapsed");
 // })
 // javaScript for Sidebar Toggle start
+
+
+// Chart Script for MCA/Bca Report Start
+function generateYears(count) {
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let i = 0; i < count; i++) {
+        years.push(currentYear - count + 1 + i);
+    }
+    return years;
+}
+
+// Generate labels for 5 years
+const labels = generateYears(5);
+
+// Data configuration
+const data = {
+    labels: labels,
+    datasets: [{
+        label: 'Subject Report',
+        data: [1.5, 2.1, 1.8, 2.1, 1.9 /* Add your data for 5 years here */],
+        fill: false,
+        borderColor: '#355389',
+        tension: 0.2
+    }]
+};
+const config = {
+    type: 'line',
+    data: data,
+};
+
+const ctx = document.getElementById('myChart').getContext('2d');
+
+// Create the chart
+const myChart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: {
+        scales: {
+            y: {
+                min: 1,
+                max: 3,
+                ticks: {
+                    stepSize: 0.1
+                }
+            }
+        }
+    }
+});
+
+// Chart Script for MCA/Bca Report End
