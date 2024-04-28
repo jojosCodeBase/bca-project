@@ -71,14 +71,14 @@
                         <i class="bi bi-clipboard2-data-fill"></i> Analysis
                     </span>
                 </li>
-                <li class="sidebar-item {{ Route::is('semester') ? 'active' : '' }}">
-                    <a href="{{ route('semester') }}" class="sidebar-nested-link">
-                        <i class="bi bi-calendar-fill"></i> Semester Wise
+                <li class="sidebar-item {{ Route::is('bca') ? 'active' : '' }}">
+                    <a href="{{ route('bca') }}" class="sidebar-nested-link">
+                        <i class="bi bi-calendar-fill"></i> BCA
                     </a>
                 </li>
-                <li class="sidebar-item {{ Route::is('year') ? 'active' : '' }}">
-                    <a href="{{ route('year') }}" class="sidebar-nested-link">
-                        <i class="bi bi-calendar3"></i> Year Wise
+                <li class="sidebar-item {{ Route::is('mca') ? 'active' : '' }}">
+                    <a href="{{ route('mca') }}" class="sidebar-nested-link">
+                        <i class="bi bi-calendar3"></i> MCA
                     </a>
                 </li>
                 @if (!Auth::user()->is_faculty)

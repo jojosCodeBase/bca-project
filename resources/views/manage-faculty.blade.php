@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-xl-7 col-12 order-3 order-xl-0 mt-3 mt-xl-0">
                         <div class="row d-flex justify-content-xl-end">
-                            <div class="col-xl-6 col-10 pe-0">
+                            <div class="col-xl-6 col-12">
                                 <div class="input-group">
                                     <input type="search" name="" id="facultySearch"
                                         placeholder="Search by id or name" class="form-control"><span

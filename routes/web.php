@@ -34,13 +34,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('co_po_relation', [DashboardController::class, 'coPoRelation'])->name('co_po_relation');
 
-    Route::get('semester', function () {
-        return view('semester');
-    })->name('semester');
+    Route::get('bca', function () {
+        return view('bca');
+    })->name('bca');
 
-    Route::get('year', function () {
-        return view('year');
-    })->name('year');
+    Route::get('mca', function () {
+        return view('mca');
+    })->name('mca');
 
     Route::get('direct-po-attainment', [DashboardController::class, 'directPOAttainment'])->name('directPOAttainment');
 
