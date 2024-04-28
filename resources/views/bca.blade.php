@@ -8,7 +8,7 @@
                 <form action="" class="needs-validation" novalidate>
                     <div class="row">
                         <h4 class="py-2 text-custom">BCA Report</h4>
-                        <div class="col-xl-5 col-lg-3 col-md-3 col-6">
+                        <div class="col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
                             <select name="Course" id="courseid" class="form-select" required>
                                 <option selected disabled value="">Select Subject from list</option>
                                 <option value="CA1601">CA1601-Softwaew Engineering</option>
@@ -20,7 +20,7 @@
                                 Please select Batch
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-4 col-lg-2 col-md-3 col-2">
                             <button type="submit" class="btn btn-primary">Fetch</button>
                         </div>
                     </div>
