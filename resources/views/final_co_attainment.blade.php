@@ -3,7 +3,7 @@
 @section('breadcrumb', 'Final CO Attainment')
 @section('content')
     <div class="container-fluid">
-        <h5>{{ $subjectCode }} - Final CO Attainment, Batch - {{ $batch }}</h5>
+        <h5>{{ $subjectCode }}-{{ $subjectName }} - CO Attainment, Batch - {{ $batch }}</h5>
         <div class="table-responsive">
             <table class="table table-bordered table-light">
                 <thead class="bg-light text-center">

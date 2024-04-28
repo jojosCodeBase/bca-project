@@ -201,29 +201,32 @@ class DashboardController extends Controller
         // Attempt to retrieve data from the specified model
         $data = SubjectMarks::where('cid', $cid)->where('batch', $batch)->get();
 
-        // print_r($data);
-
-        // if ($data->isEmpty())
-        //     return back()->with('error', 'No details found for the specified details');
-
         // Retrieve max marks
         $max_marks = MaxMarksCO::where('cid', $cid)->where('batch', $batch)->first();
         $coAttainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
         $targetMarks = TargetMarks::where('cid', $cid)->where('batch', $batch)->first();
         $more_than_sixty = MoreThanSixty::where('cid', $cid)->where('batch', $batch)->first();
+        // dd($more_than_sixty);
         $attainment_percentage = AttainmentPercentage::where('cid', $cid)->where('batch', $batch)->first();
 
-        // dd($data[0]['q1']);
-
-        return view('co_attainment', ['data' => $data, 'attainment' => $coAttainment, 'max_marks' => $max_marks, 'targetMarks' => $targetMarks, 'more_than_sixty' => $more_than_sixty, 'attainment_percentage' => $attainment_percentage, 'subjectCode' => $cid, 'batch' => $batch]);
-        // return view('co_attainment_old', ['data' => $data, 'attainment' => $coAttainment, 'max_marks' => $max_marks, 'subjectCode' => $cid, 'batch' => $batch]);
+        return view('co_attainment', [
+            'data' => $data,
+            'attainment' => $coAttainment,
+            'max_marks' => $max_marks,
+            'targetMarks' => $targetMarks,
+            'more_than_sixty' => $more_than_sixty,
+            'attainment_percentage' => $attainment_percentage,
+            'subjectCode' => $cid,
+            'batch' => $batch,
+            'subjectName' => Courses::where('cid', $cid)->pluck('cname')->first()
+        ]);
     }
 
     public function getFinalCOAttainment($cid, $batch)
     {
         $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
         $finalCOAttainment = FinalCoAttainment::where('cid', $cid)->where('batch', $batch)->first();
-        return view('final_co_attainment', ['finalCOAttainment' => $finalCOAttainment, 'co_attainment' => $co_attainment, 'subjectCode' => $cid, 'batch' => $batch]);
+        return view('final_co_attainment', ['finalCOAttainment' => $finalCOAttainment, 'co_attainment' => $co_attainment, 'subjectCode' => $cid, 'batch' => $batch, 'subjectName' => Courses::where('cid', $cid)->pluck('cname')->first()]);
     }
     public function getPOAttainment($cid, $batch)
     {
@@ -235,7 +238,8 @@ class DashboardController extends Controller
         $relation = json_decode(CoPoRelation::where('cid', $cid)->pluck('co_po')->first(), true);
         // dd(json_decode($relation, true));
         $coAttainment = FinalCoAttainment::where('cid', $cid)->where('batch', $batch)->first();
-        return view('po_attainment', compact('relation', 'courses', 'cid', 'batch', 'coAttainment'));
+        $subjectName = Courses::where('cid', $cid)->pluck('cname')->first();
+        return view('po_attainment', compact('relation', 'courses', 'cid', 'batch', 'coAttainment', 'subjectName'));
     }
 
     public function coPoRelation()
@@ -494,5 +498,13 @@ class DashboardController extends Controller
             else
                 return redirect()->back()->with('error', 'Some error occured in deleting subject');
         }
+    }
+
+    // ajax request
+    public function getSubjects($course){
+        $courses = Courses::where('course', $course)->pluck('cid', 'cname');
+        // dd($courses);
+
+        return response()->json($courses);
     }
 }

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h5>{{ $subjectCode }} - CO Attainment, Batch - {{ $batch }}</h5>
+        <h5>{{ $subjectCode }}-{{ $subjectName }} - CO Attainment, Batch - {{ $batch }}</h5>
         <div class="table-responsive">
             <table class="table table-bordered table-light">
                 <thead>
@@ -261,6 +261,7 @@
                         $s2 = json_decode($more_than_sixty['s2'], true);
                         $assignment = json_decode($more_than_sixty['assignment'], true);
                         $end_sem = json_decode($more_than_sixty['end_sem'], true);
+                        // dd($end_sem)
                     @endphp
                     <tr>
                         <td>Students>=60%</td>
@@ -278,9 +279,11 @@
 
                         @foreach ($q2 as $marks)
                             @if (!is_null($marks))
+                                {{-- {{ $loop->iteration }} - {{ $marks }}, --}}
                                 <td>{{ $marks }}</td>
                             @endif
                         @endforeach
+                        {{-- {{ dd($q2) }} --}}
 
                         @foreach ($s2 as $marks)
                             @if (!is_null($marks))

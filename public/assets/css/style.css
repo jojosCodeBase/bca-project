@@ -264,3 +264,6 @@ a{
     text-transform: uppercase;
 }
 
+.selectpicker{
+    width: 100%;
+}

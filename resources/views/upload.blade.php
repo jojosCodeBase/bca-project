@@ -35,41 +35,9 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 my-3">
-                            <select name="year" id="year" class="form-select" required>
-                                <option selected disabled value="">Select year</option>
-                                <option value="1">1st Year</option>
-                                <option value="2">2nd Year</option>
-                                <option value="3">3rd Year</option>
-                            </select>
-                            {{-- <select name="year" id="year" class="form-select" required>
-                                <option selected disabled value="">Select year</option>
-                            </select> --}}
-                            <div class="invalid-feedback">
-                                Please select Year
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 my-3">
-                            {{-- <select name="semester" id="semester" class="form-select" required>
-                                <option selected disabled value="" disabled>Select semester</option>
-                            </select> --}}
-                            <select name="semester" id="semester" class="form-select" required>
-                                <option selected disabled value="" disabled>Select semester</option>
-                                <option value="odd">Odd</option>
-                                <option value="even">Even</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select Semester
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-12 my-3">
-                            <select name="subjectId" class="selectpicker form-control" id="subjectId" data-live-search="true" required>
-                                <option value="" selected disabled>Select subject code</option>
-                                @foreach ($courses as $c)
-                                    <option value="{{ $c['cid'] }}">{{ $c['cid'] }} - {{ $c['cname'] }}</option>
-                                @endforeach
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 my-3">
+                            <select name="subjectId" class="form-control selectpicker border" id="subjectId" data-live-search="true" required>
+                                <option value="" selected disabled class="text-dark">Select subject code</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please select subject

@@ -55,11 +55,11 @@ $(document).ready(function () {
             $('#facultyEditModal').modal('show');
         });
     });
-    $(document).on('click', '#deleteFacultyBtn', function() {
+    $(document).on('click', '#deleteFacultyBtn', function () {
         $('#delete-faculty-id').val(($(this).data('faculty-id')));
     });
 
-    $(document).on('input','#searchInput', function () {
+    $(document).on('input', '#searchInput', function () {
         const searchQuery = this.value.trim();
         // Send AJAX request to the server
         fetch(`/course/search?query=${encodeURIComponent(searchQuery)}`)
@@ -179,90 +179,41 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).ready(function () {
+        $('#course').change(function () {
+            var selectedCourse = $(this).val();
+            var subjectDropdown = $('#subjectId');
+
+            // Clear existing options in subject dropdown
+            subjectDropdown.html('<option value="" selected disabled class="text-dark">Select subject code</option>');
+
+            // Fetch subjects based on the selected course using AJAX
+            $.ajax({
+                url: '/admin/getSubjects/' + selectedCourse,
+                type: 'GET',
+                dataType: 'json',
+                success: function (subjects) {
+                    console.log(subjects);
+                    // Populate subjects in the subject dropdown
+                    $.each(subjects, function (key, value) {
+                        subjectDropdown.append($('<option>', {
+                            value: value,
+                            text: value + ' - ' + key
+                        }));
+                    });
+
+                    // Refresh the selectpicker after updating options
+                    subjectDropdown.selectpicker('refresh');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching subjects:', error);
+                }
+            });
+        });
+    });
 });
 
-var optionValues = {
-    "bca": {
-        "1st-Year": {
-            "Odd": ["MATHEMATICS–I(MA1104)", "FUNDAMENTALS OF COMPUTER AND MULTIMEDIA TECHNOLOGIES (CA1106)", "FUNDAMENTALS OF BUSINESS MANAGEMENT(BA1110)", "PROGRAMMING-I(CA1104C) ", "FUNDAMENTALS OF DIGITAL ELECTRONICS(CA1105)", "PC CONFIGURATION LAB(CA1163)", "C PROGRAMMING–I LAB(CA1162)"],
-            "Even": ["MA1204", "BA1202", "BA1210", "CA1204", "CA1205", "CA1261", "CA1262"]
-        },
-        "2nd-Year": {
-            "Odd": ["MA1304", "CA1302", "CA1303", "CA1304", "BA1337/BA1537", "CA1361", "CA1362"],
-            "Even": ["CA1401", "CA1402", "CA1404", "CA1408", "CA1407", "CA1461", "CA1462"]
-        },
-        "3rd-Year": {
-            "Odd": ["CA1501", "CA1503", "CA1506", "CA15*", "CA15*", "CA1561", "CA1563"],
-            "Even": ["CA1601", "CA1603", "CA16*", "CA16*", "CA1661", "CA1663", "CA1671"]
-        }
-    },
-    "mca": {
-        "1st-Year": {
-            "Odd": ['CA2110 - COMPUTATIONAL MATHEMATICS', 'CA2111 - LATEST TREND IN COMPUTER', 'CA2112 - DATABASE MANAGEMENT SYSTEM', 'CA2113 - Operating System', 'CA2110 - ACCOUNTING & Managerial Economics', 'CA2114 - JAVA PROGRAMMING'],
-            "Even": ['CA2208 - QUANTITATIVE ANALYSIS FOR COMPUTER APPLICATIONS', 'CA2211 - SOFTWARE ENGINERING &UML', 'CA2240 - ANGULAR JS, REACT JS and VUE JS', 'CA2239 - PYTHON PROGRAMMING (EL-1)', 'CA2241 - DATA WAREHOUSING & DATA MINING', 'CA2242 - CLOUD COMPUTING']
-        },
-        "2nd-Year": {
-            "Odd": ['CA2212 - .NET FRAMEWORK', 'CA2213 - COMPUTER NETWORKS', 'CA2311 - FORMAL LANGUAGES AND AUTOMATA THEORY', 'CA2312 - DATA STRUCTURE AND ALGORITHMS', 'CA2313', 'CA2344 - MACHINE LEARNING', 'CA2349 - BIG DATA & ITS Applications', 'CA2345 - BIG DATA ANALYTICS', 'CA2350 - VIRTUALIZATION AND CLOUD SECURITY'],
-            "Even": ['CA2371 - MINI PROJECT', 'CA2381 - INDUSTRIAL TRAINING & COURSE WORK', 'CA2475 - MAJOR PROJECT']
-        }
-    }
-};
-
-
-// document.getElementById("course").addEventListener("change", function () {
-//     alert('x');
-//     var course = document.getElementById("course");
-//     var years = document.getElementById("year");
-//     var selectedValue = course.value;
-
-//     years.innerHTML = '<option value="" selected disabled>Select year</option>';
-//     semester.innerHTML = '<option value="">Select semester</option>';
-//     subjectId.innerHTML = '<option value="">Select subject</option>';
-
-//     for (var key in optionValues[selectedValue]) {
-//         var optionElement = document.createElement("option");
-//         optionElement.textContent = key;
-//         optionElement.value = key;
-//         years.appendChild(optionElement);
-//     }
-// });
-
-// document.getElementById("year").addEventListener("change", function () {
-//     var years = document.getElementById("year");
-//     var semester = document.getElementById("semester");
-//     var selectedValue = years.value;
-//     var course = document.getElementById("course");
-//     var selectedFirstValue = course.value;
-
-//     semester.innerHTML = '<option value="">Select semester</option>';
-//     subjectId.innerHTML = '<option value="">Select subject</option>';
-
-//     for (var key in optionValues[selectedFirstValue][selectedValue]) {
-//         var optionElement = document.createElement("option");
-//         optionElement.textContent = key;
-//         optionElement.value = key;
-//         semester.appendChild(optionElement);
-//     }
-// });
-
-// document.getElementById("semester").addEventListener("change", function () {
-//     var semester = document.getElementById("semester");
-//     var subjectId = document.getElementById("subjectId");
-//     var selectedValue = semester.value;
-//     var course = document.getElementById("course");
-//     var years = document.getElementById("year");
-//     var selectedFirstValue = course.value;
-//     var selectedSecondValue = years.value;
-
-//     subjectId.innerHTML = '<option value="">Select subject</option>';
-
-//     optionValues[selectedFirstValue][selectedSecondValue][selectedValue].forEach(function (option) {
-//         var optionElement = document.createElement("option");
-//         optionElement.textContent = option;
-//         optionElement.value = option;
-//         subjectId.appendChild(optionElement);
-//     });
-// });
 
 // javaScript for number restiction start
 

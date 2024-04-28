@@ -84,7 +84,7 @@ Route::middleware('auth')->group(function () {
         Route::get('getFacultyInfo/{id}', [DashboardController::class, 'getFacultyInfo']);
         Route::get('get_assigned_courses', [DashboardController::class, 'getAssignedSubjects']);
 
-        Route::get('direct-attainment',function(){
+        Route::get('direct-attainment', function () {
             return view('direct-attainment');
         })->name('direct-attainment');
 
@@ -93,6 +93,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-faculty-info', [DashboardController::class, 'facultyInfo']);
         Route::get('/get-co_po_relation', [DashboardController::class, 'getCourses']);
 
+        Route::get('/getSubjects/{course}', [DashboardController::class, 'getSubjects']);
     });
 
     Route::middleware('faculty')->group(function () {
@@ -109,6 +110,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/export', [ExcelController::class, 'export'])->name('export-table');
 
     Route::get('/export-courses', [ExcelController::class, 'exportCourses']);
+
 
 
 

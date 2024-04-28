@@ -82,17 +82,27 @@ class ExcelController extends Controller
                 ->where('regno', $regno)
                 ->first();
 
-            if ($model) {
-                // If a record already exists, update it
-                $model->Q1 = $jsonQ1;
-                $model->S1 = $jsonS1;
-                $model->Q2 = $jsonQ2;
-                $model->S2 = $jsonS2;
-                $model->assignment = $jsonAssignment;
-                $model->end_sem = $jsonEndSem;
-                $model->total = 0; // Assuming you want to update the 'total' field as well
+            // dd($model, $regno);
 
-                if ($model->save()) {
+            if ($model) {
+                // If a record already exists, delete it and save new data
+
+                // Delete the existing record
+                SubjectMarks::where('cid', $cid)->where('batch', $batch)->delete();
+
+                $newModel = new SubjectMarks();
+                $newModel->cid = $cid;
+                $newModel->batch = $batch;
+                $newModel->regno = $regno;
+                $newModel->Q1 = $jsonQ1;
+                $newModel->S1 = $jsonS1;
+                $newModel->Q2 = $jsonQ2;
+                $newModel->S2 = $jsonS2;
+                $newModel->assignment = $jsonAssignment;
+                $newModel->end_sem = $jsonEndSem;
+                $newModel->total = 0;// Assuming you want to update the 'total' field as well
+
+                if ($newModel->save()) {
                     // If the update operation is successful
                     $this->updated = 1;
                     return true;
@@ -249,7 +259,6 @@ class ExcelController extends Controller
             'CO3' => null,
             'CO4' => null,
             'CO5' => null,
-            'CO6' => null,
             'Total' => null,
         ];
 
@@ -269,10 +278,12 @@ class ExcelController extends Controller
                 foreach ($data as $d) {
                     $marks = json_decode($d[$examArray[$index]], true);
 
-                    if (is_null($marks[$key]) || $marks[$key] == "AB") {
-                        if ($target_marks_count === 0)
+                    if (is_null($marks[$key]) || strtolower($marks[$key]) == "AB") {
+                        if (is_null($marks[$key])) {
                             $target_marks_count = null;
-                        else
+                        } else if ($target_marks_count === 0) {
+                            $target_marks_count = 0;
+                        } else
                             continue;
                     } else {
                         if ($marks[$key] >= $target_marks[$examArray[$index]][$key]) {
@@ -282,24 +293,37 @@ class ExcelController extends Controller
                     }
                 }
 
+                // dd($marks);
                 // store target marks count
                 $copy_co_po[$key] = $target_marks_count;
 
                 // calculate attainment percentage
 
                 // check for null
-                if ($target_marks_count == null) {
-                    $attainmentPercentage_CO_PO[$key] = null;
-                } else {
-                    $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
-                }
+                    if ($target_marks_count == null) {
+                        // dd($copy_co_po);
+                        $attainmentPercentage_CO_PO[$key] = null;
+                    } else {
+                        $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
+                    }
+                // if($target_marks_count == 0){
+                //     $attainmentPercentage_CO_PO[$key] =682367;
+                // }
+
+                // else if ($target_marks_count == 0) {
+                //     $attainmentPercentage_CO_PO[$key] = 0;
+                // }
 
                 // calculate co attainment level
+
                 $co_attainment_CO_PO[$key] = $this->getCOLevel($attainmentPercentage_CO_PO[$key]);
 
                 // reset target_marks_count to 0 for counting next CO
                 $target_marks_count = 0;
             }
+            // if ($examArray[$index] == 'end_sem') {
+            //     dd($co_attainment_CO_PO);
+            // }
 
             // store the copy array to q1, s1, q2, respectively
             $marks_more_than_sixty_percent_array[$examArray[$index]] = $copy_co_po;
@@ -311,6 +335,9 @@ class ExcelController extends Controller
             $co_attainment[$examArray[$index]] = $co_attainment_CO_PO;
             $index++;
         }
+        // dd($attainmentPercentage_CO_PO);
+        // dd($marks_more_than_sixty_percent_array);
+
 
         $query = MoreThanSixty::updateOrCreate(
             ['cid' => $cid, 'batch' => $batch],
@@ -412,7 +439,6 @@ class ExcelController extends Controller
         //     // echo $row;
         // }
 
-        // dd($excelData);
 
         $filePath = $request->file('file')->path();
         $courseId = $request->file('file')->getClientOriginalName();
@@ -430,28 +456,34 @@ class ExcelController extends Controller
         // Loop through each row and store the data
         $excelData = [];
         $errors = [];
-        $nullCount = 0;
+        // $nullCount = 0;
         $executedRows = [];
+        $rowEnd = false;
         for ($row = 1; $row <= $highestRow; $row++) {
             $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
 
-            $excelData[] = $rowData[0];
+            // for co row
+            if (is_null($rowData[0][0]) && !is_null($rowData[0][1])) {
+                $excelData[] = $rowData[0];
+            } else if (!is_null($rowData[0][0])) {
+                $excelData[] = $rowData[0];
+                if (strtolower($rowData[0][0]) == 'max marks/co')
+                    $rowEnd = true;
 
-            if (!is_null($rowData[0][0])) {
                 // Check if the row data is a duplicate
                 if (in_array($rowData[0][0], $executedRows)) {
                     $errors[] = "Duplicate row found at row - $row";
                 }
                 $executedRows[] = $rowData[0][0];
             } else {
-                $nullCount++;
-                if ($nullCount > 3) {
+                if ($rowEnd) {
+                    // dd($rowData[0][0]);
                     break;
                 }
             }
         }
 
-        if(!empty($errors)){
+        if (!empty($errors)) {
             return back()->with('errorsArray', $errors);
         }
 
@@ -477,7 +509,6 @@ class ExcelController extends Controller
             'CO3' => null,
             'CO4' => null,
             'CO5' => null,
-            'CO6' => null,
             'Total' => null,
         ];
 
@@ -525,7 +556,6 @@ class ExcelController extends Controller
                         'CO3' => null,
                         'CO4' => null,
                         'CO5' => null,
-                        'CO6' => null,
                         'Total' => null,
                     ];
                     $dataArray['regno'] = $regno;
