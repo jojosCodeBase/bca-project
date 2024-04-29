@@ -92,7 +92,7 @@
                             <div class="col-12 mb-2">
                                 <label class="form-label">Subject Code</label>
                                 <input type="text" class="form-control capitalize" name="cid"
-                                    placeholder="E.g. CA1603" required>s
+                                    placeholder="E.g. CA1603" required>
                                 <div class="invalid-feedback">
                                     Please select year
                                 </div>

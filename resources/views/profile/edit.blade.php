@@ -28,7 +28,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="text-custom">Profile Information</h4>
-                        {{-- <p>Update your account's profile information and email address.</p> --}}
                         @if (Auth::user()->is_faculty)
                             <form method="post" action="{{ route('profile.update') }}">
                             @else
@@ -61,7 +60,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="text-custom">Update Password</h4>
-                        {{-- <p>Ensure your account is using a long, random password to stay secure.</p> --}}
                         <form method="post" action="{{ route('password.update') }}">
                             @csrf
                             @method('put')

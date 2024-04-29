@@ -16,9 +16,7 @@
     <div class="wrapper">
         <div class="main">
             <nav class="navbar navbar-expand px-3 border-bottom bg-light">
-                {{-- <button class="btn" id="sidebar-toggle" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button> --}}
+
                 <div class="breadcrumb-bar text-custom px-3">
                     <span class="breadcrumb-item fs-6">
                         @yield('breadcrumb')
@@ -37,13 +35,7 @@
                                         class="bi bi-person-fill fs-5 pe-1"></i>
                                     Profile
                                 </a>
-                                {{-- @if (Auth::user()->is_faculty)
-                                @else
-                                    <a href="{{ route('admin-profile.edit') }}" class="dropdown-item"><i
-                                            class="bi bi-person-fill fs-5 pe-1"></i>
-                                        Profile
-                                    </a>
-                                @endif --}}
+
                                 <form method="POST" action="{{ route('logout') }}">
                                     <button type="submit" class="dropdown-item"><i
                                             class="bi bi-box-arrow-right fs-5 pe-1"></i> Log-Out</button>
@@ -59,18 +51,6 @@
             <main class="content p-lx-4 p-lg-4 p-md-4">
                 @yield('content')
             </main>
-
-            {{-- <div class="footer">
-                <div class="container-fluid">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-6">
-                            <p>
-                                <strong>Developed by Bikram Das & Kunsang Moktan</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 

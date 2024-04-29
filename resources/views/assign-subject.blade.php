@@ -7,12 +7,10 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-xl-4 col-6">
+                    <div class="col-xl-6 col-6">
                         <h4 class="text-custom">Assign Subject</h4>
                     </div>
-                    {{-- <div class="col-xl-8 col-12 bg-primary mt-3 mt-xl-0"> --}}
-                    {{-- <div class="row d-flex justify-content-xl-end"> --}}
-                    <div class="col-xl-6 col-11 order-3 order-xl-0 pt-3 pt-xl-0 m-auto">
+                    <div class="col-xl-4 col-11 order-3 order-xl-0 pt-3 pt-xl-0 m-auto">
                         <div class="input-group ">
                             <input type="search" name="" id="" placeholder="Search Faculty"
                                 class="form-control"><span class="input-group-text bg-transparent"><i

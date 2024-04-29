@@ -1,4 +1,27 @@
-//thid is for select option
+// script for Sidebar toggle Start
+
+const sidebarToggle = document.querySelector("#sidebar-toggle");
+sidebarToggle.addEventListener("click",function(){
+  document.querySelector("#sidebar").classList.toggle("collapsed");
+})
+
+// script for Sidebar toggle End
+
+// script for show password Start
+const passwordInput = document.getElementById('password');
+const showPasswordCheckbox = document.getElementById('checkbox');
+
+showPasswordCheckbox.addEventListener('change', function() {
+  if (this.checked) {
+    passwordInput.type = 'text';
+  } else {
+    passwordInput.type = 'password';
+  }
+});
+
+// script for show password End
+
+//thid is for select validation start
 
 (() => {
     'use strict'
@@ -18,6 +41,9 @@
         }, false)
     })
 })()
+
+//thid is for select validation end
+
 
 function getFacultyInfo(fid, callback) {
     $.ajax({
@@ -303,4 +329,7 @@ const myChart = new Chart(ctx, {
     }
 });
 
-// Chart Script for MCA/Bca Report End
+// Chart Script for MCA/BCA Report End
+
+
+

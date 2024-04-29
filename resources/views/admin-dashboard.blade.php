@@ -65,21 +65,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-xl-3 col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h6>Remaining Sub</h6>
-                                    <h2>{{ $courseCount }}</h2>
-                                </div>
-                                <div class="col-4">
-                                    <i class="bi bi-check2-all"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
             <div class="bg-light mt-2">
                 <div class="row p-3 mt-3">
