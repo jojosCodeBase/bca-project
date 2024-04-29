@@ -21,6 +21,5 @@ class ExcelUpload extends Model
         's2_15',
         'assignment',
         'attendance',
-        'total',
     ];
 }

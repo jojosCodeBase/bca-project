@@ -46,7 +46,6 @@ class ExcelController extends Controller
                 $existingRecord->S2 = $jsonS2;
                 $existingRecord->assignment = $jsonAssignment;
                 $existingRecord->end_sem = $jsonEndSem;
-                $existingRecord->total = 0;
 
                 if ($existingRecord->save()) {
                     // If the update operation is successful
@@ -66,7 +65,6 @@ class ExcelController extends Controller
                 $model->S2 = $jsonS2;
                 $model->assignment = $jsonAssignment;
                 $model->end_sem = $jsonEndSem;
-                $model->total = 0;
 
                 if ($model->save()) {
                     // If the save operation is successful
@@ -100,7 +98,6 @@ class ExcelController extends Controller
                 $newModel->S2 = $jsonS2;
                 $newModel->assignment = $jsonAssignment;
                 $newModel->end_sem = $jsonEndSem;
-                $newModel->total = 0;// Assuming you want to update the 'total' field as well
 
                 if ($newModel->save()) {
                     // If the update operation is successful
@@ -122,7 +119,6 @@ class ExcelController extends Controller
                 $model->S2 = $jsonS2;
                 $model->assignment = $jsonAssignment;
                 $model->end_sem = $jsonEndSem;
-                $model->total = 0;
 
                 if ($model->save()) {
                     // If the save operation is successful
@@ -136,7 +132,7 @@ class ExcelController extends Controller
     }
     function getCOLevel($attainmentPercentage)
     {
-        if ($attainmentPercentage == null)
+        if (is_null($attainmentPercentage))
             return null;
         if ($attainmentPercentage < 38)
             return 0;
@@ -245,7 +241,6 @@ class ExcelController extends Controller
                 's2' => json_encode($target_marks['s2'], true),
                 'assignment' => json_encode($target_marks['assignment'], true),
                 'end_sem' => json_encode($target_marks['end_sem'], true),
-                'total' => 0,
             ]
         );
 
@@ -296,16 +291,19 @@ class ExcelController extends Controller
                 // dd($marks);
                 // store target marks count
                 $copy_co_po[$key] = $target_marks_count;
-
                 // calculate attainment percentage
 
                 // check for null
-                    if ($target_marks_count == null) {
-                        // dd($copy_co_po);
-                        $attainmentPercentage_CO_PO[$key] = null;
-                    } else {
-                        $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
-                    }
+                if ($target_marks_count === 0) {
+                    // var_dump($copy_co_po[$key]);
+                    // echo "<br>";
+                    $attainmentPercentage_CO_PO[$key] = 0;
+                } else if ($target_marks_count === null) {
+                    // dd($copy_co_po);
+                    $attainmentPercentage_CO_PO[$key] = null;
+                } else {
+                    $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
+                }
                 // if($target_marks_count == 0){
                 //     $attainmentPercentage_CO_PO[$key] =682367;
                 // }
@@ -315,6 +313,7 @@ class ExcelController extends Controller
                 // }
 
                 // calculate co attainment level
+
 
                 $co_attainment_CO_PO[$key] = $this->getCOLevel($attainmentPercentage_CO_PO[$key]);
 
@@ -335,9 +334,8 @@ class ExcelController extends Controller
             $co_attainment[$examArray[$index]] = $co_attainment_CO_PO;
             $index++;
         }
-        // dd($attainmentPercentage_CO_PO);
+        // dd($attainmentPercentage);
         // dd($marks_more_than_sixty_percent_array);
-
 
         $query = MoreThanSixty::updateOrCreate(
             ['cid' => $cid, 'batch' => $batch],
@@ -348,7 +346,6 @@ class ExcelController extends Controller
                 's2' => json_encode($marks_more_than_sixty_percent_array['s2'], true),
                 'assignment' => json_encode($marks_more_than_sixty_percent_array['assignment'], true),
                 'end_sem' => json_encode($marks_more_than_sixty_percent_array['end_sem'], true),
-                'total' => 0,
             ]
         );
 
@@ -365,7 +362,6 @@ class ExcelController extends Controller
                 's2' => json_encode($attainmentPercentage['s2'], true),
                 'assignment' => json_encode($attainmentPercentage['assignment'], true),
                 'end_sem' => json_encode($attainmentPercentage['end_sem'], true),
-                'total' => 0,
             ]
         );
 
@@ -382,7 +378,6 @@ class ExcelController extends Controller
                 's2' => json_encode($co_attainment['s2'], true),
                 'assignment' => json_encode($co_attainment['assignment'], true),
                 'end_sem' => json_encode($co_attainment['end_sem'], true),
-                'total' => 0,
             ]
         );
 

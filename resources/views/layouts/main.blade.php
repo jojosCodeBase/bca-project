@@ -71,13 +71,13 @@
                         <i class="bi bi-clipboard2-data-fill"></i> Analysis
                     </span>
                 </li>
-                <li class="sidebar-item {{ Route::is('bca') ? 'active' : '' }}">
-                    <a href="{{ route('bca') }}" class="sidebar-nested-link">
+                <li class="sidebar-item {{ Route::is('bca-analysis') ? 'active' : '' }}">
+                    <a href="{{ route('bca-analysis') }}" class="sidebar-nested-link">
                         <i class="bi bi-calendar-fill"></i> BCA
                     </a>
                 </li>
-                <li class="sidebar-item {{ Route::is('mca') ? 'active' : '' }}">
-                    <a href="{{ route('mca') }}" class="sidebar-nested-link">
+                <li class="sidebar-item {{ Route::is('mca-analysis') ? 'active' : '' }}">
+                    <a href="{{ route('mca-analysis') }}" class="sidebar-nested-link">
                         <i class="bi bi-calendar3"></i> MCA
                     </a>
                 </li>
@@ -97,7 +97,7 @@
                             <i class="bi bi-card-checklist"></i> Assign Subjects
                         </a>
                     </li>
-                    
+
                     <li class="sidebar-item">
                         <span class="sidebar-link">
                             <i class="bi bi-three-dots-vertical"></i> Faculty
@@ -159,35 +159,17 @@
     {{-- <script src="{{ asset('assets/js/toggleButton.js') }}"></script> --}}
     <script src="{{ asset('assets/js/hidepoupdatetable.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/showPassword.js') }}"></script> --}}
-
-
-    @yield('scripts')
-    <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/chart.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/showPassword.js') }}"></script> --}}
+    @yield('scripts')
+
+    <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.selectpicker').selectpicker();
         });
-
-        var alertDiv = document.getElementById('alertMessage');
-
-        // Function to fade out the alert message
-        function fadeOutAlert() {
-            // Set opacity to 0 over 1 second (1000 milliseconds)
-            alertDiv.style.transition = "opacity 1s";
-            alertDiv.style.opacity = 0;
-
-            // After 1 second, remove the alert message from the DOM
-            setTimeout(function() {
-                alertDiv.remove();
-            }, 1000);
-        }
-
-        // Call fadeOutAlert after 5 seconds
-        setTimeout(fadeOutAlert, 5000);
     </script>
 </body>
 

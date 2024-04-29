@@ -19,6 +19,5 @@ class MoreThanSixty extends Model
         's2',
         'assignment',
         'end_sem',
-        'total',
     ];
 }

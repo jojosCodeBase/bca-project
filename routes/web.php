@@ -34,13 +34,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('co_po_relation', [DashboardController::class, 'coPoRelation'])->name('co_po_relation');
 
-    Route::get('bca', function () {
-        return view('bca');
-    })->name('bca');
-
-    Route::get('mca', function () {
-        return view('mca');
-    })->name('mca');
+    Route::get('analysis/BCA', [DashboardController::class, 'bcaAnalysis'])->name('bca-analysis');
+    Route::get('analysis/MCA', [DashboardController::class, 'mcaAnalysis'])->name('mca-analysis');
 
     Route::get('direct-po-attainment', [DashboardController::class, 'directPOAttainment'])->name('directPOAttainment');
 
@@ -94,6 +89,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-co_po_relation', [DashboardController::class, 'getCourses']);
 
         Route::get('/getSubjects/{course}', [DashboardController::class, 'getSubjects']);
+
+        Route::get('/getSubjectData/{cid}', [DashboardController::class, 'getSubjectData']);
     });
 
     Route::middleware('faculty')->group(function () {

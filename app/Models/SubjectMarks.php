@@ -20,6 +20,5 @@ class SubjectMarks extends Model
         's2',
         'assignment',
         'end_sem',
-        'total',
     ];
 }

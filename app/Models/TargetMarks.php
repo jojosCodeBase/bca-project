@@ -19,6 +19,5 @@ class TargetMarks extends Model
         's2',
         'assignment',
         'end_sem',
-        'total',
     ];
 }

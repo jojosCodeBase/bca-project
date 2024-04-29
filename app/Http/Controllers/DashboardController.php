@@ -222,6 +222,15 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function bcaAnalysis(){
+        $courses = Courses::where('course', 'BCA')->get();
+        return view('bca', compact('courses'));
+    }
+    public function mcaAnalysis(){
+        $courses = Courses::where('course', 'MCA')->get();
+        return view('mca', compact('courses'));
+    }
+
     public function getFinalCOAttainment($cid, $batch)
     {
         $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
@@ -503,8 +512,12 @@ class DashboardController extends Controller
     // ajax request
     public function getSubjects($course){
         $courses = Courses::where('course', $course)->pluck('cid', 'cname');
-        // dd($courses);
-
         return response()->json($courses);
     }
+    public function getSubjectData($cid){
+        $attainment = FinalCoAttainment::where('cid', $cid)->pluck('final_co_attainment')->all();
+        return response()->json($attainment);
+    }
+
+
 }

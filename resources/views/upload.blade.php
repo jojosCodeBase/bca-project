@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
-                            <select name="course" id="course" class="form-select" required>
+                            <select name="course" id="course-select" class="form-select" required>
                                 <option selected disabled value="">Select course</option>
                                 <option value="BCA">BCA</option>
                                 <option value="MCA">MCA</option>
@@ -62,3 +62,12 @@
         </div>
     </div>
 @endsection
+{{-- @section('scripts')
+    <script>
+        $(document).ready(function() {
+            $(document).on('change', '#course', function() {
+                alert('x');
+            });
+        });
+    </script>
+@endsection --}}

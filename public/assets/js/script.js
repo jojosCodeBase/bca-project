@@ -1,66 +1,34 @@
-// script for Sidebar toggle Start
-
-const sidebarToggle = document.querySelector("#sidebar-toggle");
-sidebarToggle.addEventListener("click",function(){
-  document.querySelector("#sidebar").classList.toggle("collapsed");
-})
-
-// script for Sidebar toggle End
-
-// script for show password Start
-const passwordInput = document.getElementById('password');
-const showPasswordCheckbox = document.getElementById('checkbox');
-
-showPasswordCheckbox.addEventListener('change', function() {
-  if (this.checked) {
-    passwordInput.type = 'text';
-  } else {
-    passwordInput.type = 'password';
-  }
-});
-
-// script for show password End
-
-//thid is for select validation start
-
-(() => {
-    'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-        }, false)
-    })
-})()
-
-//thid is for select validation end
-
-
-function getFacultyInfo(fid, callback) {
-    $.ajax({
-        url: '/admin/getFacultyInfo/' + fid,
-        type: 'GET',
-        dataType: 'json',
-        success: function (response) {
-            callback(response[0]);
-            // console.log(response);
-        },
-        error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-        }
-    });
-}
-
 $(document).ready(function () {
+    $(document).on('change', '#course-select', function () {
+        var selectedCourse = $(this).val();
+        var subjectDropdown = $('#subjectId');
+
+        // Clear existing options in subject dropdown
+        subjectDropdown.html('<option value="" selected disabled class="text-dark">Select subject code</option>');
+
+        // Fetch subjects based on the selected course using AJAX
+        $.ajax({
+            url: '/admin/getSubjects/' + selectedCourse,
+            type: 'GET',
+            dataType: 'json',
+            success: function (subjects) {
+                console.log(subjects);
+                // Populate subjects in the subject dropdown
+                $.each(subjects, function (key, value) {
+                    subjectDropdown.append($('<option>', {
+                        value: value,
+                        text: value + ' - ' + key
+                    }));
+                });
+
+                // Refresh the selectpicker after updating options
+                subjectDropdown.selectpicker('refresh');
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching subjects:', error);
+            }
+        });
+    });
     $(document).on('click', '.facultyViewButton', function () {
         var fid = $(this).closest('tr').find('.facultyId').text();
         getFacultyInfo(fid, function (response) {
@@ -81,6 +49,7 @@ $(document).ready(function () {
             $('#facultyEditModal').modal('show');
         });
     });
+
     $(document).on('click', '#deleteFacultyBtn', function () {
         $('#delete-faculty-id').val(($(this).data('faculty-id')));
     });
@@ -206,39 +175,97 @@ $(document).ready(function () {
         });
     });
 
-    $(document).ready(function () {
-        $('#course').change(function () {
-            var selectedCourse = $(this).val();
-            var subjectDropdown = $('#subjectId');
+    (() => {
+        'use strict'
 
-            // Clear existing options in subject dropdown
-            subjectDropdown.html('<option value="" selected disabled class="text-dark">Select subject code</option>');
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
 
-            // Fetch subjects based on the selected course using AJAX
-            $.ajax({
-                url: '/admin/getSubjects/' + selectedCourse,
-                type: 'GET',
-                dataType: 'json',
-                success: function (subjects) {
-                    console.log(subjects);
-                    // Populate subjects in the subject dropdown
-                    $.each(subjects, function (key, value) {
-                        subjectDropdown.append($('<option>', {
-                            value: value,
-                            text: value + ' - ' + key
-                        }));
-                    });
-
-                    // Refresh the selectpicker after updating options
-                    subjectDropdown.selectpicker('refresh');
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error fetching subjects:', error);
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
                 }
-            });
-        });
-    });
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+
+    var alertDiv = document.getElementById('alertMessage');
+
+    // Function to fade out the alert message
+    function fadeOutAlert() {
+        // Set opacity to 0 over 1 second (1000 milliseconds)
+        alertDiv.style.transition = "opacity 1s";
+        alertDiv.style.opacity = 0;
+
+        // After 1 second, remove the alert message from the DOM
+        setTimeout(function () {
+            alertDiv.remove();
+        }, 1000);
+    }
+
+    // Call fadeOutAlert after 5 seconds
+    setTimeout(fadeOutAlert, 5000);
 });
+
+// script for Sidebar toggle Start
+const sidebarToggle = document.querySelector("#sidebar-toggle");
+sidebarToggle.addEventListener("click", function () {
+    document.querySelector("#sidebar").classList.toggle("collapsed");
+})
+
+// script for Sidebar toggle End
+
+// script for show password Start
+const passwordInput = document.getElementById('password');
+const showPasswordCheckbox = document.getElementById('checkbox');
+
+showPasswordCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
+});
+
+// script for show password End
+
+//thid is for select validation start
+
+
+
+
+// $(document).on('change', '#course', function() {
+//     alert('x');
+// });
+// $('#course-select').on('change', function(){
+//     alert('xxx');
+// });
+
+
+
+//thid is for select validation end
+
+
+function getFacultyInfo(fid, callback) {
+    $.ajax({
+        url: '/admin/getFacultyInfo/' + fid,
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            callback(response[0]);
+            // console.log(response);
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
+
 
 
 // javaScript for number restiction start
@@ -281,55 +308,7 @@ function restrictInput(event) {
 // javaScript for Sidebar Toggle start
 
 
-// Chart Script for MCA/Bca Report Start
-function generateYears(count) {
-    const currentYear = new Date().getFullYear();
-    const years = [];
-    for (let i = 0; i < count; i++) {
-        years.push(currentYear - count + 1 + i);
-    }
-    return years;
-}
 
-// Generate labels for 5 years
-const labels = generateYears(5);
-
-// Data configuration
-const data = {
-    labels: labels,
-    datasets: [{
-        label: 'Subject Report',
-        data: [1.5, 2.1, 1.8, 2.1, 1.9 /* Add your data for 5 years here */],
-        fill: false,
-        borderColor: '#355389',
-        tension: 0.2
-    }]
-};
-const config = {
-    type: 'line',
-    data: data,
-};
-
-const ctx = document.getElementById('myChart').getContext('2d');
-
-// Create the chart
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: {
-        scales: {
-            y: {
-                min: 1,
-                max: 3,
-                ticks: {
-                    stepSize: 0.1
-                }
-            }
-        }
-    }
-});
-
-// Chart Script for MCA/BCA Report End
 
 
 
