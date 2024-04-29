@@ -64,7 +64,6 @@
                                 <th>Subject Id</th>
                                 <th>Subject Name</th>
                                 <th>Date</th>
-                                {{-- <th>View</th> --}}
                             </thead>
                             <tbody>
                                 @foreach ($courses as $c)
@@ -73,7 +72,6 @@
                                         <td>{{ $c['cid'] }}</td>
                                         <td>{{ $c['cname'] }}</td>
                                         <td>{{ $c['updated_at'] }}</td>
-                                        {{-- <td><a href="#">View</a></td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>

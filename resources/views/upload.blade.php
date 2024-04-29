@@ -11,7 +11,7 @@
                     novalidate>
                     @csrf
                     <div class="row">
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 my-3">
+                        <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>
                                 <option value="2019">2019</option>
@@ -24,7 +24,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 my-3">
+                        <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
                             <select name="course" id="course" class="form-select" required>
                                 <option selected disabled value="">Select course</option>
                                 <option value="BCA">BCA</option>
@@ -35,8 +35,9 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 my-3">
-                            <select name="subjectId" class="form-control selectpicker border" id="subjectId" data-live-search="true" required>
+                        <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-10 col-12 my-3">
+                            <select name="subjectId" class="form-control selectpicker border" id="subjectId"
+                                data-live-search="true" required>
                                 <option value="" selected disabled class="text-dark">Select subject code</option>
                             </select>
                             <div class="invalid-feedback">
@@ -44,21 +45,16 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-7 col-xl-7 col-lg-10 col-md-10 col-12 my-3">
-                            <div class="row">
-                                <div class=" col-xl-9 col-lg-9 col-md-9 col-12">
-                                    <input type="file" name="file" id="file" class="form-control"
-                                        aria-label="file example" required accept=".xls, .xlsx">
-                                    <span class="text-danger" id="file-error"></span>
-                                    <div class="invalid-feedback">
-                                        Please Choose a file
-                                    </div>
-                                </div>
-                                <div
-                                    class=" col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-12 mt-xl-0 mt-lg-0 mt-md-0 mt-3 m-auto ">
-                                    <button type="submit" class="btn btn-primary w-100" id="myButton">Upload</button>
-                                </div>
+                        <div class="col-xxl-7 col-xl-7 col-lg-6 col-md-10 col-12 my-3">
+                            <input type="file" name="file" id="file" class="form-control"
+                                aria-label="file example" required accept=".xls, .xlsx">
+                            <span class="text-danger" id="file-error"></span>
+                            <div class="invalid-feedback">
+                                Please Choose a file
                             </div>
+                        </div>
+                        <div class=" col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-12 mt-xl-3 mt-lg-3 mt-3">
+                            <button type="submit" class="btn btn-primary w-100" id="myButton">Upload</button>
                         </div>
                     </div>
                 </form>

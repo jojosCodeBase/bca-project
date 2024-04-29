@@ -97,11 +97,7 @@
                             <i class="bi bi-card-checklist"></i> Assign Subjects
                         </a>
                     </li>
-                    {{-- <li class="sidebar-item {{ request()->is('admin/tables') ? 'active' : '' }}">
-                            <a href="{{ route('tables') }}" class="sidebar-nested-link">
-                                <i class="bi bi-database-gear"></i> Database Tables
-                            </a>
-                        </li> --}}
+                    
                     <li class="sidebar-item">
                         <span class="sidebar-link">
                             <i class="bi bi-three-dots-vertical"></i> Faculty
@@ -160,10 +156,10 @@
     </div>
 
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/toggleButton.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/toggleButton.js') }}"></script> --}}
     <script src="{{ asset('assets/js/hidepoupdatetable.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/showPassword.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/showPassword.js') }}"></script> --}}
 
 
     @yield('scripts')
