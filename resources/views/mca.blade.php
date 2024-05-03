@@ -8,7 +8,7 @@
                 <form action="" id="reportForm" class="needs-validation" novalidate>
                     <div class="row">
                         <h4 class="py-2 text-custom">MCA Report</h4>
-                        <div class="col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
+                        <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
                             <select name="course" id="courseid" class="form-select" required>
                                 <option selected disabled value="">Select subject from list</option>
                                 @foreach ($courses as $course)
@@ -19,7 +19,7 @@
                                 Please select Batch
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-2 col-md-3 col-2">
+                        <div class="col-xxl-4 col-xl-4 col-lg-2 col-md-3 col-2">
                             <button type="submit" class="btn btn-primary">Fetch</button>
                         </div>
                     </div>
