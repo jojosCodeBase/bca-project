@@ -3,7 +3,16 @@
 @section('breadcrumb', '')
 @section('content')
     <div class="container-fluid">
-        <h5 class="">Direct Attainment, Batch - 2021</h5>
+        <div class="row">
+            <div class="col-6">
+                <h5 class="">Direct Attainment, Batch - 2021</h5>
+            </div>
+            <div class="col-6 d-flex justify-content-end pe-5">
+                <button type="button" class="btn hover-button" data-hover="Download">
+                    <i class="bi bi-download fs-4"></i>
+                </button>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered table-light">
                 <thead class="text-center">
