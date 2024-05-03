@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                             <div class="col-12 mt-2 mb-2">
-                                <label class="form-label">Subject Name</label>
+                                <label class="form-label">Course Name</label>
                                 <select name="course" class="form-select" id="" required>
                                     <option value="" selected disabled>Select course from list</option>
                                     <option value="MCA">MCA</option>
@@ -116,13 +116,13 @@
                                     Please select course
                                 </div>
                             </div>
-                            <div class="modal-footer  my-1 d-flex justify-content-end pe-2">
+                            <div class="modal-footer Custom_Footer my-1 d-flex justify-content-end pe-2">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </div>
                             <hr>
                             <div class="">
-                                <p style="color: red">Note:</p>
+                                <p style="color: red">Note: Onces Create a subject then subject Id can not be changed.</p>
                             </div>
                         </form>
                     </div>

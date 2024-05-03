@@ -38,7 +38,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        @if(!Auth::user()->is_faculty)
+                        @if (!Auth::user()->is_faculty)
                             {{ $courses->links() }}
                         @endif
                     </div>
@@ -91,7 +91,7 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-custom" id="exampleModalLabel">Upload CO/PO Relation</h1>
+                    <h1 class="modal-title fs-5 text-custom" id="exampleModalLabel">Upload CO-PO Relation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('update-co-po-relation') }}" method="POST">
@@ -135,33 +135,38 @@
 @endsection
 @section('scripts')
     <script>
-        $('.modelViewBtn').click(function() {
+        $(document).on('click', '.modelViewBtn', function() {
             var courseId = $(this).closest('tr').find('.courseId').data('course-id');
+            // alert(courseId);
             $.ajax({
                 url: "/get_CO_PO_Relation/" + courseId,
                 type: 'GET',
                 dataType: "json",
-                success: function(response) {
-                    const data = JSON.parse(response);
-
-                    $('.custom-width').empty();
-
-                    // Iterate through the response data and add rows to the table
-                    $.each(data, function(header, item) {
-                        var itemArray = JSON.parse(item)
-                        var row = $('<tr>');
-                        row.append($('<th>').text(header)); // Add Course ID cell
-
-                        // Add PO cells
-                        for (var i = 1; i <= 12; i++) {
-                            var poValue = itemArray['PO' + i] ||
-                                ''; // Get PO value or empty string if null
-                            row.append($('<td>').addClass('text-center').text(poValue));
-                        }
-
-                        // Append the row to the table body
-                        $('.custom-width').append(row);
-                    });
+                success: function(response) { 
+                    if (response === "notfound") {
+                        // console.log(response);
+                        $('.custom-width').empty();
+                    }else{
+                        const data = JSON.parse(response);
+                        $('.custom-width').empty();
+    
+                        // Iterate through the response data and add rows to the table
+                        $.each(data, function(header, item) {
+                            var itemArray = JSON.parse(item)
+                            var row = $('<tr>');
+                            row.append($('<th>').text(header)); // Add Course ID cell
+    
+                            // Add PO cells
+                            for (var i = 1; i <= 12; i++) {
+                                var poValue = itemArray['PO' + i] ||
+                                    ''; // Get PO value or empty string if null
+                                row.append($('<td>').addClass('text-center').text(poValue));
+                            }
+    
+                            // Append the row to the table body
+                            $('.custom-width').append(row);
+                        });
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching details:', error);
@@ -169,8 +174,11 @@
             });
         });
 
-        $('.coPoUpdateBtn').click(function() {
+        // $('.coPoUpdateBtn').click(function() {
+        $(document).on('click', '.coPoUpdateBtn', function() {
             var courseId = $(this).closest('tr').find('.courseId').data('course-id');
+            // alert(courseId);
+
             $.ajax({
                 url: "/get_CO_PO_Relation/" + courseId,
                 type: 'GET',

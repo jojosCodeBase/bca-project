@@ -7,17 +7,17 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-xl-6 col-6">
+                    <div class="col-xxl-6 col-xl-6 col-6">
                         <h4 class="text-custom">Assign Subject</h4>
                     </div>
-                    <div class="col-xl-4 col-11 order-3 order-xl-0 pt-3 pt-xl-0 m-auto">
+                    <div class="col-xxl-4 col-xl-4 col-11 order-3 order-xl-0 pt-3 pt-xl-0 m-auto">
                         <div class="input-group ">
                             <input type="search" name="" id="" placeholder="Search Faculty"
                                 class="form-control"><span class="input-group-text bg-transparent"><i
                                     class="bi bi-search"></i></span>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-6 order-2 order-xl-0 d-flex justify-content-md-end pe-md-4">
+                    <div class="col-xxl-2 col-xl-2 col-6 order-2 order-xl-0 d-flex justify-content-md-end pe-md-4">
                         <div class="btn-color">
                             <button class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#assignSubjectModal">Assign subject</button>
@@ -25,8 +25,8 @@
                     </div>
                 </div>
             </div>
-            <div class="ps-2">
-                <h5 class="text-muted mt-4">List Of Faculty</h5>
+            <div class="ps-3">
+                <h5 class="text-custom mt-2">List Of Assign Subject</h5>
             </div>
 
             <div class="table-responsive">
