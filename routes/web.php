@@ -73,6 +73,10 @@ Route::middleware('auth')->group(function () {
         Route::post('assign-subject', [DashboardController::class, 'assignSubject'])->name('assign-subject');
         Route::post('assign-subject/update', [DashboardController::class, 'assignSubjectUpdate'])->name('edit-assign-subject');
 
+        // export as excel
+        Route::get('/export/{course}/{batch}', [ExcelController::class, 'export'])->name('direct-attainment-export');
+
+
 
         // ajax requests
         Route::get('getCourseInfo/{id}', [DashboardController::class, 'getCourseInfo']);

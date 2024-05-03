@@ -9,6 +9,7 @@ use App\Models\MaxMarksCO;
 use App\Models\ExcelUpload;
 use App\Models\TargetMarks;
 use App\Models\CoAttainment;
+use App\Models\CoPoRelation;
 use App\Models\SubjectMarks;
 use Illuminate\Http\Request;
 use App\Models\MoreThanSixty;
@@ -19,6 +20,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DirectAttainmentExport;
 use Illuminate\Database\QueryException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ExcelController extends Controller
 {
@@ -580,5 +583,133 @@ class ExcelController extends Controller
                 return back()->with('error', 'some error occured in uploading file in calculate');
             }
         }
+    }
+
+    public function export($course, $batch)
+    {
+        // $batch = 2021;
+        // $course = "BCA";
+        $cid = Courses::join('final_co_attainment', 'final_co_attainment.cid', '=', 'courses.cid')
+            ->where('batch', $batch)
+            ->where('courses.course', $course)
+            ->pluck('courses.cid')
+            ->toArray();
+
+
+        $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
+            ->leftJoin('courses', 'courses.cid', '=', 'final_co_attainment.cid')
+            ->where('final_co_attainment.batch', $batch)
+            ->where('courses.course', $course)
+            ->pluck('co_po_relation.co_po')
+            ->toArray();
+
+        $grandTotalArray = FinalCoAttainment::join('courses', 'courses.cid', '=', 'final_co_attainment.cid')
+            ->where('final_co_attainment.batch', $batch)
+            ->where('courses.course', $course)
+            ->pluck('final_co_attainment.grand_total')
+            ->map(function ($item) {
+                return json_decode($item, true);
+            });
+
+        // dd($poArray, $cid, $grandTotalArray);
+
+
+        // Create a new Spreadsheet instance
+        $spreadsheet = new Spreadsheet();
+
+        // Get the active sheet
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Add table headers
+        $headers = ['Course', 'CO', 'Attainment level'];
+        foreach (range(1, 12) as $index) {
+            $headers[] = 'PO' . $index;
+        }
+        $sheet->fromArray([$headers]);
+
+        $rowIndex = 2;
+
+        for ($i = 0; $i < count($poArray); $i++) {
+            // Process CO and attainment level
+            $firstIteration = true;
+            foreach (json_decode($poArray[$i], true) as $co => $r) {
+                $r = json_decode($r, true);
+                // $row = [
+                //     $cid[$i], // Course ID
+                //     $co, // CO
+                //     $grandTotalArray[$i][$co], // Attainment level
+                // ];
+
+                $row = [];
+
+                // Add Course ID if it's the first iteration
+                if ($firstIteration) {
+                    $row[] = $cid[$i]; // Course ID
+                    $firstIteration = false; // Set flag to false after adding CID for the first time
+                } else {
+                    // Add an empty string for CID in subsequent iterations
+                    $row[] = ''; // Course ID placeholder
+                }
+
+                // Add CO and Attainment level
+                $row[] = $co; // CO
+                $row[] = $grandTotalArray[$i][$co]; // Attainment level
+
+                // Process each PO
+                foreach (range(1, 12) as $index) {
+                    $value = isset($r['PO' . $index]) ? $r['PO' . $index] : null;
+                    $row[] = $value;
+                    if (!is_null($value)) {
+                        // Calculate direct attainment for the current PO and CO combination
+                        $directAttainment['PO' . $index][] = $grandTotalArray[$i][$co] * $value;
+                        $totalPoArray['PO' . $index][] = $value;
+                    }
+                }
+                $sheet->fromArray([$row], null, 'A' . $rowIndex);
+
+                // Increment row index
+                $rowIndex++;
+            }
+
+            // Add the current row to the spreadsheet
+        }
+
+        // Add Direct PO Attainment row after processing all data
+        $startingColumnIndex = 'A'; // Start from column A for the header text
+        $valueStartingColumnIndex = 'D'; // Start from column D for the values
+
+        // Add Direct PO Attainment header text to column A
+        $headerRow = ['Direct PO Attainment'];
+
+        // Add null values for columns B and C
+        $headerRow = array_merge($headerRow, [null, null]);
+
+        // Add Direct PO Attainment values starting from column D
+        $directAttainmentValues = [];
+        foreach (range(1, 12) as $index) {
+            $value = isset($directAttainment['PO' . $index])
+                ? round(array_sum($directAttainment['PO' . $index]) / array_sum($totalPoArray['PO' . $index]), 2)
+                : '';
+            $directAttainmentValues[] = $value;
+        }
+
+        // Combine the header text and values arrays
+        $row = array_merge($headerRow, $directAttainmentValues);
+
+        // Add the combined row to the spreadsheet starting from column A and row $rowIndex
+        $sheet->fromArray([$row], null, $startingColumnIndex . $rowIndex);
+
+
+        // Create a new Excel writer object
+        $writer = new Xlsx($spreadsheet);
+
+        // Set the file name
+        $filename = 'exported_table.xlsx';
+
+        // Save the Excel file to storage
+        $writer->save(storage_path('app/' . $filename));
+
+        // Return a download response
+        return response()->download(storage_path('app/' . $filename))->deleteFileAfterSend(true);
     }
 }

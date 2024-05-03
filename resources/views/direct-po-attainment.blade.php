@@ -5,12 +5,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-6">
-                <h5 class="">Direct Attainment, Batch - 2021</h5>
+                <h5 class="">Direct Attainment, {{ $course }} Batch - {{ $batch }}</h5>
             </div>
             <div class="col-6 d-flex justify-content-end pe-5">
-                <button type="button" class="btn hover-button" data-hover="Download">
-                    <i class="bi bi-download fs-4"></i>
-                </button>
+                <a href="{{ route('direct-attainment-export', ['course' => $course, 'batch' => $batch]) }}">
+                    <button type="button" class="btn hover-button" data-hover="Download">
+                        <i class="bi bi-download fs-4"></i>
+                    </button>
+                </a>
             </div>
         </div>
         <div class="table-responsive">
@@ -45,7 +47,8 @@
                                 @php
                                     if (!is_null($r['PO' . $index])) {
                                         // Calculate direct attainment for the current PO and CO combination
-                                        $directAttainment['PO' . $index][] = $grandTotalArray[$i][$co] * $r['PO' . $index];
+                                        $directAttainment['PO' . $index][] =
+                                            $grandTotalArray[$i][$co] * $r['PO' . $index];
                                         $totalPoArray['PO' . $index][] = $r['PO' . $index];
                                     }
                                 @endphp
@@ -58,14 +61,16 @@
                         <th colspan="3">Direct PO Attainment</th>
                         @foreach (range(1, 12) as $index)
                             @if (isset($directAttainment['PO' . $index]))
-                                <td>{{ round(array_sum($directAttainment['PO' . $index]) / array_sum($totalPoArray['PO' . $index]), 2) }}</td>
+                                <td>{{ round(array_sum($directAttainment['PO' . $index]) / array_sum($totalPoArray['PO' . $index]), 2) }}
+                                </td>
                             @else
-                                <td>{{ null }}</td>
+                                <td>&nbsp;</td>
                             @endif
                         @endforeach
                     </tr>
                 </tbody>
             </table>
+
         </div>
     </div>
 @endsection

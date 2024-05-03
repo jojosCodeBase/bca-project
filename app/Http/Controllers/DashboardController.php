@@ -415,31 +415,32 @@ class DashboardController extends Controller
     public function directPOAttainment(Request $request)
     {
         // dd($request->all());
-
+        $batch = $request->batch;
+        $course = $request->course;
         $cid = Courses::join('final_co_attainment', 'final_co_attainment.cid', '=', 'courses.cid')
-            ->where('batch', $request->batch)
-            ->where('courses.course', $request->course)
+            ->where('batch', $batch)
+            ->where('courses.course', $course)
             ->pluck('courses.cid')
             ->toArray();
 
 
             $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
             ->leftJoin('courses', 'courses.cid', '=', 'final_co_attainment.cid')
-            ->where('final_co_attainment.batch', $request->batch)
-            ->where('courses.course', $request->course)
+            ->where('final_co_attainment.batch', $batch)
+            ->where('courses.course', $course)
             ->pluck('co_po_relation.co_po')
             ->toArray();
 
             $grandTotalArray = FinalCoAttainment::join('courses', 'courses.cid', '=', 'final_co_attainment.cid')
-            ->where('final_co_attainment.batch', $request->batch)
-            ->where('courses.course', $request->course)
+            ->where('final_co_attainment.batch', $batch)
+            ->where('courses.course', $course)
             ->pluck('final_co_attainment.grand_total')
             ->map(function ($item) {
                 return json_decode($item, true);
             });
             // dd($grandTotalArray);
 
-        return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray'));
+        return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray', 'batch', 'course'));
     }
 
     public function testPage()
@@ -518,6 +519,4 @@ class DashboardController extends Controller
         $attainment = FinalCoAttainment::where('cid', $cid)->pluck('final_co_attainment')->all();
         return response()->json($attainment);
     }
-
-
 }
