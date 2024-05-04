@@ -175,6 +175,16 @@ $(document).ready(function () {
         });
     });
 
+    // script for show password Start
+    $(document).on('change', '#checkbox', function () {
+        const passwordInput = $('#password');
+        if ($(this).is(':checked')) {
+            passwordInput.attr('type', 'text');
+        } else {
+            passwordInput.attr('type', 'password');
+        }
+    });
+
     (() => {
         'use strict'
 
@@ -210,42 +220,13 @@ $(document).ready(function () {
 
     // Call fadeOutAlert after 5 seconds
     setTimeout(fadeOutAlert, 5000);
+
+    // script for Sidebar toggle Start
+    const sidebarToggle = document.querySelector("#sidebar-toggle");
+    sidebarToggle.addEventListener("click", function () {
+        document.querySelector("#sidebar").classList.toggle("collapsed");
+    });
 });
-
-// script for Sidebar toggle Start
-const sidebarToggle = document.querySelector("#sidebar-toggle");
-sidebarToggle.addEventListener("click", function () {
-    document.querySelector("#sidebar").classList.toggle("collapsed");
-})
-
-// script for Sidebar toggle End
-
-// script for show password Start
-const passwordInput = document.getElementById('password');
-const showPasswordCheckbox = document.getElementById('checkbox');
-
-showPasswordCheckbox.addEventListener('change', function () {
-    if (this.checked) {
-        passwordInput.type = 'text';
-    } else {
-        passwordInput.type = 'password';
-    }
-});
-
-// script for show password End
-
-//thid is for select validation start
-
-
-
-
-// $(document).on('change', '#course', function() {
-//     alert('x');
-// });
-// $('#course-select').on('change', function(){
-//     alert('xxx');
-// });
-
 
 
 //thid is for select validation end
