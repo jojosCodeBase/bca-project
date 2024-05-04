@@ -363,6 +363,11 @@ a.page-link {
     visibility: visible;
 }
 
-.btn{
+.btn-border{
+    border: none;
+}
+
+.btn-back{
+    color: #355389;
     border: none;
 }

@@ -290,6 +290,9 @@ function restrictInput(event) {
 
 
 
-
+document.getElementById("backButton").addEventListener("click", function () {
+    // Go back to the most recent page in the history
+    window.history.back();
+});
 
 

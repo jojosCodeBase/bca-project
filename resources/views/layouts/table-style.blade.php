@@ -17,6 +17,12 @@
         <div class="main">
             <nav class="navbar navbar-expand px-3 border-bottom bg-light">
 
+                <div class="">
+                    <button class="btn btn-back" id="backButton">
+                        <i class="bi bi-arrow-left fs-4"></i>
+                    </button>
+                </div>
+
                 <div class="breadcrumb-bar text-custom px-3">
                     <span class="breadcrumb-item fs-6">
                         @yield('breadcrumb')
@@ -67,6 +73,12 @@
         $(document).ready(function() {
             $('.selectpicker').selectpicker();
         });
+    </script>
+    <script>
+        // document.getElementById("backButton").addEventListener("click", function() {
+        //     // Go back to the most recent page in the history
+        //     window.history.back();
+        // });
     </script>
 </body>
 
