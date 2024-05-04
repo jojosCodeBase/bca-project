@@ -9,7 +9,7 @@
             </div>
             <div class="col-6 d-flex justify-content-end pe-5">
                 <a href="{{ route('direct-attainment-export', ['course' => $course, 'batch' => $batch]) }}">
-                    <button type="button" class="btn hover-button" data-hover="Download">
+                    <button type="button" class="btn btn-border hover-button" data-hover="Download">
                         <i class="bi bi-download fs-4"></i>
                     </button>
                 </a>
