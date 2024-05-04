@@ -289,10 +289,12 @@ function restrictInput(event) {
 // javaScript for Sidebar Toggle start
 
 
-
+// button for back start
 document.getElementById("backButton").addEventListener("click", function () {
     // Go back to the most recent page in the history
     window.history.back();
 });
+
+// button for back end
 
 
