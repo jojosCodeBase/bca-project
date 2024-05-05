@@ -79,14 +79,17 @@
                                     <th style="width: 70px;">Sl. No</th>
                                     <th>Subject Id</th>
                                     <th>Subject Name</th>
+                                    <th>Batch</th>
                                     <th>Date</th>
                                 </thead>
                                 <tbody>
+                                    {{-- @dump($uploaded) --}}
                                     @foreach ($uploaded as $u)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $u['cid'] }}</td>
                                             <td>{{ $u['cname'] }}</td>
+                                            <td>{{ $u['batch'] }}</td>
                                             <td>{{ \Carbon\Carbon::parse($u['updated_at'])->format('d-m-Y') }}</td>
                                         </tr>
                                     @endforeach

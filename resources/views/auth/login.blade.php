@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Result Analysis System</title>
-    <link rel="icon" href="{{ asset('assets/images/smitlogo2.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/icon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body style="background-color: aliceblue">
-    <main class="d-flex w-100">
+    {{-- <main class="d-flex w-100 vh-100"> --}}
+    <main class="d-flex align-items-center vh-100">
         <div class="container">
             <div class="row d-flex justify-content-center">
-                <div class="text-center mt-4 mb-3">
+                <div class="text-center mb-2">
                     <h1 class="h2 text-custom fw-bold">Student Performance Assesment for<br>Outcome Based Education</h1>
                 </div>
 
@@ -84,6 +85,7 @@
                     </div>
                 </div>
             </div>
+            <p class="text-center">Designed and developed by <a href="https://smu.edu.in/smit/dept-faculty/dept-list/dept-ca-smit.html" target="_blank">Department of Computer Applications</a>, Sikkim Manipal Institute of Technology</p>
         </div>
     </main>
 </body>
