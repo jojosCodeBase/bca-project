@@ -22,27 +22,16 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12">
-                        <select name="course" id="course-select" class="form-select" required>
-                            <option selected disabled value="">Select course</option>
-                            <option value="BCA">BCA</option>
-                            <option value="MCA">MCA</option>
+                    <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0">
+                        <select name="subjectId" class="form-control selectpicker border" id="subjectId"
+                            data-live-search="true" required>
+                            <option value="" selected disabled class="text-dark">Select subject</option>
                         </select>
                         <div class="invalid-feedback">
-                            Please select course
+                            Please select subject
                         </div>
                     </div>
-                    <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
-                        <select name="subjectId" class="form-control" id="subjectId" required>
-                            <option value="" selected disabled class="text-dark">Select course</option>
-                            <option value="">BCA</option>
-                            <option value="">MCA</option>
 
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select Course
-                        </div>
-                    </div>
                     <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-2">
                         <button type="submit" class="btn btn-primary">Fetch</button>
                     </div>
