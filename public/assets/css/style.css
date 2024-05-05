@@ -342,3 +342,28 @@ a.page-link {
 .btn-back{
     border: none;
 }
+
+.dropdown-style{
+    padding-left: 1.6rem;
+}
+
+.btn-style{
+    background-color: transparent;
+    color: black;
+}
+
+.btn-style:hover{
+    background-color: transparent;
+    color: #355389;
+}
+
+.btn-style:active{
+    background-color: transparent;
+}
+
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+    color: black;
+    /* background-color: var(--bs-btn-active-bg); */
+    background-color: transparent;
+    border-color: black;
+}

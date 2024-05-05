@@ -36,7 +36,7 @@
 
                         <div class="col-xxl-4 col-xl-4 col-lg-9 col-md-9 col-12 my-3">
                             <select name="subjectId" class="form-control selectpicker border" id="subjectId" data-live-search="true" required>
-                                <option value="" selected disabled class="text-dark">Select subject code</option>
+                                <option value="" selected disabled class="text-dark">Select subject</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please select subject
