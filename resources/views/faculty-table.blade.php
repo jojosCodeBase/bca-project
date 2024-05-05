@@ -1,7 +1,7 @@
 @if (count($faculty) > 0)
-    @foreach ($faculty as $f)
+    @foreach ($faculty as $index => $f)
         <tr>
-            <td>{{ $loop->iteration }}</td>
+            {{-- <td>{{ ($currentPage - 1) * $perPage + $index + 1 }}</td> --}}
             <td class="facultyId">{{ $f['regno'] }}</td>
             <td>{{ $f['name'] }}</td>
             <td>{{ $f['email'] }}</td>

@@ -8,7 +8,8 @@ $(document).ready(function () {
 
         // Fetch subjects based on the selected course using AJAX
         $.ajax({
-            url: '/admin/getSubjects/' + selectedCourse,
+            // url: '/admin/getSubjects/' + selectedCourse,
+            url: '/getSubjects/' + selectedCourse,
             type: 'GET',
             dataType: 'json',
             success: function (subjects) {

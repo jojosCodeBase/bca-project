@@ -92,10 +92,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-faculty-info', [DashboardController::class, 'facultyInfo']);
         Route::get('/get-co_po_relation', [DashboardController::class, 'getCourses']);
 
-        Route::get('/getSubjects/{course}', [DashboardController::class, 'getSubjects']);
 
         Route::get('/getSubjectData/{cid}', [DashboardController::class, 'getSubjectData']);
     });
+
+    Route::get('/getSubjects/{course}', [DashboardController::class, 'getSubjects']);
 
     Route::middleware('faculty')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'userDashboard'])->name('dashboard');
@@ -122,7 +123,7 @@ Route::middleware('auth')->group(function () {
         return view('subject-report');
     })->name('subject-report');
 
-    
+
 });
 
 require __DIR__ . '/auth.php';

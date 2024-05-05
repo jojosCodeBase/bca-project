@@ -80,6 +80,7 @@ class DashboardController extends Controller
                 ->where('faculty_id', Auth::user()->id)
                 ->orderBy('cname', 'asc')
                 ->get();
+            // dd($courses);
         } else
             $courses = Courses::orderBy('cname', 'asc')->get();
         return view('upload', ['courses' => $courses]);
@@ -91,7 +92,7 @@ class DashboardController extends Controller
             'cid' => 'required|string|max:10|unique:courses',
             'cname' => 'required|string|max:50',
             'course' => 'required|string|max:10',
-        ],[
+        ], [
             'unique' => 'Subject already exists',
         ]);
 
@@ -115,12 +116,21 @@ class DashboardController extends Controller
 
     public function manageSubjects()
     {
-        return view('manage-subjects', ['courses' => Courses::orderBy('updated_at', 'desc')->paginate(10)]);
+        $courses = Courses::orderBy('updated_at', 'desc')->paginate(10);
+
+        return view('manage-subjects', compact('courses'));
     }
 
     public function manageFaculty()
     {
-        return view('manage-faculty', ['faculty' => User::where('is_faculty', 1)->get()]);
+        // $perPage = 10;
+        // $currentPage = request()->get('page', 1);
+        // $offset = ($currentPage - 1) * $perPage;
+        // return view('manage-faculty', compact('faculty', 'currentPage', 'perPage'));
+
+        $faculty = User::where('is_faculty', 1)->paginate(10);
+
+        return view('manage-faculty', compact('faculty'));
     }
     public function updateSubject(Request $request)
     {
@@ -222,11 +232,13 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function bcaAnalysis(){
+    public function bcaAnalysis()
+    {
         $courses = Courses::where('course', 'BCA')->get();
         return view('bca', compact('courses'));
     }
-    public function mcaAnalysis(){
+    public function mcaAnalysis()
+    {
         $courses = Courses::where('course', 'MCA')->get();
         return view('mca', compact('courses'));
     }
@@ -424,21 +436,21 @@ class DashboardController extends Controller
             ->toArray();
 
 
-            $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
+        $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
             ->leftJoin('courses', 'courses.cid', '=', 'final_co_attainment.cid')
             ->where('final_co_attainment.batch', $batch)
             ->where('courses.course', $course)
             ->pluck('co_po_relation.co_po')
             ->toArray();
 
-            $grandTotalArray = FinalCoAttainment::join('courses', 'courses.cid', '=', 'final_co_attainment.cid')
+        $grandTotalArray = FinalCoAttainment::join('courses', 'courses.cid', '=', 'final_co_attainment.cid')
             ->where('final_co_attainment.batch', $batch)
             ->where('courses.course', $course)
             ->pluck('final_co_attainment.grand_total')
             ->map(function ($item) {
                 return json_decode($item, true);
             });
-            // dd($grandTotalArray);
+        // dd($grandTotalArray);
 
         return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray', 'batch', 'course'));
     }
@@ -511,11 +523,22 @@ class DashboardController extends Controller
     }
 
     // ajax request
-    public function getSubjects($course){
-        $courses = Courses::where('course', $course)->pluck('cid', 'cname');
+    public function getSubjects($course)
+    {
+        if (Auth::user()->is_faculty) {
+            $courses = Courses::join('assigned_subjects', 'assigned_subjects.cid', '=', 'courses.cid')
+                ->where('course', $course)
+                ->pluck('courses.cid', 'courses.cname');
+            // ->select('courses.cid', 'courses.cname')
+
+            // dd($courses);
+        } else {
+            $courses = Courses::where('course', $course)->pluck('cid', 'cname');
+        }
         return response()->json($courses);
     }
-    public function getSubjectData($cid){
+    public function getSubjectData($cid)
+    {
         $attainment = FinalCoAttainment::where('cid', $cid)->pluck('final_co_attainment')->all();
         return response()->json($attainment);
     }

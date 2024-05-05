@@ -34,14 +34,16 @@
                 <div class="mt-4 table-responsive" id="table">
                     <table class="table table-hover">
                         <thead>
+                            {{-- <th>Sl.no</th> --}}
                             <th>Subject Code</th>
                             <th>Subject Name</th>
                             <th>Course</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
-                            @foreach ($courses as $c)
+                            @foreach ($courses as $index => $c)
                                 <tr>
+                                    {{-- <td>{{ ($currentPage - 1) * $perPage + $index + 1 }}</td> --}}
                                     <td class="courseId">{{ $c['cid'] }}</td>
                                     <td>{{ $c['cname'] }}</td>
                                     <td>{{ $c['course'] }}</td>

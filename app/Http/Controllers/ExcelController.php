@@ -276,7 +276,7 @@ class ExcelController extends Controller
                 foreach ($data as $d) {
                     $marks = json_decode($d[$examArray[$index]], true);
 
-                    if (is_null($marks[$key]) || strtolower($marks[$key]) == "AB") {
+                    if (is_null($marks[$key]) || strtoupper($marks[$key]) == "AB" || strtoupper($marks[$key]) == "DT") {
                         if (is_null($marks[$key])) {
                             $target_marks_count = null;
                         } else if ($target_marks_count === 0) {
@@ -291,29 +291,18 @@ class ExcelController extends Controller
                     }
                 }
 
-                // dd($marks);
                 // store target marks count
                 $copy_co_po[$key] = $target_marks_count;
-                // calculate attainment percentage
 
+                // calculate attainment percentage
                 // check for null
                 if ($target_marks_count === 0) {
-                    // var_dump($copy_co_po[$key]);
-                    // echo "<br>";
                     $attainmentPercentage_CO_PO[$key] = 0;
                 } else if ($target_marks_count === null) {
-                    // dd($copy_co_po);
                     $attainmentPercentage_CO_PO[$key] = null;
                 } else {
                     $attainmentPercentage_CO_PO[$key] = intval(($target_marks_count / count($data)) * 100);
                 }
-                // if($target_marks_count == 0){
-                //     $attainmentPercentage_CO_PO[$key] =682367;
-                // }
-
-                // else if ($target_marks_count == 0) {
-                //     $attainmentPercentage_CO_PO[$key] = 0;
-                // }
 
                 // calculate co attainment level
 
@@ -323,9 +312,6 @@ class ExcelController extends Controller
                 // reset target_marks_count to 0 for counting next CO
                 $target_marks_count = 0;
             }
-            // if ($examArray[$index] == 'end_sem') {
-            //     dd($co_attainment_CO_PO);
-            // }
 
             // store the copy array to q1, s1, q2, respectively
             $marks_more_than_sixty_percent_array[$examArray[$index]] = $copy_co_po;
@@ -337,8 +323,8 @@ class ExcelController extends Controller
             $co_attainment[$examArray[$index]] = $co_attainment_CO_PO;
             $index++;
         }
-        // dd($attainmentPercentage);
         // dd($marks_more_than_sixty_percent_array);
+        // dd($attainmentPercentage);
 
         $query = MoreThanSixty::updateOrCreate(
             ['cid' => $cid, 'batch' => $batch],

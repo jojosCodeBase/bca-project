@@ -72,7 +72,7 @@
         const data = {
             labels: labels,
             datasets: [{
-                label: 'Subject Report',
+                label: 'PO Attainment',
                 data: [1.5, 2.1, 1.8, 2.1, 1.9 /* Add your data for 5 years here */ ],
                 fill: false,
                 borderColor: '#355389',

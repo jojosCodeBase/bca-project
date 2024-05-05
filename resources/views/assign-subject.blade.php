@@ -33,7 +33,7 @@
                 <table class="table table-striped my-4">
                     <thead>
                         <tr>
-                            <th>Sl.No.</th>
+                            {{-- <th>Sl.No.</th> --}}
                             <th>Faculty Name</th>
                             <th>Subjects Assigned</th>
                             <th>Action</th>
@@ -43,7 +43,7 @@
                         @foreach ($facultyDropdown as $key => $fd)
                             @foreach ($fd as $facultyId => $courses)
                                 <tr>
-                                    <td>{{ $loop->parent->iteration }}</td>
+                                    {{-- <td>{{ $loop->parent->iteration }}</td> --}}
                                     <td>{{ $key }}</td>
                                     <td>
                                         <select name="courses[{{ $facultyId }}]" class="form-select">

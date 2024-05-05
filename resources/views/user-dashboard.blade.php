@@ -6,7 +6,6 @@
         <div class="mb-3 p-1">
             <h5>Faculty Dashboard</h5>
         </div>
-
         <div class="row mb-3">
             <div class="col-12">
                 <div class="card">

@@ -30,7 +30,7 @@
                     <table class="table table-hover my-4">
                         <thead>
                             <tr>
-                                <th>Sl.No.</th>
+                                {{-- <th>Sl.No.</th> --}}
                                 <th>Faculty ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -42,6 +42,9 @@
                             @include('faculty-table')
                         </tbody>
                     </table>
+                    <span id="pagination">
+                        {{ $faculty->links() }}
+                    </span>
                 </div>
             </div>
         </div>
