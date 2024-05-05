@@ -122,6 +122,10 @@ Route::middleware('auth')->group(function () {
     Route::get('subject-report', function () {
         return view('subject-report');
     })->name('subject-report');
+    
+    Route::get('dev-profile', function () {
+        return view('dev-profile');
+    })->name('dev-profile');
 
 
 });
