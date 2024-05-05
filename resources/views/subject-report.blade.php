@@ -1,46 +1,60 @@
 @extends('layouts.main')
-@section('title', 'BCA Report')
-@section('breadcrumb', 'BCA Report')
+@section('title', 'Subject Report')
+@section('breadcrumb', 'Subject Report')
 @section('content')
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
-                <form action="" id="reportForm" class="needs-validation" novalidate>
-                    <div class="row">
-                        <h4 class="py-2 text-custom">BCA Report</h4>
-                        <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
-                            <select name="subjectId" class="form-control selectpicker border" id="subjectId"
-                                data-live-search="true" required>
-                                <option value="" selected disabled class="text-dark">Select subject</option>
-                                @foreach ($courses as $course)
-                                    <option value="{{ $course->cid }}">{{ $course->cid }}-{{ $course->cname }}</option>
-                                @endforeach
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select Batch
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-2 col-md-3 col-2">
-                            <button type="submit" class="btn btn-primary">Fetch</button>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <form action="" id="reportForm" class="needs-validation" novalidate>
+                <div class="row">
+                    <h4 class="py-2 text-custom">Subject Report</h4>
+                    <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
+                        <select name="subjectId" class="form-control selectpicker border" id="subjectId"
+                            data-live-search="true" required>
+                            <option value="" selected disabled class="text-dark">Select subject</option>
+                            {{-- @foreach ($courses as $course)
+                                <option value="{{ $course->cid }}">{{ $course->cid }}-{{ $course->cname }}</option>
+                            @endforeach --}}
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select Batch
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="card mt-2" id="chartCard" style="display: none;">
-            <div class="card-body">
-                <div class="row ">
-                    <div class="col d-flex justify-content-center">
-                        <div style="width: 80%; margin: 0 auto;">
-                            <!-- Canvas element for the chart -->
-                            <canvas id="myChart"></canvas>
+                    <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
+                        <select name="subjectId" class="form-control" id="subjectId" required>
+                            <option value="" selected disabled class="text-dark">Select course</option>
+                            <option value="">BCA</option>
+                            <option value="">MCA</option>
+
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select Course
                         </div>
+                    </div>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-2">
+                        <button type="submit" class="btn btn-primary">Fetch</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card mt-2" id="chartCard" style="display: none;">
+        <div class="card-body">
+            <div class="row ">
+                <div class="col d-flex justify-content-center">
+                    <div style="width: 80%; margin: 0 auto;">
+                        <!-- Canvas element for the chart -->
+                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 @endsection
+
 @section('scripts')
     <script>
         // Chart Script for MCA/Bca Report Start
@@ -61,7 +75,7 @@
             labels: labels,
             datasets: [{
                 label: 'Subject Report',
-                data: [3, 2.1, 1.8, 2.1, 1.9 /* Add your data for 5 years here */ ],
+                data: [1.5, 2.1, 1.8, 2.1, 1.9 /* Add your data for 5 years here */ ],
                 fill: false,
                 borderColor: '#355389',
                 tension: 0.2
@@ -90,8 +104,8 @@
                 }
             }
         });
-        // Chart Script for MCA/BCA Report End
 
+        // Chart Script for MCA/BCA Report End
 
         $('#reportForm').on('submit', function(event) {
             event.preventDefault(); // Prevent default form submission

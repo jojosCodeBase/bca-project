@@ -66,12 +66,40 @@
                         </a>
                     </li>
                 @endif
+
                 <li class="sidebar-item">
                     <span class="sidebar-link">
                         <i class="bi bi-clipboard2-data-fill"></i> Analysis
                     </span>
                 </li>
-                <li class="sidebar-item {{ Route::is('bca-analysis') ? 'active' : '' }}">
+
+                <li class="sidebar-item {{ Route::is('subject-report') ? 'active' : '' }}">
+                    <a href="{{ route('subject-report') }}" class="sidebar-nested-link">
+                        <i class="bi bi-bar-chart-line"></i> Subject Report
+                    </a>
+                </li>
+
+                {{-- <div class="dropdown dropdown-style">
+                    <button class="btn btn-primary dropdown-toggle btn-style" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-bar-chart-line"></i> Subject Report
+                      </button>
+
+                      <ul class="dropdown-menu dropdown-menu-light ">
+                        <li class="sidebar-item {{ Route::is('bca-analysis') ? 'active' : '' }}">
+                            <a href="{{ route('bca-analysis') }}" class="sidebar-nested-link">
+                                <i class="bi bi-calendar-fill"></i> BCA
+                            </a>
+                        </li>
+                        <li class="sidebar-item {{ Route::is('mca-analysis') ? 'active' : '' }}">
+                            <a href="{{ route('mca-analysis') }}" class="sidebar-nested-link">
+                                <i class="bi bi-calendar3"></i> MCA
+                            </a>
+                        </li>
+                      </ul>
+                </div> --}}
+
+
+                {{-- <li class="sidebar-item {{ Route::is('bca-analysis') ? 'active' : '' }}">
                     <a href="{{ route('bca-analysis') }}" class="sidebar-nested-link">
                         <i class="bi bi-calendar-fill"></i> BCA
                     </a>
@@ -80,7 +108,7 @@
                     <a href="{{ route('mca-analysis') }}" class="sidebar-nested-link">
                         <i class="bi bi-calendar3"></i> MCA
                     </a>
-                </li>
+                </li> --}}
                 @if (!Auth::user()->is_faculty)
                     <li class="sidebar-item">
                         <span class="sidebar-link">

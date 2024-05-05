@@ -339,35 +339,31 @@ a.page-link {
 
 }
 
-.hover-button {
-    position: relative;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.hover-button::after {
-    content: attr(data-hover);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #355389;
-    border-radius: 5px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-}
-
-.hover-button:hover::after {
-    opacity: 1;
-    visibility: visible;
-}
-
-.btn-border{
-    border: none;
-}
-
 .btn-back{
-    color: #355389;
     border: none;
+}
+
+.dropdown-style{
+    padding-left: 1.6rem;
+}
+
+.btn-style{
+    background-color: transparent;
+    color: black;
+}
+
+.btn-style:hover{
+    background-color: transparent;
+    color: #355389;
+}
+
+.btn-style:active{
+    background-color: transparent;
+}
+
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+    color: black;
+    /* background-color: var(--bs-btn-active-bg); */
+    background-color: transparent;
+    border-color: black;
 }

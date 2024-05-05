@@ -3,14 +3,14 @@
 @section('breadcrumb', '')
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-6">
                 <h5 class="">Direct Attainment, {{ $course }} Batch - {{ $batch }}</h5>
             </div>
             <div class="col-6 d-flex justify-content-end pe-5">
                 <a href="{{ route('direct-attainment-export', ['course' => $course, 'batch' => $batch]) }}">
-                    <button type="button" class="btn btn-border hover-button" data-hover="Download">
-                        <i class="bi bi-download fs-4"></i>
+                    <button type="button" class="btn btn-primary" data-hover="Download">
+                        DOWNLOAD
                     </button>
                 </a>
             </div>

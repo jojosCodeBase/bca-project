@@ -9,8 +9,11 @@
                     <div class="row">
                         <h4 class="py-2 text-custom">MCA Report</h4>
                         <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
-                            <select name="course" id="courseid" class="form-select" required>
-                                <option selected disabled value="">Select subject from list</option>
+                            {{-- <select name="course" id="courseid" class="form-select" required>
+                                <option selected disabled value="">Select subject from list</option> --}}
+                            <select name="subjectId" class="form-control selectpicker border" id="subjectId"
+                                data-live-search="true" required>
+                                <option value="" selected disabled class="text-dark">Select subject</option>
                                 @foreach ($courses as $course)
                                     <option value="{{ $course->cid }}">{{ $course->cid }}-{{ $course->cname }}</option>
                                 @endforeach
@@ -92,7 +95,7 @@
 
         // Chart Script for MCA/BCA Report End
 
-        $('#reportForm').on('submit', function (event) {
+        $('#reportForm').on('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
             const courseId = $('#courseid').val();
             fetchSubjectData(courseId);
@@ -103,11 +106,11 @@
                 url: '/admin/getSubjectData/' + courseId,
                 type: 'GET',
                 dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                     $('#chartCard').css('display', 'block');
                     updateChart(data);
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error('Error fetching subject data:', error);
                 }
             });
