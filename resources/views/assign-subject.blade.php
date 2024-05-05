@@ -7,8 +7,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-xxl-6 col-xl-6 col-6">
-                        <h4 class="text-custom">Assign Subject</h4>
+                    <div class="col-xxl-6 col-xl-5 col-6">
+                        <h4 class="text-custom">Assigned Subjects</h4>
                     </div>
                     <div class="col-xxl-4 col-xl-4 col-11 order-3 order-xl-0 pt-3 pt-xl-0 m-auto">
                         <div class="input-group ">
@@ -17,53 +17,54 @@
                                     class="bi bi-search"></i></span>
                         </div>
                     </div>
-                    <div class="col-xxl-2 col-xl-2 col-6 order-2 order-xl-0 d-flex justify-content-md-end pe-md-4">
+                    <div class="col-xxl-2 col-xl-3 col-6 order-2 order-xl-0 d-flex justify-content-md-end pe-md-4">
                         <div class="btn-color">
                             <button class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#assignSubjectModal">Assign subject</button>
                         </div>
                     </div>
                 </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped my-4">
+                        <thead>
+                            <tr>
+                                {{-- <th>Sl.No.</th> --}}
+                                <th>Faculty Name</th>
+                                <th>Subjects Assigned</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($facultyDropdown as $key => $fd)
+                                @foreach ($fd as $facultyId => $courses)
+                                    <tr>
+                                        {{-- <td>{{ $loop->parent->iteration }}</td> --}}
+                                        <td>{{ $key }}</td>
+                                        <td>
+                                            <select name="courses[{{ $facultyId }}]" class="form-select">
+                                                @foreach ($courses as $cid => $cname)
+                                                    <option value="{{ $cid }}">{{ $cid }} -
+                                                        {{ $cname }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary editAssignedSubject" type="button"
+                                                data-faculty-id="{{ $facultyId }}" data-bs-toggle="modal"
+                                                data-bs-target="#assignEditModal"><i class="bi bi-pencil-fill"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="ps-3">
-                <h5 class="text-custom mt-2">List Of Assign Subject</h5>
             </div>
 
-            <div class="table-responsive">
-                <table class="table table-striped my-4">
-                    <thead>
-                        <tr>
-                            {{-- <th>Sl.No.</th> --}}
-                            <th>Faculty Name</th>
-                            <th>Subjects Assigned</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($facultyDropdown as $key => $fd)
-                            @foreach ($fd as $facultyId => $courses)
-                                <tr>
-                                    {{-- <td>{{ $loop->parent->iteration }}</td> --}}
-                                    <td>{{ $key }}</td>
-                                    <td>
-                                        <select name="courses[{{ $facultyId }}]" class="form-select">
-                                            @foreach ($courses as $cid => $cname)
-                                                <option value="{{ $cid }}">{{ $cid }} -
-                                                    {{ $cname }}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-primary editAssignedSubject" type="button"
-                                            data-faculty-id="{{ $facultyId }}" data-bs-toggle="modal"
-                                            data-bs-target="#assignEditModal"><i class="bi bi-pencil-fill"></i></button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+
         </div>
     </div>
     {{-- </div> --}}
