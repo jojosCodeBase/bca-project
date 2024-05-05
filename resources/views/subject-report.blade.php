@@ -9,6 +9,19 @@
             <form action="" id="reportForm" class="needs-validation" novalidate>
                 <div class="row">
                     <h4 class="py-2 text-custom">Subject Report</h4>
+
+                    <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
+                        <select name="subjectId" class="form-control" id="subjectId" required>
+                            <option value="" selected disabled class="text-dark">Select course</option>
+                            <option value="">BCA</option>
+                            <option value="">MCA</option>
+
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select Course
+                        </div>
+                    </div>
+
                     <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
                         <select name="subjectId" class="form-control selectpicker border" id="subjectId"
                             data-live-search="true" required>
@@ -21,17 +34,7 @@
                             Please select Batch
                         </div>
                     </div>
-                    <div class="col-xxl-5 col-xl-5 col-lg-10 col-md-9 col-12 pb-3 pb-md-0 ">
-                        <select name="subjectId" class="form-control" id="subjectId" required>
-                            <option value="" selected disabled class="text-dark">Select course</option>
-                            <option value="">BCA</option>
-                            <option value="">MCA</option>
-
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select Course
-                        </div>
-                    </div>
+                   
                     <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-2">
                         <button type="submit" class="btn btn-primary">Fetch</button>
                     </div>
