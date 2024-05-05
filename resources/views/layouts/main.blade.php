@@ -72,8 +72,14 @@
                         <i class="bi bi-clipboard2-data-fill"></i> Analysis
                     </span>
                 </li>
-                
-                <div class="dropdown dropdown-style">
+
+                <li class="sidebar-item {{ Route::is('subject-report') ? 'active' : '' }}">
+                    <a href="{{ route('subject-report') }}" class="sidebar-nested-link">
+                        <i class="bi bi-bar-chart-line"></i> Subject Report
+                    </a>
+                </li>
+
+                {{-- <div class="dropdown dropdown-style">
                     <button class="btn btn-primary dropdown-toggle btn-style" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-bar-chart-line"></i> Subject Report
                       </button>
@@ -90,7 +96,7 @@
                             </a>
                         </li>
                       </ul>
-                </div>
+                </div> --}}
 
 
                 {{-- <li class="sidebar-item {{ Route::is('bca-analysis') ? 'active' : '' }}">
