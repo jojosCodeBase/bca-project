@@ -118,6 +118,11 @@ Route::middleware('auth')->group(function () {
 
     //Admin Po Attainment
 
+    Route::get('subject-report', function () {
+        return view('subject-report');
+    })->name('subject-report');
+
+    
 });
 
 require __DIR__ . '/auth.php';
