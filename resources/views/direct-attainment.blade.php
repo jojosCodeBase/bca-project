@@ -1,20 +1,6 @@
 @extends('layouts/main')
 @section('title', 'Direct Attainment')
 @section('breadcrumb', 'Direct Attainment')
-@section('loader')
-
-    <!-- Progress bar container -->
-    <div id="progressContainer" class="progress-container" style="display: none;">
-        <div class="youtube-progress">
-            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
-                aria-valuemax="100"></div>
-        </div>
-    </div>
-
-    {{-- <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 3.5px">
-    <div class="progress-bar" style="width: 25%"></div>
-  </div> --}}
-@endsection
 @section('content')
     <div class="container-fluid">
         <div class="card">
