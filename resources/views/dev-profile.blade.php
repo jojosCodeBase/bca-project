@@ -90,8 +90,7 @@
                             <h5>Bikram Das</h5>
                         </div>
                         <div class="mb-3 text-center">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas sequi distinctio,
-                            reiciendis
+                           I am a skilled Frontend Developer with expertise in Bootstrap for creating sleek and responsive interfaces.
                         </div>
                         <div class="text-center mb-3">
                             <h6>Frontend Devloper</h6>

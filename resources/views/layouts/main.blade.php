@@ -176,7 +176,9 @@
 
                 </div>
             </nav>
-
+            <div class="">
+                @yield('loader')
+            </div>
             <main class="content p-lx-3 p-lg-3 p-md-3 pt-3">
                 @yield('content')
             </main>
@@ -192,6 +194,7 @@
     @yield('scripts')
 
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/progress-bar.js') }}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script>

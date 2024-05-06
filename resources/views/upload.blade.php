@@ -1,14 +1,28 @@
 @extends('layouts.main')
 @section('title', 'Upload Data')
 @section('breadcrumb', 'Upload Data')
+@section('loader')
+
+    <!-- Progress bar container -->
+    <div id="progressContainer" class="progress-container" style="display: none;">
+        <div class="youtube-progress">
+            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                aria-valuemax="100"></div>
+        </div>
+    </div>
+
+    {{-- <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 3.5px">
+    <div class="progress-bar" style="width: 25%"></div>
+  </div> --}}
+@endsection
 @section('content')
     <div class="container-fluid flex-grow-1">
         @include('include/error-alert')
         <div class="card">
             <div class="card-body">
                 <h4 class="text-custom">Upload Data</h4>
-                <form action="{{ route('file-upload') }}" method="POST" class="needs-validation" enctype="multipart/form-data"
-                    novalidate>
+                <form action="{{ route('file-upload') }}" method="POST" class="needs-validation"
+                    enctype="multipart/form-data" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">

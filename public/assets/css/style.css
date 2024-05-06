@@ -367,3 +367,41 @@ a.page-link {
     background-color: transparent;
     border-color: black;
 }
+
+/* progress bar start */
+.progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--bs-progress-bar-color);
+    text-align: center;
+    white-space: nowrap;
+    background-color: #355389;
+    transition: var(--bs-progress-bar-transition);
+}
+
+/* progress bar end */
+ /* Center progress bar */
+ .progress-container {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+  }
+
+  /* Custom progress bar style */
+  .youtube-progress {
+    height: 3.5px;
+    background-color: #ccc;
+    position: relative;
+    width: 100%;
+  }
+
+  .youtube-progress .progress-bar {
+    background-color: #355389;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: width 0.1s ease;
+  }
