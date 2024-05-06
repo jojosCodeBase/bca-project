@@ -1,6 +1,13 @@
 @extends('layouts.main')
 @section('title', 'Upload Data')
 @section('breadcrumb', 'Upload Data')
+
+@section('Progress-bar')
+<div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 3.5px">
+    <div class="progress-bar" style="width: 0%"></div>
+  </div>
+@endsection
+
 @section('content')
     <div class="container-fluid flex-grow-1">
         @include('include/error-alert')
@@ -63,3 +70,29 @@
         </div>
     </div>
 @endsection
+<script type="text/javascript">
+ 
+ $(document).ready(function () {
+    var progress= $(".progress")
+    var progress-bar= $(".progress-bar")
+ 
+    $('form').ajaxForm({
+
+        beforeSend:function(){
+            var percentVal='0%';
+            progress.width(percentVal);
+            progress.html(percentVal);
+        },
+        uploadProgress:function( event,position,total,percentComplete){
+            var percentVal= percentComplete + '%';
+            progress.width(percentVal);
+            progress.html(percentVal);
+        },
+        complete:function(res){
+            console.log(res);
+            alert("File has uploaded")
+        }
+    })
+})
+
+</script>
