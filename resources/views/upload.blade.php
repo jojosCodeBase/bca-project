@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid flex-grow-1">
+    <div class="container-fluid flex-grow-1 p-lx-3 p-lg-3 p-md-3 pt-3">
         @include('include/error-alert')
         <div class="card">
             <div class="card-body">

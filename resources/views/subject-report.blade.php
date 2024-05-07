@@ -3,7 +3,7 @@
 @section('breadcrumb', 'Subject Report')
 @section('content')
 
-<div class="container-fluid">
+<div class="container-fluid p-lx-3 p-lg-3 p-md-3 pt-3">
     <div class="card">
         <div class="card-body">
             <form action="" id="reportForm" class="needs-validation" novalidate>

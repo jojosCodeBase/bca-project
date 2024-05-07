@@ -2,7 +2,7 @@
 @section('title', 'Direct Attainment')
 @section('breadcrumb', 'Direct Attainment')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-lx-3 p-lg-3 p-md-3 pt-3">
         <div class="card">
             <div class="card-body">
                 <h4 class="text-custom">Direct Attainment</h4>

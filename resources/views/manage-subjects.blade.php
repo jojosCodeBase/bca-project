@@ -6,7 +6,7 @@
         @include('include/error-alert')
     </div>
 
-    <div class="container-fluid scroll-main">
+    <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3">
         {{-- <h3 class="text-muted mb-4 mt-1">All Subjects</h3> --}}
         <div class="card">
             <div class="card-body">

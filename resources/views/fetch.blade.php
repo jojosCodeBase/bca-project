@@ -2,7 +2,7 @@
 @section('title', 'Fetch Data')
 @section('breadcrumb', 'Fetch Data')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-lx-3 p-lg-3 p-md-3 pt-3">
         @include('include/error-alert')
         <div class="card mt-3 mt-xl-0 mt-md-0">
             <div class="card-body">

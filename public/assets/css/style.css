@@ -9,7 +9,9 @@
 body {
     font-family: 'Poppins', sans-serif;
     opacity: 1;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
+    overflow-y: scroll;
+    
     margin: 0;
 }
 
@@ -146,7 +148,7 @@ footer{
 */
 
 /* Scroll Main Start */
-/* .container-fluid{ */
+/* .container-fluid{
 .scroll-main{
     height: 100vh;
     overflow: scroll;
@@ -154,7 +156,7 @@ footer{
 
 .scroll-main::-webkit-scrollbar{
     display: none;
-}
+} */
 
 /* Scroll Main End */
 
@@ -426,7 +428,7 @@ a.page-link {
 }
 .button-style:hover{
     border:2.5px solid #355389;
-    background-color: red;
+    /* background-color: red; */
 
 
 }
@@ -436,7 +438,7 @@ a.page-link {
     --bs-btn-bg: #f8f9fa;
     --bs-btn-border-color: #f8f9fa;
     --bs-btn-hover-color: #000;
-    --bs-btn-hover-bg: #f6f1f1;
+    --bs-btn-hover-bg: rgb(240, 240, 240);
     --bs-btn-hover-border-color: #c6c7c8;
     --bs-btn-focus-shadow-rgb: 211, 212, 213;
     --bs-btn-active-color: #000;
@@ -446,4 +448,10 @@ a.page-link {
     --bs-btn-disabled-color: #000;
     --bs-btn-disabled-bg: #f8f9fa;
     --bs-btn-disabled-border-color: #f8f9fa;
+}
+
+footer{
+    width: 100vh;
+    /* border-top: 2px solid #355389; */
+    /* background-color: white ; */
 }
