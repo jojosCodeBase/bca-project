@@ -447,3 +447,9 @@ a.page-link {
     --bs-btn-disabled-bg: #f8f9fa;
     --bs-btn-disabled-border-color: #f8f9fa;
 }
+
+footer{
+    width: 100vh;
+    border-top: 2px solid #355389;
+    /* background-color: white ; */
+}
