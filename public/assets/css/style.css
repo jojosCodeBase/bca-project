@@ -14,6 +14,9 @@ body {
 
     margin: 0;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
 
 a {
     cursor: pointer;
@@ -440,10 +443,6 @@ a.page-link {
     --bs-btn-disabled-color: #000;
     --bs-btn-disabled-bg: #f8f9fa;
     --bs-btn-disabled-border-color: #f8f9fa;
-}
-
-footer {
-    width: 100vh;
 }
 
 /* loader style */
