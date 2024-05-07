@@ -2,7 +2,7 @@
 @section('title', 'Manage-Faculty')
 @section('breadcrumb', 'Manage Faculty')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid scroll-main">
         @include('include/error-alert')
         <div class="card mt-3 mt-xl-0">
             <div class="card-body">

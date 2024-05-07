@@ -6,7 +6,7 @@
         @include('include/error-alert')
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid scroll-main">
         {{-- <h3 class="text-muted mb-4 mt-1">All Subjects</h3> --}}
         <div class="card">
             <div class="card-body">
@@ -124,7 +124,7 @@
                             </div>
                             <hr>
                             <div class="">
-                                <p style="color: red">Note: Onces Create a subject then subject Id can not be changed.</p>
+                                <p style="color: red">Note: Once a subject is created, Subject Code cannot be changed.</p>
                             </div>
                         </form>
                     </div>
