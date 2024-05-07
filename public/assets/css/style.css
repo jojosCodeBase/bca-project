@@ -426,7 +426,7 @@ a.page-link {
 }
 .button-style:hover{
     border:2.5px solid #355389;
-    background-color: red;
+    /* background-color: red; */
 
 
 }
@@ -436,7 +436,7 @@ a.page-link {
     --bs-btn-bg: #f8f9fa;
     --bs-btn-border-color: #f8f9fa;
     --bs-btn-hover-color: #000;
-    --bs-btn-hover-bg: #f6f1f1;
+    --bs-btn-hover-bg: rgb(240, 240, 240);
     --bs-btn-hover-border-color: #c6c7c8;
     --bs-btn-focus-shadow-rgb: 211, 212, 213;
     --bs-btn-active-color: #000;
