@@ -66,14 +66,9 @@
                         </div>
                     </div>
                 </form>
-                <hr>
-                <p class="link-style"> 1. To see the format <a href="">Click here</a>
-                </p>
-                <p class="link-style"> 2. Click here to <a href="">Download</a> the format</p>
             </div>
         </div>
     </div>
-
 @endsection
 <script type="text/javascript">
  

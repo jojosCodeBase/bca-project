@@ -78,7 +78,6 @@
             </div>
         </div>
     </div>
-
     {{-- Add-Subject modal start --}}
     <div class="modal fade" id="addSubjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
