@@ -2,7 +2,7 @@
 @section('title', 'Admin Dashboard')
 @section('breadcrumb', 'Dashboard')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid scroll-main">
         <main class="content">
             <div class="mb-3">
                 <h5>Admin Dashboard</h5>

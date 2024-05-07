@@ -9,7 +9,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     opacity: 1;
-    overflow-y: scroll;
+    overflow-y: hidden;
     margin: 0;
 }
 
@@ -50,6 +50,8 @@ a {
     /* main background color */
     background: #CED4DA;
 }
+
+/*  */
 
 /*Sidebar Element Style */
 
@@ -142,6 +144,19 @@ footer{
 }
 }
 */
+
+/* Scroll Main Start */
+/* .container-fluid{ */
+.scroll-main{
+    height: 100vh;
+    overflow: scroll;
+}
+
+.scroll-main::-webkit-scrollbar{
+    display: none;
+}
+
+/* Scroll Main End */
 
 /* Dashbard Card Size */
 .dashboard .card {
@@ -383,4 +398,52 @@ a.page-link {
     font-size: var(--bs-progress-font-size);
     background-color: var(--bs-progress-bg);
     border-radius: var(--bs-progress-border-radius);
+}
+
+.errorValue-size{
+    font-size: 100px;
+    color: #355389;
+    font-family: Roboto;
+}
+
+.link-style{
+    color:white;
+}
+.link-style:hover{
+    color:white;
+}
+.link-style1:hover{
+    color:black;
+}
+.link-style1{
+    color:black;
+    /* border:2px solid #355389; */
+}
+
+.button-style{
+    border:2.5px solid #355389;
+
+}
+.button-style:hover{
+    border:2.5px solid #355389;
+    background-color: red;
+
+
+}
+
+.btn-light {
+    --bs-btn-color: #000;
+    --bs-btn-bg: #f8f9fa;
+    --bs-btn-border-color: #f8f9fa;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #f6f1f1;
+    --bs-btn-hover-border-color: #c6c7c8;
+    --bs-btn-focus-shadow-rgb: 211, 212, 213;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #c6c7c8;
+    --bs-btn-active-border-color: #babbbc;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #f8f9fa;
+    --bs-btn-disabled-border-color: #f8f9fa;
 }

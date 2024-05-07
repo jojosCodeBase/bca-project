@@ -127,6 +127,10 @@ Route::middleware('auth')->group(function () {
         return view('dev-profile');
     })->name('dev-profile');
 
+    Route::get('error-404', function () {
+        return view('error-404');
+    })->name('error-404');
+
 
 });
 
