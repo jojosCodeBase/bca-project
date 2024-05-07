@@ -2,7 +2,7 @@
 @section('title', 'Assign Subjects')
 @section('breadcrumb', 'Assign Subjects')
 @section('content')
-    <div class="container-fluid scroll-main">
+    <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3">
         @include('include/error-alert')
         <div class="card">
             <div class="card-body">
