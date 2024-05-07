@@ -3,55 +3,40 @@
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @elseif(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if ($errors->any())
-            <div id="alertMessage" class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
-
         <div class="mb-2">
             <h2 class="mt-3 text-custom">Profile</h2>
         </div>
+        @include('include/error-alert')
         <div class="row">
             <div class="col-12 col-xl-6 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="text-custom">Profile Information</h4>
-                        @if (Auth::user()->is_faculty)
+                        {{-- @if (Auth::user()->is_faculty)
                             <form method="post" action="{{ route('profile.update') }}">
                             @else
-                                <form method="post" action="{{ route('profile.update') }}">
-                        @endif
-                        @csrf
-                        @method('patch')
-                        @if (Auth::user()->is_faculty)
+                            @endif --}}
+                        <form method="post" action="{{ route('profile.update') }}">
+                            @csrf
+                            @method('patch')
+                            @if (Auth::user()->is_faculty)
+                                <div class="form-group mt-2">
+                                    <label class="form-label">Faculty Id.</label>
+                                    <input type="text" class="form-control" name="text"
+                                        value="{{ Auth::user()->regno }}" readonly>
+                                </div>
+                            @endif
                             <div class="form-group mt-2">
-                                <label class="form-label">Faculty Id.</label>
-                                <input type="text" class="form-control" name="text" value="{{ Auth::user()->regno }}" readonly>
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" value="{{ $user->name }}">
                             </div>
-                        @endif
-                        <div class="form-group mt-2">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" value="{{ $user->name }}">
-                        </div>
-                        <div class="form-group mt-2">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" value="{{ $user->email }}">
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="submit" class="btn btn-primary w-25" value="Save">
-                        </div>
+                            <div class="form-group mt-2">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" value="{{ $user->email }}">
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="submit" class="btn btn-primary w-25" value="Save">
+                            </div>
                         </form>
                     </div>
                 </div>

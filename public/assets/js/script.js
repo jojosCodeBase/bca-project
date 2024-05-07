@@ -198,8 +198,9 @@ $(document).ready(function () {
                 if (!form.checkValidity()) {
                     event.preventDefault()
                     event.stopPropagation()
+                } else {
+                    $('#loading-wrapper').css('display', 'flex');
                 }
-
                 form.classList.add('was-validated')
             }, false)
         })

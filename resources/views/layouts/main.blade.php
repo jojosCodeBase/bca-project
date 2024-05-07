@@ -178,9 +178,9 @@
 
                 </div>
             </nav>
-            <div class="">
+            {{-- <div class="">
                 @yield('Progress-bar')
-            </div>
+            </div> --}}
             {{-- <main class="content p-lx-3 p-lg-3 p-md-3 pt-3"> --}}
             <main class="content">
                 @yield('content')

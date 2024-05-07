@@ -19,22 +19,22 @@
             </div>
 
             <div class="row">
-                <div class="col-3">
+                <div class="col-xxl-2 col-xl-3 col-lg-4 col-10 mb-2">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-auto">
                                     <h6>Assigned Subjects</h6>
                                     <h2>{{ count($courses) }}</h2>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-auto">
                                     <i class="bi bi-person-video3 fs-3 text-success"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-xxl-2 col-xl-3 col-lg-4 col-10">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">

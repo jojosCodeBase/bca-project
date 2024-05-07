@@ -2,15 +2,27 @@
 @section('title', 'Upload Data')
 @section('breadcrumb', 'Upload Data')
 
-@section('Progress-bar')
-<div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 3.5px">
-    <div class="progress-bar" style="width: 25%"></div>
-  </div>
-@endsection
+{{-- @section('Progress-bar')
+    <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0"
+        aria-valuemax="100" style="height: 3.5px">
+        <div class="progress-bar" style="width: 25%"></div>
+    </div>
+@endsection --}}
 
 @section('content')
     <div class="container-fluid flex-grow-1 p-lx-3 p-lg-3 p-md-3 pt-3">
         @include('include/error-alert')
+        <div id="loading-wrapper" style="display: none;">
+            <div id="loading-animation">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="">
+                    Uploading please wait...
+                </div>
+            </div>
+        </div>
+
         <div class="card">
             <div class="card-body">
                 <h4 class="text-custom">Upload Data</h4>
@@ -30,7 +42,6 @@
                                 Please select Batch
                             </div>
                         </div>
-
 
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
                             <select name="course" id="course-select" class="form-select" required>
@@ -62,42 +73,15 @@
                             </div>
                         </div>
                         <div class=" col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-12 mt-xl-3 mt-lg-3 mt-3">
-                            <button type="submit" class="btn btn-primary w-100" id="myButton">Upload</button>
+                            <button type="submit" class="btn btn-primary w-100">Upload</button>
                         </div>
                     </div>
                 </form>
                 <hr>
-                <p class="link-style"> 1. To see the format <a href="">Click here</a>
-                </p>
-                <p class="link-style"> 2. Click here to <a href="">Download</a> the format</p>
+                <span class=""><i>To see the format <a href=""><u>click here</u></a></i></span><br>
+                <span class=""><i>Click here to <a href=""><u>download</u></a> the format</i></span>
             </div>
         </div>
     </div>
 
 @endsection
-<script type="text/javascript">
- 
- $(document).ready(function () {
-    var progress= $(".progress")
-    var progress-bar= $(".progress-bar")
- 
-    $('form').ajaxForm({
-
-        beforeSend:function(){
-            var percentVal='0%';
-            progress.width(percentVal);
-            progress.html(percentVal);
-        },
-        uploadProgress:function( event,position,total,percentComplete){
-            var percentVal= percentComplete + '%';
-            progress.width(percentVal);
-            progress.html(percentVal);
-        },
-        complete:function(res){
-            console.log(res);
-            alert("File has uploaded")
-        }
-    })
-})
-
-</script>

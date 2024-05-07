@@ -118,7 +118,7 @@
 
         function fetchSubjectData(courseId) {
             $.ajax({
-                url: '/admin/getSubjectData/' + courseId,
+                url: '/getSubjectData/' + courseId,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {

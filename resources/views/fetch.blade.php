@@ -4,6 +4,16 @@
 @section('content')
     <div class="container-fluid p-lx-3 p-lg-3 p-md-3 pt-3">
         @include('include/error-alert')
+        <div id="loading-wrapper" style="display: none;">
+            <div id="loading-animation">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="">
+                    Fetching please wait...
+                </div>
+            </div>
+        </div>
         <div class="card mt-3 mt-xl-0 mt-md-0">
             <div class="card-body">
                 <h4 class="text-custom">Fetch Data</h4>

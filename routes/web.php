@@ -93,9 +93,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-co_po_relation', [DashboardController::class, 'getCourses']);
 
 
-        Route::get('/getSubjectData/{cid}', [DashboardController::class, 'getSubjectData']);
     });
 
+    Route::get('/getSubjectData/{cid}', [DashboardController::class, 'getSubjectData']);
     Route::get('/getSubjects/{course}', [DashboardController::class, 'getSubjects']);
 
     Route::middleware('faculty')->group(function () {
@@ -114,15 +114,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/export-courses', [ExcelController::class, 'exportCourses']);
 
 
-
-
-
     //Admin Po Attainment
 
     Route::get('subject-report', function () {
         return view('subject-report');
     })->name('subject-report');
-    
+
     Route::get('dev-profile', function () {
         return view('dev-profile');
     })->name('dev-profile');

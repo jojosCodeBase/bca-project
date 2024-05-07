@@ -11,7 +11,7 @@ body {
     opacity: 1;
     /* overflow-y: hidden; */
     overflow-y: scroll;
-    
+
     margin: 0;
 }
 
@@ -356,29 +356,33 @@ a.page-link {
 
 }
 
-.btn-back{
+.btn-back {
     border: none;
 }
 
-.dropdown-style{
+.dropdown-style {
     padding-left: 1.6rem;
 }
 
-.btn-style{
+.btn-style {
     background-color: transparent;
     color: black;
 }
 
-.btn-style:hover{
+.btn-style:hover {
     background-color: transparent;
     color: #355389;
 }
 
-.btn-style:active{
+.btn-style:active {
     background-color: transparent;
 }
 
-.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+.btn-check:checked+.btn,
+:not(.btn-check)+.btn:active,
+.btn:first-child:active,
+.btn.active,
+.btn.show {
     color: black;
     /* background-color: var(--bs-btn-active-bg); */
     background-color: transparent;
@@ -402,32 +406,20 @@ a.page-link {
     border-radius: var(--bs-progress-border-radius);
 }
 
-.errorValue-size{
+.errorValue-size {
     font-size: 100px;
     color: #355389;
     font-family: Roboto;
 }
 
-.link-style{
-    color:white;
-}
-.link-style:hover{
-    color:white;
-}
-.link-style1:hover{
-    color:black;
-}
-.link-style1{
-    color:black;
-    /* border:2px solid #355389; */
-}
 
-.button-style{
-    border:2.5px solid #355389;
+.button-style {
+    border: 2.5px solid #355389;
 
 }
-.button-style:hover{
-    border:2.5px solid #355389;
+
+.button-style:hover {
+    border: 2.5px solid #355389;
     /* background-color: red; */
 
 
@@ -450,8 +442,33 @@ a.page-link {
     --bs-btn-disabled-border-color: #f8f9fa;
 }
 
-footer{
+footer {
     width: 100vh;
-    /* border-top: 2px solid #355389; */
-    /* background-color: white ; */
+}
+
+/* loader style */
+#loading-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(100, 90, 90, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loading-animation {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #355389;
+}
+
+.spinner-border {
+    margin-bottom: 10px;
 }
