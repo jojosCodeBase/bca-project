@@ -2,7 +2,7 @@
 @section('title', 'Admin Dashboard')
 @section('breadcrumb', 'Dashboard')
 @section('content')
-    <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3">
+    <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3 custom-margin">
         <main class="content">
             <div class="mb-3">
                 <h5>Admin Dashboard</h5>
@@ -102,5 +102,4 @@
             </div>
         </main>
     </div>
-
 @endsection

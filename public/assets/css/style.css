@@ -9,7 +9,9 @@
 body {
     font-family: 'Poppins', sans-serif;
     opacity: 1;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
+    overflow-y: scroll;
+    
     margin: 0;
 }
 
@@ -146,7 +148,7 @@ footer{
 */
 
 /* Scroll Main Start */
-/* .container-fluid{ */
+/* .container-fluid{
 .scroll-main{
     height: 100vh;
     overflow: scroll;
@@ -154,7 +156,7 @@ footer{
 
 .scroll-main::-webkit-scrollbar{
     display: none;
-}
+} */
 
 /* Scroll Main End */
 
@@ -450,6 +452,6 @@ a.page-link {
 
 footer{
     width: 100vh;
-    border-top: 2px solid #355389;
+    /* border-top: 2px solid #355389; */
     /* background-color: white ; */
 }

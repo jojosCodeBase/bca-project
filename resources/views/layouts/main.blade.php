@@ -186,43 +186,6 @@
                 @yield('content')
             </main>
 
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 text-center d-flex justify-content-start">
-                            <strong>
-                                <p>Designed and developed by <a
-                                        href="https://smu.edu.in/smit/dept-faculty/dept-list/dept-ca-smit.html"
-                                        target="_blank">Department of Computer Applications</a>, Sikkim Manipal
-                                    Institute of Technology</p>
-                            </strong>
-                        </div>
-                        {{-- <div class="col-2">
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a href="{{ route('dev-profile') }}">
-                                        <strong>
-                                            Our Team
-                                        </strong>
-                                    </a>
-                                </li>
-                            </ul> --}}
-                        </div>
-                    </div>
-                </div>
-            </footer>
-
-
-            {{-- <footer class="footer border">
-                <div class="row">
-                    <div class="col d-flex justify-content-center">
-                        <strong>
-                            <p style="text-align: center;">Designed and developed by <a href="https://smu.edu.in/smit/dept-faculty/dept-list/dept-ca-smit.html" target="_blank">Department of Computer Applications</a>, Sikkim Manipal Institute of Technology</p>
-                        </strong>
-                    </div>
-                </div>
-            </footer> --}}
-
         </div>
     </div>
 
