@@ -46,7 +46,6 @@
             </div>
         </div>
     </div>
-
     {{-- View CO/PO Modal Start --}}
     <div class="modal fade" id="viewCOPOModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
