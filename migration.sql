@@ -15,6 +15,7 @@ CREATE TABLE `courses` (
     `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `cid` VARCHAR(255) NOT NULL,
     `cname` VARCHAR(255) NOT NULL,
+    `course` varchar(255) NOT NULL,
     UNIQUE INDEX `courses_cid_cname_unique` (`cid`, `cname`),
     `assigned` INT NOT NULL DEFAULT 0,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -32,7 +33,6 @@ CREATE TABLE `max_marks_co` (
     `s2` JSON NULL,
     `assignment` JSON NULL,
     `end_sem` JSON NULL,
-    `total` DECIMAL(5,1) NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -47,7 +47,6 @@ CREATE TABLE `co_attainment` (
     `s2` JSON NOT NULL,
     `assignment` JSON NOT NULL,
     `end_sem` JSON NOT NULL,
-    `total` JSON NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -88,7 +87,6 @@ CREATE TABLE `target_marks` (
     `s2` JSON NOT NULL,
     `assignment` JSON NOT NULL,
     `end_sem` JSON NOT NULL,
-    `total` JSON NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -103,7 +101,6 @@ CREATE TABLE `more_than_sixty` (
     `s2` JSON NOT NULL,
     `assignment` JSON NOT NULL,
     `end_sem` JSON NOT NULL,
-    `total` JSON NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -118,7 +115,6 @@ CREATE TABLE `attainment_percentage` (
     `s2` JSON NOT NULL,
     `assignment` JSON NOT NULL,
     `end_sem` JSON NOT NULL,
-    `total` JSON NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
