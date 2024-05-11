@@ -31,7 +31,8 @@ class DashboardController extends Controller
         $uploaded = CoAttainment::join('courses', 'courses.cid', '=', 'co_attainment.cid')
             ->orderBy('co_attainment.updated_at', 'desc')
             ->select('courses.cname', 'co_attainment.cid', 'co_attainment.updated_at', 'co_attainment.batch')
-            ->paginate(10);
+            ->limit(10)
+            ->get();
         // dd($uploaded);
         return view('admin-dashboard', ['uploaded' => $uploaded, 'courseCount' => $totalCourses, 'totalFaculty' => $totalFaculty]);
     }

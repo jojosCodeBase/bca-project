@@ -184,8 +184,15 @@
             {{-- <main class="content p-lx-3 p-lg-3 p-md-3 pt-3"> --}}
             <main class="content">
                 @yield('content')
+                <footer class="footer p-3" style="background-color: #eceff3">
+                    {{-- <div class="container bg-info"> --}}
+                    <span>All rights reserved. Designed and developed by <a
+                            href="https://smu.edu.in/smit/dept-faculty/dept-list/dept-ca-smit.html"
+                            target="_blank">Department of Computer Applications</a>, Sikkim Manipal Institute of
+                        Technology</span>
+                    {{-- </div> --}}
+                </footer>
             </main>
-
         </div>
     </div>
 

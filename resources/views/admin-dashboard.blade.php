@@ -95,7 +95,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $uploaded->links() }}
+                            {{-- {{ $uploaded->links() }} --}}
                         </div>
                     </div>
                 </div>
