@@ -455,7 +455,7 @@ class DashboardController extends Controller
             ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
             ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name', 'users.id as faculty_id')
             ->where('users.name', 'LIKE', '%' . $request->searchData . '%')
-            ->get();
+            ->get(10);
 
             $facultyDropdown = [];
             foreach ($assignedSubjects as $assignedSubject) {

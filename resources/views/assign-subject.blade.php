@@ -39,6 +39,9 @@
                             @include('assigned-subjects-filter-table')
                         </tbody>
                     </table>
+                    {{-- <span id="pagination">
+                        {{ $facultyDropdown->links() }}
+                    </span> --}}
                 </div>
             </div>
         </div>

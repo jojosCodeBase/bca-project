@@ -151,7 +151,7 @@ footer{
 */
 
 /* Scroll Main Start */
-/* .container-fluid{
+/* .container-fluid{ */
 .scroll-main{
     height: 100vh;
     overflow: scroll;
@@ -159,7 +159,7 @@ footer{
 
 .scroll-main::-webkit-scrollbar{
     display: none;
-} */
+}
 
 /* Scroll Main End */
 

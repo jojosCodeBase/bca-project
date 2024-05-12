@@ -19,9 +19,7 @@
         <aside id="sidebar" class="sidebarMobile">
             <!-- Content for sidebar -->
             <div class="h-100">
-                {{-- <div class="sidebar-logo"> --}}
                 <div>
-                    {{-- <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" class="img-fluid"></a> --}}
                     <a href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"
                             class="img-fluid"></a>
                 </div>
@@ -35,7 +33,6 @@
                     @else
                         <ul class="sidear-nav">
                             <li class="sidebar-item {{ Route::is('admin-dashboard') ? 'active' : '' }}">
-                                {{-- <li class="sidebar-item {{ request()->is('admin/dashboard') ? 'active' : '' }}"> --}}
                                 <a href="{{ route('admin-dashboard') }}" class="sidebar-link">
                                     <i class="bi bi-sliders"></i> Dashboard
                                 </a>
@@ -81,36 +78,6 @@
                     </a>
                 </li>
 
-                {{-- <div class="dropdown dropdown-style">
-                    <button class="btn btn-primary dropdown-toggle btn-style" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-bar-chart-line"></i> Subject Report
-                      </button>
-
-                      <ul class="dropdown-menu dropdown-menu-light ">
-                        <li class="sidebar-item {{ Route::is('bca-analysis') ? 'active' : '' }}">
-                            <a href="{{ route('bca-analysis') }}" class="sidebar-nested-link">
-                                <i class="bi bi-calendar-fill"></i> BCA
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ Route::is('mca-analysis') ? 'active' : '' }}">
-                            <a href="{{ route('mca-analysis') }}" class="sidebar-nested-link">
-                                <i class="bi bi-calendar3"></i> MCA
-                            </a>
-                        </li>
-                      </ul>
-                </div> --}}
-
-
-                {{-- <li class="sidebar-item {{ Route::is('bca-analysis') ? 'active' : '' }}">
-                    <a href="{{ route('bca-analysis') }}" class="sidebar-nested-link">
-                        <i class="bi bi-calendar-fill"></i> BCA
-                    </a>
-                </li>
-                <li class="sidebar-item {{ Route::is('mca-analysis') ? 'active' : '' }}">
-                    <a href="{{ route('mca-analysis') }}" class="sidebar-nested-link">
-                        <i class="bi bi-calendar3"></i> MCA
-                    </a>
-                </li> --}}
                 @if (!Auth::user()->is_faculty)
                     <li class="sidebar-item">
                         <span class="sidebar-link">
@@ -184,14 +151,12 @@
             {{-- <main class="content p-lx-3 p-lg-3 p-md-3 pt-3"> --}}
             <main class="content">
                 @yield('content')
-                <footer class="footer p-3" style="background-color: #eceff3">
-                    {{-- <div class="container bg-info"> --}}
+                {{-- <footer class="footer p-3" style="background-color: #eceff3">
                     <span>All rights reserved. Designed and developed by <a
                             href="https://smu.edu.in/smit/dept-faculty/dept-list/dept-ca-smit.html"
                             target="_blank">Department of Computer Applications</a>, Sikkim Manipal Institute of
                         Technology</span>
-                    {{-- </div> --}}
-                </footer>
+                </footer> --}}
             </main>
         </div>
     </div>
