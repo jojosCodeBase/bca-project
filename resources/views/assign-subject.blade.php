@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-xxl-4 col-xl-4 col-11 order-3 order-xl-0 pt-3 pt-xl-0 m-auto">
                         <div class="input-group ">
-                            <input type="search" name="" id="" placeholder="Search Faculty"
+                            <input type="search" name="" id="assignedSubjectSearch" placeholder="Search Faculty"
                                 class="form-control"><span class="input-group-text bg-transparent"><i
                                     class="bi bi-search"></i></span>
                         </div>
@@ -35,28 +35,8 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($facultyDropdown as $key => $fd)
-                                @foreach ($fd as $facultyId => $courses)
-                                    <tr>
-                                        {{-- <td>{{ $loop->parent->iteration }}</td> --}}
-                                        <td>{{ $key }}</td>
-                                        <td>
-                                            <select name="courses[{{ $facultyId }}]" class="form-select">
-                                                @foreach ($courses as $cid => $cname)
-                                                    <option value="{{ $cid }}">{{ $cid }} -
-                                                        {{ $cname }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary editAssignedSubject" type="button"
-                                                data-faculty-id="{{ $facultyId }}" data-bs-toggle="modal"
-                                                data-bs-target="#assignEditModal"><i class="bi bi-pencil-fill"></i></button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endforeach
+                        <tbody class="assignedFacultyFilter">
+                            @include('assigned-subjects-filter-table')
                         </tbody>
                     </table>
                 </div>
@@ -166,10 +146,8 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('.editAssignedSubject').click(function() {
+            $(document).on('click', '.editAssignedSubject', function() {
                 var facultyId = $(this).data('faculty-id');
-                // console.log(facultyId);
-                // alert(facultyId);
                 $.ajax({
                     url: '/admin/get_assigned_courses',
                     method: 'GET',
@@ -211,7 +189,6 @@
                     $('#alert-message').css('display', 'none');
                 }
             });
-
         });
     </script>
 

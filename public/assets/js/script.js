@@ -116,7 +116,6 @@ $(document).ready(function () {
     });
 
     // faculty search ajax
-
     $('#facultySearch').on('input', function () {
         var searchString = $(this).val();
         // alert(searchString);
@@ -135,6 +134,28 @@ $(document).ready(function () {
             }
         });
     });
+
+    // assigned subjects search ajax
+    $('#assignedSubjectSearch').on('input', function () {
+        var searchString = $(this).val();
+        // alert(searchString);
+        $.ajax({
+            type: 'GET',
+            url: '/admin/get-assigned-faculty/',
+            data: {
+                searchData: searchString,
+            },
+            success: function (response) {
+                $('.assignedFacultyFilter').html(response);
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+
 
     $('#co_po_search').on('input', function () {
         var searchString = $(this).val();

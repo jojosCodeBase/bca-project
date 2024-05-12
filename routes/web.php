@@ -91,8 +91,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/get-faculty-info', [DashboardController::class, 'facultyInfo']);
         Route::get('/get-co_po_relation', [DashboardController::class, 'getCourses']);
-
-
+        Route::get('/get-assigned-faculty', [DashboardController::class, 'getAssignedFaculty']);
     });
 
     Route::get('/getSubjectData/{cid}', [DashboardController::class, 'getSubjectData']);
