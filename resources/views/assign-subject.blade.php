@@ -86,7 +86,7 @@
                                     <!-- Add more options as needed -->
                                 </select>
                             </div>
-                            <div class="col-12 mt-2">
+                            {{-- <div class="col-12 mt-2">
                                 <label for="semester" class="form-label">Semester</label>
                                 <select id="semester" name="semester" class="form-select">
                                     <option value="" selected disabled>Select semester from list</option>
@@ -95,7 +95,7 @@
                                     <option value="third">Third</option>
                                     <!-- Add more options as needed -->
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="modal-footer">
