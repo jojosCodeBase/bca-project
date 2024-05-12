@@ -456,7 +456,7 @@ class ExcelController extends Controller
 
                 // Check if the row data is a duplicate
                 if (in_array($rowData[0][0], $executedRows)) {
-                    $errors[] = "Duplicate row found at row - $row";
+                    $errors[] = "Duplicate entry Regno - " . $rowData[0][0] . " at row " . $row;
                 }
                 $executedRows[] = $rowData[0][0];
             } else {
