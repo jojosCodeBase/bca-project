@@ -9,8 +9,8 @@
 body {
     font-family: 'Poppins', sans-serif;
     opacity: 1;
-    /* overflow-y: hidden; */
-    overflow-y: scroll;
+    overflow-y: hidden;
+    /* overflow-y: scroll; */
 
     margin: 0;
 }
@@ -471,3 +471,17 @@ a.page-link {
 .spinner-border {
     margin-bottom: 10px;
 }
+
+/* scroll feature for sidebar start */
+
+aside{
+    height: 100vh;
+    overflow: scroll;
+}
+
+aside::-webkit-scrollbar{
+    display: none;
+}
+
+/* scroll feature for sidebar end */
+
