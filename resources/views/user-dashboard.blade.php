@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 @section('breadcrumb', 'Dashboard')
 @section('content')
-    <div class="container-fluid p-lx-3 p-lg-3 p-md-3 pt-3">
+    <div class="container-fluid p-lx-3 p-lg-3 p-md-3 pt-3 scroll-main">
         <main class="content">
             <div class="mb-2 p-1">
                 <h5>Faculty Dashboard</h5>
@@ -19,31 +19,31 @@
             </div>
 
             <div class="row">
-                <div class="col-xxl-2 col-xl-3 col-lg-4 col-10 mb-2">
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12 mb-2">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-auto">
-                                    <h6>Assigned Subjects</h6>
+                                <div class="col-8">
                                     <h2>{{ count($courses) }}</h2>
+                                    <h6>Assigned Subjects</h6>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="bi bi-person-video3 fs-3 text-success"></i>
+                                <div class="col-4">
+                                    <i class="bi bi-person-video3 fs-3 text-custom"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-2 col-xl-3 col-lg-4 col-10">
+                <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-8">
-                                    <h6>Total Program</h6>
                                     <h2>2</h2>
+                                    <h6>Total Program</h6>
                                 </div>
                                 <div class="col-4">
-                                    <i class="bi bi-chat-left-text-fill fs-3 text-warning"></i>
+                                    <i class="bi bi-chat-left-text-fill fs-3 text-custom"></i>
                                 </div>
                             </div>
                         </div>
