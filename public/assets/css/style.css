@@ -485,3 +485,6 @@ aside::-webkit-scrollbar{
 
 /* scroll feature for sidebar end */
 
+footer{
+    z-index: 200;
+}

@@ -4,7 +4,7 @@
 @section('content')
     <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3">
         @include('include/error-alert')
-        <div class="card">
+        <div class="card" style="margin-bottom: 7.5rem">
             <div class="card-body">
                 <div class="row">
                     <div class="col-xxl-6 col-xl-5 col-6">
