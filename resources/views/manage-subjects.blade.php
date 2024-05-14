@@ -8,7 +8,7 @@
 
     <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3">
         {{-- <h3 class="text-muted mb-4 mt-1">All Subjects</h3> --}}
-        <div class="card">
+        <div class="card" style="margin-bottom: 120px">
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-3 col-6 ">

@@ -147,12 +147,12 @@
             </nav>
             <main class="content">
                 @yield('content')
-                {{-- <footer class="footer p-3" style="background-color: #eceff3">
+                <footer class="footer p-3" style="background-color: #eceff3">
                     <span>All rights reserved. Designed and developed by <a
                             href="https://smu.edu.in/smit/dept-faculty/dept-list/dept-ca-smit.html"
                             target="_blank">Department of Computer Applications</a>, Sikkim Manipal Institute of
                         Technology</span>
-                </footer> --}}
+                </footer>
             </main>
         </div>
     </div>

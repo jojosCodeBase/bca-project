@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Calculated Data')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3">
         <h5>Attainment</h5>
         <div class="row mt-3">
             <div class="col-auto">
