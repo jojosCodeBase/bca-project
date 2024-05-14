@@ -399,12 +399,16 @@ class DashboardController extends Controller
         // dd($request->all());
         $batch = $request->batch;
         $course = $request->course;
-        $cid = Courses::join('final_co_attainment', 'final_co_attainment.cid', '=', 'courses.cid')
-            ->where('batch', $batch)
-            ->where('courses.course', $course)
-            ->pluck('courses.cid')
-            ->toArray();
 
+        $cid = Courses::join('final_co_attainment', 'final_co_attainment.cid', '=', 'courses.cid')
+        ->where('batch', $batch)
+        ->where('courses.course', $course)
+        ->pluck('courses.cid', 'courses.cname')
+        ->map(function ($cid, $cname) {
+            return $cid . ' - ' . $cname;
+        })
+        ->values() // Reset keys to indexed numeric format
+        ->toArray();
 
         $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
             ->leftJoin('courses', 'courses.cid', '=', 'final_co_attainment.cid')
@@ -421,9 +425,8 @@ class DashboardController extends Controller
             ->map(function ($item) {
                 return json_decode($item, true);
             });
-        // dd($grandTotalArray);
 
-        return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray', 'batch', 'course'));
+            return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray', 'batch', 'course'));
     }
 
     public function testPage()
