@@ -14,7 +14,8 @@ body {
 
     margin: 0;
 }
-body::-webkit-scrollbar{
+
+body::-webkit-scrollbar {
     display: none;
 }
 
@@ -152,12 +153,12 @@ footer{
 
 /* Scroll Main Start */
 /* .container-fluid{ */
-.scroll-main{
+.scroll-main {
     height: 100vh;
     overflow: scroll;
 }
 
-.scroll-main::-webkit-scrollbar{
+.scroll-main::-webkit-scrollbar {
     display: none;
 }
 
@@ -474,24 +475,62 @@ a.page-link {
 
 /* scroll feature for sidebar start */
 
-aside{
+aside {
     height: 100vh;
     overflow: scroll;
 }
 
-aside::-webkit-scrollbar{
+aside::-webkit-scrollbar {
     display: none;
 }
 
 /* scroll feature for sidebar end */
 
-footer{
+footer {
     z-index: 200;
 }
 
-.link-style{
+.link-style {
     color: white;
 }
-.link-style:hover{
+
+.link-style:hover {
     color: white;
+}
+
+
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .custom-margin {
+        margin-bottom: 8.5rem;
+    }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .custom-margin {
+        margin-bottom: 5.5rem;
+    }
+}
+
+@media screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    .custom-margin {
+        margin-bottom: 5.5rem;
+    }
+}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    .custom-margin {
+        margin-bottom: 5.5rem;
+    }
+}
+
+@media screen and (min-device-width: 1025px) and (max-device-width: 1200px) {
+    .custom-margin {
+        margin-bottom: 7.5rem;
+    }
+}
+
+@media screen and (min-device-width: 1025px) {
+    .custom-margin {
+        margin-bottom: 5.5rem;
+    }
 }
