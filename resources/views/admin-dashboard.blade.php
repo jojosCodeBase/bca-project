@@ -2,7 +2,7 @@
 @section('title', 'Admin Dashboard')
 @section('breadcrumb', 'Dashboard')
 @section('content')
-    <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3 custom-margin">
+    <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3">
         <main class="content">
             <div class="mb-3">
                 <h5>Admin Dashboard</h5>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-light mt-2">
+            <div class="bg-light mt-2" style="margin-bottom: 7.5rem">
                 <div class="row p-3 mt-3">
                     <div class="mb-1">
                         <h5>Last Uploaded </h5>

@@ -5,8 +5,8 @@
     <div class="container-fluid scroll-main ">
         @include('include/error-alert')
         <div class="row d-flex justify-content-center mt-xl-0 mt-2">
-            <div class="col-12">
-                <div class="card my-4">
+            <div class="col-12" style="margin-bottom: 7.5rem">
+                <div class="card my-4" >
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-xl-4 col-12 ">

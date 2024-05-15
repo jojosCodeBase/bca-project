@@ -485,3 +485,13 @@ aside::-webkit-scrollbar{
 
 /* scroll feature for sidebar end */
 
+footer{
+    z-index: 200;
+}
+
+.link-style{
+    color: white;
+}
+.link-style:hover{
+    color: white;
+}
