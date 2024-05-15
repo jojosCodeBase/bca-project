@@ -78,8 +78,8 @@
                     </div>
                 </form>
                 <hr>
-                <span class=""><i>To see the format <a href=""><u>click here</u></a></i></span><br>
-                <span class=""><i>Click here to <a href=""><u>download</u></a> the format</i></span>
+                <span class=""><i>To see the format <a href="{{ asset('assets/marks_upload_format.pdf') }}" target="_blank"><u>click here</u></a></i></span><br>
+                <span class=""><i>Click here to <a href="{{ asset('assets/marks_upload_format.xlsx') }}" download><u>download</u></a> the format</i></span>
             </div>
         </div>
     </div>
