@@ -3,7 +3,7 @@
 @section('breadcrumb', 'Subject Report')
 @section('content')
 
-<div class="container-fluid p-lx-3 p-lg-3 p-md-3 pt-3">
+<div class="container-fluid p-lx-3 p-lg-3 p-md-3 pt-3 scroll-main">
     <div class="card">
         <div class="card-body">
             <form action="" id="reportForm" class="needs-validation" novalidate>
@@ -37,11 +37,12 @@
             </form>
         </div>
     </div>
-    <div class="card mt-2" id="chartCard" style="display: none;">
+
+    <div class="card mt-2" id="chartCard" style="display: none; margin-bottom:  7.5rem;">
         <div class="card-body">
-            <div class="row ">
+            <div class="row" style="margin-150px">
                 <div class="col d-flex justify-content-center">
-                    <div style="width: 80%; margin: 0 auto;">
+                    <div style="width: 100%; margin: auto;">
                         <!-- Canvas element for the chart -->
                         <canvas id="myChart"></canvas>
                     </div>
