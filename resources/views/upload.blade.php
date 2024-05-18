@@ -33,10 +33,7 @@
                         <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-12 my-3">
                             <select name="batch" id="batch" class="form-select" required>
                                 <option selected disabled value="">Select batch</option>
-                                <option value="2019">2019</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
+                               
                             </select>
                             <div class="invalid-feedback">
                                 Please select Batch
