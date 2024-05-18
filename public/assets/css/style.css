@@ -534,3 +534,8 @@ footer {
         margin-bottom: 5.5rem;
     }
 }
+
+aside{
+    z-index: 1000;
+}
+
