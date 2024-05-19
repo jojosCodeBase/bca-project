@@ -62,7 +62,7 @@ class DashboardController extends Controller
     }
     public function fetchData(Request $r)
     {
-        if (!CoAttainment::where('cid', $r->subjectId)->first()) {
+        if (!CoAttainment::where('cid', $r->subjectId)->where('batch', $r->batch)->first()) {
             return back()->with('error', 'No data found, upload marks first');
         }
 
