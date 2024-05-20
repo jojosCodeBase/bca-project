@@ -2,6 +2,14 @@
 @section('title', 'Admin Dashboard')
 @section('breadcrumb', 'Dashboard')
 @section('content')
+    <style>
+        /* Custom CSS for additional control if needed */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling on touch devices */
+        }
+    </style>
     <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3">
         <main class="content">
             <div class="mb-3">
@@ -73,30 +81,33 @@
                     </div>
 
                     <div class="col">
-                        <div class="table-content">
-                            <table class="table table-hover ">
-                                <thead>
-                                    <th style="width: 70px;">Sl. No</th>
-                                    <th>Subject Id</th>
-                                    <th>Subject Name</th>
-                                    <th>Batch</th>
-                                    <th>Date</th>
-                                </thead>
-                                <tbody>
-                                    {{-- @dump($uploaded) --}}
-                                    @foreach ($uploaded as $u)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $u['cid'] }}</td>
-                                            <td>{{ $u['cname'] }}</td>
-                                            <td>{{ $u['batch'] }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($u['updated_at'])->format('d-m-Y') }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            {{-- {{ $uploaded->links() }} --}}
+                        <div class="table-responsive">
+                            <div class="table-content">
+                                <table class="table table-hover ">
+                                    <thead>
+                                        <th style="width: 70px;">Sl. No</th>
+                                        <th>Subject Id</th>
+                                        <th>Subject Name</th>
+                                        <th>Batch</th>
+                                        <th>Date</th>
+                                    </thead>
+                                    <tbody>
+                                        {{-- @dump($uploaded) --}}
+                                        @foreach ($uploaded as $u)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $u['cid'] }}</td>
+                                                <td>{{ $u['cname'] }}</td>
+                                                <td>{{ $u['batch'] }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($u['updated_at'])->format('d-m-Y') }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{-- {{ $uploaded->links() }} --}}
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
