@@ -3,9 +3,9 @@
 @section('breadcrumb', 'CO Attainment')
 
 @section('content')
-    <div class="container-fluid scroll-main">
+    <div class="container-fluid scroll-main  p-lx-4 p-lg-4 p-md-4 ">
         <h5>{{ $subjectCode }}-{{ $subjectName }} - CO Attainment, Batch - {{ $batch }}</h5>
-        <div class="table-responsive">
+        <div class="table-responsive custom-margin">
             <table class="table table-bordered table-light">
                 <thead>
                     <tr class="bg-light text-center">

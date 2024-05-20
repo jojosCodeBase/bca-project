@@ -54,7 +54,8 @@
                 </div>
             </nav>
 
-            <main class="content p-lx-4 p-lg-4 p-md-4">
+            {{-- <main class="content  p-lx-4 p-lg-4 p-md-4"> --}}
+            <main class="content">
                 @yield('content')
             </main>
         </div>

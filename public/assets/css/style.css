@@ -15,9 +15,9 @@ body {
     margin: 0;
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     display: none;
-}
+} */
 
 a {
     cursor: pointer;
@@ -501,7 +501,7 @@ footer {
 
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .custom-margin {
-        margin-bottom: 8.5rem;
+        margin-bottom: 8.5 rem;
     }
 }
 
@@ -531,16 +531,22 @@ footer {
 
 @media screen and (min-device-width: 1025px) {
     .custom-margin {
-        margin-bottom: 5.5rem;
+        margin-bottom: 3.5rem;
     }
 }
 
-aside{
+aside {
     z-index: 1000;
 }
 
 @media (max-width: 767.98px) {
     footer {
-      display: none;
+        display: none;
     }
-  }
+}
+
+
+.dropdown-menu{
+    width: 9.4rem;
+}
+
