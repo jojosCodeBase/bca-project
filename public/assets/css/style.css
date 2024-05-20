@@ -539,3 +539,8 @@ aside{
     z-index: 1000;
 }
 
+@media (max-width: 767.98px) {
+    footer {
+      display: none;
+    }
+  }
