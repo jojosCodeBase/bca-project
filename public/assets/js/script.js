@@ -1,31 +1,3 @@
-function populateYearSelect() {
-    const yearSelect = document.getElementById('batch');
-    const currentYear = new Date().getFullYear();
-    const startYear = 2020;
-
-    // Clear existing options
-    yearSelect.innerHTML = '';
-
-    // Add disabled "Select a year" option
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.text = 'Select a year';
-    defaultOption.disabled = true;
-    defaultOption.selected = true;
-    yearSelect.appendChild(defaultOption);
-
-    // Add year options
-    for (let year = startYear; year <= currentYear; year++) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.text = year;
-        yearSelect.appendChild(option);
-    }
-}
-
-// Call the function to populate the select field
-populateYearSelect();
-
 $(document).ready(function () {
     $(document).on('change', '#course-select', function () {
         var selectedCourse = $(this).val();
@@ -92,7 +64,6 @@ $(document).ready(function () {
                 // Update table rows with filtered data
                 const tableBody = document.querySelector('#table tbody');
                 tableBody.innerHTML = '';
-
 
                 if (data.length === 0) {
                     // If no results found, display a message
@@ -182,8 +153,6 @@ $(document).ready(function () {
             }
         });
     });
-
-
 
     $('#co_po_search').on('input', function () {
         var searchString = $(this).val();
@@ -277,6 +246,41 @@ $(document).ready(function () {
     sidebarToggle.addEventListener("click", function () {
         document.querySelector("#sidebar").classList.toggle("collapsed");
     });
+
+    function populateYearSelect() {
+        const yearSelect = document.getElementById('batch');
+        const currentYear = new Date().getFullYear();
+        const startYear = 2020;
+
+        // Clear existing options
+        yearSelect.innerHTML = '';
+
+        // Add disabled "Select a year" option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.text = 'Select a year';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        yearSelect.appendChild(defaultOption);
+
+        // Add year options
+        for (let year = startYear; year <= currentYear; year++) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.text = year;
+            yearSelect.appendChild(option);
+        }
+    }
+
+    // Call the function to populate the select field
+    populateYearSelect();
+
+
+    // button for back start
+    document.getElementById("backButton").addEventListener("click", function () {
+        // Go back to the most recent page in the history
+        window.history.back();
+    });
 });
 
 
@@ -340,14 +344,10 @@ function restrictInput(event) {
 // javaScript for Sidebar Toggle start
 
 
-// button for back start
-document.getElementById("backButton").addEventListener("click", function () {
-    // Go back to the most recent page in the history
-    window.history.back();
-});
+
+
 
 // button for back end
 
 
 
-       
