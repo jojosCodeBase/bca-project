@@ -275,7 +275,6 @@ $(document).ready(function () {
     // Call the function to populate the select field
     populateYearSelect();
 
-
     // button for back start
     document.getElementById("backButton").addEventListener("click", function () {
         // Go back to the most recent page in the history
@@ -284,9 +283,7 @@ $(document).ready(function () {
 });
 
 
-//thid is for select validation end
-
-
+//this is for select validation end
 function getFacultyInfo(fid, callback) {
     $.ajax({
         url: '/admin/getFacultyInfo/' + fid,
