@@ -2,7 +2,7 @@
 @section('title', 'Direct Attainment')
 @section('breadcrumb', '')
 @section('content')
-    <div class="container-fluid scroll-main">
+    <div class="container-fluid scroll-main  p-lx-4 p-lg-4 p-md-4">
         <div class="row mb-3">
             <div class="col-6">
                 <h5 class="">Direct Attainment, {{ $course }} Batch - {{ $batch }}</h5>
