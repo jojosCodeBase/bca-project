@@ -391,38 +391,6 @@ class ExcelController extends Controller
             'file' => 'required|mimes:xls,xlsx',
         ]);
 
-        // $filePath = $request->file('file')->path();
-        // $courseId = $request->file('file')->getClientOriginalName();
-        // $courseId = strtoupper(str_replace(' ', '_', pathinfo($courseId, PATHINFO_FILENAME)));
-        // $spreadsheet = IOFactory::load($filePath);
-        // $worksheet = $spreadsheet->getActiveSheet();
-
-        // $highestRow = $worksheet->getHighestDataRow();
-        // $highestColumn = $worksheet->getHighestDataColumn();
-
-        // $expectedHeaders = ['Reg No', 'Q1', 'S1', 'Q2', 'S2', 'Assignment', 'End Sem'];
-
-        // // Loop through each row and store the data
-        // $excelData = [];
-        // $errors = [];
-        // $nullCount = 0;
-        // for ($row = 1; $row <= $highestRow; $row++) {
-        //     $rowData = $worksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
-
-        //     // if(!is_null($rowData[0][0])){
-        //         $excelData[] = $rowData[0];
-        //     // }
-        //     // }else{
-        //     //     $nullCount++;
-
-        //     //     if($nullCount > 3){
-        //     //         break;
-        //     //     }
-        //     // }
-        //     // dd($rowData);
-        //     // echo $row;
-        // }
-
 
         $filePath = $request->file('file')->path();
         $courseId = $request->file('file')->getClientOriginalName();
@@ -434,8 +402,6 @@ class ExcelController extends Controller
         $highestColumn = $worksheet->getHighestDataColumn();
 
         $expectedHeaders = ['Reg No', 'Q1', 'S1', 'Q2', 'S2', 'Assignment', 'End Sem'];
-
-
 
         // Loop through each row and store the data
         $excelData = [];
