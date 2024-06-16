@@ -51,7 +51,30 @@ class SupportController extends Controller
     }
 
     public function dashboard(){
-        return view("support.dashboard");
-        // return "hello from support dashboard";
+        $tickets = Support::with('user')->orderByDesc('created_at')->get();
+        $pending = Support::where('status', 0)->count();
+        $resolved = Support::where('status', 2)->count();
+        return view("support.dashboard", compact('tickets', 'pending', 'resolved'));
+    }
+
+    public function allTickets(){
+        $tickets = Support::with('user')->orderByDesc('created_at')->get();
+        $label = 'All';
+        return view('support.tickets', compact('tickets', 'label'));
+    }
+    public function pending(){
+        $tickets = Support::with('user')->where('status', 0)->orderByDesc('created_at')->get();
+        $label = 'Pending';
+        return view('support.tickets', compact('tickets', 'label'));
+    }
+    public function resolved(){
+        $tickets = Support::with('user')->where('status', 2)->orderByDesc('created_at')->get();
+        $label = 'Resolved';
+        return view('support.tickets', compact('tickets', 'label'));
+    }
+
+    public function view($id){
+        $ticket = Support::with('user')->where('id', $id)->first();
+        return view('support.view', compact('ticket'));
     }
 }

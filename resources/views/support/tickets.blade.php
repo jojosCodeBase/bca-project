@@ -1,6 +1,6 @@
 @extends('layouts.support')
-@section('title', 'Support Dashboard')
-@section('breadcrumb', 'Dashboard')
+@section('title', 'Tickets')
+@section('breadcrumb', 'Tickets')
 @section('content')
     <style>
         /* Custom CSS for additional control if needed */
@@ -12,72 +12,10 @@
     </style>
     <div class="container-fluid scroll-main p-lx-3 p-lg-3 p-md-3 pt-3">
         <main class="content">
-            <div class="mb-3">
-                <h5>Support Dashboard</h5>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-xl-12 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="text-custom">Welcome Support</h4>
-                            <p class="card-text text-muted">Last updated: 15-03-24</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xl-3 col-xxl-3 col-lg-4 col-md-4 col-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h2>{{ count($tickets) }}</h2>
-                                    <h6>Total Tickets</h6>
-                                </div>
-                                <div class="col-4">
-                                    <i class="bi bi-person-video3 fs-3 text-custom"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-xxl-3 col-lg-4 col-md-4 col-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h2>{{ $resolved }}</h2>
-                                    <h6>Tickets Resolved</h6>
-                                </div>
-                                <div class="col-4">
-                                    <i class="bi bi-chat-left-text-fill fs-3 text-custom"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-xxl-3 col-lg-4 col-md-4 col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h2>{{ $pending }}</h2>
-                                    <h6>Tickets Pending</h6>
-                                </div>
-                                <div class="col-4">
-                                    <i class="bi bi-journal-text fs-3 text-custom"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="bg-light mt-2" style="margin-bottom: 7.5rem">
                 <div class="row p-3 mt-3">
                     <div class="mb-1">
-                        <h5>Recent Tickets</h5>
+                        <h5>{{ $label }} Tickets</h5>
                     </div>
 
                     <div class="col">

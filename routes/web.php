@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +23,22 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+    ->name('password.request');
+
+Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+    ->name('password.email');
+
+Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+    ->name('password.reset');
+
+Route::post('reset-password', [NewPasswordController::class, 'store'])
+    ->name('password.store');
 
 Route::middleware('auth')->group(function () {
     // Common routes accessible to both admin and faculty
@@ -50,15 +69,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        if (auth()->user()->is_faculty === 0) {
-            return redirect()->route('admin-dashboard');
-        } elseif (auth()->user()->is_faculty === 1) {
-            return redirect()->route('dashboard');
-        } elseif (auth()->user()->is_faculty === 99999) {
-            return redirect()->route('support-dashboard');
-        }
-    });
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('admin-dashboard');
 
@@ -120,7 +130,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/export-courses', [ExcelController::class, 'exportCourses']);
 
 
-    //Admin Po Attainment
+    // Admin PO Attainment
 
     Route::get('subject-report', function () {
         return view('subject-report');
@@ -134,13 +144,11 @@ Route::middleware('auth')->group(function () {
         return view('error-404');
     })->name('error-404');
 
-
-
-    Route::middleware('support')->group(function () {
+    Route::middleware('support')->prefix('support')->group(function () {
         Route::get('dashboard', [SupportController::class, 'dashboard'])->name('support-dashboard');
+        Route::get('all-tickets', [SupportController::class, 'allTickets'])->name('support-tickets');
+        Route::get('pending', [SupportController::class, 'pending'])->name('support-pending');
+        Route::get('resolved', [SupportController::class, 'resolved'])->name('support-resolved');
+        Route::get('view/{id}', [SupportController::class, 'view'])->name('support-ticket-view');
     });
-
-
 });
-
-require __DIR__ . '/auth.php';
