@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupportController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,14 +43,20 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::get('support', [SupportController::class, 'index'])->name('support');
+    Route::post('support/create-ticket', [SupportController::class, 'create'])->name('support.ticket.create');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
-        if (auth()->user()->is_faculty == 0) {
+        if (auth()->user()->is_faculty === 0) {
             return redirect()->route('admin-dashboard');
-        } elseif (auth()->user()->is_faculty) {
+        } elseif (auth()->user()->is_faculty === 1) {
             return redirect()->route('dashboard');
+        } elseif (auth()->user()->is_faculty === 99999) {
+            return redirect()->route('support-dashboard');
         }
     });
     Route::middleware('admin')->prefix('admin')->group(function () {
@@ -126,6 +133,12 @@ Route::middleware('auth')->group(function () {
     Route::get('error-404', function () {
         return view('error-404');
     })->name('error-404');
+
+
+
+    Route::middleware('support')->group(function () {
+        Route::get('dashboard', [SupportController::class, 'dashboard'])->name('support-dashboard');
+    });
 
 
 });
