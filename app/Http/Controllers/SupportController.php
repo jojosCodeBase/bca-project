@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Support;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\SupportTicketCreated;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class SupportController extends Controller
 {
@@ -47,37 +50,49 @@ class SupportController extends Controller
 
         $support->save();
 
+        // Send email notification to developers
+        $developers = ['kunsangmoktan11@gmail.com', 'dev.kunsang@gmail.com'];
+        Mail::to($developers[0])
+            ->cc($developers[1])
+            ->send(new SupportTicketCreated($support, Auth::user()->name));
+
         return back()->withSuccess('Support ticket created successfully!');
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         $tickets = Support::with('user')->orderByDesc('created_at')->get();
         $pending = Support::where('status', 0)->count();
         $resolved = Support::where('status', 2)->count();
         return view("support.dashboard", compact('tickets', 'pending', 'resolved'));
     }
 
-    public function allTickets(){
+    public function allTickets()
+    {
         $tickets = Support::with('user')->orderByDesc('created_at')->get();
         $label = 'All';
         return view('support.tickets', compact('tickets', 'label'));
     }
-    public function pending(){
+    public function pending()
+    {
         $tickets = Support::with('user')->where('status', 0)->orderByDesc('created_at')->get();
         $label = 'Pending';
         return view('support.tickets', compact('tickets', 'label'));
     }
-    public function resolved(){
+    public function resolved()
+    {
         $tickets = Support::with('user')->where('status', 2)->orderByDesc('created_at')->get();
         $label = 'Resolved';
         return view('support.tickets', compact('tickets', 'label'));
     }
 
-    public function view($id){
+    public function view($id)
+    {
         $ticket = Support::with('user')->where('id', $id)->first();
         return view('support.view', compact('ticket'));
     }
-    public function updateStatus(Request $request, $id){
+    public function updateStatus(Request $request, $id)
+    {
         Support::where('id', $id)->update(['status' => $request->status]);
         return back()->withSuccess('Status updated successfully');
     }
