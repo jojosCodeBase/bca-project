@@ -150,5 +150,6 @@ Route::middleware('auth')->group(function () {
         Route::get('pending', [SupportController::class, 'pending'])->name('support-pending');
         Route::get('resolved', [SupportController::class, 'resolved'])->name('support-resolved');
         Route::get('view/{id}', [SupportController::class, 'view'])->name('support-ticket-view');
+        Route::put('update/{id}', [SupportController::class, 'updateStatus'])->name('support-ticket-update-status');
     });
 });

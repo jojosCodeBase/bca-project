@@ -87,7 +87,7 @@
                                                     <span class="text-custom">Open</span>
                                                 @elseif($ticket->status === 1)
                                                     <span class="text-warning">In-progress</span>
-                                                @elseif($ticker->status === 2)
+                                                @elseif($ticket->status === 2)
                                                     <span class="text-success">Resolved</span>
                                                 @endif
                                             </td>

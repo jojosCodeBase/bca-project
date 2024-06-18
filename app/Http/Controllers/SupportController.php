@@ -77,4 +77,8 @@ class SupportController extends Controller
         $ticket = Support::with('user')->where('id', $id)->first();
         return view('support.view', compact('ticket'));
     }
+    public function updateStatus(Request $request, $id){
+        Support::where('id', $id)->update(['status' => $request->status]);
+        return back()->withSuccess('Status updated successfully');
+    }
 }

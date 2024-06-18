@@ -37,7 +37,7 @@
                                     <h6>Total Tickets</h6>
                                 </div>
                                 <div class="col-4">
-                                    <i class="bi bi-person-video3 fs-3 text-custom"></i>
+                                    <i class="bi bi-chat-left-text-fill fs-3 text-custom"></i>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                     <h6>Tickets Resolved</h6>
                                 </div>
                                 <div class="col-4">
-                                    <i class="bi bi-chat-left-text-fill fs-3 text-custom"></i>
+                                    <i class="bi bi-check2-circle fs-3 text-custom"></i>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                                     <h6>Tickets Pending</h6>
                                 </div>
                                 <div class="col-4">
-                                    <i class="bi bi-journal-text fs-3 text-custom"></i>
+                                    <i class="bi bi-hourglass-split fs-3 text-custom"></i>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                                         <span class="text-custom">Open</span>
                                                     @elseif($ticket->status === 1)
                                                         <span class="text-warning">In-progress</span>
-                                                    @elseif($ticker->status === 2)
+                                                    @elseif($ticket->status === 2)
                                                         <span class="text-success">Resolved</span>
                                                     @endif
                                                 </td>

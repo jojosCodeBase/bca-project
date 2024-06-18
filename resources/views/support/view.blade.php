@@ -44,7 +44,7 @@
                             <div class="col">
                                 <h5>Ticket Details</h5>
                             </div>
-                            <div class="col-2 mb-2">
+                            <div class="col-3 mb-2">
                                 <strong>Status:</strong>
                                 @if ($ticket->status === 0)
                                     <span class="text-custom">Open</span>
@@ -88,17 +88,17 @@
                             @endif
                         </p>
                     </div>
-                    <div class="col-12">
+                    {{-- <div class="col-12">
                         <button class="btn btn-primary" data-toggle="modal" data-target="#replyModal">Reply to
                             Ticket</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </main>
     </div>
 
     <!-- Reply Modal -->
-    <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel"
+    {{-- <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -107,16 +107,16 @@
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{-- <form action="{{ route('reply-to-ticket', ['id' => $ticket->id]) }}" method="POST"> --}}
+                    <form action="{{ route('reply-to-ticket', ['id' => $ticket->id]) }}" method="POST">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="reply">Your Reply</label>
-                        <textarea class="form-control" id="reply" name="reply" rows="4" required></textarea>
+                        <textarea class="form-control" id="reply" name="reply" rows="10" placeholder="Start typing your message here...." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Send Reply</button>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
