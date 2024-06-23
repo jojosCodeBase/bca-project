@@ -25,7 +25,6 @@
                             @if (session('success'))
                                 <div id="alertMessage" class="alert alert-success">
                                     {{ session('success') }}
-                                    <span>hello</span>
                                 </div>
                             @endif
                         </div>
