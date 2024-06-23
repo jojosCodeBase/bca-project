@@ -22,22 +22,23 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('home');
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-    ->name('password.request');
+Route::get('forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
 
-Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+Route::post('forgot-password', [AuthController::class, 'forgotPassword'])
     ->name('password.email');
 
-Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+Route::get('reset-password/{token}', [AuthController::class, 'resetPasswordView'])
     ->name('password.reset');
 
-Route::post('reset-password', [NewPasswordController::class, 'store'])
+Route::post('reset-password', [AuthController::class, 'resetPassword'])
     ->name('password.store');
 
 Route::middleware('auth')->group(function () {
@@ -152,4 +153,12 @@ Route::middleware('auth')->group(function () {
         Route::get('view/{id}', [SupportController::class, 'view'])->name('support-ticket-view');
         Route::put('update/{id}', [SupportController::class, 'updateStatus'])->name('support-ticket-update-status');
     });
+
+    Route::get('confirm-password', function(){
+        return view('auth.confirm-password');
+    })->name('password.confirm');
+
+    // Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+
+    Route::put('password', [ProfileController::class, 'updatePassword'])->name('password.update');
 });
