@@ -55,6 +55,11 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        $user = Auth::user();
+        $user->last_seen = now();
+        $user->save();
+
+
         // Clear all session data
         $request->session()->invalidate();
 
@@ -83,9 +88,9 @@ class AuthController extends Controller
         );
 
         return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+            ? back()->with('status', __($status))
+            : back()->withInput($request->only('email'))
+                ->withErrors(['email' => __($status)]);
     }
 
     public function resetPasswordView(Request $request)
@@ -123,8 +128,8 @@ class AuthController extends Controller
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         return $status == Password::PASSWORD_RESET
-        ? redirect()->route('home')->with('success', __($status))
-        : back()->withInput($request->only('email'))
+            ? redirect()->route('home')->with('success', __($status))
+            : back()->withInput($request->only('email'))
                 ->withErrors(['email' => __($status)]);
     }
 }
