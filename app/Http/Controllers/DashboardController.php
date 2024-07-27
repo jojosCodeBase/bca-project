@@ -327,38 +327,77 @@ class DashboardController extends Controller
 
     public function assignSubjectView()
     {
-        $allCourses = Courses::where('assigned', 0)->get();
+        $allCourses = Courses::all();
 
         $faculties = User::where('is_faculty', 1)->get();
 
-        $assignedSubjects = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
-            ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
-            ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name', 'users.id as faculty_id')
-            ->where('users.is_faculty', 1)
-            ->get();
+        $assignedSubjects = AssignedSubject::with('course', 'user')->get();
+
+        // dd($assignedSubjects);
+
+        // $assignedSubjects = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
+        //     ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
+        //     ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name', 'users.id as faculty_id')
+        //     ->where('users.is_faculty', 1)
+        //     ->get();
 
         $facultyDropdown = [];
-        foreach ($assignedSubjects as $assignedSubject) {
-            $facultyId = $assignedSubject->faculty_id;
-            $facultyName = $assignedSubject->faculty_name;
-            $subjectName = $assignedSubject->course_name;
+        // foreach ($assignedSubjects as $assignedSubject) {
+        //     $facultyId = $assignedSubject->faculty_id;
+        //     $facultyName = $assignedSubject->faculty_name;
+        //     $subjectName = $assignedSubject->course_name;
 
-            // If faculty name is not in the dropdown array, initialize it with an empty array
+        //     // If faculty name is not in the dropdown array, initialize it with an empty array
+        //     if (!isset($facultyDropdown[$facultyName])) {
+        //         $facultyDropdown[$facultyName] = [];
+        //     }
+
+        //     // Add the subject to the faculty's dropdown array
+        //     $facultyDropdown[$facultyName][$facultyId][$assignedSubject->cid] = $subjectName;
+        // }
+
+        foreach ($assignedSubjects as $assignedSubject) {
+            // Extract relevant details
+            $facultyId = $assignedSubject->faculty_id;
+            $facultyName = $assignedSubject->user->name;  // Ensure you have a 'name' attribute or similar in the User model
+            $subjectName = $assignedSubject->course->cname;   // Ensure you have a 'name' attribute or similar in the Course model
+            $year = $assignedSubject->year;
+
+            // Initialize the faculty in the dropdown array if not already present
             if (!isset($facultyDropdown[$facultyName])) {
                 $facultyDropdown[$facultyName] = [];
             }
 
-            // Add the subject to the faculty's dropdown array
-            $facultyDropdown[$facultyName][$facultyId][$assignedSubject->cid] = $subjectName;
+            // Initialize the array for this faculty id if not already present
+            if (!isset($facultyDropdown[$facultyName][$facultyId])) {
+                $facultyDropdown[$facultyName][$facultyId] = [];
+            }
+
+            // Add the subject with year to the faculty's array
+            if (!isset($facultyDropdown[$facultyName][$facultyId][$year])) {
+                $facultyDropdown[$facultyName][$facultyId][$year] = [];
+            }
+
+            // Add the subject to the faculty's array
+            $facultyDropdown[$facultyName][$facultyId][$year][$assignedSubject->cid] = $subjectName;
         }
+
+        // dd($facultyDropdown);
 
         return view('assign-subject', compact('allCourses', 'faculties', 'assignedSubjects', 'facultyDropdown'));
     }
     public function assignSubject(Request $request)
     {
+        $request->validate([
+            'subject' => 'required|string|max:10',
+            'faculty' => 'required|numeric',
+            'year' => 'required|numeric',
+        ]);
+
         $query = AssignedSubject::create([
             'cid' => $request->subject,
             'faculty_id' => $request->faculty,
+            'year' => $request->year,
         ]);
 
         Courses::where('cid', $request->subject)->update(['assigned' => 1]);
@@ -401,14 +440,14 @@ class DashboardController extends Controller
         $course = $request->course;
 
         $cid = Courses::join('final_co_attainment', 'final_co_attainment.cid', '=', 'courses.cid')
-        ->where('batch', $batch)
-        ->where('courses.course', $course)
-        ->pluck('courses.cid', 'courses.cname')
-        ->map(function ($cid, $cname) {
-            return $cid . ' - ' . $cname;
-        })
-        ->values() // Reset keys to indexed numeric format
-        ->toArray();
+            ->where('batch', $batch)
+            ->where('courses.course', $course)
+            ->pluck('courses.cid', 'courses.cname')
+            ->map(function ($cid, $cname) {
+                return $cid . ' - ' . $cname;
+            })
+            ->values() // Reset keys to indexed numeric format
+            ->toArray();
 
         $poArray = CoPoRelation::join('final_co_attainment', 'final_co_attainment.cid', '=', 'co_po_relation.cid')
             ->leftJoin('courses', 'courses.cid', '=', 'final_co_attainment.cid')
@@ -426,7 +465,7 @@ class DashboardController extends Controller
                 return json_decode($item, true);
             });
 
-            return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray', 'batch', 'course'));
+        return view('direct-po-attainment', compact('cid', 'poArray', 'grandTotalArray', 'batch', 'course'));
     }
 
     public function testPage()
@@ -460,21 +499,21 @@ class DashboardController extends Controller
             ->where('users.name', 'LIKE', '%' . $request->searchData . '%')
             ->get(10);
 
-            $facultyDropdown = [];
-            foreach ($assignedSubjects as $assignedSubject) {
-                $facultyId = $assignedSubject->faculty_id;
-                $facultyName = $assignedSubject->faculty_name;
-                $subjectName = $assignedSubject->course_name;
+        $facultyDropdown = [];
+        foreach ($assignedSubjects as $assignedSubject) {
+            $facultyId = $assignedSubject->faculty_id;
+            $facultyName = $assignedSubject->faculty_name;
+            $subjectName = $assignedSubject->course_name;
 
-                // If faculty name is not in the dropdown array, initialize it with an empty array
-                if (!isset($facultyDropdown[$facultyName])) {
-                    $facultyDropdown[$facultyName] = [];
-                }
-
-                // Add the subject to the faculty's dropdown array
-                $facultyDropdown[$facultyName][$facultyId][$assignedSubject->cid] = $subjectName;
+            // If faculty name is not in the dropdown array, initialize it with an empty array
+            if (!isset($facultyDropdown[$facultyName])) {
+                $facultyDropdown[$facultyName] = [];
             }
-            // dd($facultyDropdown);
+
+            // Add the subject to the faculty's dropdown array
+            $facultyDropdown[$facultyName][$facultyId][$assignedSubject->cid] = $subjectName;
+        }
+        // dd($facultyDropdown);
 
         return view('assigned-subjects-filter-table', compact('allCourses', 'faculties', 'assignedSubjects', 'facultyDropdown'));
     }

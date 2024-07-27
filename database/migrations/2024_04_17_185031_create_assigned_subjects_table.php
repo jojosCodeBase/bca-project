@@ -14,7 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('cid');
             $table->unsignedBigInteger('faculty_id');
-            $table->unique(['cid', 'faculty_id']);
+            $table->integer('year');
+            $table->unique(['cid', 'faculty_id', 'year']);
             $table->timestamps();
         });
     }
