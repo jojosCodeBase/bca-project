@@ -6,7 +6,6 @@ use Exception;
 use App\Models\User;
 use App\Models\Courses;
 use App\Models\MaxMarksCO;
-use App\Models\ExcelUpload;
 use App\Models\TargetMarks;
 use App\Models\CoAttainment;
 use App\Models\CoPoRelation;
@@ -20,7 +19,6 @@ use App\Models\AttainmentPercentage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class DashboardController extends Controller
 {
