@@ -243,7 +243,6 @@ img {
     width: 100%;
     /* Ensures it spans the entire width of the viewport */
     background-color: #f8f9fa;
-    margin-left: 260px;
 }
 
 
@@ -253,11 +252,6 @@ img {
     color: #fff;
 }
 
-/* .btn-success {
-    background: #355389;
-    border: #355389;
-    color: #fff;
-} */
 
 .text-custom {
     color: #355389;

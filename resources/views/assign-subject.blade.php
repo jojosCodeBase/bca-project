@@ -135,7 +135,6 @@
         </div>
     </div>
     {{-- assign subject edit modal end --}}
-    </div>
 @endsection
 @section('scripts')
     <script>
@@ -159,7 +158,8 @@
                                     '<div class="form-check"><input class="form-check-input" type="checkbox" value="' +
                                     course.id + // Accessing the course ID
                                     '" name="checked_courses[]"><label class="form-check-label">' +
-                                    course.year + ' - ' + course.course_id + ' - ' + course.course_name +
+                                    course.year + ' - ' + course.course_id + ' - ' +
+                                    course.course_name +
                                     '</label></div>'; // Accessing the course name
                                 $('#subject-checkboxes').append(checkbox);
                             });
