@@ -37,11 +37,11 @@ class AuthController extends Controller
 
             // Redirect the user to their intended destination or home page
 
-            if (auth()->user()->is_faculty === 0) {
+            if (auth()->user()->is_faculty == 0) {
                 return redirect()->route('admin-dashboard');
-            } elseif (auth()->user()->is_faculty === 1) {
+            } elseif (auth()->user()->is_faculty == 1) {
                 return redirect()->route('dashboard');
-            } elseif (auth()->user()->is_faculty === 99999) {
+            } elseif (auth()->user()->is_faculty == 99999) {
                 return redirect()->route('support-dashboard');
             }
 
