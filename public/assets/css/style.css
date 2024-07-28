@@ -142,14 +142,6 @@ img {
     height: 200px;
 }
 
-/* fotter and nav*/
-/* @media(max-width:767.98){
-.navbar,
-footer{
-  width: 100%;
-}
-}
-*/
 
 /* Scroll Main Start */
 /* .container-fluid{ */
@@ -251,6 +243,7 @@ footer{
     width: 100%;
     /* Ensures it spans the entire width of the viewport */
     background-color: #f8f9fa;
+    margin-left: 260px;
 }
 
 

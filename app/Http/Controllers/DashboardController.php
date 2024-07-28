@@ -331,30 +331,9 @@ class DashboardController extends Controller
 
         $faculties = User::where('is_faculty', 1)->get();
 
-        $assignedSubjects = AssignedSubject::with('course', 'user')->get();
-
-        // dd($assignedSubjects);
-
-        // $assignedSubjects = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
-        //     ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
-        //     ->select('assigned_subjects.*', 'courses.cname as course_name', 'users.name as faculty_name', 'users.id as faculty_id')
-        //     ->where('users.is_faculty', 1)
-        //     ->get();
+        $assignedSubjects = AssignedSubject::with('course', 'user')->orderByDesc('created_at')->get();
 
         $facultyDropdown = [];
-        // foreach ($assignedSubjects as $assignedSubject) {
-        //     $facultyId = $assignedSubject->faculty_id;
-        //     $facultyName = $assignedSubject->faculty_name;
-        //     $subjectName = $assignedSubject->course_name;
-
-        //     // If faculty name is not in the dropdown array, initialize it with an empty array
-        //     if (!isset($facultyDropdown[$facultyName])) {
-        //         $facultyDropdown[$facultyName] = [];
-        //     }
-
-        //     // Add the subject to the faculty's dropdown array
-        //     $facultyDropdown[$facultyName][$facultyId][$assignedSubject->cid] = $subjectName;
-        // }
 
         foreach ($assignedSubjects as $assignedSubject) {
             // Extract relevant details
@@ -364,26 +343,29 @@ class DashboardController extends Controller
             $year = $assignedSubject->year;
 
             // Initialize the faculty in the dropdown array if not already present
-            if (!isset($facultyDropdown[$facultyName])) {
-                $facultyDropdown[$facultyName] = [];
-            }
-
-            // Initialize the array for this faculty id if not already present
-            if (!isset($facultyDropdown[$facultyName][$facultyId])) {
-                $facultyDropdown[$facultyName][$facultyId] = [];
+            if (!isset($facultyDropdown[$facultyId])) {
+                $facultyDropdown[$facultyId] = [
+                    'name' => $facultyName,
+                    'subjects' => []
+                ];
             }
 
             // Add the subject with year to the faculty's array
-            if (!isset($facultyDropdown[$facultyName][$facultyId][$year])) {
-                $facultyDropdown[$facultyName][$facultyId][$year] = [];
-            }
+            $facultyDropdown[$facultyId]['subjects'][] = [
+                'year' => $year,
+                'cid' => $assignedSubject->cid,
+                'name' => $subjectName
+            ];
 
-            // Add the subject to the faculty's array
-            $facultyDropdown[$facultyName][$facultyId][$year][$assignedSubject->cid] = $subjectName;
         }
+        // Sort the subjects for each faculty based on year in descending order
+        foreach ($facultyDropdown as $facultyId => $facultyData) {
+            usort($facultyDropdown[$facultyId]['subjects'], function ($a, $b) {
+                return $b['year'] <=> $a['year']; // Sort by year descending
+            });
 
-        // dd($facultyDropdown);
-
+        }
+        
         return view('assign-subject', compact('allCourses', 'faculties', 'assignedSubjects', 'facultyDropdown'));
     }
     public function assignSubject(Request $request)
@@ -393,6 +375,15 @@ class DashboardController extends Controller
             'faculty' => 'required|numeric',
             'year' => 'required|numeric',
         ]);
+
+        $exists = AssignedSubject::where('cid', $request->subject)
+            ->where('faculty_id', $request->faculty)
+            ->where('year', $request->year)
+            ->exists();
+
+        if ($exists) {
+            return redirect()->back()->with('error', 'Course already assigned to the faculty');
+        }
 
         $query = AssignedSubject::create([
             'cid' => $request->subject,
@@ -410,9 +401,8 @@ class DashboardController extends Controller
     public function assignSubjectUpdate(Request $request)
     {
         try {
-            foreach ($request->checked_courses as $cid) {
-                AssignedSubject::where('cid', $cid)->delete();
-                Courses::where('cid', $cid)->update(['assigned' => 0]);
+            foreach ($request->checked_courses as $id) {
+                AssignedSubject::where('id', $id)->delete();
             }
             return back()->with('success', 'Assigned subjects updated successfully');
         } catch (Exception $e) {
@@ -426,8 +416,9 @@ class DashboardController extends Controller
         // Fetch assigned courses for the given faculty ID
         $assignedCourses = AssignedSubject::join('courses', 'assigned_subjects.cid', '=', 'courses.cid')
             ->join('users', 'assigned_subjects.faculty_id', '=', 'users.id')
-            ->select('courses.cid as course_id', 'courses.cname as course_name', 'users.name as faculty_name')
+            ->select('courses.cid as course_id', 'courses.cname as course_name', 'users.name as faculty_name', 'assigned_subjects.year', 'assigned_subjects.id')
             ->where('assigned_subjects.faculty_id', $request->faculty_id)
+            ->orderByDesc('assigned_subjects.year')
             ->get();
 
         return response()->json($assignedCourses);
@@ -513,7 +504,6 @@ class DashboardController extends Controller
             // Add the subject to the faculty's dropdown array
             $facultyDropdown[$facultyName][$facultyId][$assignedSubject->cid] = $subjectName;
         }
-        // dd($facultyDropdown);
 
         return view('assigned-subjects-filter-table', compact('allCourses', 'faculties', 'assignedSubjects', 'facultyDropdown'));
     }
@@ -573,9 +563,7 @@ class DashboardController extends Controller
             $courses = Courses::join('assigned_subjects', 'assigned_subjects.cid', '=', 'courses.cid')
                 ->where('course', $course)
                 ->pluck('courses.cid', 'courses.cname');
-            // ->select('courses.cid', 'courses.cname')
 
-            // dd($courses);
         } else {
             $courses = Courses::where('course', $course)->pluck('cid', 'cname');
         }

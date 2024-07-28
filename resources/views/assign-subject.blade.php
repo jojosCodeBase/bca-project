@@ -29,7 +29,6 @@
                     <table class="table table-striped my-4">
                         <thead>
                             <tr>
-                                {{-- <th>Sl.No.</th> --}}
                                 <th>Faculty Name</th>
                                 <th>Subjects Assigned</th>
                                 <th>Action</th>
@@ -158,9 +157,9 @@
                             response.forEach(function(course) {
                                 var checkbox =
                                     '<div class="form-check"><input class="form-check-input" type="checkbox" value="' +
-                                    course.course_id + // Accessing the course ID
+                                    course.id + // Accessing the course ID
                                     '" name="checked_courses[]"><label class="form-check-label">' +
-                                    course.course_name +
+                                    course.year + ' - ' + course.course_id + ' - ' + course.course_name +
                                     '</label></div>'; // Accessing the course name
                                 $('#subject-checkboxes').append(checkbox);
                             });
