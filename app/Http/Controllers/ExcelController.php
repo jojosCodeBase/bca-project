@@ -22,6 +22,8 @@ class ExcelController extends Controller
     protected $updated = 0;
     public function saveData($dataArray, $regno, $batch, $cid)
     {
+        // dd($dataArray);
+
         // Convert Q1 and S1 arrays to JSON
         $jsonQ1 = json_encode($dataArray['Q1']);
         $jsonS1 = json_encode($dataArray['S1']);
@@ -144,6 +146,7 @@ class ExcelController extends Controller
     // calculate final co attainment
     function calculateFinalCOAttainment($cid, $batch)
     {
+        
         $co_attainment = CoAttainment::where('cid', $cid)->where('batch', $batch)->first();
         $q1 = json_decode($co_attainment['q1'], true);
         $s1 = json_decode($co_attainment['s1'], true);
@@ -160,14 +163,20 @@ class ExcelController extends Controller
         for ($i = 1; $i <= 5; $i++) {
             $coMarksArray = [];
 
+            
             foreach ($examArray as $exam) {
-                if (isset($exam["CO$i"]) && !is_null($exam["CO$i"]) && $exam !== $end_sem) {
+                // if (isset($exam["CO$i"]) && !is_null($exam["CO$i"]) && $exam !== $end_sem) {
+                if (isset($exam["CO$i"]) && !is_null($exam["CO$i"])) {
                     $coMarksArray[] = $exam["CO$i"];
                 }
             }
 
+            
+            
             $totalAvgIntArray["CO$i"] = count($coMarksArray) > 0 ? round(array_sum($coMarksArray) / count($coMarksArray), 2) : null;
         }
+
+
 
         // Calculate grandTotal
         foreach ($totalAvgIntArray as $key => $totalAvgInt) {
@@ -175,9 +184,9 @@ class ExcelController extends Controller
                 $grandTotal[$key] = round(($totalAvgInt + $end_sem[$key]) / 2, 2);
             }
         }
-        // dd($grandTotal);
 
         $finalCOAttainment = round(array_sum($grandTotal) / count($grandTotal), 2);
+        // $finalCOAttainment = count($grandTotal) > 0 ? round(array_sum($grandTotal) / count($grandTotal), 2) : 0;
 
         // Convert arrays to JSON
         $totalAvgInternalJSON = json_encode($totalAvgIntArray);
